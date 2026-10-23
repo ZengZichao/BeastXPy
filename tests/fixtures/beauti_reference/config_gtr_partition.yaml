@@ -1,0 +1,57 @@
+# M5 reference case C: two GTR partitions under a shared UCLN clock.
+metadata:
+  analysis_name: beauti_ref_gtr_partition
+
+alignments:
+  - id: alignment1
+    file: ../../../examples/primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    from: 1
+    to: 449
+    site_model:
+      substitution_model:
+        type: gtr
+        rates:
+          mode: estimated
+          value: [1.0, 2.0, 1.0, 1.0, 2.0, 1.0]
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+  - id: gene2
+    alignment_id: alignment1
+    from: 450
+    to: 898
+    site_model:
+      substitution_model:
+        type: gtr
+        rates:
+          mode: estimated
+          value: [1.0, 3.0, 1.5, 1.0, 3.0, 1.0]
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+mcmc:
+  chain_length: 1000
+
+loggers:
+  trace_log: {file_name: beauti_ref_gtr_partition.log, log_every: 100}
+
+control:
+  beast_version: 1.10.4

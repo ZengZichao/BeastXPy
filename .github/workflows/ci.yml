@@ -1,0 +1,306 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / py${{ matrix.python }} / BEAST ${{ matrix.beast }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.11"]
+        beast: ["1.10.4", "10.5.0"]
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      # Optional repository secrets let a site use its own BEAST installs.
+      # They are empty on forks; the public release asset is used instead.
+      BEAST_1_10_4_HOME: ${{ secrets.BEAST_1_10_4_HOME }}
+      BEAST_10_5_0_HOME: ${{ secrets.BEAST_10_5_0_HOME }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-test.txt
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-test.txt
+
+      - name: Install pipeline tools (Snakemake, Nextflow)
+        if: runner.os == 'Linux' && matrix.python == '3.11'
+        shell: bash
+        run: |
+          # Snakemake 7.x calls pulp.list_solvers; pulp 3.x removed it and
+          # pulp 2.8 also lacks the snake_case alias, so pin 2.5.1.
+          python -m pip install "snakemake==7.32.4" "pulp==2.5.1"
+          curl -fsSL https://get.nextflow.io -o nextflow
+          chmod +x nextflow
+          sudo mv nextflow /usr/local/bin/nextflow
+          snakemake --version
+          nextflow -version
+
+      - name: Install official BEAST ${{ matrix.beast }}
+        shell: bash
+        run: |
+          python - "${{ matrix.beast }}" <<'PY'
+          import os
+          import pathlib
+          import sys
+          import urllib.request
+          import zipfile
+
+          version = sys.argv[1]
+          tag = version.replace(".", "_")
+          env_file = pathlib.Path(os.environ["GITHUB_ENV"])
+
+          def mark(installed: bool) -> None:
+              with env_file.open("a", encoding="utf-8") as handle:
+                  handle.write("BEAST_INSTALLED=%d\n" % int(installed))
+
+          home = os.environ.get(f"BEAST_{tag}_HOME")
+          if home:
+              for candidate in (
+                  pathlib.Path(home) / "lib" / "beast.jar",
+                  pathlib.Path(home) / "beast.jar",
+              ):
+                  if candidate.is_file():
+                      print(f"Using BEAST {version} from BEAST_{tag}_HOME={home}")
+                      mark(True)
+                      raise SystemExit(0)
+
+          urls = {
+              "1.10.4": "https://github.com/beast-dev/beast-mcmc/releases/download/v1.10.4/BEAST.v1.10.4.zip",
+              "10.5.0": "https://github.com/beast-dev/beast-mcmc/releases/download/v10.5.0/BEAST.X.v10.5.0.zip",
+          }
+          root = pathlib.Path(os.environ.get("RUNNER_TEMP", ".")) / "beast" / version
+          root.mkdir(parents=True, exist_ok=True)
+          archive = root / "beast.zip"
+          try:
+              print(f"Downloading {urls[version]}")
+              urllib.request.urlretrieve(urls[version], archive)
+              with zipfile.ZipFile(archive) as zf:
+                  zf.extractall(root)
+              jar = next(root.rglob("lib/beast.jar"))
+          except Exception as exc:  # noqa: BLE001 - surfaced as an explicit skip
+              print(f"::warning::BEAST {version} unavailable: {exc}")
+              mark(False)
+              raise SystemExit(0)
+
+          detected = jar.parent.parent
+          with env_file.open("a", encoding="utf-8") as handle:
+              handle.write(f"BEAST_{tag}_HOME={detected}\n")
+          print(f"Installed BEAST {version} at {detected}")
+          mark(True)
+          PY
+
+      - name: Show environment
+        run: python -m beastxpy.main check-environment
+
+      - name: Run pytest
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m pytest -q -rs --junitxml="$RUNNER_TEMP/junit.xml" 2>&1 | tee "$RUNNER_TEMP/pytest.log"
+
+      - name: Official BEAST validation (java-core)
+        if: always()
+        shell: bash
+        run: |
+          if [ "${BEAST_INSTALLED:-0}" != "1" ]; then
+            echo "::warning::Skipping official BEAST ${{ matrix.beast }} validation: no BEAST home secret and the public release asset was unavailable."
+            exit 0
+          fi
+          python tools/official_validate.py \
+            --matrix "examples/config_*.yaml" \
+            --mode java-core \
+            --versions "${{ matrix.beast }}" \
+            --out "$RUNNER_TEMP/validation_${{ matrix.beast }}"
+          python tools/validate_coverage.py \
+            --mode java-core \
+            --versions "${{ matrix.beast }}" \
+            --out "$RUNNER_TEMP/coverage_${{ matrix.beast }}"
+
+      - name: Upload test and validation logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ matrix.os }}-py${{ matrix.python }}-beast${{ matrix.beast }}
+          path: |
+            ${{ runner.temp }}/pytest.log
+            ${{ runner.temp }}/junit.xml
+            ${{ runner.temp }}/validation_*/
+          if-no-files-found: warn
+
+  quality:
+    name: lint / types / format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-test.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-test.txt
+
+      - name: flake8 (undefined names, unused imports/variables)
+        run: python -m flake8 beastxpy tools
+
+      - name: black --check
+        run: python -m black --check --line-length 100 beastxpy tests tools
+
+      - name: mypy
+        run: python -m mypy beastxpy
+
+  coverage:
+    name: coverage (full suite, JDK 17)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-test.txt
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-test.txt
+
+      - name: Run the full suite with a coverage floor
+        run: |
+          python -m pytest -q \
+            --cov=beastxpy --cov-report=term-missing --cov-fail-under=70
+
+  beagle-evidence:
+    name: beagle-mode evidence (BEAST ${{ matrix.beast }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        beast: ["1.10.4", "10.5.0"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-test.txt
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-test.txt
+
+      - name: Install BEAGLE build tools
+        run: sudo apt-get update && sudo apt-get install -y libtool
+
+      - name: Build paired BEAGLE and run the beagle matrix
+        run: |
+          python tools/run_beagle_evidence.py \
+            --versions "${{ matrix.beast }}" \
+            --out "$RUNNER_TEMP/beagle_evidence_${{ matrix.beast }}"
+
+      - name: Upload beagle evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beagle-evidence-${{ matrix.beast }}
+          path: ${{ runner.temp }}/beagle_evidence_${{ matrix.beast }}
+          if-no-files-found: warn
+
+  spec-drift:
+    name: xml_spec drift guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            requirements-test.txt
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install -r requirements-test.txt
+
+      - name: Fetch both official BEAST distributions
+        run: |
+          python tools/fetch_beast.py --version 1.10.4 \
+            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV"
+          python tools/fetch_beast.py --version 10.5.0 \
+            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV"
+
+      - name: Verify xml_spec.json is byte-identical to a fresh evidence build
+        run: python tools/patch_xml_spec.py --check

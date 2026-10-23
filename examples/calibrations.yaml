@@ -1,0 +1,27 @@
+# Shared calibration set for 'quick' generation.
+calibrations:
+  - name: "Hominoidea"
+    taxa: [Pan_troglodytes, Gorilla_gorilla, Pongo_pygmaeus, Hylobates_lar]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 15.0
+    provenance:
+      source: fossil
+      reference: "doi:10.1038/nature10286"
+      calibration_type: soft
+      original_age_min: 15.0
+      original_age_max: 20.0
+  - name: "Catarrhini"
+    taxa: [Pan_troglodytes, Gorilla_gorilla, Pongo_pygmaeus, Hylobates_lar, Macaca_mulatta, Papio_hamadryas]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0

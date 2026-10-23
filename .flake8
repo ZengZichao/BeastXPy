@@ -1,0 +1,15 @@
+[flake8]
+max-line-length = 100
+# Formatting is owned by Black (E203/E501/W503 are Black-compatible exceptions).
+extend-ignore = E203,E501,W503
+# Real-defect checks: syntax/undefined names, unused imports/variables,
+# shadowed imports and missing final newlines.
+select = E9,F63,F7,F82,F401,F541,F841,F402,W292
+exclude =
+    .git,
+    __pycache__,
+    .pytest_cache,
+    build,
+    dist,
+    htmlcov,
+    beastxpy/tools/paras

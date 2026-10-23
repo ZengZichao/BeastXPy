@@ -1,0 +1,66 @@
+# BeastXPy example: GTR + G4 + UCLN relaxed clock, Birth-Death, 2 calibrations.
+metadata:
+  analysis_name: subst_gtr
+
+alignments:
+  - id: alignment1
+    file: primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: gtr
+        rates:
+          mode: estimated
+          value: [1.0, 2.0, 1.0, 1.0, 2.0, 1.0]
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: birth_death
+  birth_minus_death: {value: 0.5, lower: 0.0, estimate: true}
+  relative_death: {value: 0.5, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "Catarrhini"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0
+  - name: "Homininae"
+    taxa: [Homo_sapiens, Pan, Gorilla]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 7.0
+    provenance:
+      source: literature
+      calibration_type: soft
+      original_age_min: 6.0
+      original_age_max: 8.0
+
+mcmc:
+  chain_length: 1000000
+
+loggers:
+  trace_log: {file_name: subst_gtr.log, log_every: 1000}
+  tree_log: {file_name: subst_gtr.trees, log_every: 1000}
+
+control:
+  beast_version: 1.10.4

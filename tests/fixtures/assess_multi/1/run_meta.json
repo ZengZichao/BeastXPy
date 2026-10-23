@@ -1,0 +1,35 @@
+{
+  "fingerprint": "BXP-816d67dc492e-0.1.0",
+  "content_fingerprint": "BXP-816d67dc492efc7f",
+  "seed": 1,
+  "seeds": [
+    1,
+    2
+  ],
+  "status": "ok",
+  "timed_out": false,
+  "beast_version": "1.10.4",
+  "beastxpy_version": "0.1.0",
+  "java_path": "C:\\Program Files\\Java\\jre1.8.0_451\\bin\\java.exe",
+  "jar_path": "F:\\bxp_wt\\a\\beastxpy\\tools\\jars\\beast-1.10.4.jar",
+  "jar_sha256": "92c72c866ffa0c5a06d0411bc6bed478e7ee765dbe3cc7bb8973cac5a6bdff19",
+  "command": [
+    "C:\\Program Files\\Java\\jre1.8.0_451\\bin\\java.exe",
+    "-cp",
+    "F:\\bxp_wt\\a\\beastxpy\\tools\\jars\\beast-1.10.4.jar",
+    "dr.app.beast.BeastMain",
+    "-seed",
+    "1",
+    "-overwrite",
+    "-prefix",
+    "seed_1_",
+    "F:\\bxp_wt\\fxgen_a\\multi\\1\\assess_fx.xml"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 1.016,
+  "trace_log_path": "F:\\bxp_wt\\fxgen_a\\multi\\1\\seed_1_trace.log",
+  "tree_log_path": "F:\\bxp_wt\\fxgen_a\\multi\\1\\seed_1_tree.log",
+  "checkpoint_files": [],
+  "archived_logs": [],
+  "wall_clock": "2026-10-21T02:26:46+0800"
+}

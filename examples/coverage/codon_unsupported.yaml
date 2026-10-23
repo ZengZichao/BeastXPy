@@ -1,0 +1,43 @@
+# C07: Yang GY94 codon model (kappa + omega) on a nucleotide alignment.
+# BEAST reads the alignment through <convert dataType="codon">.
+metadata:
+  analysis_name: coverage_codon
+
+alignments:
+  - id: alignment1
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+analysis:
+  type: codon
+  genetic_code: universal
+  omega: {value: 0.5, lower: 0.0, upper: 10.0}
+
+mcmc:
+  chain_length: 200000
+
+loggers:
+  trace_log: {file_name: coverage_codon.log, log_every: 1000}
+  tree_log: {file_name: coverage_codon.trees, log_every: 1000}
+  screen_log: {log_every: 10000}
+
+control:
+  beast_version: 1.10.4

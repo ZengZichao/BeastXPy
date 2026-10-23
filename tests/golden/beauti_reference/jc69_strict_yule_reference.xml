@@ -1,0 +1,73 @@
+<!--
+  BEAUti-convention reference for M5 case A (JC69 + strict clock + Yule).
+
+  Provenance: hand-transcribed from the BEAST 1.10.4 BEAUti code paths
+    src/dr/app/beauti/options/PartitionTreePrior.java        (yule.birthRate)
+    src/dr/app/beauti/options/PartitionSubstitutionModel.java (kappa/alpha)
+    src/dr/app/beauti/options/PartitionClockModel.java        (clock.rate)
+  and the BEAUti v1.6.0pre output examples/Benchmarks/benchmark1.xml shipped
+  with the BEAST source tree. It is a reference subset, not a BEAUti run.
+
+  Documented deviations checked by tests/test_beauti_reference.py:
+    * clock.rate: BEAUti uses ctmcScalePrior; BeastXPy emits oneOnXPrior.
+    * gamma shape: BEAUti uses exponential(mean 0.5); BeastXPy emits
+      lognormal(log mean 1, log sd 1.25).
+    * base frequencies are fixed to 0.25 in both documents (match).
+-->
+<beast version="1.10.4">
+  <yuleModel id="yule" units="substitutions">
+    <birthRate>
+      <parameter id="yule.birthRate" value="1.0" lower="0.0"/>
+    </birthRate>
+  </yuleModel>
+
+  <strictClockBranchRates id="branchRates">
+    <rate>
+      <parameter id="clock.rate" value="0.01" lower="0.0"/>
+    </rate>
+  </strictClockBranchRates>
+
+  <HKYModel id="hky">
+    <frequencies>
+      <frequencyModel dataType="nucleotide">
+        <frequencies>
+          <parameter id="frequencies" value="0.25 0.25 0.25 0.25"/>
+        </frequencies>
+      </frequencyModel>
+    </frequencies>
+    <kappa>
+      <parameter id="kappa" value="1.0"/>
+    </kappa>
+  </HKYModel>
+
+  <siteModel id="siteModel">
+    <substitutionModel>
+      <HKYModel idref="hky"/>
+    </substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="siteModel.alpha" value="0.5" lower="0.0"/>
+    </gammaShape>
+  </siteModel>
+
+  <treeLikelihood id="treeLikelihood" useAmbiguities="false">
+    <patterns idref="patterns"/>
+    <treeModel idref="treeModel"/>
+    <siteModel idref="siteModel"/>
+    <strictClockBranchRates idref="branchRates"/>
+  </treeLikelihood>
+
+  <prior id="prior">
+    <logNormalPrior mean="2.0" stdev="1.5" offset="0.0" meanInRealSpace="false">
+      <parameter idref="yule.birthRate"/>
+    </logNormalPrior>
+    <exponentialPrior mean="0.5" offset="0.0">
+      <parameter idref="siteModel.alpha"/>
+    </exponentialPrior>
+    <ctmcScalePrior>
+      <ctmcScale>
+        <parameter idref="clock.rate"/>
+      </ctmcScale>
+      <treeModel idref="treeModel"/>
+    </ctmcScalePrior>
+  </prior>
+</beast>

@@ -1,0 +1,56 @@
+# BeastXPy coverage fixture C06: empirical tree distribution analysis.
+# The core tree model is replaced by BEAST's official
+# <empiricalTreeDistributionModel>, which reads the small NEXUS tree set
+# shipped next to this fixture.  Trees are fixed; the official
+# <empiricalTreeDistributionOperator> moves between the trees of the set.
+# The substitution/clock model, core likelihood and remaining priors are
+# unchanged, and the current tree index is logged.
+metadata:
+  analysis_name: cov_empirical_tree
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: empirical}
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 40000
+
+loggers:
+  trace_log: {file_name: cov_empirical_tree.log, log_every: 1000}
+  tree_log: {file_name: cov_empirical_tree.trees, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_empirical_tree.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240606
+
+analysis:
+  beast_version: both
+  type: empirical_tree
+  # Relative paths resolve against the alignment directory.
+  tree_file: empirical_trees.nexus
+  starting_tree: 0
+  iterate: false
+  weight: 1.0
+  metropolis_hastings: true

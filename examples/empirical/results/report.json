@@ -1,0 +1,2514 @@
+{
+  "schema_version": "beastxpy.report/v1",
+  "generated_at": "2026-10-22T13:07:07Z",
+  "tool_version": "0.1.0",
+  "lang": "en",
+  "workdir": "validation_runs/primates_reference/run",
+  "output_html": "examples/empirical/results/report.html",
+  "ess_threshold": 200.0,
+  "conclusion": {
+    "status": "completed",
+    "headline": "The recorded BEAST run(s) completed.",
+    "reasons": [
+      "Seed 1: BEAST finished with exit code 0.",
+      "Seed 2: BEAST finished with exit code 0.",
+      "Seed 3: BEAST finished with exit code 0.",
+      "Seed 4: BEAST finished with exit code 0.",
+      "Convergence assessment: pass (source: examples/empirical/results/assessment.json).",
+      "Gate 3 (official BEAST validation) was not recorded for this workdir."
+    ],
+    "chains_total": 4,
+    "chains_ok": 4,
+    "assessed": true,
+    "gate3_status": "not_run"
+  },
+  "provenance": {
+    "sources": [
+      "run_meta.json",
+      "XML fingerprint comment"
+    ],
+    "fingerprint": "BXP-a40cdff055ca-0.1.0",
+    "content_fingerprint": "BXP-a40cdff055ca4058",
+    "data_digest": "909f6337667a2684",
+    "beast_version": "10.5.0",
+    "beastxpy_version": "0.1.0",
+    "analysis_name": "primates_reference",
+    "java_path": "<jdk-17-home>/bin/java",
+    "jar_path": "<beast-10.5.0-install>/lib/beast.jar",
+    "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+    "wall_clock": "2026-10-22T21:01:15+0800",
+    "seeds": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "generated_xml": [
+      "validation_runs/primates_reference/run/primates_reference.xml"
+    ]
+  },
+  "gates": [
+    {
+      "gate": "0",
+      "label_key": "gate_0_name",
+      "status": "passed",
+      "inferred": true,
+      "basis_key": "gate_basis_xml",
+      "evidence": "validation_runs/primates_reference/run/primates_reference.xml"
+    },
+    {
+      "gate": "1",
+      "label_key": "gate_1_name",
+      "status": "passed",
+      "inferred": true,
+      "basis_key": "gate_basis_gate1",
+      "evidence": "validation_runs/primates_reference/run/primates_reference.xml"
+    },
+    {
+      "gate": "2",
+      "label_key": "gate_2_name",
+      "status": "passed",
+      "inferred": true,
+      "basis_key": "gate_basis_gate2",
+      "evidence": "validation_runs/primates_reference/run/primates_reference.xml"
+    },
+    {
+      "gate": "3",
+      "label_key": "gate_3_name",
+      "status": "not_run",
+      "inferred": false,
+      "basis_key": "gate_basis_gate3_absent",
+      "evidence": null,
+      "extra_key": "gate_basis_run_evidence"
+    }
+  ],
+  "auto_priors": [
+    {
+      "parameter": "clock.rate",
+      "distribution": "oneOnXPrior",
+      "source": "BeastXPy convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "frequencies",
+      "distribution": "uniformPrior(lower=0, upper=1)",
+      "source": "BeastXPy convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "gene2..frequencies",
+      "distribution": "uniformPrior(lower=0, upper=1)",
+      "source": "BeastXPy convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "gene2..kappa",
+      "distribution": "logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false)",
+      "source": "BEAUti-1.10.4 convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "gene2..siteModel.alpha",
+      "distribution": "logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false)",
+      "source": "BeastXPy convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "kappa",
+      "distribution": "logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false)",
+      "source": "BEAUti-1.10.4 convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "siteModel.alpha",
+      "distribution": "logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false)",
+      "source": "BeastXPy convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    },
+    {
+      "parameter": "yule.birthRate",
+      "distribution": "logNormalPrior(mean=2, stdev=1.5, offset=0.0, meanInRealSpace=false)",
+      "source": "BEAUti-1.10.4 convention",
+      "xml_path": "validation_runs/primates_reference/run/1/primates_reference.xml"
+    }
+  ],
+  "run_metadata": {
+    "chains": [
+      {
+        "seed": 1,
+        "directory": "validation_runs/primates_reference/run/1",
+        "run_meta_path": "validation_runs/primates_reference/run/1/run_meta.json",
+        "run_meta_readable": true,
+        "run_meta_parsable": true,
+        "run_meta": {
+          "fingerprint": "BXP-a40cdff055ca-0.1.0",
+          "content_fingerprint": "BXP-a40cdff055ca4058",
+          "seed": 1,
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "ok",
+          "timed_out": false,
+          "beast_version": "10.5.0",
+          "beastxpy_version": "0.1.0",
+          "java_path": "<jdk-17-home>/bin/java",
+          "jar_path": "<beast-10.5.0-install>/lib/beast.jar",
+          "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+          "command": [
+            "<jdk-17-home>/bin/java",
+            "-Djava.library.path=.tools/evidence_10_5_0/beagle-prefix-4.0.1/lib",
+            "-cp",
+            "<beast-10.5.0-install>/lib/beast.jar",
+            "dr.app.beast.BeastMain",
+            "-seed",
+            "1",
+            "-overwrite",
+            "-prefix",
+            "seed_1_",
+            "validation_runs/primates_reference/run/1/primates_reference.xml"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 187.34,
+          "trace_log_path": "validation_runs/primates_reference/run/1/seed_1_trace.log",
+          "tree_log_path": "validation_runs/primates_reference/run/1/seed_1_tree.log",
+          "checkpoint_files": [],
+          "archived_logs": [],
+          "wall_clock": "2026-10-22T21:01:15+0800"
+        },
+        "trace_log": "validation_runs/primates_reference/run/1/seed_1_trace.log",
+        "tree_log": "validation_runs/primates_reference/run/1/seed_1_tree.log",
+        "run_log": "validation_runs/primates_reference/run/1/run.log",
+        "fatal_line": null
+      },
+      {
+        "seed": 2,
+        "directory": "validation_runs/primates_reference/run/2",
+        "run_meta_path": "validation_runs/primates_reference/run/2/run_meta.json",
+        "run_meta_readable": true,
+        "run_meta_parsable": true,
+        "run_meta": {
+          "fingerprint": "BXP-a40cdff055ca-0.1.0",
+          "content_fingerprint": "BXP-a40cdff055ca4058",
+          "seed": 2,
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "ok",
+          "timed_out": false,
+          "beast_version": "10.5.0",
+          "beastxpy_version": "0.1.0",
+          "java_path": "<jdk-17-home>/bin/java",
+          "jar_path": "<beast-10.5.0-install>/lib/beast.jar",
+          "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+          "command": [
+            "<jdk-17-home>/bin/java",
+            "-Djava.library.path=.tools/evidence_10_5_0/beagle-prefix-4.0.1/lib",
+            "-cp",
+            "<beast-10.5.0-install>/lib/beast.jar",
+            "dr.app.beast.BeastMain",
+            "-seed",
+            "2",
+            "-overwrite",
+            "-prefix",
+            "seed_2_",
+            "validation_runs/primates_reference/run/2/primates_reference.xml"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 190.88,
+          "trace_log_path": "validation_runs/primates_reference/run/2/seed_2_trace.log",
+          "tree_log_path": "validation_runs/primates_reference/run/2/seed_2_tree.log",
+          "checkpoint_files": [],
+          "archived_logs": [],
+          "wall_clock": "2026-10-22T21:01:18+0800"
+        },
+        "trace_log": "validation_runs/primates_reference/run/2/seed_2_trace.log",
+        "tree_log": "validation_runs/primates_reference/run/2/seed_2_tree.log",
+        "run_log": "validation_runs/primates_reference/run/2/run.log",
+        "fatal_line": null
+      },
+      {
+        "seed": 3,
+        "directory": "validation_runs/primates_reference/run/3",
+        "run_meta_path": "validation_runs/primates_reference/run/3/run_meta.json",
+        "run_meta_readable": true,
+        "run_meta_parsable": true,
+        "run_meta": {
+          "fingerprint": "BXP-a40cdff055ca-0.1.0",
+          "content_fingerprint": "BXP-a40cdff055ca4058",
+          "seed": 3,
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "ok",
+          "timed_out": false,
+          "beast_version": "10.5.0",
+          "beastxpy_version": "0.1.0",
+          "java_path": "<jdk-17-home>/bin/java",
+          "jar_path": "<beast-10.5.0-install>/lib/beast.jar",
+          "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+          "command": [
+            "<jdk-17-home>/bin/java",
+            "-Djava.library.path=.tools/evidence_10_5_0/beagle-prefix-4.0.1/lib",
+            "-cp",
+            "<beast-10.5.0-install>/lib/beast.jar",
+            "dr.app.beast.BeastMain",
+            "-seed",
+            "3",
+            "-overwrite",
+            "-prefix",
+            "seed_3_",
+            "validation_runs/primates_reference/run/3/primates_reference.xml"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 191.087,
+          "trace_log_path": "validation_runs/primates_reference/run/3/seed_3_trace.log",
+          "tree_log_path": "validation_runs/primates_reference/run/3/seed_3_tree.log",
+          "checkpoint_files": [],
+          "archived_logs": [],
+          "wall_clock": "2026-10-22T21:01:18+0800"
+        },
+        "trace_log": "validation_runs/primates_reference/run/3/seed_3_trace.log",
+        "tree_log": "validation_runs/primates_reference/run/3/seed_3_tree.log",
+        "run_log": "validation_runs/primates_reference/run/3/run.log",
+        "fatal_line": null
+      },
+      {
+        "seed": 4,
+        "directory": "validation_runs/primates_reference/run/4",
+        "run_meta_path": "validation_runs/primates_reference/run/4/run_meta.json",
+        "run_meta_readable": true,
+        "run_meta_parsable": true,
+        "run_meta": {
+          "fingerprint": "BXP-a40cdff055ca-0.1.0",
+          "content_fingerprint": "BXP-a40cdff055ca4058",
+          "seed": 4,
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "ok",
+          "timed_out": false,
+          "beast_version": "10.5.0",
+          "beastxpy_version": "0.1.0",
+          "java_path": "<jdk-17-home>/bin/java",
+          "jar_path": "<beast-10.5.0-install>/lib/beast.jar",
+          "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+          "command": [
+            "<jdk-17-home>/bin/java",
+            "-Djava.library.path=.tools/evidence_10_5_0/beagle-prefix-4.0.1/lib",
+            "-cp",
+            "<beast-10.5.0-install>/lib/beast.jar",
+            "dr.app.beast.BeastMain",
+            "-seed",
+            "4",
+            "-overwrite",
+            "-prefix",
+            "seed_4_",
+            "validation_runs/primates_reference/run/4/primates_reference.xml"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 184.756,
+          "trace_log_path": "validation_runs/primates_reference/run/4/seed_4_trace.log",
+          "tree_log_path": "validation_runs/primates_reference/run/4/seed_4_tree.log",
+          "checkpoint_files": [],
+          "archived_logs": [],
+          "wall_clock": "2026-10-22T21:01:12+0800"
+        },
+        "trace_log": "validation_runs/primates_reference/run/4/seed_4_trace.log",
+        "tree_log": "validation_runs/primates_reference/run/4/seed_4_tree.log",
+        "run_log": "validation_runs/primates_reference/run/4/run.log",
+        "fatal_line": null
+      }
+    ]
+  },
+  "diagnostics": {
+    "chains": [
+      {
+        "seed": 1,
+        "trace_log": "validation_runs/primates_reference/run/1/seed_1_trace.log",
+        "available": true,
+        "reason": null,
+        "stats": {
+          "burnin": 100,
+          "n_chains": 1,
+          "n_columns": 21,
+          "n_samples": 2001,
+          "beast_version": "# BEAST v10.5.0"
+        },
+        "summary": {
+          "parameters_analysed": 21,
+          "below_ess_threshold": 0,
+          "lowest_ess": 822.7772882185764,
+          "nonfinite_dropped": 0
+        },
+        "warnings": [],
+        "plot": {
+          "present": true,
+          "reason": null,
+          "mime": "image/png",
+          "bytes": 322676,
+          "sha256": "cdf3d3cc95ef5cfa6960c96b83968e877a33af1f6c7c55f112107031c11d6801"
+        }
+      },
+      {
+        "seed": 2,
+        "trace_log": "validation_runs/primates_reference/run/2/seed_2_trace.log",
+        "available": true,
+        "reason": null,
+        "stats": {
+          "burnin": 0,
+          "n_chains": 1,
+          "n_columns": 21,
+          "n_samples": 2001,
+          "beast_version": "# BEAST v10.5.0"
+        },
+        "summary": {
+          "parameters_analysed": 21,
+          "below_ess_threshold": 0,
+          "lowest_ess": 329.9306748246075,
+          "nonfinite_dropped": 0
+        },
+        "warnings": [],
+        "plot": {
+          "present": true,
+          "reason": null,
+          "mime": "image/png",
+          "bytes": 337032,
+          "sha256": "324965a721bd364c6f1439b2746540d641d65bbbe61eaa9acd4278f0a16ed44e"
+        }
+      },
+      {
+        "seed": 3,
+        "trace_log": "validation_runs/primates_reference/run/3/seed_3_trace.log",
+        "available": true,
+        "reason": null,
+        "stats": {
+          "burnin": 100,
+          "n_chains": 1,
+          "n_columns": 21,
+          "n_samples": 2001,
+          "beast_version": "# BEAST v10.5.0"
+        },
+        "summary": {
+          "parameters_analysed": 21,
+          "below_ess_threshold": 0,
+          "lowest_ess": 709.826032808036,
+          "nonfinite_dropped": 0
+        },
+        "warnings": [],
+        "plot": {
+          "present": true,
+          "reason": null,
+          "mime": "image/png",
+          "bytes": 321319,
+          "sha256": "37a2e918e4b4deeb538fec8f1b83361142da57b8dc394a6c080691104bf9eba5"
+        }
+      },
+      {
+        "seed": 4,
+        "trace_log": "validation_runs/primates_reference/run/4/seed_4_trace.log",
+        "available": true,
+        "reason": null,
+        "stats": {
+          "burnin": 100,
+          "n_chains": 1,
+          "n_columns": 21,
+          "n_samples": 2001,
+          "beast_version": "# BEAST v10.5.0"
+        },
+        "summary": {
+          "parameters_analysed": 21,
+          "below_ess_threshold": 0,
+          "lowest_ess": 826.1015858876899,
+          "nonfinite_dropped": 0
+        },
+        "warnings": [],
+        "plot": {
+          "present": true,
+          "reason": null,
+          "mime": "image/png",
+          "bytes": 322573,
+          "sha256": "0ef98ee402e4566230e7034235a6f5fb8c1be33da357d7a0214ad5091a193c26"
+        }
+      }
+    ]
+  },
+  "trace_summary": {
+    "chains": [
+      {
+        "seed": 1,
+        "available": true,
+        "parameters": [
+          {
+            "name": "posterior",
+            "n": 1901,
+            "mean": -5782.105227218105,
+            "median": -5781.853581900806,
+            "ess": 1490.177765984369,
+            "act": 1.2756867290556126,
+            "hpd_lower": -5789.552928163427,
+            "hpd_upper": -5776.049970509979,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "prior",
+            "n": 1901,
+            "mean": -58.4784036087842,
+            "median": -58.12702715227738,
+            "ess": 1644.5114944116174,
+            "act": 1.1559663805695384,
+            "hpd_lower": -62.845372759904606,
+            "hpd_upper": -55.04371799664009,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "likelihood",
+            "n": 1901,
+            "mean": -5723.626823609322,
+            "median": -5723.445286004608,
+            "ess": 1490.0460924449667,
+            "act": 1.2757994599218825,
+            "hpd_lower": -5730.352883661046,
+            "hpd_upper": -5717.721928682666,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "treeModel.rootHeight",
+            "n": 1901,
+            "mean": 50.21535015615639,
+            "median": 49.826278565448,
+            "ess": 1500.3437231962323,
+            "act": 1.267042991955361,
+            "hpd_lower": 42.74063711850581,
+            "hpd_upper": 60.022680279611166,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "yule.birthRate",
+            "n": 1901,
+            "mean": 0.050942671525121504,
+            "median": 0.04949056539907365,
+            "ess": 1632.152321974137,
+            "act": 1.1647197227895272,
+            "hpd_lower": 0.02636052375932686,
+            "hpd_upper": 0.07957200681769741,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies1",
+            "n": 1901,
+            "mean": 0.3483171075637095,
+            "median": 0.34840644557837447,
+            "ess": 869.3195576265153,
+            "act": 2.1867677809875343,
+            "hpd_lower": 0.3161274184046692,
+            "hpd_upper": 0.38251678294549185,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies2",
+            "n": 1901,
+            "mean": 0.3495627269297442,
+            "median": 0.3499915500478973,
+            "ess": 957.1265167672328,
+            "act": 1.986153310662389,
+            "hpd_lower": 0.32055224823601747,
+            "hpd_upper": 0.377062167315533,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies3",
+            "n": 1901,
+            "mean": 0.07854353633962205,
+            "median": 0.0781428004127526,
+            "ess": 1059.861096849941,
+            "act": 1.7936312651252548,
+            "hpd_lower": 0.06491707566029924,
+            "hpd_upper": 0.09136137210732054,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies4",
+            "n": 1901,
+            "mean": 0.22357662916692514,
+            "median": 0.22362796302470223,
+            "ess": 982.4303692010187,
+            "act": 1.9349971861578612,
+            "hpd_lower": 0.20014584019150466,
+            "hpd_upper": 0.24677932163040905,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "kappa",
+            "n": 1901,
+            "mean": 12.098357321101314,
+            "median": 11.96814021141472,
+            "ess": 1030.677321770201,
+            "act": 1.8444181897152925,
+            "hpd_lower": 9.392350759861248,
+            "hpd_upper": 15.56607879778078,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "siteModel.alpha",
+            "n": 1901,
+            "mean": 0.34621789672489167,
+            "median": 0.3438840250807599,
+            "ess": 1390.4999705139173,
+            "act": 1.3671341534062789,
+            "hpd_lower": 0.27643303353127885,
+            "hpd_upper": 0.42211825332367986,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies1",
+            "n": 1901,
+            "mean": 0.3736059175433491,
+            "median": 0.37411136978092113,
+            "ess": 822.7772882185764,
+            "act": 2.3104672761640286,
+            "hpd_lower": 0.3377395265036361,
+            "hpd_upper": 0.4071827703792197,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies2",
+            "n": 1901,
+            "mean": 0.28904351653135957,
+            "median": 0.2881165389503924,
+            "ess": 941.1960009812296,
+            "act": 2.0197705876545813,
+            "hpd_lower": 0.2606420676966564,
+            "hpd_upper": 0.3209135696648062,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies3",
+            "n": 1901,
+            "mean": 0.0873512330176862,
+            "median": 0.08682170644771235,
+            "ess": 950.1056534754368,
+            "act": 2.000830110889501,
+            "hpd_lower": 0.07291843226427093,
+            "hpd_upper": 0.10335284820064741,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies4",
+            "n": 1901,
+            "mean": 0.24999933290760465,
+            "median": 0.24981868483396866,
+            "ess": 912.8764261987436,
+            "act": 2.0824286239002197,
+            "hpd_lower": 0.22302524873773663,
+            "hpd_upper": 0.2773112992834631,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..kappa",
+            "n": 1901,
+            "mean": 10.459530649377431,
+            "median": 10.362073724820299,
+            "ess": 1178.7045315608975,
+            "act": 1.6127875554042401,
+            "hpd_lower": 7.887510698396553,
+            "hpd_upper": 12.993062555795264,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..siteModel.alpha",
+            "n": 1901,
+            "mean": 0.40621773931659366,
+            "median": 0.40367660989148396,
+            "ess": 1606.655430745869,
+            "act": 1.183203295256336,
+            "hpd_lower": 0.32895353412890893,
+            "hpd_upper": 0.5008435219787816,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "clock.rate",
+            "n": 1901,
+            "mean": 0.011874474946212363,
+            "median": 0.011823818447628536,
+            "ess": 1163.2385742677802,
+            "act": 1.6342305370990777,
+            "hpd_lower": 0.009710608715275957,
+            "hpd_upper": 0.013817181141303423,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Catarrhini)",
+            "n": 1901,
+            "mean": 26.301435581230916,
+            "median": 26.10650417073365,
+            "ess": 1819.4853564823418,
+            "act": 1.0448009340813011,
+            "hpd_lower": 25.29106179934411,
+            "hpd_upper": 27.85110234565752,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Homininae)",
+            "n": 1901,
+            "mean": 7.597386974871181,
+            "median": 7.556984907568621,
+            "ess": 1855.5389214732454,
+            "act": 1.0245002020710294,
+            "hpd_lower": 7.173637313580933,
+            "hpd_upper": 8.067612368117775,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "speciation",
+            "n": 1901,
+            "mean": -46.279097691391904,
+            "median": -46.11374150147161,
+            "ess": 1532.8512736688372,
+            "act": 1.2401725024829116,
+            "hpd_lower": -48.3708193904361,
+            "hpd_upper": -44.450169401963414,
+            "ess_below_threshold": false
+          }
+        ]
+      },
+      {
+        "seed": 2,
+        "available": true,
+        "parameters": [
+          {
+            "name": "posterior",
+            "n": 2001,
+            "mean": -5784.46422717111,
+            "median": -5781.628689375811,
+            "ess": 1219.492663065861,
+            "act": 1.6408462802632968,
+            "hpd_lower": -5789.096426297361,
+            "hpd_upper": -5775.545304885177,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "prior",
+            "n": 2001,
+            "mean": -58.62451493704295,
+            "median": -58.18194132888546,
+            "ess": 983.6604230642079,
+            "act": 2.034238598079071,
+            "hpd_lower": -63.468163078729354,
+            "hpd_upper": -55.18280650107725,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "likelihood",
+            "n": 2001,
+            "mean": -5725.8397122340675,
+            "median": -5723.219336863922,
+            "ess": 1252.9705171623955,
+            "act": 1.5970048557340903,
+            "hpd_lower": -5730.211137487078,
+            "hpd_upper": -5717.181451582974,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "treeModel.rootHeight",
+            "n": 2001,
+            "mean": 50.11005710429666,
+            "median": 49.835983409411334,
+            "ess": 1235.1535525025647,
+            "act": 1.620041488724816,
+            "hpd_lower": 42.23764534127721,
+            "hpd_upper": 59.6442233275297,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "yule.birthRate",
+            "n": 2001,
+            "mean": 0.05210764554219761,
+            "median": 0.049668947406652314,
+            "ess": 738.9936223817255,
+            "act": 2.7077364937885595,
+            "hpd_lower": 0.024832403254114226,
+            "hpd_upper": 0.07858330091311445,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies1",
+            "n": 2001,
+            "mean": 0.3498344731791809,
+            "median": 0.3498900456134088,
+            "ess": 779.9941654309833,
+            "act": 2.56540380516097,
+            "hpd_lower": 0.3163017872767738,
+            "hpd_upper": 0.3851689830262775,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies2",
+            "n": 2001,
+            "mean": 0.3472204649864213,
+            "median": 0.3466988223699411,
+            "ess": 746.2310542487514,
+            "act": 2.6814751123088203,
+            "hpd_lower": 0.32000066200076577,
+            "hpd_upper": 0.3797571550950071,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies3",
+            "n": 2001,
+            "mean": 0.07904950424303966,
+            "median": 0.07836186480675697,
+            "ess": 329.9306748246075,
+            "act": 6.064910457518811,
+            "hpd_lower": 0.06564688018895799,
+            "hpd_upper": 0.09278865419721093,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies4",
+            "n": 2001,
+            "mean": 0.22389555759135835,
+            "median": 0.2240088342750772,
+            "ess": 796.0234436800848,
+            "act": 2.513745061011275,
+            "hpd_lower": 0.19890016458027626,
+            "hpd_upper": 0.2451985036302868,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "kappa",
+            "n": 2001,
+            "mean": 12.057488212367735,
+            "median": 11.938120722040882,
+            "ess": 690.6957942724626,
+            "act": 2.897078593199967,
+            "hpd_lower": 9.329000499111144,
+            "hpd_upper": 15.52766384527372,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "siteModel.alpha",
+            "n": 2001,
+            "mean": 0.3487092154784132,
+            "median": 0.3465466402578601,
+            "ess": 869.8333568327708,
+            "act": 2.3004406353028615,
+            "hpd_lower": 0.2729045174721906,
+            "hpd_upper": 0.4277338249270803,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies1",
+            "n": 2001,
+            "mean": 0.37382587023312114,
+            "median": 0.37431551170737387,
+            "ess": 714.0241733572312,
+            "act": 2.8024261287844183,
+            "hpd_lower": 0.3410982649357441,
+            "hpd_upper": 0.40691429284591285,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies2",
+            "n": 2001,
+            "mean": 0.28854607139907074,
+            "median": 0.28840188383175985,
+            "ess": 1119.9704132341533,
+            "act": 1.7866543404675181,
+            "hpd_lower": 0.2602247216340103,
+            "hpd_upper": 0.3165544640926698,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies3",
+            "n": 2001,
+            "mean": 0.08783758302453894,
+            "median": 0.08731058359383372,
+            "ess": 340.8302210784078,
+            "act": 5.870958255018327,
+            "hpd_lower": 0.07262239182312032,
+            "hpd_upper": 0.10361588827052379,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies4",
+            "n": 2001,
+            "mean": 0.2497904753432694,
+            "median": 0.2494738120191725,
+            "ess": 887.8447866808658,
+            "act": 2.2537723147314663,
+            "hpd_lower": 0.22442821251559833,
+            "hpd_upper": 0.27384154634183616,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..kappa",
+            "n": 2001,
+            "mean": 10.451270638621944,
+            "median": 10.312215322339227,
+            "ess": 919.8617067093429,
+            "act": 2.1753269925304917,
+            "hpd_lower": 7.954005973842589,
+            "hpd_upper": 13.10738159735254,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..siteModel.alpha",
+            "n": 2001,
+            "mean": 0.4067108526735097,
+            "median": 0.40411700341415213,
+            "ess": 1231.7829108269468,
+            "act": 1.6244745583104785,
+            "hpd_lower": 0.3186561614523968,
+            "hpd_upper": 0.4969185921251577,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "clock.rate",
+            "n": 2001,
+            "mean": 0.011855409992125851,
+            "median": 0.01180217606453305,
+            "ess": 991.6881305747511,
+            "act": 2.017771452846051,
+            "hpd_lower": 0.009799134107412849,
+            "hpd_upper": 0.01384509011142561,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Catarrhini)",
+            "n": 2001,
+            "mean": 26.328250021345767,
+            "median": 26.091661575739625,
+            "ess": 1995.0163592723072,
+            "act": 1.002999294065877,
+            "hpd_lower": 25.25925742346633,
+            "hpd_upper": 27.974595283809723,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Homininae)",
+            "n": 2001,
+            "mean": 7.5942964976179965,
+            "median": 7.551941257587496,
+            "ess": 1802.5034573909588,
+            "act": 1.1101226972936606,
+            "hpd_lower": 7.191646909743225,
+            "hpd_upper": 8.057056457263231,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "speciation",
+            "n": 2001,
+            "mean": -46.39579397849726,
+            "median": -46.17446167054866,
+            "ess": 643.5458574203126,
+            "act": 3.109335530526315,
+            "hpd_lower": -48.60006143068894,
+            "hpd_upper": -44.53677973292437,
+            "ess_below_threshold": false
+          }
+        ]
+      },
+      {
+        "seed": 3,
+        "available": true,
+        "parameters": [
+          {
+            "name": "posterior",
+            "n": 1901,
+            "mean": -5782.185023761973,
+            "median": -5781.729890443922,
+            "ess": 1400.4711702425232,
+            "act": 1.3574003095478209,
+            "hpd_lower": -5789.420801980836,
+            "hpd_upper": -5775.798374071217,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "prior",
+            "n": 1901,
+            "mean": -58.59595677329195,
+            "median": -58.24760239747697,
+            "ess": 1562.916034773285,
+            "act": 1.216316140921644,
+            "hpd_lower": -63.053610855197505,
+            "hpd_upper": -55.18755520137824,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "likelihood",
+            "n": 1901,
+            "mean": -5723.589066988681,
+            "median": -5723.219554997339,
+            "ess": 1299.0493564212388,
+            "act": 1.4633778082436217,
+            "hpd_lower": -5730.294127315892,
+            "hpd_upper": -5717.299449367346,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "treeModel.rootHeight",
+            "n": 1901,
+            "mean": 50.20521484732742,
+            "median": 50.00455952783346,
+            "ess": 1191.7017556520286,
+            "act": 1.59519778416361,
+            "hpd_lower": 42.34049903778192,
+            "hpd_upper": 59.43651039150883,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "yule.birthRate",
+            "n": 1901,
+            "mean": 0.05121815857055428,
+            "median": 0.0504203707610333,
+            "ess": 1769.9753826398821,
+            "act": 1.0740262371133644,
+            "hpd_lower": 0.025496991730037322,
+            "hpd_upper": 0.07913864044093204,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies1",
+            "n": 1901,
+            "mean": 0.34919352034899276,
+            "median": 0.34908816375352,
+            "ess": 709.826032808036,
+            "act": 2.6781209932238466,
+            "hpd_lower": 0.31628401096051306,
+            "hpd_upper": 0.38601968149143323,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies2",
+            "n": 1901,
+            "mean": 0.34924223112188835,
+            "median": 0.3490337629064815,
+            "ess": 985.6833086086642,
+            "act": 1.928611333272292,
+            "hpd_lower": 0.316715154806784,
+            "hpd_upper": 0.377443251217075,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies3",
+            "n": 1901,
+            "mean": 0.07825558938623238,
+            "median": 0.07775163258513529,
+            "ess": 983.7086377968168,
+            "act": 1.9324827768693926,
+            "hpd_lower": 0.06377065248755229,
+            "hpd_upper": 0.0916673624953939,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies4",
+            "n": 1901,
+            "mean": 0.22330865914288556,
+            "median": 0.22324567807998907,
+            "ess": 811.6185965243162,
+            "act": 2.3422331722570946,
+            "hpd_lower": 0.1997689487989832,
+            "hpd_upper": 0.24878477406725344,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "kappa",
+            "n": 1901,
+            "mean": 12.112467871413342,
+            "median": 12.037381236477739,
+            "ess": 925.7004348026929,
+            "act": 2.053580109212313,
+            "hpd_lower": 9.169111575285354,
+            "hpd_upper": 15.231679643156143,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "siteModel.alpha",
+            "n": 1901,
+            "mean": 0.34563791447796555,
+            "median": 0.3435120752144676,
+            "ess": 1506.9381738347824,
+            "act": 1.2614983368311843,
+            "hpd_lower": 0.2714435916038518,
+            "hpd_upper": 0.422041497511771,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies1",
+            "n": 1901,
+            "mean": 0.37442492666941274,
+            "median": 0.37422117509141145,
+            "ess": 840.533575652026,
+            "act": 2.2616586119422295,
+            "hpd_lower": 0.3391623244462308,
+            "hpd_upper": 0.40636692643029,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies2",
+            "n": 1901,
+            "mean": 0.2882914766261948,
+            "median": 0.28827967291747225,
+            "ess": 975.1387915202969,
+            "act": 1.9494660827062709,
+            "hpd_lower": 0.2609661633102423,
+            "hpd_upper": 0.3164784323358342,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies3",
+            "n": 1901,
+            "mean": 0.08719482806395328,
+            "median": 0.08706613397110147,
+            "ess": 1048.2314272192225,
+            "act": 1.8135308202340639,
+            "hpd_lower": 0.0717436165188112,
+            "hpd_upper": 0.10207579211113851,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies4",
+            "n": 1901,
+            "mean": 0.2500887686404388,
+            "median": 0.24984285307078094,
+            "ess": 1028.0590535662227,
+            "act": 1.8491155672484398,
+            "hpd_lower": 0.2235411740733641,
+            "hpd_upper": 0.2735913036153201,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..kappa",
+            "n": 1901,
+            "mean": 10.516765223929873,
+            "median": 10.392406094809896,
+            "ess": 921.523056176128,
+            "act": 2.0628892432580304,
+            "hpd_lower": 7.955393608474246,
+            "hpd_upper": 12.97879256926867,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..siteModel.alpha",
+            "n": 1901,
+            "mean": 0.40471285010638375,
+            "median": 0.40299157862206325,
+            "ess": 1347.1891603059287,
+            "act": 1.4110861755807984,
+            "hpd_lower": 0.3158672902791064,
+            "hpd_upper": 0.49545556569259497,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "clock.rate",
+            "n": 1901,
+            "mean": 0.0118714281116246,
+            "median": 0.011790593571200915,
+            "ess": 1082.7985195459999,
+            "act": 1.7556359430534307,
+            "hpd_lower": 0.009795004803016073,
+            "hpd_upper": 0.01390775338621354,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Catarrhini)",
+            "n": 1901,
+            "mean": 26.34377638179637,
+            "median": 26.13998490217665,
+            "ess": 1848.8441297740017,
+            "act": 1.0282099877356203,
+            "hpd_lower": 25.341904313873368,
+            "hpd_upper": 28.011199820889775,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Homininae)",
+            "n": 1901,
+            "mean": 7.585298919499946,
+            "median": 7.54354791393753,
+            "ess": 1901.0,
+            "act": 1.0,
+            "hpd_lower": 7.208373737883247,
+            "hpd_upper": 8.03946792543369,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "speciation",
+            "n": 1901,
+            "mean": -46.32742456489624,
+            "median": -46.17641356792032,
+            "ess": 1344.1140233385788,
+            "act": 1.414314535070618,
+            "hpd_lower": -48.5262056241061,
+            "hpd_upper": -44.29626488834566,
+            "ess_below_threshold": false
+          }
+        ]
+      },
+      {
+        "seed": 4,
+        "available": true,
+        "parameters": [
+          {
+            "name": "posterior",
+            "n": 1901,
+            "mean": -5782.022197615469,
+            "median": -5781.70733222003,
+            "ess": 1226.5893128593339,
+            "act": 1.5498259931586473,
+            "hpd_lower": -5788.95027134342,
+            "hpd_upper": -5775.917986597326,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "prior",
+            "n": 1901,
+            "mean": -58.492377787320194,
+            "median": -58.05906824166061,
+            "ess": 1676.1679876371338,
+            "act": 1.134134534259784,
+            "hpd_lower": -62.82483371056389,
+            "hpd_upper": -55.24108911595748,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "likelihood",
+            "n": 1901,
+            "mean": -5723.529819828148,
+            "median": -5723.220284043562,
+            "ess": 1161.435670508474,
+            "act": 1.6367673632477178,
+            "hpd_lower": -5729.873855522297,
+            "hpd_upper": -5717.509252363672,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "treeModel.rootHeight",
+            "n": 1901,
+            "mean": 50.094513457120264,
+            "median": 49.85417350914114,
+            "ess": 1450.1906248219516,
+            "act": 1.3108621497490351,
+            "hpd_lower": 42.10890885605785,
+            "hpd_upper": 59.11182703533523,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "yule.birthRate",
+            "n": 1901,
+            "mean": 0.051386799001830366,
+            "median": 0.04971728962256289,
+            "ess": 1627.4329720566009,
+            "act": 1.1680972627694093,
+            "hpd_lower": 0.0261009578677569,
+            "hpd_upper": 0.08121846701566604,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies1",
+            "n": 1901,
+            "mean": 0.349459089077348,
+            "median": 0.34934533838883663,
+            "ess": 826.1015858876899,
+            "act": 2.30116977436531,
+            "hpd_lower": 0.31657449480407945,
+            "hpd_upper": 0.3846557478342742,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies2",
+            "n": 1901,
+            "mean": 0.3481632298206215,
+            "median": 0.34849683113054225,
+            "ess": 925.8160798081376,
+            "act": 2.053323593595345,
+            "hpd_lower": 0.3197094469167674,
+            "hpd_upper": 0.3777920832573031,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies3",
+            "n": 1901,
+            "mean": 0.07876410447678296,
+            "median": 0.07847656523682794,
+            "ess": 954.960343702933,
+            "act": 1.9906585781653767,
+            "hpd_lower": 0.0642869196743812,
+            "hpd_upper": 0.09374010850815626,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "frequencies4",
+            "n": 1901,
+            "mean": 0.22361357662524672,
+            "median": 0.22368456749485907,
+            "ess": 865.7171871137089,
+            "act": 2.1958672281162768,
+            "hpd_lower": 0.19837941604004794,
+            "hpd_upper": 0.24506837177310856,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "kappa",
+            "n": 1901,
+            "mean": 12.10271288376954,
+            "median": 11.978840538135767,
+            "ess": 829.5566573882197,
+            "act": 2.2915854909598554,
+            "hpd_lower": 9.079132911878814,
+            "hpd_upper": 15.4143101403475,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "siteModel.alpha",
+            "n": 1901,
+            "mean": 0.3457579630973277,
+            "median": 0.3442111249353478,
+            "ess": 1411.761380258033,
+            "act": 1.34654483865577,
+            "hpd_lower": 0.2755221058502521,
+            "hpd_upper": 0.4298616899452792,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies1",
+            "n": 1901,
+            "mean": 0.3735685438322687,
+            "median": 0.3733407899578482,
+            "ess": 838.9683141656224,
+            "act": 2.265878183838919,
+            "hpd_lower": 0.33707704569385744,
+            "hpd_upper": 0.40559227380678825,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies2",
+            "n": 1901,
+            "mean": 0.2889183697305427,
+            "median": 0.2886687888708933,
+            "ess": 1004.1930910472489,
+            "act": 1.8930622177628136,
+            "hpd_lower": 0.26093991386403487,
+            "hpd_upper": 0.3172954885925746,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies3",
+            "n": 1901,
+            "mean": 0.08751200139134849,
+            "median": 0.08737419598940199,
+            "ess": 829.4515591818079,
+            "act": 2.291875853335178,
+            "hpd_lower": 0.07272623616654665,
+            "hpd_upper": 0.10235791461051076,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..frequencies4",
+            "n": 1901,
+            "mean": 0.2500010850458405,
+            "median": 0.24971401843558003,
+            "ess": 1010.0440973972029,
+            "act": 1.8820960440229433,
+            "hpd_lower": 0.22559335501813196,
+            "hpd_upper": 0.27528852892389577,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..kappa",
+            "n": 1901,
+            "mean": 10.46805434168901,
+            "median": 10.33067652705411,
+            "ess": 1057.2088140201124,
+            "act": 1.79813105489663,
+            "hpd_lower": 7.911057203909201,
+            "hpd_upper": 12.906449621954735,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "gene2..siteModel.alpha",
+            "n": 1901,
+            "mean": 0.4059487300517259,
+            "median": 0.40263523915564153,
+            "ess": 1470.266373528885,
+            "act": 1.2929629856372777,
+            "hpd_lower": 0.3144314145278283,
+            "hpd_upper": 0.4928649077574927,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "clock.rate",
+            "n": 1901,
+            "mean": 0.01186243202405313,
+            "median": 0.01180499869182749,
+            "ess": 1084.6136269501055,
+            "act": 1.752697875782313,
+            "hpd_lower": 0.009762312269142448,
+            "hpd_upper": 0.01383771456508118,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Catarrhini)",
+            "n": 1901,
+            "mean": 26.3015431505082,
+            "median": 26.09788292143087,
+            "ess": 1648.5404772831582,
+            "act": 1.1531412338342473,
+            "hpd_lower": 25.275053639138054,
+            "hpd_upper": 27.89665389984235,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "tmrca(Homininae)",
+            "n": 1901,
+            "mean": 7.594760418830764,
+            "median": 7.557831333807616,
+            "ess": 1537.8857000264522,
+            "act": 1.2361126707708525,
+            "hpd_lower": 7.209063819584119,
+            "hpd_upper": 8.104430154735988,
+            "ess_below_threshold": false
+          },
+          {
+            "name": "speciation",
+            "n": 1901,
+            "mean": -46.292541053772716,
+            "median": -46.15137303950505,
+            "ess": 1662.0936852102063,
+            "act": 1.1437381760821617,
+            "hpd_lower": -48.58820769446689,
+            "hpd_upper": -44.475659809664734,
+            "ess_below_threshold": false
+          }
+        ]
+      }
+    ]
+  },
+  "assessment": {
+    "available": true,
+    "status": "assessed",
+    "source": "examples/empirical/results/assessment.json",
+    "searched": [
+      "examples/empirical/results/assessment.json"
+    ],
+    "schema_version": "beastxpy.assessment/v1",
+    "verdict": "pass",
+    "strict": false,
+    "thresholds": {
+      "burnin": 0.1,
+      "ess": 200.0,
+      "psrf": 1.01,
+      "operator_low": 0.01,
+      "operator_high": 0.95
+    },
+    "chains": [
+      {
+        "seed": 1,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "burnin_samples": 200,
+        "n_parameters": 21,
+        "lowest_ess": 767.040628761056,
+        "n_operators": 0,
+        "tree_summary": {
+          "tree_height": {
+            "status": "ok",
+            "column": "treeModel.rootHeight",
+            "n": 1801,
+            "mean": 50.23349842555594,
+            "median": 49.83086749075191,
+            "hpd_lower": 42.85667999785575,
+            "hpd_upper": 60.18539814968078,
+            "first_half_mean": 50.39697005888171,
+            "second_half_mean": 50.070208225785485,
+            "trajectory": [
+              50.56973403296709,
+              53.54267017002189,
+              53.10068074687969,
+              51.807333377925836,
+              51.586533134906645,
+              45.46793374866126,
+              44.69487369904336,
+              49.567590595409335,
+              44.43795016912933,
+              37.93066880853062,
+              54.174257323107305,
+              56.07450952985883,
+              49.41917868603716,
+              57.16717315975512,
+              45.61967965512759,
+              47.18854723192219,
+              42.30185802941668,
+              51.23902277070103,
+              45.627563309423756,
+              52.03566033524931
+            ]
+          },
+          "clock_rate": {
+            "status": "ok",
+            "column": "clock.rate",
+            "n": 1801,
+            "mean": 0.011865317411724783,
+            "median": 0.011817210786698845,
+            "hpd_lower": 0.009716588003294202,
+            "hpd_upper": 0.013817181141303423,
+            "first_half_mean": 0.011813458664955642,
+            "second_half_mean": 0.011917118601616268,
+            "trajectory": [
+              0.011708761608257182,
+              0.008504511539268825,
+              0.01111854842546961,
+              0.011640932882580838,
+              0.013649878846628705,
+              0.012020438186460045,
+              0.011215582758548075,
+              0.011375907881432163,
+              0.01171152640519735,
+              0.011492230547071384,
+              0.011134633213786072,
+              0.013753866844962255,
+              0.013048211700057214,
+              0.01223242769141897,
+              0.011227465356777733,
+              0.011894883311616455,
+              0.012699866544001718,
+              0.01096033259030937,
+              0.012548777231028097,
+              0.010278633070262307
+            ]
+          },
+          "ucld_mean": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "ucld_stdev": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "n_trees": 2001,
+          "n_trees_after_burnin": 1801,
+          "n_nontrivial_splits": 11
+        },
+        "incomplete_reason": null
+      },
+      {
+        "seed": 2,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "burnin_samples": 200,
+        "n_parameters": 21,
+        "lowest_ess": 775.4183250115243,
+        "n_operators": 0,
+        "tree_summary": {
+          "tree_height": {
+            "status": "ok",
+            "column": "treeModel.rootHeight",
+            "n": 1801,
+            "mean": 50.16167209312865,
+            "median": 49.8495543326487,
+            "hpd_lower": 42.224349421360486,
+            "hpd_upper": 59.539333698284445,
+            "first_half_mean": 50.2037166228098,
+            "second_half_mean": 50.11967422774237,
+            "trajectory": [
+              47.617925255254,
+              54.0039403981295,
+              44.841230850885395,
+              51.27842075248974,
+              52.593536197076375,
+              47.79920035267115,
+              47.551746975533966,
+              45.05361690787757,
+              46.22217648877928,
+              45.58269431183431,
+              42.8384644015406,
+              49.912394699361855,
+              45.26141801626466,
+              53.14547304153986,
+              46.01613323768614,
+              51.814622187004,
+              48.338740958779,
+              47.76716807396011,
+              54.25020928729627,
+              45.837949163457196
+            ]
+          },
+          "clock_rate": {
+            "status": "ok",
+            "column": "clock.rate",
+            "n": 1801,
+            "mean": 0.01188346245714007,
+            "median": 0.011833973672805673,
+            "hpd_lower": 0.010037440804205015,
+            "hpd_upper": 0.014066519681142118,
+            "first_half_mean": 0.011875961354235942,
+            "second_half_mean": 0.011890955234735762,
+            "trajectory": [
+              0.0106987566956963,
+              0.011256776502555143,
+              0.010943801786177421,
+              0.012012734579015706,
+              0.01417914035927683,
+              0.013816660304192048,
+              0.012181224486269536,
+              0.012341504592664563,
+              0.012941778176981228,
+              0.011966508808641373,
+              0.011800399854079064,
+              0.010213236135092474,
+              0.013151788788472023,
+              0.012533003079197327,
+              0.01236285880317765,
+              0.01175190767443203,
+              0.011118915195531317,
+              0.01405377386701368,
+              0.011854707752291147,
+              0.011426906767944018
+            ]
+          },
+          "ucld_mean": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "ucld_stdev": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "n_trees": 2001,
+          "n_trees_after_burnin": 1801,
+          "n_nontrivial_splits": 10
+        },
+        "incomplete_reason": null
+      },
+      {
+        "seed": 3,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "burnin_samples": 200,
+        "n_parameters": 21,
+        "lowest_ess": 698.6991930676496,
+        "n_operators": 0,
+        "tree_summary": {
+          "tree_height": {
+            "status": "ok",
+            "column": "treeModel.rootHeight",
+            "n": 1801,
+            "mean": 50.19041212028706,
+            "median": 50.00455952783346,
+            "hpd_lower": 42.60735581212496,
+            "hpd_upper": 59.43651039150883,
+            "first_half_mean": 50.21904431318391,
+            "second_half_mean": 50.16181170562871,
+            "trajectory": [
+              46.61295255955703,
+              46.782093212054185,
+              44.24733366058682,
+              47.879104107028006,
+              51.83140817101706,
+              42.566936681487135,
+              59.29395255402681,
+              45.35824770435087,
+              52.87832367670469,
+              50.86816731549584,
+              43.44645488521284,
+              56.69711305296244,
+              53.513845404855914,
+              50.830849654135626,
+              56.50027052946964,
+              47.09059289252612,
+              50.15779972182687,
+              46.48307959738716,
+              46.440928977341244,
+              59.004555025390516
+            ]
+          },
+          "clock_rate": {
+            "status": "ok",
+            "column": "clock.rate",
+            "n": 1801,
+            "mean": 0.011866956680049872,
+            "median": 0.011786441001748388,
+            "hpd_lower": 0.00982635590767033,
+            "hpd_upper": 0.013901455837994434,
+            "first_half_mean": 0.011896953744560767,
+            "second_half_mean": 0.011836992908618345,
+            "trajectory": [
+              0.013014727139521056,
+              0.012380380286738065,
+              0.011525079315021983,
+              0.01500867526918793,
+              0.01278484987398672,
+              0.013008817051172723,
+              0.011334792716923673,
+              0.014320207303894114,
+              0.012546942163693358,
+              0.011812149591474174,
+              0.012855341589489625,
+              0.012649939833659394,
+              0.012073880744174353,
+              0.0114418970850481,
+              0.011294981367398394,
+              0.010280871007030208,
+              0.010851932648873455,
+              0.010890354789024389,
+              0.011525432176597671,
+              0.010212269211481679
+            ]
+          },
+          "ucld_mean": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "ucld_stdev": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "n_trees": 2001,
+          "n_trees_after_burnin": 1801,
+          "n_nontrivial_splits": 10
+        },
+        "incomplete_reason": null
+      },
+      {
+        "seed": 4,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "burnin_samples": 200,
+        "n_parameters": 21,
+        "lowest_ess": 748.8570350542026,
+        "n_operators": 0,
+        "tree_summary": {
+          "tree_height": {
+            "status": "ok",
+            "column": "treeModel.rootHeight",
+            "n": 1801,
+            "mean": 50.11349130489511,
+            "median": 49.872217648891485,
+            "hpd_lower": 42.02849954256546,
+            "hpd_upper": 58.95684269186103,
+            "first_half_mean": 49.92786323301863,
+            "second_half_mean": 50.29891335227451,
+            "trajectory": [
+              48.00389268882372,
+              49.26491959803988,
+              54.339931774607265,
+              50.49024435059573,
+              47.89732800465848,
+              52.39275712666748,
+              48.83334570771649,
+              52.55115547290431,
+              48.665433161706154,
+              50.02232458730885,
+              50.75485051673274,
+              59.85056949941212,
+              50.959451551487376,
+              49.421401306687955,
+              49.31814982111766,
+              49.946041474860905,
+              45.16064283383132,
+              51.43289509628681,
+              48.77540586620445,
+              47.55825026608133
+            ]
+          },
+          "clock_rate": {
+            "status": "ok",
+            "column": "clock.rate",
+            "n": 1801,
+            "mean": 0.011855990323012426,
+            "median": 0.011797362755182,
+            "hpd_lower": 0.009714285102594113,
+            "hpd_upper": 0.013756433248780458,
+            "first_half_mean": 0.011870304479992318,
+            "second_half_mean": 0.011841692052999214,
+            "trajectory": [
+              0.01259154698494696,
+              0.011850234908826463,
+              0.011916727200960722,
+              0.010187393050091293,
+              0.00986206327449417,
+              0.012455106489111169,
+              0.011551023992438082,
+              0.011396638417245964,
+              0.012299006840551682,
+              0.01096713761842838,
+              0.010931912937393543,
+              0.009949358674187076,
+              0.011462777756239797,
+              0.011535965732036562,
+              0.011028613247021575,
+              0.012238294023820422,
+              0.013536345774069404,
+              0.014159343330876237,
+              0.011311367334021915,
+              0.010385136589231968
+            ]
+          },
+          "ucld_mean": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "ucld_stdev": {
+            "status": "not_computable",
+            "column": null,
+            "reason": "no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+          },
+          "n_trees": 2001,
+          "n_trees_after_burnin": 1801,
+          "n_nontrivial_splits": 9
+        },
+        "incomplete_reason": null
+      }
+    ],
+    "multichain": {
+      "available": true,
+      "n_chains": 4,
+      "psrf": {
+        "status": "ok",
+        "estimator": "split-chain Gelman-Rubin R-hat (every chain split in half; across+within variance ratio)",
+        "reason": null,
+        "values": {
+          "posterior": {
+            "psrf": 1.0013766005123408,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0013766005123408,
+            "rank_psrf": 1.001452916635108,
+            "ess_bulk": 5446.4622092625805,
+            "ess_tail": 6765.678970961822,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "prior": {
+            "psrf": 0.9999151209132215,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9999151209132215,
+            "rank_psrf": 1.000369862590007,
+            "ess_bulk": 5970.793357989685,
+            "ess_tail": 6208.117843908172,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "likelihood": {
+            "psrf": 1.001100359136982,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.001100359136982,
+            "rank_psrf": 1.0011118555900491,
+            "ess_bulk": 5206.366147961046,
+            "ess_tail": 6060.415541028197,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "treeModel.rootHeight": {
+            "psrf": 0.9999706562122316,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9999706562122316,
+            "rank_psrf": 1.0002609619690033,
+            "ess_bulk": 5344.680182599253,
+            "ess_tail": 6242.364784510646,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "yule.birthRate": {
+            "psrf": 0.9999619302088669,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9999619302088669,
+            "rank_psrf": 1.000747402990656,
+            "ess_bulk": 6538.543210472555,
+            "ess_tail": 6123.293540595211,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "frequencies1": {
+            "psrf": 1.0016353296490403,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0016353296490403,
+            "rank_psrf": 1.0026604333248004,
+            "ess_bulk": 3084.1678647273884,
+            "ess_tail": 3984.247131645207,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "frequencies2": {
+            "psrf": 1.0013653028492313,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0013653028492313,
+            "rank_psrf": 1.0013879048191363,
+            "ess_bulk": 3798.6703077666825,
+            "ess_tail": 4412.9597118918355,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "frequencies3": {
+            "psrf": 1.0004474260108558,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0004474260108558,
+            "rank_psrf": 1.0025015933282375,
+            "ess_bulk": 3696.3786559946375,
+            "ess_tail": 4132.453991290066,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "frequencies4": {
+            "psrf": 1.0000928402199412,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0000928402199412,
+            "rank_psrf": 1.0005621780075538,
+            "ess_bulk": 3451.407871826181,
+            "ess_tail": 4250.482687200273,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "kappa": {
+            "psrf": 1.000479967039484,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.000479967039484,
+            "rank_psrf": 1.0004202785798475,
+            "ess_bulk": 3560.986753470852,
+            "ess_tail": 5027.14429870944,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "siteModel.alpha": {
+            "psrf": 1.0004061598911818,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0004061598911818,
+            "rank_psrf": 1.000394035530183,
+            "ess_bulk": 5409.51776718581,
+            "ess_tail": 6587.268279216565,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..frequencies1": {
+            "psrf": 1.0005866465202942,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0005866465202942,
+            "rank_psrf": 1.000612370904072,
+            "ess_bulk": 3132.0285904775915,
+            "ess_tail": 3992.304009850287,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..frequencies2": {
+            "psrf": 0.999793713491619,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.999793713491619,
+            "rank_psrf": 1.0008019908169286,
+            "ess_bulk": 3794.6002555471614,
+            "ess_tail": 4239.342024270883,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..frequencies3": {
+            "psrf": 0.9998050694071797,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9998050694071797,
+            "rank_psrf": 1.0012330254888657,
+            "ess_bulk": 3678.604938304264,
+            "ess_tail": 4106.708468654188,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..frequencies4": {
+            "psrf": 1.0001400547976407,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0001400547976407,
+            "rank_psrf": 1.0001869035800484,
+            "ess_bulk": 3621.218272124124,
+            "ess_tail": 4109.098505535037,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..kappa": {
+            "psrf": 0.999654839646623,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.999654839646623,
+            "rank_psrf": 1.0002423847701167,
+            "ess_bulk": 4048.406651796583,
+            "ess_tail": 5137.445018635512,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "gene2..siteModel.alpha": {
+            "psrf": 0.9996108308768653,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9996108308768653,
+            "rank_psrf": 0.9997342219743012,
+            "ess_bulk": 5457.9041113555395,
+            "ess_tail": 6344.785539868168,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "clock.rate": {
+            "psrf": 0.9999945849146303,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9999945849146303,
+            "rank_psrf": 1.0001674114953256,
+            "ess_bulk": 4175.685672060304,
+            "ess_tail": 5285.617521816837,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "tmrca(Catarrhini)": {
+            "psrf": 0.9999534250201563,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 0.9999534250201563,
+            "rank_psrf": 1.000063834864201,
+            "ess_bulk": 7095.863068077506,
+            "ess_tail": 6648.546055472807,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "tmrca(Homininae)": {
+            "psrf": 1.0000185789259752,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.0000185789259752,
+            "rank_psrf": 0.9999508806605919,
+            "ess_bulk": 6783.27264853763,
+            "ess_tail": 7101.342374117382,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          },
+          "speciation": {
+            "psrf": 1.000044886887323,
+            "ok": true,
+            "reason": null,
+            "classic_psrf": 1.000044886887323,
+            "rank_psrf": 1.0003833883248077,
+            "ess_bulk": 6114.508876016613,
+            "ess_tail": 6737.6893844676915,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true
+          }
+        }
+      },
+      "rank_diagnostics": {
+        "status": "ok",
+        "estimator": "rank-normalized split R-hat (Vehtari, Gelman, Simpson, Carpenter & Bürkner 2021; max of the bulk and folded rank-normalized split-chain estimates)",
+        "ess_estimator": "bulk ESS on rank-normalized split chains and tail ESS on split-chain 5% / 95% indicators (Vehtari et al. 2021; matches ArviZ/posterior when at least two input chains are supplied)",
+        "reason": null,
+        "values": {
+          "posterior": {
+            "rank_psrf": 1.001452916635108,
+            "classic_psrf": 1.0013766005123408,
+            "ess_bulk": 5446.4622092625805,
+            "ess_tail": 6765.678970961822,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "prior": {
+            "rank_psrf": 1.000369862590007,
+            "classic_psrf": 0.9999151209132215,
+            "ess_bulk": 5970.793357989685,
+            "ess_tail": 6208.117843908172,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "likelihood": {
+            "rank_psrf": 1.0011118555900491,
+            "classic_psrf": 1.001100359136982,
+            "ess_bulk": 5206.366147961046,
+            "ess_tail": 6060.415541028197,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "treeModel.rootHeight": {
+            "rank_psrf": 1.0002609619690033,
+            "classic_psrf": 0.9999706562122316,
+            "ess_bulk": 5344.680182599253,
+            "ess_tail": 6242.364784510646,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "yule.birthRate": {
+            "rank_psrf": 1.000747402990656,
+            "classic_psrf": 0.9999619302088669,
+            "ess_bulk": 6538.543210472555,
+            "ess_tail": 6123.293540595211,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "frequencies1": {
+            "rank_psrf": 1.0026604333248004,
+            "classic_psrf": 1.0016353296490403,
+            "ess_bulk": 3084.1678647273884,
+            "ess_tail": 3984.247131645207,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "frequencies2": {
+            "rank_psrf": 1.0013879048191363,
+            "classic_psrf": 1.0013653028492313,
+            "ess_bulk": 3798.6703077666825,
+            "ess_tail": 4412.9597118918355,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "frequencies3": {
+            "rank_psrf": 1.0025015933282375,
+            "classic_psrf": 1.0004474260108558,
+            "ess_bulk": 3696.3786559946375,
+            "ess_tail": 4132.453991290066,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "frequencies4": {
+            "rank_psrf": 1.0005621780075538,
+            "classic_psrf": 1.0000928402199412,
+            "ess_bulk": 3451.407871826181,
+            "ess_tail": 4250.482687200273,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "kappa": {
+            "rank_psrf": 1.0004202785798475,
+            "classic_psrf": 1.000479967039484,
+            "ess_bulk": 3560.986753470852,
+            "ess_tail": 5027.14429870944,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "siteModel.alpha": {
+            "rank_psrf": 1.000394035530183,
+            "classic_psrf": 1.0004061598911818,
+            "ess_bulk": 5409.51776718581,
+            "ess_tail": 6587.268279216565,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..frequencies1": {
+            "rank_psrf": 1.000612370904072,
+            "classic_psrf": 1.0005866465202942,
+            "ess_bulk": 3132.0285904775915,
+            "ess_tail": 3992.304009850287,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..frequencies2": {
+            "rank_psrf": 1.0008019908169286,
+            "classic_psrf": 0.999793713491619,
+            "ess_bulk": 3794.6002555471614,
+            "ess_tail": 4239.342024270883,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..frequencies3": {
+            "rank_psrf": 1.0012330254888657,
+            "classic_psrf": 0.9998050694071797,
+            "ess_bulk": 3678.604938304264,
+            "ess_tail": 4106.708468654188,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..frequencies4": {
+            "rank_psrf": 1.0001869035800484,
+            "classic_psrf": 1.0001400547976407,
+            "ess_bulk": 3621.218272124124,
+            "ess_tail": 4109.098505535037,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..kappa": {
+            "rank_psrf": 1.0002423847701167,
+            "classic_psrf": 0.999654839646623,
+            "ess_bulk": 4048.406651796583,
+            "ess_tail": 5137.445018635512,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "gene2..siteModel.alpha": {
+            "rank_psrf": 0.9997342219743012,
+            "classic_psrf": 0.9996108308768653,
+            "ess_bulk": 5457.9041113555395,
+            "ess_tail": 6344.785539868168,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "clock.rate": {
+            "rank_psrf": 1.0001674114953256,
+            "classic_psrf": 0.9999945849146303,
+            "ess_bulk": 4175.685672060304,
+            "ess_tail": 5285.617521816837,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "tmrca(Catarrhini)": {
+            "rank_psrf": 1.000063834864201,
+            "classic_psrf": 0.9999534250201563,
+            "ess_bulk": 7095.863068077506,
+            "ess_tail": 6648.546055472807,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "tmrca(Homininae)": {
+            "rank_psrf": 0.9999508806605919,
+            "classic_psrf": 1.0000185789259752,
+            "ess_bulk": 6783.27264853763,
+            "ess_tail": 7101.342374117382,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          },
+          "speciation": {
+            "rank_psrf": 1.0003833883248077,
+            "classic_psrf": 1.000044886887323,
+            "ess_bulk": 6114.508876016613,
+            "ess_tail": 6737.6893844676915,
+            "ok": true,
+            "ess_bulk_ok": true,
+            "ess_tail_ok": true,
+            "reason": null
+          }
+        }
+      },
+      "asdsf": {
+        "status": "ok",
+        "value": 0.00011478086359517761,
+        "reason": null
+      }
+    },
+    "reasons": [
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 1: ucld_mean: no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 1: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 2: ucld_mean: no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 2: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 3: ucld_mean: no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 3: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 4: ucld_mean: no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "message": "seed 4: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it"
+      }
+    ],
+    "limitations": [
+      "Diagnostics only: BeastXPy does not claim or assert convergence. A 'pass' verdict means no user-configured diagnostic threshold was crossed, not that the MCMC converged.",
+      "BeastXPy does not perform model selection; assess never compares models, marginal likelihoods or Bayes factors (see the separate compare command).",
+      "ESS, ACT, PSRF (Gelman-Rubin R-hat) and ASDSF are finite-sample estimates; on short chains they are noisy and must not be read as proof of convergence or divergence.",
+      "Statistics whose input columns or chains are missing are reported as not_computable with a reason; BeastXPy never substitutes a guessed value."
+    ]
+  },
+  "manifest": {
+    "files": [
+      {
+        "path": "1/primates_reference.xml",
+        "kind": "xml",
+        "bytes": 25883,
+        "sha256": "c62719436b169c22aea492b96c645e291116d7f0a8f45c23934d0d951ff07172"
+      },
+      {
+        "path": "1/resume.state",
+        "kind": "state",
+        "bytes": 128,
+        "sha256": "0d14defa9b2c05fbf9e843168a79a6be83a70cebd5b80971415ffb27e39f340a"
+      },
+      {
+        "path": "1/run.log",
+        "kind": "log",
+        "bytes": 18399,
+        "sha256": "e77760c77b0e18cb633499549886a0cef1b8a6718a3f3167a6a5938e5adb8420"
+      },
+      {
+        "path": "1/run_meta.json",
+        "kind": "json",
+        "bytes": 1471,
+        "sha256": "528207376ef4248492c7e61b04984b012a00492418253023203d60bbf14b142b"
+      },
+      {
+        "path": "1/seed_1_primates_reference.citations.txt",
+        "kind": "txt",
+        "bytes": 1260,
+        "sha256": "bfd50322b77281689657470a096293c0024ec6c0cf2e98b403c70afc16f090b3"
+      },
+      {
+        "path": "1/seed_1_trace.log",
+        "kind": "log",
+        "bytes": 824485,
+        "sha256": "06d93fc7dc4f29abb1c85114f351a1ee30edf43f44739b564ab9c5f024777c10"
+      },
+      {
+        "path": "1/seed_1_tree.log",
+        "kind": "log",
+        "bytes": 2340980,
+        "sha256": "2c2377602ad6bde07998616a3e70709740cfa2ba9f05d52ae4787773f9b128bb"
+      },
+      {
+        "path": "2/primates_reference.xml",
+        "kind": "xml",
+        "bytes": 25883,
+        "sha256": "c62719436b169c22aea492b96c645e291116d7f0a8f45c23934d0d951ff07172"
+      },
+      {
+        "path": "2/resume.state",
+        "kind": "state",
+        "bytes": 128,
+        "sha256": "f74be434c8eb4823a45a68d1df8fe1b881cc779814f6245bd5b9d7a5dbc394c6"
+      },
+      {
+        "path": "2/run.log",
+        "kind": "log",
+        "bytes": 18413,
+        "sha256": "a4e5fa3b5afee95370c5df8285910491a6bf398e67d10c707b4269dab9a1b7c4"
+      },
+      {
+        "path": "2/run_meta.json",
+        "kind": "json",
+        "bytes": 1471,
+        "sha256": "63bfaf7a664f6dfd15e67deb53e1f2e8f522abd9cf38fc3decdcdb2c6139f859"
+      },
+      {
+        "path": "2/seed_2_primates_reference.citations.txt",
+        "kind": "txt",
+        "bytes": 1260,
+        "sha256": "bfd50322b77281689657470a096293c0024ec6c0cf2e98b403c70afc16f090b3"
+      },
+      {
+        "path": "2/seed_2_trace.log",
+        "kind": "log",
+        "bytes": 824641,
+        "sha256": "20ccac2f063bb5f2180a7c4618359bf612cc77019db9828bba9e4c874a786129"
+      },
+      {
+        "path": "2/seed_2_tree.log",
+        "kind": "log",
+        "bytes": 2340974,
+        "sha256": "dc3cd1199f8fde14701b1f8a1729225eed14bfc7f0c982587dee6c57f4fa750d"
+      },
+      {
+        "path": "3/primates_reference.xml",
+        "kind": "xml",
+        "bytes": 25883,
+        "sha256": "c62719436b169c22aea492b96c645e291116d7f0a8f45c23934d0d951ff07172"
+      },
+      {
+        "path": "3/resume.state",
+        "kind": "state",
+        "bytes": 128,
+        "sha256": "2f6c632ba83b57fb751ea8a39be7f3e4dc33f15f38e3dcf2e7125e2be7033c77"
+      },
+      {
+        "path": "3/run.log",
+        "kind": "log",
+        "bytes": 18401,
+        "sha256": "e4b9eebe864b4c75f09249850f7ee0cc98d68d8a3ba585be46b582110920b079"
+      },
+      {
+        "path": "3/run_meta.json",
+        "kind": "json",
+        "bytes": 1472,
+        "sha256": "4fca6fe9176103b7ea520c5c8259552a2e58324ab96d5f3855451c953263d092"
+      },
+      {
+        "path": "3/seed_3_primates_reference.citations.txt",
+        "kind": "txt",
+        "bytes": 1260,
+        "sha256": "bfd50322b77281689657470a096293c0024ec6c0cf2e98b403c70afc16f090b3"
+      },
+      {
+        "path": "3/seed_3_trace.log",
+        "kind": "log",
+        "bytes": 824781,
+        "sha256": "227e1c8449a8b200f08db0f7f518bf37390894fc19ce2133d890b7bd3a2cdb40"
+      },
+      {
+        "path": "3/seed_3_tree.log",
+        "kind": "log",
+        "bytes": 2342389,
+        "sha256": "e2b3fa59780ea850aa819cf73371256d3bbe9f0b1da81571c4a3488efbf5710d"
+      },
+      {
+        "path": "4/primates_reference.xml",
+        "kind": "xml",
+        "bytes": 25883,
+        "sha256": "c62719436b169c22aea492b96c645e291116d7f0a8f45c23934d0d951ff07172"
+      },
+      {
+        "path": "4/resume.state",
+        "kind": "state",
+        "bytes": 128,
+        "sha256": "b6ac4a77d254f9a5f86ce213f6e3016a50b50f60d3b9526282a0503a3b1e2dd1"
+      },
+      {
+        "path": "4/run.log",
+        "kind": "log",
+        "bytes": 18400,
+        "sha256": "1f5e60defc90b47b71bffb3d6bbb9b265f8c22d2f63476a93fbdf1cb7689454b"
+      },
+      {
+        "path": "4/run_meta.json",
+        "kind": "json",
+        "bytes": 1472,
+        "sha256": "be850907624f1ec099f863f8fa19290a6ce0f2effe4d2d858161f11c0242784e"
+      },
+      {
+        "path": "4/seed_4_primates_reference.citations.txt",
+        "kind": "txt",
+        "bytes": 1260,
+        "sha256": "bfd50322b77281689657470a096293c0024ec6c0cf2e98b403c70afc16f090b3"
+      },
+      {
+        "path": "4/seed_4_trace.log",
+        "kind": "log",
+        "bytes": 824638,
+        "sha256": "5ef6a477e44525270e28af64187673dcf53e1c66de11d13dda75d9dcaa9dd6e9"
+      },
+      {
+        "path": "4/seed_4_tree.log",
+        "kind": "log",
+        "bytes": 2341783,
+        "sha256": "bfe6e7118a8045f305dd2e1e8c52c9227bb0074209978408846534782b0c1726"
+      },
+      {
+        "path": "primates_reference.xml",
+        "kind": "xml",
+        "bytes": 25912,
+        "sha256": "fffaa73eee962e9b0043c4ef0444de992239b6298931741db1020bf95077fc84"
+      }
+    ],
+    "listed": 29,
+    "found": 29,
+    "truncated": false,
+    "total_bytes": 12879166,
+    "excluded": [
+      "examples/empirical/results/report.html",
+      "examples/empirical/results/report.json"
+    ]
+  },
+  "config": {
+    "included": false,
+    "requested": false,
+    "source": null,
+    "kind": null,
+    "bytes": null,
+    "sha256": null,
+    "truncated": false,
+    "text": null
+  },
+  "limitations": [
+    "This report describes one workdir as recorded on disk. It is not evidence of convergence, of mixing, or of model adequacy.",
+    "When no assessment document is present the assess section says 'not assessed'. BeastXPy never estimates, interpolates or back-fills ESS, PSRF, ASDSF or a verdict.",
+    "Gate statuses are derived from the artefacts in the workdir. Gates marked 'passed (inferred)' were not recorded by a gate run; the basis column states exactly which artefact implies them.",
+    "Trace statistics are computed by beastxpy.tracestats with its own ACT/ESS estimator; they are diagnostics, and short chains give uninformative intervals rather than wrong ones.",
+    "A completed BEAST run is execution evidence only. It does not mean the model is identifiable, that the calibrations are justified, or that the chain sampled the posterior adequately.",
+    "The file manifest hashes what was on disk when the report was generated. Later runs, --resume or manual edits invalidate it.",
+    "Embedded configuration text is quoted verbatim from the workdir. BeastXPy does not reconstruct a configuration that was not stored there.",
+    "The HTML is self-contained on purpose: no script, no stylesheet, no font and no image is loaded from anywhere, so the document cannot call home."
+  ]
+}

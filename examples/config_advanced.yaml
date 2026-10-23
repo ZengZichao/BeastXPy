@@ -1,0 +1,113 @@
+# BeastXPy example: advanced multi-calibration Birth-Death + GTR+G4+I / HKY,
+# shared UCLN clock, two partitions, stem calibration + hyperpriors.
+metadata:
+  analysis_name: advanced
+
+alignments:
+  - id: alignment1
+    file: primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    from: 1
+    to: 449
+    site_model:
+      substitution_model:
+        type: gtr
+        rates:
+          mode: estimated
+          value: [1.0, 2.0, 1.0, 1.0, 2.0, 1.0]
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+      proportion_invariant: {value: 0.1, lower: 0.0, upper: 1.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+  - id: gene2
+    alignment_id: alignment1
+    from: 450
+    to: 898
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: empirical}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: birth_death
+  birth_minus_death: {value: 0.5, lower: 0.0, estimate: true}
+  relative_death: {value: 0.5, lower: 0.0, estimate: true}
+  conditional_on_root: true
+
+calibrations:
+  - name: "Catarrhini"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0
+  - name: "Hominoidea"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 15.0
+    calibration_method: stem
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 15.0
+      original_age_max: 20.0
+    hyperpriors:
+      mean:
+        type: uniform
+        parameters: {lower: 0.0, upper: 10.0}
+  - name: "Homininae"
+    taxa: [Homo_sapiens, Pan, Gorilla]
+    monophyletic: true
+    distribution:
+      type: normal
+      parameters: {mean: 7.0, stdev: 1.0}
+    provenance:
+      source: literature
+      reference: "doi:10.1038/nature10286"
+      calibration_type: soft
+      original_age_min: 6.0
+      original_age_max: 8.0
+
+diagnostics:
+  enabled: true
+  sensitivity: true
+  visualize: true
+  overlap_threshold: 0.15
+
+mcmc:
+  chain_length: 2000000
+
+loggers:
+  trace_log: {file_name: advanced.log, log_every: 2000}
+  tree_log: {file_name: advanced.trees, log_every: 2000}
+
+output:
+  file: output_advanced.xml
+
+control:
+  beast_version: 1.10.4
+  overlap_measure: relative

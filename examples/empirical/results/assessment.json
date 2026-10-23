@@ -1,0 +1,2827 @@
+{
+  "schema_version": "beastxpy.assessment/v1",
+  "generated_at": "2026-10-22T13:01:29Z",
+  "tool_version": "0.1.0",
+  "workdir": "validation_runs/primates_reference/run",
+  "verdict": "pass",
+  "strict": false,
+  "thresholds": {
+    "burnin": 0.1,
+    "ess": 200.0,
+    "psrf": 1.01,
+    "operator_low": 0.01,
+    "operator_high": 0.95
+  },
+  "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 8
+  },
+  "chains": [
+    {
+      "seed": 1,
+      "status": "ok",
+      "trace_log": "validation_runs/primates_reference/run/1/seed_1_trace.log",
+      "tree_log": "validation_runs/primates_reference/run/1/seed_1_tree.log",
+      "run_log": "validation_runs/primates_reference/run/1/run.log",
+      "run_meta": "validation_runs/primates_reference/run/1/run_meta.json",
+      "samples": 2001,
+      "burnin_mode": "fraction",
+      "burnin_fraction": 0.09995002498750624,
+      "burnin_samples": 200,
+      "parameters": {
+        "posterior": {
+          "ess": 1396.9866674340756,
+          "act": 1.289203427623256,
+          "mean": -5782.123667572758,
+          "median": -5781.880536000252,
+          "hpd_lower": -5789.506270325627,
+          "hpd_upper": -5776.051590124799,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.289203427623256,
+              "ess": 1396.9866674340756,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "prior": {
+          "ess": 1558.8889306393357,
+          "act": 1.1553100189513623,
+          "mean": -58.47827003542529,
+          "median": -58.130913781135824,
+          "hpd_lower": -62.83840506207205,
+          "hpd_upper": -55.058966472404336,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1553100189513623,
+              "ess": 1558.8889306393357,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "likelihood": {
+          "ess": 1380.393770923553,
+          "act": 1.304700178989536,
+          "mean": -5723.645397537332,
+          "median": -5723.466781337883,
+          "hpd_lower": -5730.627773113905,
+          "hpd_upper": -5718.068810310089,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.304700178989536,
+              "ess": 1380.393770923553,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "treeModel.rootHeight": {
+          "ess": 1452.4484081207083,
+          "act": 1.239975196317145,
+          "mean": 50.23349842555594,
+          "median": 49.83086749075191,
+          "hpd_lower": 42.85667999785575,
+          "hpd_upper": 60.18539814968078,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.239975196317145,
+              "ess": 1452.4484081207083,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "yule.birthRate": {
+          "ess": 1551.2470803275185,
+          "act": 1.1610013793674638,
+          "mean": 0.05082338316208412,
+          "median": 0.04929576625813627,
+          "hpd_lower": 0.024996079308592063,
+          "hpd_upper": 0.07815859625829837,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1610013793674638,
+              "ess": 1551.2470803275185,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies1": {
+          "ess": 827.2101527017269,
+          "act": 2.1771976493733867,
+          "mean": 0.34823224038105827,
+          "median": 0.3482281158477343,
+          "hpd_lower": 0.3153421216160155,
+          "hpd_upper": 0.38251678294549185,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.1771976493733867,
+              "ess": 827.2101527017269,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies2": {
+          "ess": 900.0848338858655,
+          "act": 2.0009225044095946,
+          "mean": 0.3495861147612529,
+          "median": 0.3499598796629482,
+          "hpd_lower": 0.32032756028657006,
+          "hpd_upper": 0.37737364889741515,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.0009225044095946,
+              "ess": 900.0848338858655,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies3": {
+          "ess": 997.7614627736516,
+          "act": 1.8050406506916454,
+          "mean": 0.07854344268957454,
+          "median": 0.0781428004127526,
+          "hpd_lower": 0.06480150919847645,
+          "hpd_upper": 0.09136137210732054,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8050406506916454,
+              "ess": 997.7614627736516,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies4": {
+          "ess": 933.7407802903834,
+          "act": 1.9288008385366955,
+          "mean": 0.22363820216811528,
+          "median": 0.22366854650115855,
+          "hpd_lower": 0.20009687012307809,
+          "hpd_upper": 0.24677932163040905,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9288008385366955,
+              "ess": 933.7407802903834,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "kappa": {
+          "ess": 971.0938997833371,
+          "act": 1.854609528905315,
+          "mean": 12.087467532874514,
+          "median": 11.96814021141472,
+          "hpd_lower": 9.392350759861248,
+          "hpd_upper": 15.56607879778078,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.854609528905315,
+              "ess": 971.0938997833371,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "siteModel.alpha": {
+          "ess": 1283.2983491346683,
+          "act": 1.4034148810480582,
+          "mean": 0.34596874080133394,
+          "median": 0.3436642727768024,
+          "hpd_lower": 0.27643303353127885,
+          "hpd_upper": 0.42211825332367986,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4034148810480582,
+              "ess": 1283.2983491346683,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies1": {
+          "ess": 767.040628761056,
+          "act": 2.347985142467645,
+          "mean": 0.3735308541589772,
+          "median": 0.37398652690770895,
+          "hpd_lower": 0.33726387939433594,
+          "hpd_upper": 0.4071827703792197,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.347985142467645,
+              "ess": 767.040628761056,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies2": {
+          "ess": 854.8045727040318,
+          "act": 2.106914325812316,
+          "mean": 0.2890891800536584,
+          "median": 0.2881963982421284,
+          "hpd_lower": 0.26249545065742474,
+          "hpd_upper": 0.32162134731211894,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.106914325812316,
+              "ess": 854.8045727040318,
+              "act_max_lag": 13,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies3": {
+          "ess": 876.9772524383576,
+          "act": 2.0536450574886396,
+          "mean": 0.08732222326863662,
+          "median": 0.08682170644771235,
+          "hpd_lower": 0.07114130670781493,
+          "hpd_upper": 0.10139240494320588,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.0536450574886396,
+              "ess": 876.9772524383576,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies4": {
+          "ess": 848.0919380651685,
+          "act": 2.123590520278721,
+          "mean": 0.2500577425187273,
+          "median": 0.24984518280276516,
+          "hpd_lower": 0.22271750781092073,
+          "hpd_upper": 0.2763386588445233,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.123590520278721,
+              "ess": 848.0919380651685,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..kappa": {
+          "ess": 1087.0786407769392,
+          "act": 1.656733866753944,
+          "mean": 10.46070911204735,
+          "median": 10.358598421029464,
+          "hpd_lower": 7.887510698396553,
+          "hpd_upper": 13.008386559400018,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.6567338667539437,
+              "ess": 1087.0786407769392,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..siteModel.alpha": {
+          "ess": 1521.665952423634,
+          "act": 1.183571201768336,
+          "mean": 0.40607634105663887,
+          "median": 0.40315508672552497,
+          "hpd_lower": 0.3251824721722588,
+          "hpd_upper": 0.495347856692985,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.183571201768336,
+              "ess": 1521.665952423634,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "clock.rate": {
+          "ess": 1081.499207895745,
+          "act": 1.66528092378743,
+          "mean": 0.011865317411724783,
+          "median": 0.011817210786698845,
+          "hpd_lower": 0.009716588003294202,
+          "hpd_upper": 0.013817181141303423,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.6652809237874298,
+              "ess": 1081.499207895745,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Catarrhini)": {
+          "ess": 1693.1918715433665,
+          "act": 1.0636715367398764,
+          "mean": 26.296849320106105,
+          "median": 26.103948427748776,
+          "hpd_lower": 25.29106179934411,
+          "hpd_upper": 27.85110234565752,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.0636715367398764,
+              "ess": 1693.1918715433665,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Homininae)": {
+          "ess": 1741.600942616176,
+          "act": 1.0341060089773473,
+          "mean": 7.597481017008398,
+          "median": 7.557214598013692,
+          "hpd_lower": 7.173544894467494,
+          "hpd_upper": 8.065354939787206,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.0341060089773473,
+              "ess": 1741.600942616176,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "speciation": {
+          "ess": 1423.64171235945,
+          "act": 1.265065489697644,
+          "mean": -46.28327313194609,
+          "median": -46.11061287326644,
+          "hpd_lower": -48.47635904056583,
+          "hpd_upper": -44.579932042284696,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.265065489697644,
+              "ess": 1423.64171235945,
+              "act_max_lag": 13,
+              "act_truncated": false
+            }
+          ]
+        }
+      },
+      "operators": [],
+      "tree_summary": {
+        "tree_height": {
+          "status": "ok",
+          "column": "treeModel.rootHeight",
+          "n": 1801,
+          "mean": 50.23349842555594,
+          "median": 49.83086749075191,
+          "hpd_lower": 42.85667999785575,
+          "hpd_upper": 60.18539814968078,
+          "first_half_mean": 50.39697005888171,
+          "second_half_mean": 50.070208225785485,
+          "trajectory": [
+            50.56973403296709,
+            53.54267017002189,
+            53.10068074687969,
+            51.807333377925836,
+            51.586533134906645,
+            45.46793374866126,
+            44.69487369904336,
+            49.567590595409335,
+            44.43795016912933,
+            37.93066880853062,
+            54.174257323107305,
+            56.07450952985883,
+            49.41917868603716,
+            57.16717315975512,
+            45.61967965512759,
+            47.18854723192219,
+            42.30185802941668,
+            51.23902277070103,
+            45.627563309423756,
+            52.03566033524931
+          ]
+        },
+        "clock_rate": {
+          "status": "ok",
+          "column": "clock.rate",
+          "n": 1801,
+          "mean": 0.011865317411724783,
+          "median": 0.011817210786698845,
+          "hpd_lower": 0.009716588003294202,
+          "hpd_upper": 0.013817181141303423,
+          "first_half_mean": 0.011813458664955642,
+          "second_half_mean": 0.011917118601616268,
+          "trajectory": [
+            0.011708761608257182,
+            0.008504511539268825,
+            0.01111854842546961,
+            0.011640932882580838,
+            0.013649878846628705,
+            0.012020438186460045,
+            0.011215582758548075,
+            0.011375907881432163,
+            0.01171152640519735,
+            0.011492230547071384,
+            0.011134633213786072,
+            0.013753866844962255,
+            0.013048211700057214,
+            0.01223242769141897,
+            0.011227465356777733,
+            0.011894883311616455,
+            0.012699866544001718,
+            0.01096033259030937,
+            0.012548777231028097,
+            0.010278633070262307
+          ]
+        },
+        "ucld_mean": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "ucld_stdev": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "n_trees": 2001,
+        "n_trees_after_burnin": 1801,
+        "n_nontrivial_splits": 11
+      },
+      "incomplete_reason": null,
+      "external": false,
+      "burnin_status": "explicit"
+    },
+    {
+      "seed": 2,
+      "status": "ok",
+      "trace_log": "validation_runs/primates_reference/run/2/seed_2_trace.log",
+      "tree_log": "validation_runs/primates_reference/run/2/seed_2_tree.log",
+      "run_log": "validation_runs/primates_reference/run/2/run.log",
+      "run_meta": "validation_runs/primates_reference/run/2/run_meta.json",
+      "samples": 2001,
+      "burnin_mode": "fraction",
+      "burnin_fraction": 0.09995002498750624,
+      "burnin_samples": 200,
+      "parameters": {
+        "posterior": {
+          "ess": 1260.1858752959292,
+          "act": 1.4291542504212496,
+          "mean": -5782.012661559349,
+          "median": -5781.612215108973,
+          "hpd_lower": -5788.747356245709,
+          "hpd_upper": -5775.6211525615045,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4291542504212496,
+              "ess": 1260.1858752959292,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "prior": {
+          "ess": 1502.0772278277434,
+          "act": 1.1990062605532934,
+          "mean": -58.56517587370142,
+          "median": -58.18662138161682,
+          "hpd_lower": -63.437873600603105,
+          "hpd_upper": -55.24235812920734,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1990062605532934,
+              "ess": 1502.0772278277434,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "likelihood": {
+          "ess": 1233.598986483488,
+          "act": 1.459955803898601,
+          "mean": -5723.447485685648,
+          "median": -5723.2075165727,
+          "hpd_lower": -5730.444061610193,
+          "hpd_upper": -5717.58161223814,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.459955803898601,
+              "ess": 1233.598986483488,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "treeModel.rootHeight": {
+          "ess": 1247.811933741549,
+          "act": 1.4433264751681958,
+          "mean": 50.16167209312865,
+          "median": 49.8495543326487,
+          "hpd_lower": 42.224349421360486,
+          "hpd_upper": 59.539333698284445,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4433264751681958,
+              "ess": 1247.811933741549,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "yule.birthRate": {
+          "ess": 1618.4994412309763,
+          "act": 1.1127591113841966,
+          "mean": 0.05134065422284123,
+          "median": 0.04979813611203622,
+          "hpd_lower": 0.024832403254114226,
+          "hpd_upper": 0.07836128758583166,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1127591113841966,
+              "ess": 1618.4994412309763,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies1": {
+          "ess": 775.4183250115243,
+          "act": 2.3226172788387913,
+          "mean": 0.35040402239314705,
+          "median": 0.35027829577227776,
+          "hpd_lower": 0.3163017872767738,
+          "hpd_upper": 0.38498014340563474,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.3226172788387913,
+              "ess": 775.4183250115243,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies2": {
+          "ess": 1040.4339408024666,
+          "act": 1.7310085045965757,
+          "mean": 0.34772318420295734,
+          "median": 0.346718039608332,
+          "hpd_lower": 0.31850578150166325,
+          "hpd_upper": 0.37692434738032565,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.7310085045965757,
+              "ess": 1040.4339408024666,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies3": {
+          "ess": 833.3732603259754,
+          "act": 2.1610964567012094,
+          "mean": 0.07833297712847204,
+          "median": 0.07813318446710667,
+          "hpd_lower": 0.06547581623631923,
+          "hpd_upper": 0.09205748592376187,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.1610964567012094,
+              "ess": 833.3732603259754,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies4": {
+          "ess": 841.115097841405,
+          "act": 2.1412051746806053,
+          "mean": 0.22353981627542388,
+          "median": 0.22378602225019548,
+          "hpd_lower": 0.20045955037465543,
+          "hpd_upper": 0.2451985036302868,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.1412051746806053,
+              "ess": 841.115097841405,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "kappa": {
+          "ess": 842.1025526693439,
+          "act": 2.1386943838266363,
+          "mean": 12.121992245857456,
+          "median": 11.991652744787165,
+          "hpd_lower": 9.329000499111144,
+          "hpd_upper": 15.359901181025432,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.1386943838266363,
+              "ess": 842.1025526693439,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "siteModel.alpha": {
+          "ess": 1269.2473198350162,
+          "act": 1.4189511940305723,
+          "mean": 0.34776278028287466,
+          "median": 0.34594081614886596,
+          "hpd_lower": 0.27110771546263857,
+          "hpd_upper": 0.42377573928294054,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4189511940305723,
+              "ess": 1269.2473198350162,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies1": {
+          "ess": 799.9900638683154,
+          "act": 2.251277961242852,
+          "mean": 0.37412454823132707,
+          "median": 0.3744092682518034,
+          "hpd_lower": 0.3410982649357441,
+          "hpd_upper": 0.4066724114280234,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.251277961242852,
+              "ess": 799.9900638683154,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies2": {
+          "ess": 1085.9946510327666,
+          "act": 1.6583875420447722,
+          "mean": 0.28878156831330537,
+          "median": 0.28873557140551004,
+          "hpd_lower": 0.2602247216340103,
+          "hpd_upper": 0.31629835864670675,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.6583875420447725,
+              "ess": 1085.9946510327666,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies3": {
+          "ess": 1013.005438808439,
+          "act": 1.7778779175346284,
+          "mean": 0.08732199697395705,
+          "median": 0.08707672336293755,
+          "hpd_lower": 0.07262239182312032,
+          "hpd_upper": 0.10275146666523122,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.7778779175346284,
+              "ess": 1013.005438808439,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies4": {
+          "ess": 819.3860233398785,
+          "act": 2.1979872107886216,
+          "mean": 0.24977188648141077,
+          "median": 0.2494229851519149,
+          "hpd_lower": 0.22417163903329654,
+          "hpd_upper": 0.27380958121091076,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.1979872107886216,
+              "ess": 819.3860233398785,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..kappa": {
+          "ess": 978.5205901671407,
+          "act": 1.8405335749678726,
+          "mean": 10.477835047142094,
+          "median": 10.322753463140828,
+          "hpd_lower": 7.954005973842589,
+          "hpd_upper": 13.022772055480946,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8405335749678726,
+              "ess": 978.5205901671407,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..siteModel.alpha": {
+          "ess": 1272.6903248567207,
+          "act": 1.4151125099522983,
+          "mean": 0.4060226501952869,
+          "median": 0.4034331219857495,
+          "hpd_lower": 0.318294217169413,
+          "hpd_upper": 0.49527356512605847,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4151125099522983,
+              "ess": 1272.6903248567207,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "clock.rate": {
+          "ess": 976.0284189399925,
+          "act": 1.8452331561779327,
+          "mean": 0.01188346245714007,
+          "median": 0.011833973672805673,
+          "hpd_lower": 0.010037440804205015,
+          "hpd_upper": 0.014066519681142118,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8452331561779327,
+              "ess": 976.0284189399925,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Catarrhini)": {
+          "ess": 1798.1574748159478,
+          "act": 1.0015807988031433,
+          "mean": 26.330092231903432,
+          "median": 26.08833948118422,
+          "hpd_lower": 25.248368449950366,
+          "hpd_upper": 27.948049841909107,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.0015807988031433,
+              "ess": 1798.1574748159478,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Homininae)": {
+          "ess": 1516.8363009177992,
+          "act": 1.1873397273722026,
+          "mean": 7.59116331739128,
+          "median": 7.546457923059149,
+          "hpd_lower": 7.191646909743225,
+          "hpd_upper": 8.043313748532778,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1873397273722026,
+              "ess": 1516.8363009177992,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "speciation": {
+          "ess": 1491.0719874568085,
+          "act": 1.2078558346950161,
+          "mean": -46.31944929757234,
+          "median": -46.17329344970808,
+          "hpd_lower": -48.44923521230169,
+          "hpd_upper": -44.413764901077336,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2078558346950161,
+              "ess": 1491.0719874568085,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        }
+      },
+      "operators": [],
+      "tree_summary": {
+        "tree_height": {
+          "status": "ok",
+          "column": "treeModel.rootHeight",
+          "n": 1801,
+          "mean": 50.16167209312865,
+          "median": 49.8495543326487,
+          "hpd_lower": 42.224349421360486,
+          "hpd_upper": 59.539333698284445,
+          "first_half_mean": 50.2037166228098,
+          "second_half_mean": 50.11967422774237,
+          "trajectory": [
+            47.617925255254,
+            54.0039403981295,
+            44.841230850885395,
+            51.27842075248974,
+            52.593536197076375,
+            47.79920035267115,
+            47.551746975533966,
+            45.05361690787757,
+            46.22217648877928,
+            45.58269431183431,
+            42.8384644015406,
+            49.912394699361855,
+            45.26141801626466,
+            53.14547304153986,
+            46.01613323768614,
+            51.814622187004,
+            48.338740958779,
+            47.76716807396011,
+            54.25020928729627,
+            45.837949163457196
+          ]
+        },
+        "clock_rate": {
+          "status": "ok",
+          "column": "clock.rate",
+          "n": 1801,
+          "mean": 0.01188346245714007,
+          "median": 0.011833973672805673,
+          "hpd_lower": 0.010037440804205015,
+          "hpd_upper": 0.014066519681142118,
+          "first_half_mean": 0.011875961354235942,
+          "second_half_mean": 0.011890955234735762,
+          "trajectory": [
+            0.0106987566956963,
+            0.011256776502555143,
+            0.010943801786177421,
+            0.012012734579015706,
+            0.01417914035927683,
+            0.013816660304192048,
+            0.012181224486269536,
+            0.012341504592664563,
+            0.012941778176981228,
+            0.011966508808641373,
+            0.011800399854079064,
+            0.010213236135092474,
+            0.013151788788472023,
+            0.012533003079197327,
+            0.01236285880317765,
+            0.01175190767443203,
+            0.011118915195531317,
+            0.01405377386701368,
+            0.011854707752291147,
+            0.011426906767944018
+          ]
+        },
+        "ucld_mean": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "ucld_stdev": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "n_trees": 2001,
+        "n_trees_after_burnin": 1801,
+        "n_nontrivial_splits": 10
+      },
+      "incomplete_reason": null,
+      "external": false,
+      "burnin_status": "explicit"
+    },
+    {
+      "seed": 3,
+      "status": "ok",
+      "trace_log": "validation_runs/primates_reference/run/3/seed_3_trace.log",
+      "tree_log": "validation_runs/primates_reference/run/3/seed_3_tree.log",
+      "run_log": "validation_runs/primates_reference/run/3/run.log",
+      "run_meta": "validation_runs/primates_reference/run/3/run_meta.json",
+      "samples": 2001,
+      "burnin_mode": "fraction",
+      "burnin_fraction": 0.09995002498750624,
+      "burnin_samples": 200,
+      "parameters": {
+        "posterior": {
+          "ess": 1447.4405473210138,
+          "act": 1.2442652676362904,
+          "mean": -5782.146348929782,
+          "median": -5781.671011515058,
+          "hpd_lower": -5789.401422170084,
+          "hpd_upper": -5775.798374071217,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2442652676362904,
+              "ess": 1447.4405473210138,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "prior": {
+          "ess": 1474.9396766824955,
+          "act": 1.2210668873257888,
+          "mean": -58.59130194312406,
+          "median": -58.244329268124766,
+          "hpd_lower": -63.12434674459683,
+          "hpd_upper": -55.29910813678224,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2210668873257888,
+              "ess": 1474.9396766824955,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "likelihood": {
+          "ess": 1246.2208698599752,
+          "act": 1.445169185942424,
+          "mean": -5723.555046986659,
+          "median": -5723.1808480208765,
+          "hpd_lower": -5730.197800562664,
+          "hpd_upper": -5717.235741156377,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.445169185942424,
+              "ess": 1246.2208698599752,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "treeModel.rootHeight": {
+          "ess": 1140.9461272871204,
+          "act": 1.5785144950553625,
+          "mean": 50.19041212028706,
+          "median": 50.00455952783346,
+          "hpd_lower": 42.60735581212496,
+          "hpd_upper": 59.43651039150883,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.5785144950553622,
+              "ess": 1140.9461272871204,
+              "act_max_lag": 11,
+              "act_truncated": false
+            }
+          ]
+        },
+        "yule.birthRate": {
+          "ess": 1678.1690428160443,
+          "act": 1.0731934352559858,
+          "mean": 0.051364489352184385,
+          "median": 0.05048858528807467,
+          "hpd_lower": 0.02545616277624068,
+          "hpd_upper": 0.07942189929350739,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.0731934352559858,
+              "ess": 1678.1690428160443,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies1": {
+          "ess": 698.6991930676496,
+          "act": 2.5776471733031228,
+          "mean": 0.34945514976686315,
+          "median": 0.34940878885004395,
+          "hpd_lower": 0.31628401096051306,
+          "hpd_upper": 0.3852753335215496,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.5776471733031228,
+              "ess": 698.6991930676496,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies2": {
+          "ess": 976.3491267970319,
+          "act": 1.8446270402353733,
+          "mean": 0.349057460858301,
+          "median": 0.34887291560395006,
+          "hpd_lower": 0.316715154806784,
+          "hpd_upper": 0.3769380316832736,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8446270402353733,
+              "ess": 976.3491267970319,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies3": {
+          "ess": 923.0645535913814,
+          "act": 1.9511094787388616,
+          "mean": 0.07825372444253098,
+          "median": 0.07771444720292432,
+          "hpd_lower": 0.06395202087925522,
+          "hpd_upper": 0.0916673624953939,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9511094787388616,
+              "ess": 923.0645535913814,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies4": {
+          "ess": 810.9728746299099,
+          "act": 2.220789444803431,
+          "mean": 0.2232336649323038,
+          "median": 0.2231848578158716,
+          "hpd_lower": 0.19873451177716345,
+          "hpd_upper": 0.2471041453435851,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.220789444803431,
+              "ess": 810.9728746299099,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "kappa": {
+          "ess": 944.4492955271038,
+          "act": 1.9069313816310798,
+          "mean": 12.098210670555172,
+          "median": 12.017095563709255,
+          "hpd_lower": 9.232157203571518,
+          "hpd_upper": 15.231679643156143,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9069313816310798,
+              "ess": 944.4492955271038,
+              "act_max_lag": 13,
+              "act_truncated": false
+            }
+          ]
+        },
+        "siteModel.alpha": {
+          "ess": 1429.4915571348154,
+          "act": 1.2598885184112687,
+          "mean": 0.3462815138282629,
+          "median": 0.34440620812901834,
+          "hpd_lower": 0.2714435916038518,
+          "hpd_upper": 0.4224771442389069,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2598885184112687,
+              "ess": 1429.4915571348154,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies1": {
+          "ess": 781.2211430412317,
+          "act": 2.3053651530587747,
+          "mean": 0.3741992175953447,
+          "median": 0.37391294325452984,
+          "hpd_lower": 0.3412366836223115,
+          "hpd_upper": 0.4082286836530777,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.3053651530587747,
+              "ess": 781.2211430412317,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies2": {
+          "ess": 924.1965011149365,
+          "act": 1.9487197774794658,
+          "mean": 0.28840816188708646,
+          "median": 0.2885822175742576,
+          "hpd_lower": 0.2609661633102423,
+          "hpd_upper": 0.3164784323358342,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9487197774794658,
+              "ess": 924.1965011149365,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies3": {
+          "ess": 985.0214874855378,
+          "act": 1.8283865102246741,
+          "mean": 0.08725286116295376,
+          "median": 0.08710962672861404,
+          "hpd_lower": 0.0717436165188112,
+          "hpd_upper": 0.102261826555881,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8283865102246741,
+              "ess": 985.0214874855378,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies4": {
+          "ess": 954.9432199170765,
+          "act": 1.8859760061508073,
+          "mean": 0.2501397593546147,
+          "median": 0.24988746821987498,
+          "hpd_lower": 0.22362318951746213,
+          "hpd_upper": 0.2735913036153201,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8859760061508073,
+              "ess": 954.9432199170765,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..kappa": {
+          "ess": 908.262237316223,
+          "act": 1.9829074974224201,
+          "mean": 10.50695997607617,
+          "median": 10.381742420394716,
+          "hpd_lower": 7.943806754046838,
+          "hpd_upper": 12.97879256926867,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9829074974224201,
+              "ess": 908.262237316223,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..siteModel.alpha": {
+          "ess": 1262.0713579440944,
+          "act": 1.4270191528106753,
+          "mean": 0.40502986831660664,
+          "median": 0.403254995241445,
+          "hpd_lower": 0.3158672902791064,
+          "hpd_upper": 0.49545556569259497,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.4270191528106753,
+              "ess": 1262.0713579440944,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "clock.rate": {
+          "ess": 1029.8967942283107,
+          "act": 1.7487189105676046,
+          "mean": 0.011866956680049872,
+          "median": 0.011786441001748388,
+          "hpd_lower": 0.00982635590767033,
+          "hpd_upper": 0.013901455837994434,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.7487189105676046,
+              "ess": 1029.8967942283107,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Catarrhini)": {
+          "ess": 1722.21366572048,
+          "act": 1.04574713106028,
+          "mean": 26.34590719691912,
+          "median": 26.14293885409336,
+          "hpd_lower": 25.341904313873368,
+          "hpd_upper": 28.011199820889775,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.04574713106028,
+              "ess": 1722.21366572048,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Homininae)": {
+          "ess": 1801.0,
+          "act": 1.0,
+          "mean": 7.584689096590793,
+          "median": 7.54354791393753,
+          "hpd_lower": 7.200918053314841,
+          "hpd_upper": 8.025254084953437,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.0,
+              "ess": 1801.0,
+              "act_max_lag": 1,
+              "act_truncated": false
+            }
+          ]
+        },
+        "speciation": {
+          "ess": 1305.9383427968246,
+          "act": 1.3790850157159342,
+          "mean": -46.329781417223955,
+          "median": -46.17641356792032,
+          "hpd_lower": -48.75174861084819,
+          "hpd_upper": -44.51438828205236,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.3790850157159342,
+              "ess": 1305.9383427968246,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        }
+      },
+      "operators": [],
+      "tree_summary": {
+        "tree_height": {
+          "status": "ok",
+          "column": "treeModel.rootHeight",
+          "n": 1801,
+          "mean": 50.19041212028706,
+          "median": 50.00455952783346,
+          "hpd_lower": 42.60735581212496,
+          "hpd_upper": 59.43651039150883,
+          "first_half_mean": 50.21904431318391,
+          "second_half_mean": 50.16181170562871,
+          "trajectory": [
+            46.61295255955703,
+            46.782093212054185,
+            44.24733366058682,
+            47.879104107028006,
+            51.83140817101706,
+            42.566936681487135,
+            59.29395255402681,
+            45.35824770435087,
+            52.87832367670469,
+            50.86816731549584,
+            43.44645488521284,
+            56.69711305296244,
+            53.513845404855914,
+            50.830849654135626,
+            56.50027052946964,
+            47.09059289252612,
+            50.15779972182687,
+            46.48307959738716,
+            46.440928977341244,
+            59.004555025390516
+          ]
+        },
+        "clock_rate": {
+          "status": "ok",
+          "column": "clock.rate",
+          "n": 1801,
+          "mean": 0.011866956680049872,
+          "median": 0.011786441001748388,
+          "hpd_lower": 0.00982635590767033,
+          "hpd_upper": 0.013901455837994434,
+          "first_half_mean": 0.011896953744560767,
+          "second_half_mean": 0.011836992908618345,
+          "trajectory": [
+            0.013014727139521056,
+            0.012380380286738065,
+            0.011525079315021983,
+            0.01500867526918793,
+            0.01278484987398672,
+            0.013008817051172723,
+            0.011334792716923673,
+            0.014320207303894114,
+            0.012546942163693358,
+            0.011812149591474174,
+            0.012855341589489625,
+            0.012649939833659394,
+            0.012073880744174353,
+            0.0114418970850481,
+            0.011294981367398394,
+            0.010280871007030208,
+            0.010851932648873455,
+            0.010890354789024389,
+            0.011525432176597671,
+            0.010212269211481679
+          ]
+        },
+        "ucld_mean": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "ucld_stdev": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "n_trees": 2001,
+        "n_trees_after_burnin": 1801,
+        "n_nontrivial_splits": 10
+      },
+      "incomplete_reason": null,
+      "external": false,
+      "burnin_status": "explicit"
+    },
+    {
+      "seed": 4,
+      "status": "ok",
+      "trace_log": "validation_runs/primates_reference/run/4/seed_4_trace.log",
+      "tree_log": "validation_runs/primates_reference/run/4/seed_4_tree.log",
+      "run_log": "validation_runs/primates_reference/run/4/run.log",
+      "run_meta": "validation_runs/primates_reference/run/4/run_meta.json",
+      "samples": 2001,
+      "burnin_mode": "fraction",
+      "burnin_fraction": 0.09995002498750624,
+      "burnin_samples": 200,
+      "parameters": {
+        "posterior": {
+          "ess": 1198.9622104008427,
+          "act": 1.502132414496935,
+          "mean": -5782.04539791572,
+          "median": -5781.70733222003,
+          "hpd_lower": -5789.038509413151,
+          "hpd_upper": -5775.917986597326,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.502132414496935,
+              "ess": 1198.9622104008427,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "prior": {
+          "ess": 1597.089191588788,
+          "act": 1.127676531458059,
+          "mean": -58.49301171118021,
+          "median": -58.06648467522688,
+          "hpd_lower": -62.77167674790513,
+          "hpd_upper": -55.19032326134637,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.127676531458059,
+              "ess": 1597.089191588788,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "likelihood": {
+          "ess": 1149.975470187049,
+          "act": 1.5661203622952573,
+          "mean": -5723.552386204539,
+          "median": -5723.23303709223,
+          "hpd_lower": -5730.020002001083,
+          "hpd_upper": -5717.595545776649,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.566120362295257,
+              "ess": 1149.975470187049,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "treeModel.rootHeight": {
+          "ess": 1355.881865897714,
+          "act": 1.3282868111873287,
+          "mean": 50.11349130489511,
+          "median": 49.872217648891485,
+          "hpd_lower": 42.02849954256546,
+          "hpd_upper": 58.95684269186103,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.3282868111873287,
+              "ess": 1355.881865897714,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "yule.birthRate": {
+          "ess": 1456.3710345247157,
+          "act": 1.2366354159108592,
+          "mean": 0.051375079665879814,
+          "median": 0.04973834774866742,
+          "hpd_lower": 0.028275659988680268,
+          "hpd_upper": 0.08356157843551978,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2366354159108592,
+              "ess": 1456.3710345247157,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies1": {
+          "ess": 806.3875700082928,
+          "act": 2.233417362796749,
+          "mean": 0.34960260520868,
+          "median": 0.34948199998737356,
+          "hpd_lower": 0.31630590206347187,
+          "hpd_upper": 0.3846557478342742,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.233417362796749,
+              "ess": 806.3875700082928,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies2": {
+          "ess": 884.9191933820285,
+          "act": 2.0352140777022227,
+          "mean": 0.3480201000026892,
+          "median": 0.3483297830376475,
+          "hpd_lower": 0.3194746088345722,
+          "hpd_upper": 0.3777920832573031,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.0352140777022227,
+              "ess": 884.9191933820285,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies3": {
+          "ess": 915.3871820447033,
+          "act": 1.9674734749694665,
+          "mean": 0.07876838466888911,
+          "median": 0.07848967887304549,
+          "hpd_lower": 0.0643900090978116,
+          "hpd_upper": 0.09423881340452467,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9674734749694665,
+              "ess": 915.3871820447033,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "frequencies4": {
+          "ess": 829.2905970594487,
+          "act": 2.171735705657462,
+          "mean": 0.223608910119741,
+          "median": 0.22371911328521343,
+          "hpd_lower": 0.19837941604004794,
+          "hpd_upper": 0.24503151300490356,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.171735705657462,
+              "ess": 829.2905970594487,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "kappa": {
+          "ess": 784.7326966968228,
+          "act": 2.295049011696535,
+          "mean": 12.098417844336572,
+          "median": 11.977070642484552,
+          "hpd_lower": 9.088237320123511,
+          "hpd_upper": 15.4143101403475,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.295049011696535,
+              "ess": 784.7326966968228,
+              "act_max_lag": 7,
+              "act_truncated": false
+            }
+          ]
+        },
+        "siteModel.alpha": {
+          "ess": 1431.9110158337423,
+          "act": 1.2577597211593154,
+          "mean": 0.3456928473529755,
+          "median": 0.34435038816466434,
+          "hpd_lower": 0.27634515393277165,
+          "hpd_upper": 0.4289948451998723,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2577597211593154,
+              "ess": 1431.9110158337423,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies1": {
+          "ess": 772.3946249970809,
+          "act": 2.331709649075829,
+          "mean": 0.3735535668006806,
+          "median": 0.37348045487403153,
+          "hpd_lower": 0.33967107690844234,
+          "hpd_upper": 0.4086899960819759,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.331709649075829,
+              "ess": 772.3946249970809,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies2": {
+          "ess": 924.6543897153466,
+          "act": 1.9477547719796529,
+          "mean": 0.2888039261889147,
+          "median": 0.2882777142496995,
+          "hpd_lower": 0.26093991386403487,
+          "hpd_upper": 0.3172954885925746,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.9477547719796529,
+              "ess": 924.6543897153466,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies3": {
+          "ess": 748.8570350542026,
+          "act": 2.4049984385466083,
+          "mean": 0.08750766721480405,
+          "median": 0.08736012281912206,
+          "hpd_lower": 0.07272623616654665,
+          "hpd_upper": 0.10193353618673867,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 2.4049984385466083,
+              "ess": 748.8570350542026,
+              "act_max_lag": 9,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..frequencies4": {
+          "ess": 958.8721212367972,
+          "act": 1.8782483713020959,
+          "mean": 0.250134839795601,
+          "median": 0.24988768158830935,
+          "hpd_lower": 0.2252705642231121,
+          "hpd_upper": 0.27528852892389577,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.8782483713020959,
+              "ess": 958.8721212367972,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..kappa": {
+          "ess": 1015.5238467981493,
+          "act": 1.7734689398760874,
+          "mean": 10.458458111039779,
+          "median": 10.307250009941752,
+          "hpd_lower": 7.937053882343266,
+          "hpd_upper": 12.945258393199241,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.7734689398760874,
+              "ess": 1015.5238467981493,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "gene2..siteModel.alpha": {
+          "ess": 1401.2719436635587,
+          "act": 1.2852608718414582,
+          "mean": 0.4063047784081706,
+          "median": 0.4035676872220699,
+          "hpd_lower": 0.3128697113344089,
+          "hpd_upper": 0.49204723839689984,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2852608718414582,
+              "ess": 1401.2719436635587,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "clock.rate": {
+          "ess": 1029.7135628627761,
+          "act": 1.7490300846314177,
+          "mean": 0.011855990323012426,
+          "median": 0.011797362755182,
+          "hpd_lower": 0.009714285102594113,
+          "hpd_upper": 0.013756433248780458,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.7490300846314177,
+              "ess": 1029.7135628627761,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Catarrhini)": {
+          "ess": 1536.0338594192715,
+          "act": 1.1725001951981087,
+          "mean": 26.30702204176044,
+          "median": 26.112890901084782,
+          "hpd_lower": 25.265313004615198,
+          "hpd_upper": 27.899591960690756,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1725001951981087,
+              "ess": 1536.0338594192715,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "tmrca(Homininae)": {
+          "ess": 1447.4601529992378,
+          "act": 1.2442484142089874,
+          "mean": 7.595108417311798,
+          "median": 7.558420283142677,
+          "hpd_lower": 7.214753311338357,
+          "hpd_upper": 8.104430154735988,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.2442484142089874,
+              "ess": 1447.4601529992378,
+              "act_max_lag": 3,
+              "act_truncated": false
+            }
+          ]
+        },
+        "speciation": {
+          "ess": 1557.21964836902,
+          "act": 1.1565484688600658,
+          "mean": -46.29552742916044,
+          "median": -46.14717098712501,
+          "hpd_lower": -48.42394372473317,
+          "hpd_upper": -44.30924864415383,
+          "ess_ok": true,
+          "per_chain": [
+            {
+              "index": 0,
+              "start": 0,
+              "end": 2001,
+              "burnin": 200,
+              "n": 1801,
+              "act": 1.1565484688600658,
+              "ess": 1557.21964836902,
+              "act_max_lag": 5,
+              "act_truncated": false
+            }
+          ]
+        }
+      },
+      "operators": [],
+      "tree_summary": {
+        "tree_height": {
+          "status": "ok",
+          "column": "treeModel.rootHeight",
+          "n": 1801,
+          "mean": 50.11349130489511,
+          "median": 49.872217648891485,
+          "hpd_lower": 42.02849954256546,
+          "hpd_upper": 58.95684269186103,
+          "first_half_mean": 49.92786323301863,
+          "second_half_mean": 50.29891335227451,
+          "trajectory": [
+            48.00389268882372,
+            49.26491959803988,
+            54.339931774607265,
+            50.49024435059573,
+            47.89732800465848,
+            52.39275712666748,
+            48.83334570771649,
+            52.55115547290431,
+            48.665433161706154,
+            50.02232458730885,
+            50.75485051673274,
+            59.85056949941212,
+            50.959451551487376,
+            49.421401306687955,
+            49.31814982111766,
+            49.946041474860905,
+            45.16064283383132,
+            51.43289509628681,
+            48.77540586620445,
+            47.55825026608133
+          ]
+        },
+        "clock_rate": {
+          "status": "ok",
+          "column": "clock.rate",
+          "n": 1801,
+          "mean": 0.011855990323012426,
+          "median": 0.011797362755182,
+          "hpd_lower": 0.009714285102594113,
+          "hpd_upper": 0.013756433248780458,
+          "first_half_mean": 0.011870304479992318,
+          "second_half_mean": 0.011841692052999214,
+          "trajectory": [
+            0.01259154698494696,
+            0.011850234908826463,
+            0.011916727200960722,
+            0.010187393050091293,
+            0.00986206327449417,
+            0.012455106489111169,
+            0.011551023992438082,
+            0.011396638417245964,
+            0.012299006840551682,
+            0.01096713761842838,
+            0.010931912937393543,
+            0.009949358674187076,
+            0.011462777756239797,
+            0.011535965732036562,
+            0.011028613247021575,
+            0.012238294023820422,
+            0.013536345774069404,
+            0.014159343330876237,
+            0.011311367334021915,
+            0.010385136589231968
+          ]
+        },
+        "ucld_mean": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "ucld_stdev": {
+          "status": "not_computable",
+          "column": null,
+          "reason": "no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported"
+        },
+        "n_trees": 2001,
+        "n_trees_after_burnin": 1801,
+        "n_nontrivial_splits": 9
+      },
+      "incomplete_reason": null,
+      "external": false,
+      "burnin_status": "explicit"
+    }
+  ],
+  "multichain": {
+    "available": true,
+    "n_chains": 4,
+    "psrf": {
+      "status": "ok",
+      "estimator": "split-chain Gelman-Rubin R-hat (every chain split in half; across+within variance ratio)",
+      "reason": null,
+      "values": {
+        "posterior": {
+          "psrf": 1.0013766005123408,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0013766005123408,
+          "rank_psrf": 1.001452916635108,
+          "ess_bulk": 5446.4622092625805,
+          "ess_tail": 6765.678970961822,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "prior": {
+          "psrf": 0.9999151209132215,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999151209132215,
+          "rank_psrf": 1.000369862590007,
+          "ess_bulk": 5970.793357989685,
+          "ess_tail": 6208.117843908172,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "likelihood": {
+          "psrf": 1.001100359136982,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.001100359136982,
+          "rank_psrf": 1.0011118555900491,
+          "ess_bulk": 5206.366147961046,
+          "ess_tail": 6060.415541028197,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "treeModel.rootHeight": {
+          "psrf": 0.9999706562122316,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999706562122316,
+          "rank_psrf": 1.0002609619690033,
+          "ess_bulk": 5344.680182599253,
+          "ess_tail": 6242.364784510646,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "yule.birthRate": {
+          "psrf": 0.9999619302088669,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999619302088669,
+          "rank_psrf": 1.000747402990656,
+          "ess_bulk": 6538.543210472555,
+          "ess_tail": 6123.293540595211,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies1": {
+          "psrf": 1.0016353296490403,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0016353296490403,
+          "rank_psrf": 1.0026604333248004,
+          "ess_bulk": 3084.1678647273884,
+          "ess_tail": 3984.247131645207,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies2": {
+          "psrf": 1.0013653028492313,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0013653028492313,
+          "rank_psrf": 1.0013879048191363,
+          "ess_bulk": 3798.6703077666825,
+          "ess_tail": 4412.9597118918355,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies3": {
+          "psrf": 1.0004474260108558,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0004474260108558,
+          "rank_psrf": 1.0025015933282375,
+          "ess_bulk": 3696.3786559946375,
+          "ess_tail": 4132.453991290066,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies4": {
+          "psrf": 1.0000928402199412,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0000928402199412,
+          "rank_psrf": 1.0005621780075538,
+          "ess_bulk": 3451.407871826181,
+          "ess_tail": 4250.482687200273,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "kappa": {
+          "psrf": 1.000479967039484,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.000479967039484,
+          "rank_psrf": 1.0004202785798475,
+          "ess_bulk": 3560.986753470852,
+          "ess_tail": 5027.14429870944,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "siteModel.alpha": {
+          "psrf": 1.0004061598911818,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0004061598911818,
+          "rank_psrf": 1.000394035530183,
+          "ess_bulk": 5409.51776718581,
+          "ess_tail": 6587.268279216565,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies1": {
+          "psrf": 1.0005866465202942,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0005866465202942,
+          "rank_psrf": 1.000612370904072,
+          "ess_bulk": 3132.0285904775915,
+          "ess_tail": 3992.304009850287,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies2": {
+          "psrf": 0.999793713491619,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.999793713491619,
+          "rank_psrf": 1.0008019908169286,
+          "ess_bulk": 3794.6002555471614,
+          "ess_tail": 4239.342024270883,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies3": {
+          "psrf": 0.9998050694071797,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9998050694071797,
+          "rank_psrf": 1.0012330254888657,
+          "ess_bulk": 3678.604938304264,
+          "ess_tail": 4106.708468654188,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies4": {
+          "psrf": 1.0001400547976407,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0001400547976407,
+          "rank_psrf": 1.0001869035800484,
+          "ess_bulk": 3621.218272124124,
+          "ess_tail": 4109.098505535037,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..kappa": {
+          "psrf": 0.999654839646623,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.999654839646623,
+          "rank_psrf": 1.0002423847701167,
+          "ess_bulk": 4048.406651796583,
+          "ess_tail": 5137.445018635512,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..siteModel.alpha": {
+          "psrf": 0.9996108308768653,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9996108308768653,
+          "rank_psrf": 0.9997342219743012,
+          "ess_bulk": 5457.9041113555395,
+          "ess_tail": 6344.785539868168,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "clock.rate": {
+          "psrf": 0.9999945849146303,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999945849146303,
+          "rank_psrf": 1.0001674114953256,
+          "ess_bulk": 4175.685672060304,
+          "ess_tail": 5285.617521816837,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "tmrca(Catarrhini)": {
+          "psrf": 0.9999534250201563,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999534250201563,
+          "rank_psrf": 1.000063834864201,
+          "ess_bulk": 7095.863068077506,
+          "ess_tail": 6648.546055472807,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "tmrca(Homininae)": {
+          "psrf": 1.0000185789259752,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0000185789259752,
+          "rank_psrf": 0.9999508806605919,
+          "ess_bulk": 6783.27264853763,
+          "ess_tail": 7101.342374117382,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "speciation": {
+          "psrf": 1.000044886887323,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.000044886887323,
+          "rank_psrf": 1.0003833883248077,
+          "ess_bulk": 6114.508876016613,
+          "ess_tail": 6737.6893844676915,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        }
+      }
+    },
+    "rank_diagnostics": {
+      "status": "ok",
+      "estimator": "rank-normalized split R-hat (Vehtari, Gelman, Simpson, Carpenter & Bürkner 2021; max of the bulk and folded rank-normalized split-chain estimates)",
+      "ess_estimator": "bulk ESS on rank-normalized split chains and tail ESS on split-chain 5% / 95% indicators (Vehtari et al. 2021; matches ArviZ/posterior when at least two input chains are supplied)",
+      "reason": null,
+      "values": {
+        "posterior": {
+          "rank_psrf": 1.001452916635108,
+          "classic_psrf": 1.0013766005123408,
+          "ess_bulk": 5446.4622092625805,
+          "ess_tail": 6765.678970961822,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "prior": {
+          "rank_psrf": 1.000369862590007,
+          "classic_psrf": 0.9999151209132215,
+          "ess_bulk": 5970.793357989685,
+          "ess_tail": 6208.117843908172,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "likelihood": {
+          "rank_psrf": 1.0011118555900491,
+          "classic_psrf": 1.001100359136982,
+          "ess_bulk": 5206.366147961046,
+          "ess_tail": 6060.415541028197,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "treeModel.rootHeight": {
+          "rank_psrf": 1.0002609619690033,
+          "classic_psrf": 0.9999706562122316,
+          "ess_bulk": 5344.680182599253,
+          "ess_tail": 6242.364784510646,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "yule.birthRate": {
+          "rank_psrf": 1.000747402990656,
+          "classic_psrf": 0.9999619302088669,
+          "ess_bulk": 6538.543210472555,
+          "ess_tail": 6123.293540595211,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies1": {
+          "rank_psrf": 1.0026604333248004,
+          "classic_psrf": 1.0016353296490403,
+          "ess_bulk": 3084.1678647273884,
+          "ess_tail": 3984.247131645207,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies2": {
+          "rank_psrf": 1.0013879048191363,
+          "classic_psrf": 1.0013653028492313,
+          "ess_bulk": 3798.6703077666825,
+          "ess_tail": 4412.9597118918355,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies3": {
+          "rank_psrf": 1.0025015933282375,
+          "classic_psrf": 1.0004474260108558,
+          "ess_bulk": 3696.3786559946375,
+          "ess_tail": 4132.453991290066,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies4": {
+          "rank_psrf": 1.0005621780075538,
+          "classic_psrf": 1.0000928402199412,
+          "ess_bulk": 3451.407871826181,
+          "ess_tail": 4250.482687200273,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "kappa": {
+          "rank_psrf": 1.0004202785798475,
+          "classic_psrf": 1.000479967039484,
+          "ess_bulk": 3560.986753470852,
+          "ess_tail": 5027.14429870944,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "siteModel.alpha": {
+          "rank_psrf": 1.000394035530183,
+          "classic_psrf": 1.0004061598911818,
+          "ess_bulk": 5409.51776718581,
+          "ess_tail": 6587.268279216565,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies1": {
+          "rank_psrf": 1.000612370904072,
+          "classic_psrf": 1.0005866465202942,
+          "ess_bulk": 3132.0285904775915,
+          "ess_tail": 3992.304009850287,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies2": {
+          "rank_psrf": 1.0008019908169286,
+          "classic_psrf": 0.999793713491619,
+          "ess_bulk": 3794.6002555471614,
+          "ess_tail": 4239.342024270883,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies3": {
+          "rank_psrf": 1.0012330254888657,
+          "classic_psrf": 0.9998050694071797,
+          "ess_bulk": 3678.604938304264,
+          "ess_tail": 4106.708468654188,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies4": {
+          "rank_psrf": 1.0001869035800484,
+          "classic_psrf": 1.0001400547976407,
+          "ess_bulk": 3621.218272124124,
+          "ess_tail": 4109.098505535037,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..kappa": {
+          "rank_psrf": 1.0002423847701167,
+          "classic_psrf": 0.999654839646623,
+          "ess_bulk": 4048.406651796583,
+          "ess_tail": 5137.445018635512,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..siteModel.alpha": {
+          "rank_psrf": 0.9997342219743012,
+          "classic_psrf": 0.9996108308768653,
+          "ess_bulk": 5457.9041113555395,
+          "ess_tail": 6344.785539868168,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "clock.rate": {
+          "rank_psrf": 1.0001674114953256,
+          "classic_psrf": 0.9999945849146303,
+          "ess_bulk": 4175.685672060304,
+          "ess_tail": 5285.617521816837,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "tmrca(Catarrhini)": {
+          "rank_psrf": 1.000063834864201,
+          "classic_psrf": 0.9999534250201563,
+          "ess_bulk": 7095.863068077506,
+          "ess_tail": 6648.546055472807,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "tmrca(Homininae)": {
+          "rank_psrf": 0.9999508806605919,
+          "classic_psrf": 1.0000185789259752,
+          "ess_bulk": 6783.27264853763,
+          "ess_tail": 7101.342374117382,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "speciation": {
+          "rank_psrf": 1.0003833883248077,
+          "classic_psrf": 1.000044886887323,
+          "ess_bulk": 6114.508876016613,
+          "ess_tail": 6737.6893844676915,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        }
+      }
+    },
+    "asdsf": {
+      "status": "ok",
+      "value": 0.00011478086359517761,
+      "reason": null
+    }
+  },
+  "reasons": [
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 1: ucld_mean: no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 1,
+        "target": "ucld_mean"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 1: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 1,
+        "target": "ucld_stdev"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 2: ucld_mean: no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 2,
+        "target": "ucld_mean"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 2: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 2,
+        "target": "ucld_stdev"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 3: ucld_mean: no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 3,
+        "target": "ucld_mean"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 3: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 3,
+        "target": "ucld_stdev"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 4: ucld_mean: no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 4,
+        "target": "ucld_mean"
+      }
+    },
+    {
+      "id": "tree-summary-not-computable",
+      "severity": "info",
+      "category": "tree-summary",
+      "message": "seed 4: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+      "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+      "location": {
+        "seed": 4,
+        "target": "ucld_stdev"
+      }
+    }
+  ],
+  "limitations": [
+    "Diagnostics only: BeastXPy does not claim or assert convergence. A 'pass' verdict means no user-configured diagnostic threshold was crossed, not that the MCMC converged.",
+    "BeastXPy does not perform model selection; assess never compares models, marginal likelihoods or Bayes factors (see the separate compare command).",
+    "ESS, ACT, PSRF (Gelman-Rubin R-hat) and ASDSF are finite-sample estimates; on short chains they are noisy and must not be read as proof of convergence or divergence.",
+    "Statistics whose input columns or chains are missing are reported as not_computable with a reason; BeastXPy never substitutes a guessed value."
+  ]
+}

@@ -1,0 +1,812 @@
+{
+  "case_study": "shipped reference alignment (primates.fasta)",
+  "intended_use": "workflow demonstration on published/reference tutorial data; not a biological inference or a new empirical dataset",
+  "config": "examples/empirical/config_primates_reference.yaml",
+  "workdir": "validation_runs/primates_reference",
+  "results": "examples/empirical/results",
+  "beast_version": "10.5.0",
+  "seeds": "1,2,3,4",
+  "started_at": "2026-10-22T12:58:02Z",
+  "environment": {
+    "python": "3.10.12",
+    "java_home": "<jdk-17-home>",
+    "beagle_lib": ".tools/evidence_10_5_0/beagle-prefix-4.0.1/lib"
+  },
+  "steps": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "check-data",
+        "--config",
+        "examples/empirical/config_primates_reference.yaml"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.117,
+      "stdout_tail": [
+        "check-data: examples/empirical/config_primates_reference.yaml",
+        "verdict: pass (0 error(s), 0 warning(s))",
+        "no data or calibration problems found"
+      ],
+      "stderr_tail": [],
+      "step": 1
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "generate",
+        "--config",
+        "examples/empirical/config_primates_reference.yaml",
+        "--output",
+        "validation_runs/primates_reference/generated.xml",
+        "--beast-validate",
+        "--beast-version",
+        "10.5.0",
+        "--force"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.887,
+      "stdout_tail": [],
+      "stderr_tail": [
+        "Gate 0 (parse-time, before the 3 generation gates): examples/empirical/config_primates_reference.yaml",
+        "Gate 0: OK",
+        "Gate 1/3: OK (0 warning(s), 0 error(s))",
+        "Gate 2/3: OK (8 finding(s))",
+        "  Gate 2 [info] AUTO_PRIOR clock.rate: automatic prior applied: clock.rate ~ oneOnXPrior (BeastXPy convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR frequencies: automatic prior applied: frequencies ~ uniformPrior(lower=0, upper=1) (BeastXPy convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR gene2..frequencies: automatic prior applied: gene2..frequencies ~ uniformPrior(lower=0, upper=1) (BeastXPy convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR gene2..kappa: automatic prior applied: gene2..kappa ~ logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false) (BEAUti-1.10.4 convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR gene2..siteModel.alpha: automatic prior applied: gene2..siteModel.alpha ~ logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false) (BeastXPy convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR kappa: automatic prior applied: kappa ~ logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false) (BEAUti-1.10.4 convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR siteModel.alpha: automatic prior applied: siteModel.alpha ~ logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false) (BeastXPy convention); override under parameter_priors",
+        "  Gate 2 [info] AUTO_PRIOR yule.birthRate: automatic prior applied: yule.birthRate ~ logNormalPrior(mean=2, stdev=1.5, offset=0.0, meanInRealSpace=false) (BEAUti-1.10.4 convention); override under parameter_priors",
+        "Gate 3/3: BEAST 10.5.0 validation: OK [mode=beagle (full official parsers; native hmsbeagle likelihood evaluated); tree_likelihood_rule_source=official]",
+        "wrote validation_runs/primates_reference/generated.xml"
+      ],
+      "step": 2
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "run",
+        "--config",
+        "examples/empirical/config_primates_reference.yaml",
+        "--workdir",
+        "validation_runs/primates_reference/run",
+        "--seeds",
+        "1,2,3,4",
+        "--beast-version",
+        "10.5.0",
+        "--timeout",
+        "86400",
+        "--parallel",
+        "4",
+        "--force"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 192.777,
+      "stdout_tail": [],
+      "stderr_tail": [
+        "seed 1: OK in 187.3s [log: validation_runs/primates_reference/run/1/run.log]",
+        "    trace: validation_runs/primates_reference/run/1/seed_1_trace.log",
+        "    trees: validation_runs/primates_reference/run/1/seed_1_tree.log",
+        "  seed 2: OK in 190.9s [log: validation_runs/primates_reference/run/2/run.log]",
+        "    trace: validation_runs/primates_reference/run/2/seed_2_trace.log",
+        "    trees: validation_runs/primates_reference/run/2/seed_2_tree.log",
+        "  seed 3: OK in 191.1s [log: validation_runs/primates_reference/run/3/run.log]",
+        "    trace: validation_runs/primates_reference/run/3/seed_3_trace.log",
+        "    trees: validation_runs/primates_reference/run/3/seed_3_tree.log",
+        "  seed 4: OK in 184.8s [log: validation_runs/primates_reference/run/4/run.log]",
+        "    trace: validation_runs/primates_reference/run/4/seed_4_trace.log",
+        "    trees: validation_runs/primates_reference/run/4/seed_4_tree.log",
+        "fingerprint: BXP-a40cdff055ca-0.1.0 (content: BXP-a40cdff055ca4058)"
+      ],
+      "step": 3
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "assess",
+        "validation_runs/primates_reference/run",
+        "--json",
+        "examples/empirical/results/assessment.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 10.641,
+      "stdout_tail": [
+        "  seed 4: status=ok samples=2001 burnin=200 parameters=21 operators=0",
+        "  multichain: 4 usable chain(s)",
+        "    PSRF (split-chain Gelman-Rubin R-hat (every chain split in half; across+within variance ratio)): max R-hat 1.0016",
+        "    rank-normalized split R-hat: max 1.0027 (Vehtari et al. 2021)",
+        "    bulk/tail ESS per parameter: see the JSON (multichain.rank_diagnostics)",
+        "    ASDSF: 0.0001",
+        "  reasons: 0 error(s), 0 warning(s), 8 info",
+        "    [info] tree-summary-not-computable: seed 1: ucld_mean: no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 1: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 2: ucld_mean: no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 2: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 3: ucld_mean: no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 3: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 4: ucld_mean: no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "    [info] tree-summary-not-computable: seed 4: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "  limitations:",
+        "    - Diagnostics only: BeastXPy does not claim or assert convergence. A 'pass' verdict means no user-configured diagnostic threshold was crossed, not that the MCMC converged.",
+        "    - BeastXPy does not perform model selection; assess never compares models, marginal likelihoods or Bayes factors (see the separate compare command).",
+        "    - ESS, ACT, PSRF (Gelman-Rubin R-hat) and ASDSF are finite-sample estimates; on short chains they are noisy and must not be read as proof of convergence or divergence.",
+        "    - Statistics whose input columns or chains are missing are reported as not_computable with a reason; BeastXPy never substitutes a guessed value."
+      ],
+      "stderr_tail": [
+        "wrote examples/empirical/results/assessment.json"
+      ],
+      "step": 4
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "report",
+        "validation_runs/primates_reference/run",
+        "--output",
+        "examples/empirical/results/report.html",
+        "--json",
+        "examples/empirical/results/report.json",
+        "--assessment",
+        "examples/empirical/results/assessment.json",
+        "--lang",
+        "en"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.352,
+      "stdout_tail": [
+        "report: examples/empirical/results/report.html",
+        "language: en",
+        "conclusion: completed",
+        "chains: 4",
+        "assessment: present (verdict pass)"
+      ],
+      "stderr_tail": [
+        "wrote examples/empirical/results/report.json"
+      ],
+      "step": 5
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "beastxpy.main",
+        "lock",
+        "--config",
+        "examples/empirical/config_primates_reference.yaml",
+        "--output",
+        "examples/empirical/results/beastxpy.lock"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.224,
+      "stdout_tail": [
+        "lock: examples/empirical/results/beastxpy.lock",
+        "  BEAST 10.5.0 jar df11dea1d7118ff1 (reference-install)",
+        "  Java 17.0.20.1 64-bit (JAVA_HOME)",
+        "  native BEAGLE 4.0.1 (expected pairing) 4a08e626af772f2a threads=1",
+        "  dependencies: 6 recorded",
+        "  config config_primates_reference.yaml sha256 46e9f59ebf8411d1",
+        "  seeds: [1]",
+        "  the lock records basenames and digests only; no paths or credentials"
+      ],
+      "stderr_tail": [],
+      "step": 6
+    }
+  ],
+  "status": "completed",
+  "finished_at": "2026-10-22T13:01:38Z",
+  "total_elapsed_seconds": 215.998,
+  "assessment": {
+    "verdict": "pass",
+    "strict": false,
+    "thresholds": {
+      "burnin": 0.1,
+      "ess": 200.0,
+      "psrf": 1.01,
+      "operator_low": 0.01,
+      "operator_high": 0.95
+    },
+    "chains": [
+      {
+        "seed": 1,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "parameters": 21,
+        "min_ess": 767.040628761056
+      },
+      {
+        "seed": 2,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "parameters": 21,
+        "min_ess": 775.4183250115243
+      },
+      {
+        "seed": 3,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "parameters": 21,
+        "min_ess": 698.6991930676496
+      },
+      {
+        "seed": 4,
+        "status": "ok",
+        "samples": 2001,
+        "burnin_fraction": 0.09995002498750624,
+        "parameters": 21,
+        "min_ess": 748.8570350542026
+      }
+    ],
+    "psrf": {
+      "status": "ok",
+      "estimator": "split-chain Gelman-Rubin R-hat (every chain split in half; across+within variance ratio)",
+      "reason": null,
+      "values": {
+        "posterior": {
+          "psrf": 1.0013766005123408,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0013766005123408,
+          "rank_psrf": 1.001452916635108,
+          "ess_bulk": 5446.4622092625805,
+          "ess_tail": 6765.678970961822,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "prior": {
+          "psrf": 0.9999151209132215,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999151209132215,
+          "rank_psrf": 1.000369862590007,
+          "ess_bulk": 5970.793357989685,
+          "ess_tail": 6208.117843908172,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "likelihood": {
+          "psrf": 1.001100359136982,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.001100359136982,
+          "rank_psrf": 1.0011118555900491,
+          "ess_bulk": 5206.366147961046,
+          "ess_tail": 6060.415541028197,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "treeModel.rootHeight": {
+          "psrf": 0.9999706562122316,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999706562122316,
+          "rank_psrf": 1.0002609619690033,
+          "ess_bulk": 5344.680182599253,
+          "ess_tail": 6242.364784510646,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "yule.birthRate": {
+          "psrf": 0.9999619302088669,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999619302088669,
+          "rank_psrf": 1.000747402990656,
+          "ess_bulk": 6538.543210472555,
+          "ess_tail": 6123.293540595211,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies1": {
+          "psrf": 1.0016353296490403,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0016353296490403,
+          "rank_psrf": 1.0026604333248004,
+          "ess_bulk": 3084.1678647273884,
+          "ess_tail": 3984.247131645207,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies2": {
+          "psrf": 1.0013653028492313,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0013653028492313,
+          "rank_psrf": 1.0013879048191363,
+          "ess_bulk": 3798.6703077666825,
+          "ess_tail": 4412.9597118918355,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies3": {
+          "psrf": 1.0004474260108558,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0004474260108558,
+          "rank_psrf": 1.0025015933282375,
+          "ess_bulk": 3696.3786559946375,
+          "ess_tail": 4132.453991290066,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "frequencies4": {
+          "psrf": 1.0000928402199412,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0000928402199412,
+          "rank_psrf": 1.0005621780075538,
+          "ess_bulk": 3451.407871826181,
+          "ess_tail": 4250.482687200273,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "kappa": {
+          "psrf": 1.000479967039484,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.000479967039484,
+          "rank_psrf": 1.0004202785798475,
+          "ess_bulk": 3560.986753470852,
+          "ess_tail": 5027.14429870944,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "siteModel.alpha": {
+          "psrf": 1.0004061598911818,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0004061598911818,
+          "rank_psrf": 1.000394035530183,
+          "ess_bulk": 5409.51776718581,
+          "ess_tail": 6587.268279216565,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies1": {
+          "psrf": 1.0005866465202942,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0005866465202942,
+          "rank_psrf": 1.000612370904072,
+          "ess_bulk": 3132.0285904775915,
+          "ess_tail": 3992.304009850287,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies2": {
+          "psrf": 0.999793713491619,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.999793713491619,
+          "rank_psrf": 1.0008019908169286,
+          "ess_bulk": 3794.6002555471614,
+          "ess_tail": 4239.342024270883,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies3": {
+          "psrf": 0.9998050694071797,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9998050694071797,
+          "rank_psrf": 1.0012330254888657,
+          "ess_bulk": 3678.604938304264,
+          "ess_tail": 4106.708468654188,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..frequencies4": {
+          "psrf": 1.0001400547976407,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0001400547976407,
+          "rank_psrf": 1.0001869035800484,
+          "ess_bulk": 3621.218272124124,
+          "ess_tail": 4109.098505535037,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..kappa": {
+          "psrf": 0.999654839646623,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.999654839646623,
+          "rank_psrf": 1.0002423847701167,
+          "ess_bulk": 4048.406651796583,
+          "ess_tail": 5137.445018635512,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "gene2..siteModel.alpha": {
+          "psrf": 0.9996108308768653,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9996108308768653,
+          "rank_psrf": 0.9997342219743012,
+          "ess_bulk": 5457.9041113555395,
+          "ess_tail": 6344.785539868168,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "clock.rate": {
+          "psrf": 0.9999945849146303,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999945849146303,
+          "rank_psrf": 1.0001674114953256,
+          "ess_bulk": 4175.685672060304,
+          "ess_tail": 5285.617521816837,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "tmrca(Catarrhini)": {
+          "psrf": 0.9999534250201563,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 0.9999534250201563,
+          "rank_psrf": 1.000063834864201,
+          "ess_bulk": 7095.863068077506,
+          "ess_tail": 6648.546055472807,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "tmrca(Homininae)": {
+          "psrf": 1.0000185789259752,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.0000185789259752,
+          "rank_psrf": 0.9999508806605919,
+          "ess_bulk": 6783.27264853763,
+          "ess_tail": 7101.342374117382,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        },
+        "speciation": {
+          "psrf": 1.000044886887323,
+          "ok": true,
+          "reason": null,
+          "classic_psrf": 1.000044886887323,
+          "rank_psrf": 1.0003833883248077,
+          "ess_bulk": 6114.508876016613,
+          "ess_tail": 6737.6893844676915,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true
+        }
+      }
+    },
+    "rank_diagnostics": {
+      "status": "ok",
+      "estimator": "rank-normalized split R-hat (Vehtari, Gelman, Simpson, Carpenter & B\u00fcrkner 2021; max of the bulk and folded rank-normalized split-chain estimates)",
+      "ess_estimator": "bulk ESS on rank-normalized split chains and tail ESS on split-chain 5% / 95% indicators (Vehtari et al. 2021; matches ArviZ/posterior when at least two input chains are supplied)",
+      "reason": null,
+      "values": {
+        "posterior": {
+          "rank_psrf": 1.001452916635108,
+          "classic_psrf": 1.0013766005123408,
+          "ess_bulk": 5446.4622092625805,
+          "ess_tail": 6765.678970961822,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "prior": {
+          "rank_psrf": 1.000369862590007,
+          "classic_psrf": 0.9999151209132215,
+          "ess_bulk": 5970.793357989685,
+          "ess_tail": 6208.117843908172,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "likelihood": {
+          "rank_psrf": 1.0011118555900491,
+          "classic_psrf": 1.001100359136982,
+          "ess_bulk": 5206.366147961046,
+          "ess_tail": 6060.415541028197,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "treeModel.rootHeight": {
+          "rank_psrf": 1.0002609619690033,
+          "classic_psrf": 0.9999706562122316,
+          "ess_bulk": 5344.680182599253,
+          "ess_tail": 6242.364784510646,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "yule.birthRate": {
+          "rank_psrf": 1.000747402990656,
+          "classic_psrf": 0.9999619302088669,
+          "ess_bulk": 6538.543210472555,
+          "ess_tail": 6123.293540595211,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies1": {
+          "rank_psrf": 1.0026604333248004,
+          "classic_psrf": 1.0016353296490403,
+          "ess_bulk": 3084.1678647273884,
+          "ess_tail": 3984.247131645207,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies2": {
+          "rank_psrf": 1.0013879048191363,
+          "classic_psrf": 1.0013653028492313,
+          "ess_bulk": 3798.6703077666825,
+          "ess_tail": 4412.9597118918355,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies3": {
+          "rank_psrf": 1.0025015933282375,
+          "classic_psrf": 1.0004474260108558,
+          "ess_bulk": 3696.3786559946375,
+          "ess_tail": 4132.453991290066,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "frequencies4": {
+          "rank_psrf": 1.0005621780075538,
+          "classic_psrf": 1.0000928402199412,
+          "ess_bulk": 3451.407871826181,
+          "ess_tail": 4250.482687200273,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "kappa": {
+          "rank_psrf": 1.0004202785798475,
+          "classic_psrf": 1.000479967039484,
+          "ess_bulk": 3560.986753470852,
+          "ess_tail": 5027.14429870944,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "siteModel.alpha": {
+          "rank_psrf": 1.000394035530183,
+          "classic_psrf": 1.0004061598911818,
+          "ess_bulk": 5409.51776718581,
+          "ess_tail": 6587.268279216565,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies1": {
+          "rank_psrf": 1.000612370904072,
+          "classic_psrf": 1.0005866465202942,
+          "ess_bulk": 3132.0285904775915,
+          "ess_tail": 3992.304009850287,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies2": {
+          "rank_psrf": 1.0008019908169286,
+          "classic_psrf": 0.999793713491619,
+          "ess_bulk": 3794.6002555471614,
+          "ess_tail": 4239.342024270883,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies3": {
+          "rank_psrf": 1.0012330254888657,
+          "classic_psrf": 0.9998050694071797,
+          "ess_bulk": 3678.604938304264,
+          "ess_tail": 4106.708468654188,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..frequencies4": {
+          "rank_psrf": 1.0001869035800484,
+          "classic_psrf": 1.0001400547976407,
+          "ess_bulk": 3621.218272124124,
+          "ess_tail": 4109.098505535037,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..kappa": {
+          "rank_psrf": 1.0002423847701167,
+          "classic_psrf": 0.999654839646623,
+          "ess_bulk": 4048.406651796583,
+          "ess_tail": 5137.445018635512,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "gene2..siteModel.alpha": {
+          "rank_psrf": 0.9997342219743012,
+          "classic_psrf": 0.9996108308768653,
+          "ess_bulk": 5457.9041113555395,
+          "ess_tail": 6344.785539868168,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "clock.rate": {
+          "rank_psrf": 1.0001674114953256,
+          "classic_psrf": 0.9999945849146303,
+          "ess_bulk": 4175.685672060304,
+          "ess_tail": 5285.617521816837,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "tmrca(Catarrhini)": {
+          "rank_psrf": 1.000063834864201,
+          "classic_psrf": 0.9999534250201563,
+          "ess_bulk": 7095.863068077506,
+          "ess_tail": 6648.546055472807,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "tmrca(Homininae)": {
+          "rank_psrf": 0.9999508806605919,
+          "classic_psrf": 1.0000185789259752,
+          "ess_bulk": 6783.27264853763,
+          "ess_tail": 7101.342374117382,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        },
+        "speciation": {
+          "rank_psrf": 1.0003833883248077,
+          "classic_psrf": 1.000044886887323,
+          "ess_bulk": 6114.508876016613,
+          "ess_tail": 6737.6893844676915,
+          "ok": true,
+          "ess_bulk_ok": true,
+          "ess_tail_ok": true,
+          "reason": null
+        }
+      }
+    },
+    "asdsf": {
+      "status": "ok",
+      "value": 0.00011478086359517761,
+      "reason": null
+    },
+    "reasons": [
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 1: ucld_mean: no trace column matching 'ucldmean' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 1,
+          "target": "ucld_mean"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 1: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_1_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 1,
+          "target": "ucld_stdev"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 2: ucld_mean: no trace column matching 'ucldmean' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 2,
+          "target": "ucld_mean"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 2: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_2_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 2,
+          "target": "ucld_stdev"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 3: ucld_mean: no trace column matching 'ucldmean' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 3,
+          "target": "ucld_mean"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 3: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_3_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 3,
+          "target": "ucld_stdev"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 4: ucld_mean: no trace column matching 'ucldmean' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 4,
+          "target": "ucld_mean"
+        }
+      },
+      {
+        "id": "tree-summary-not-computable",
+        "severity": "info",
+        "category": "tree-summary",
+        "message": "seed 4: ucld_stdev: no trace column matching 'ucldstdev' is present in seed_4_trace.log (available columns: state, posterior, prior, likelihood, treeModel.rootHeight, yule.birthRate, frequencies1, frequencies2, frequencies3, frequencies4, kappa, siteModel.alpha...); no value is reported",
+        "fix": "Expected for models that do not log this column (e.g. strict clocks have no ucld.* columns); no action needed unless you expected it",
+        "location": {
+          "seed": 4,
+          "target": "ucld_stdev"
+        }
+      }
+    ],
+    "limitations": [
+      "Diagnostics only: BeastXPy does not claim or assert convergence. A 'pass' verdict means no user-configured diagnostic threshold was crossed, not that the MCMC converged.",
+      "BeastXPy does not perform model selection; assess never compares models, marginal likelihoods or Bayes factors (see the separate compare command).",
+      "ESS, ACT, PSRF (Gelman-Rubin R-hat) and ASDSF are finite-sample estimates; on short chains they are noisy and must not be read as proof of convergence or divergence.",
+      "Statistics whose input columns or chains are missing are reported as not_computable with a reason; BeastXPy never substitutes a guessed value."
+    ]
+  }
+}

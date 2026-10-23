@@ -1,0 +1,370 @@
+<?xml version="1.0" standalone="yes"?>
+<!-- BXP-fingerprint: BXP-a40cdff055ca-0.1.0 -->
+<!-- BXP-content-fingerprint: BXP-a40cdff055ca4058 -->
+<!-- BXP-data-digest: 909f6337667a2684 -->
+<!-- BXP-beast-version: 10.5.0 -->
+<beast>
+    <taxa id="taxa">
+        <taxon id="Tarsius_syrichta"/>
+        <taxon id="Lemur_catta"/>
+        <taxon id="Homo_sapiens"/>
+        <taxon id="Pan"/>
+        <taxon id="Gorilla"/>
+        <taxon id="Pongo"/>
+        <taxon id="Hylobates"/>
+        <taxon id="Macaca_fuscata"/>
+        <taxon id="M_mulatta"/>
+        <taxon id="M_fascicularis"/>
+        <taxon id="M_sylvanus"/>
+        <taxon id="Saimiri_sciureus"/>
+    </taxa>
+    <taxa id="Catarrhini">
+        <taxon idref="Homo_sapiens"/>
+        <taxon idref="Pan"/>
+        <taxon idref="Gorilla"/>
+        <taxon idref="Pongo"/>
+        <taxon idref="Hylobates"/>
+        <taxon idref="Macaca_fuscata"/>
+        <taxon idref="M_mulatta"/>
+        <taxon idref="M_fascicularis"/>
+        <taxon idref="M_sylvanus"/>
+    </taxa>
+    <taxa id="Homininae">
+        <taxon idref="Homo_sapiens"/>
+        <taxon idref="Pan"/>
+        <taxon idref="Gorilla"/>
+    </taxa>
+    <alignment id="alignment1" dataType="nucleotide">
+        <sequence>
+            <taxon idref="Tarsius_syrichta"/>
+            AAGTTTCATTGGAGCCACCACTCTTATAATTGCCCATGGCCTCACCTCCTCCCTATTATTTTGCCTAGCAAATACAAACTACGAACGAGTCCACAGTCGAACAATAGCACTAGCCCGTGGCCTTCAAACCCTATTACCTCTTGCAGCAACATGATGACTCCTCGCCAGCTTAACCAACCTGGCCCTTCCCCCAACAATTAATTTAATCGGTGAACTGTCCGTAATAATAGCAGCATTTTCATGGTCACACCTAACTATTATCTTAGTAGGCCTTAACACCCTTATCACCGCCCTATATTCCCTATATATACTAATCATAACTCAACGAGGAAAATACACATATCATATCAACAATATCATGCCCCCTTTCACCCGAGAAAATACATTAATAATCATACACCTATTTCCCTTAATCCTACTATCTACCAACCCCAAAGTAATTATAGGAACCATGTACTGTAAATATAGTTTAAACAAAACATTAGATTGTGAGTCTAATAATAGAAGCCCAAAGATTTCTTATTTACCAAGAAAGTA-TGCAAGAACTGCTAACTCATGCCTCCATATATAACAATGTGGCTTTCTT-ACTTTTAAAGGATAGAAGTAATCCATCGGTCTTAGGAACCGAAAA-ATTGGTGCAACTCCAAATAAAAGTAATAAATTTATTTTCATCCTCCATTTTACTATCACTTACACTCTTAATTACCCCATTTATTATTACAACAACTAAAAAATATGAAACACATGCATACCCTTACTACGTAAAAAACTCTATCGCCTGCGCATTTATAACAAGCCTAGTCCCAATGCTCATATTTCTATACACAAATCAAGAAATAATCATTTCCAACTGACATTGAATAACGATTCATACTATCAAATTATGCCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Lemur_catta"/>
+            AAGCTTCATAGGAGCAACCATTCTAATAATCGCACATGGCCTTACATCATCCATATTATTCTGTCTAGCCAACTCTAACTACGAACGAATCCATAGCCGTACAATACTACTAGCACGAGGGATCCAAACCATTCTCCCTCTTATAGCCACCTGATGACTACTCGCCAGCCTAACTAACCTAGCCCTACCCACCTCTATCAATTTAATTGGCGAACTATTCGTCACTATAGCATCCTTCTCATGATCAAACATTACAATTATCTTAATAGGCTTAAATATGCTCATCACCGCTCTCTATTCCCTCTATATATTAACTACTACACAACGAGGAAAACTCACATATCATTCGCACAACCTAAACCCATCCTTTACACGAGAAAACACCCTTATATCCATACACATACTCCCCCTTCTCCTATTTACCTTAAACCCCAAAATTATTCTAGGACCCACGTACTGTAAATATAGTTTAAA-AAAACACTAGATTGTGAATCCAGAAATAGAAGCTCAAAC-CTTCTTATTTACCGAGAAAGTAATGTATGAACTGCTAACTCTGCACTCCGTATATAAAAATACGGCTATCTCAACTTTTAAAGGATAGAAGTAATCCATTGGCCTTAGGAGCCAAAAA-ATTGGTGCAACTCCAAATAAAAGTAATAAATCTATTATCCTCTTTCACCCTTGTCACACTGATTATCCTAACTTTACCTATCATTATAAACGTTACAAACATATACAAAAACTACCCCTATGCACCATACGTAAAATCTTCTATTGCATGTGCCTTCATCACTAGCCTCATCCCAACTATATTATTTATCTCCTCAGGACAAGAAACAATCATTTCCAACTGACATTGAATAACAATCCAAACCCTAAAACTATCTATTAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Homo_sapiens"/>
+            AAGCTTCACCGGCGCAGTCATTCTCATAATCGCCCACGGGCTTACATCCTCATTACTATTCTGCCTAGCAAACTCAAACTACGAACGCACTCACAGTCGCATCATAATCCTCTCTCAAGGACTTCAAACTCTACTCCCACTAATAGCTTTTTGATGACTTCTAGCAAGCCTCGCTAACCTCGCCTTACCCCCCACTATTAACCTACTGGGAGAACTCTCTGTGCTAGTAACCACGTTCTCCTGATCAAATATCACTCTCCTACTTACAGGACTCAACATACTAGTCACAGCCCTATACTCCCTCTACATATTTACCACAACACAATGGGGCTCACTCACCCACCACATTAACAACATAAAACCCTCATTCACACGAGAAAACACCCTCATGTTCATACACCTATCCCCCATTCTCCTCCTATCCCTCAACCCCGACATCATTACCGGGTTTTCCTCTTGTAAATATAGTTTAACCAAAACATCAGATTGTGAATCTGACAACAGAGGCTTA-CGACCCCTTATTTACCGAGAAAGCT-CACAAGAACTGCTAACTCATGCCCCCATGTCTAACAACATGGCTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGGTCTTAGGCCCCAAAAATTTTGGTGCAACTCCAAATAAAAGTAATAACCATGCACACTACTATAACCACCCTAACCCTGACTTCCCTAATTCCCCCCATCCTTACCACCCTCGTTAACCCTAACAAAAAAAACTCATACCCCCATTATGTAAAATCCATTGTCGCATCCACCTTTATTATCAGTCTCTTCCCCACAACAATATTCATGTGCCTAGACCAAGAAGTTATTATCTCGAACTGACACTGAGCCACAACCCAAACAACCCAGCTCTCCCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Pan"/>
+            AAGCTTCACCGGCGCAATTATCCTCATAATCGCCCACGGACTTACATCCTCATTATTATTCTGCCTAGCAAACTCAAATTATGAACGCACCCACAGTCGCATCATAATTCTCTCCCAAGGACTTCAAACTCTACTCCCACTAATAGCCTTTTGATGACTCCTAGCAAGCCTCGCTAACCTCGCCCTACCCCCTACCATTAATCTCCTAGGGGAACTCTCCGTGCTAGTAACCTCATTCTCCTGATCAAATACCACTCTCCTACTCACAGGATTCAACATACTAATCACAGCCCTGTACTCCCTCTACATGTTTACCACAACACAATGAGGCTCACTCACCCACCACATTAATAACATAAAGCCCTCATTCACACGAGAAAATACTCTCATATTTTTACACCTATCCCCCATCCTCCTTCTATCCCTCAATCCTGATATCATCACTGGATTCACCTCCTGTAAATATAGTTTAACCAAAACATCAGATTGTGAATCTGACAACAGAGGCTCA-CGACCCCTTATTTACCGAGAAAGCT-TATAAGAACTGCTAATTCATATCCCCATGCCTGACAACATGGCTTTCTCAACTTTTAAAGGATAACAGCCATCCGTTGGTCTTAGGCCCCAAAAATTTTGGTGCAACTCCAAATAAAAGTAATAACCATGTATACTACCATAACCACCTTAACCCTAACTCCCTTAATTCTCCCCATCCTCACCACCCTCATTAACCCTAACAAAAAAAACTCATATCCCCATTATGTGAAATCCATTATCGCGTCCACCTTTATCATTAGCCTTTTCCCCACAACAATATTCATATGCCTAGACCAAGAAGCTATTATCTCAAACTGGCACTGAGCAACAACCCAAACAACCCAGCTCTCCCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Gorilla"/>
+            AAGCTTCACCGGCGCAGTTGTTCTTATAATTGCCCACGGACTTACATCATCATTATTATTCTGCCTAGCAAACTCAAACTACGAACGAACCCACAGCCGCATCATAATTCTCTCTCAAGGACTCCAAACCCTACTCCCACTAATAGCCCTTTGATGACTTCTGGCAAGCCTCGCCAACCTCGCCTTACCCCCCACCATTAACCTACTAGGAGAGCTCTCCGTACTAGTAACCACATTCTCCTGATCAAACACCACCCTTTTACTTACAGGATCTAACATACTAATTACAGCCCTGTACTCCCTTTATATATTTACCACAACACAATGAGGCCCACTCACACACCACATCACCAACATAAAACCCTCATTTACACGAGAAAACATCCTCATATTCATGCACCTATCCCCCATCCTCCTCCTATCCCTCAACCCCGATATTATCACCGGGTTCACCTCCTGTAAATATAGTTTAACCAAAACATCAGATTGTGAATCTGATAACAGAGGCTCA-CAACCCCTTATTTACCGAGAAAGCT-CGTAAGAGCTGCTAACTCATACCCCCGTGCTTGACAACATGGCTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGGTCTTAGGACCCAAAAATTTTGGTGCAACTCCAAATAAAAGTAATAACTATGTACGCTACCATAACCACCTTAGCCCTAACTTCCTTAATTCCCCCTATCCTTACCACCTTCATCAATCCTAACAAAAAAAGCTCATACCCCCATTACGTAAAATCTATCGTCGCATCCACCTTTATCATCAGCCTCTTCCCCACAACAATATTTCTATGCCTAGACCAAGAAGCTATTATCTCAAGCTGACACTGAGCAACAACCCAAACAATTCAACTCTCCCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Pongo"/>
+            AAGCTTCACCGGCGCAACCACCCTCATGATTGCCCATGGACTCACATCCTCCCTACTGTTCTGCCTAGCAAACTCAAACTACGAACGAACCCACAGCCGCATCATAATCCTCTCTCAAGGCCTTCAAACTCTACTCCCCCTAATAGCCCTCTGATGACTTCTAGCAAGCCTCACTAACCTTGCCCTACCACCCACCATCAACCTTCTAGGAGAACTCTCCGTACTAATAGCCATATTCTCTTGATCTAACATCACCATCCTACTAACAGGACTCAACATACTAATCACAACCCTATACTCTCTCTATATATTCACCACAACACAACGAGGTACACCCACACACCACATCAACAACATAAAACCTTCTTTCACACGCGAAAATACCCTCATGCTCATACACCTATCCCCCATCCTCCTCTTATCCCTCAACCCCAGCATCATCGCTGGGTTCGCCTACTGTAAATATAGTTTAACCAAAACATTAGATTGTGAATCTAATAATAGGGCCCCA-CAACCCCTTATTTACCGAGAAAGCT-CACAAGAACTGCTAACTCTCACT-CCATGTGTGACAACATGGCTTTCTCAGCTTTTAAAGGATAACAGCTATCCCTTGGTCTTAGGATCCAAAAATTTTGGTGCAACTCCAAATAAAAGTAACAGCCATGTTTACCACCATAACTGCCCTCACCTTAACTTCCCTAATCCCCCCCATTACCGCTACCCTCATTAACCCCAACAAAAAAAACCCATACCCCCACTATGTAAAAACGGCCATCGCATCCGCCTTTACTATCAGCCTTATCCCAACAACAATATTTATCTGCCTAGGACAAGAAACCATCGTCACAAACTGATGCTGAACAACCACCCAGACACTACAACTCTCACTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Hylobates"/>
+            AAGCTTTACAGGTGCAACCGTCCTCATAATCGCCCACGGACTAACCTCTTCCCTGCTATTCTGCCTTGCAAACTCAAACTACGAACGAACTCACAGCCGCATCATAATCCTATCTCGAGGGCTCCAAGCCTTACTCCCACTGATAGCCTTCTGATGACTCGCAGCAAGCCTCGCTAACCTCGCCCTACCCCCCACTATTAACCTCCTAGGTGAACTCTTCGTACTAATGGCCTCCTTCTCCTGGGCAAACACTACTATTACACTCACCGGGCTCAACGTACTAATCACGGCCCTATACTCCCTTTACATATTTATCATAACACAACGAGGCACACTTACACACCACATTAAAAACATAAAACCCTCACTCACACGAGAAAACATATTAATACTTATGCACCTCTTCCCCCTCCTCCTCCTAACCCTCAACCCTAACATCATTACTGGCTTTACTCCCTGTAAACATAGTTTAATCAAAACATTAGATTGTGAATCTAACAATAGAGGCTCG-AAACCTCTTGCTTACCGAGAAAGCC-CACAAGAACTGCTAACTCACTATCCCATGTATGACAACATGGCTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGGTCTTAGGACCCAAAAATTTTGGTGCAACTCCAAATAAAAGTAATAGCAATGTACACCACCATAGCCATTCTAACGCTAACCTCCCTAATTCCCCCCATTACAGCCACCCTTATTAACCCCAATAAAAAGAACTTATACCCGCACTACGTAAAAATGACCATTGCCTCTACCTTTATAATCAGCCTATTTCCCACAATAATATTCATGTGCACAGACCAAGAAACCATTATTTCAAACTGACACTGAACTGCAACCCAAACGCTAGAACTCTCCCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Macaca_fuscata"/>
+            AAGCTTTTCCGGCGCAACCATCCTTATGATCGCTCACGGACTCACCTCTTCCATATATTTCTGCCTAGCCAATTCAAACTATGAACGCACTCACAACCGTACCATACTACTGTCCCGAGGACTTCAAATCCTACTTCCACTAACAGCCTTTTGATGATTAACAGCAAGCCTTACTAACCTTGCCCTACCCCCCACTATCAATCTACTAGGTGAACTCTTTGTAATCGCAACCTCATTCTCCTGATCCCATATCACCATTATGCTAACAGGACTTAACATATTAATTACGGCCCTCTACTCTCTCCACATATTCACTACAACACAACGAGGAACACTCACACATCACATAATCAACATAAAGCCCCCCTTCACACGAGAAAACACATTAATATTCATACACCTCGCTCCAATTATCCTTCTATCCCTCAACCCCAACATCATCCTGGGGTTTACCTCCTGTAGATATAGTTTAACTAAAACACTAGATTGTGAATCTAACCATAGAGACTCA-CCACCTCTTATTTACCGAGAAAACT-CGCAAGGACTGCTAACCCATGTACCCGTACCTAAAATTACGGTTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGACCTTAGGAGTCAAAAACATTGGTGCAACTCCAAATAAAAGTAATAATCATGCACACCCCCATCATTATAACAACCCTTATCTCCCTAACTCTCCCAATTTTTGCCACCCTCATCAACCCTTACAAAAAACGTCCATACCCAGATTACGTAAAAACAACCGTAATATATGCTTTCATCATCAGCCTCCCCTCAACAACTTTATTCATCTTCTCAAACCAAGAAACAACCATTTGGAGCTGACATTGAATAATGACCCAAACACTAGACCTAACGCTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="M_mulatta"/>
+            AAGCTTTTCTGGCGCAACCATCCTCATGATTGCTCACGGACTCACCTCTTCCATATATTTCTGCCTAGCCAATTCAAACTATGAACGCACTCACAACCGTACCATACTACTGTCCCGGGGACTTCAAATCCTACTTCCACTAACAGCTTTCTGATGATTAACAGCAAGCCTTACTAACCTTGCCCTACCCCCCACTATCAACCTACTAGGTGAACTCTTTGTAATCGCGACCTCATTCTCCTGGTCCCATATCACCATTATATTAACAGGATTTAACATACTAATTACGGCCCTCTACTCCCTCCACATATTCACCACAACACAACGAGGAGCACTCACACATCACATAATCAACATAAAACCCCCCTTCACACGAGAAAACATATTAATATTCATACACCTCGCTCCAATCATCCTCCTATCTCTCAACCCCAACATCATCCTGGGGTTTACTTCCTGTAGATATAGTTTAACTAAAACATTAGATTGTGAATCTAACCATAGAGACTTA-CCACCTCTTATTTACCGAGAAAACT-CGCGAGGACTGCTAACCCATGTATCCGTACCTAAAATTACGGTTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGACCTTAGGAGTCAAAAATATTGGTGCAACTCCAAATAAAAGTAATAATCATGCACACCCCTATCATAATAACAACCCTTATCTCCCTAACTCTCCCAATTTTTGCCACCCTCATCAACCCTTACAAAAAACGTCCATACCCAGATTACGTAAAAACAACCGTAATATATGCTTTCATCATCAGCCTCCCCTCAACAACTTTATTCATCTTCTCAAACCAAGAAACAACCATTTGAAGCTGACATTGAATAATAACCCAAACACTAGACCTAACACTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="M_fascicularis"/>
+            AAGCTTCTCCGGCGCAACCACCCTTATAATCGCCCACGGGCTCACCTCTTCCATGTATTTCTGCTTGGCCAATTCAAACTATGAGCGCACTCATAACCGTACCATACTACTATCCCGAGGACTTCAAATTCTACTTCCATTGACAGCCTTCTGATGACTCACAGCAAGCCTTACTAACCTTGCCCTACCCCCCACTATTAATCTACTAGGCGAACTCTTTGTAATCACAACTTCATTTTCCTGATCCCATATCACCATTGTGTTAACGGGCCTTAATATACTAATCACAGCCCTCTACTCTCTCCACATGTTCATTACAGTACAACGAGGAACACTCACACACCACATAATCAATATAAAACCCCCCTTCACACGAGAAAACATATTAATATTCATACACCTCGCTCCAATTATCCTTCTATCTCTCAACCCCAACATCATCCTGGGGTTTACCTCCTGTAAATATAGTTTAACTAAAACATTAGATTGTGAATCTAACTATAGAGGCCTA-CCACTTCTTATTTACCGAGAAAACT-CGCAAGGACTGCTAATCCATGCCTCCGTACTTAAAACTACGGTTTCCTCAACTTTTAAAGGATAACAGCTATCCATTGACCTTAGGAGTCAAAAACATTGGTGCAACTCCAAATAAAAGTAATAATCATGCACACCCCCATCATAATAACAACCCTCATCTCCCTGACCCTTCCAATTTTTGCCACCCTCACCAACCCCTATAAAAAACGTTCATACCCAGACTACGTAAAAACAACCGTAATATATGCTTTTATTACCAGTCTCCCCTCAACAACCCTATTCATCCTCTCAAACCAAGAAACAACCATTTGGAGTTGACATTGAATAACAACCCAAACATTAGACCTAACACTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="M_sylvanus"/>
+            AAGCTTCTCCGGTGCAACTATCCTTATAGTTGCCCATGGACTCACCTCTTCCATATACTTCTGCTTGGCCAACTCAAACTACGAACGCACCCACAGCCGCATCATACTACTATCCCGAGGACTCCAAATCCTACTCCCACTAACAGCCTTCTGATGATTCACAGCAAGCCTTACTAATCTTGCTCTACCCTCCACTATTAATCTACTGGGCGAACTCTTCGTAATCGCAACCTCATTTTCCTGATCCCACATCACCATCATACTAACAGGACTGAACATACTAATTACAGCCCTCTACTCTCTTCACATATTCACCACAACACAACGAGGAGCGCTCACACACCACATAATTAACATAAAACCACCTTTCACACGAGAAAACATATTAATACTCATACACCTCGCTCCAATTATTCTTCTATCTCTTAACCCCAACATCATTCTAGGATTTACTTCCTGTAAATATAGTTTAATTAAAACATTAGACTGTGAATCTAACTATAGAAGCTTA-CCACTTCTTATTTACCGAGAAAACT-TGCAAGGACCGCTAATCCACACCTCCGTACTTAAAACTACGGTTTTCTCAACTTTTAAAGGATAACAGCTATCCATTGGCCTTAGGAGTCAAAAATATTGGTGCAACTCCAAATAAAAGTAATAATCATGTATACCCCCATCATAATAACAACTCTCATCTCCCTAACTCTTCCAATTTTCGCTACCCTTATCAACCCCAACAAAAAACACCTATATCCAAACTACGTAAAAACAGCCGTAATATATGCTTTCATTACCAGCCTCTCTTCAACAACTTTATATATATTCTTAAACCAAGAAACAATCATCTGAAGCTGGCACTGAATAATAACCCAAACACTAAGCCTAACATTAAGCTT
+        </sequence>
+        <sequence>
+            <taxon idref="Saimiri_sciureus"/>
+            AAGCTTCACCGGCGCAATGATCCTAATAATCGCTCACGGGTTTACTTCGTCTATGCTATTCTGCCTAGCAAACTCAAATTACGAACGAATTCACAGCCGAACAATAACATTTACTCGAGGGCTCCAAACACTATTCCCGCTTATAGGCCTCTGATGACTCCTAGCAAATCTCGCTAACCTCGCCCTACCCACAGCTATTAATCTAGTAGGAGAATTACTCACAATCGTATCTTCCTTCTCTTGATCCAACTTTACTATTATATTCACAGGACTTAATATACTAATTACAGCACTCTACTCACTTCATATGTATGCCTCTACACAGCGAGGTCCACTTACATACAGCACCAGCAATATAAAACCAATATTTACACGAGAAAATACGCTAATATTTATACATATAACACCAATCCTCCTCCTTACCTTGAGCCCCAAGGTAATTATAGGACCCTCACCTTGTAATTATAGTTTAGCTAAAACATTAGATTGTGAATCTAATAATAGAAGAATA-TAACTTCTTAATTACCGAGAAAGTG-CGCAAGAACTGCTAATTCATGCTCCCAAGACTAACAACTTGGCTTCCTCAACTTTTAAAGGATAGTAGTTATCCATTGGTCTTAGGAGCCAAAAACATTGGTGCAACTCCAAATAAAAGTAATA---ATACACTTCTCCATCACTCTAATAACACTAATTAGCCTACTAGCGCCAATCCTAGCTACCCTCATTAACCCTAACAAAAGCACACTATACCCGTACTACGTAAAACTAGCCATCATCTACGCCCTCATTACCAGTACCTTATCTATAATATTCTTTATCCTTACAGGCCAAGAATCAATAATTTCAAACTGACACTGAATAACTATCCAAACCATCAAACTATCCCTAAGCTT
+        </sequence>
+    </alignment>
+    <patterns id="patterns.gene1" from="1" to="449">
+        <alignment idref="alignment1"/>
+    </patterns>
+    <patterns id="patterns.gene2" from="450" to="898">
+        <alignment idref="alignment1"/>
+    </patterns>
+    <constantSize id="startingTree.constantSize" units="substitutions">
+        <populationSize>
+            <parameter id="startingTree.constantSize.popSize" value="1"/>
+        </populationSize>
+    </constantSize>
+    <coalescentSimulator id="startingTree" height="27.5625">
+        <coalescentSimulator height="26.25">
+            <coalescentSimulator height="8">
+                <taxa idref="Homininae"/>
+                <constantSize idref="startingTree.constantSize"/>
+            </coalescentSimulator>
+            <taxa idref="Catarrhini"/>
+            <constantSize idref="startingTree.constantSize"/>
+        </coalescentSimulator>
+        <taxa idref="taxa"/>
+        <constantSize idref="startingTree.constantSize"/>
+    </coalescentSimulator>
+    <treeModel id="treeModel">
+        <coalescentSimulator idref="startingTree"/>
+        <rootHeight>
+            <parameter id="treeModel.rootHeight"/>
+        </rootHeight>
+        <nodeHeights internalNodes="true">
+            <parameter id="treeModel.internalNodeHeights"/>
+        </nodeHeights>
+        <nodeHeights internalNodes="true" rootNode="true">
+            <parameter id="treeModel.allInternalNodeHeights"/>
+        </nodeHeights>
+    </treeModel>
+    <yuleModel id="yule" units="substitutions">
+        <birthRate>
+            <parameter id="yule.birthRate" value="1" lower="0"/>
+        </birthRate>
+    </yuleModel>
+    <HKYModel id="hky">
+        <frequencies>
+            <frequencyModel dataType="nucleotide">
+                <frequencies>
+                    <parameter id="frequencies" value="0.25 0.25 0.25 0.25" dimension="4"/>
+                </frequencies>
+            </frequencyModel>
+        </frequencies>
+        <kappa>
+            <parameter id="kappa" value="2" lower="0" upper="100"/>
+        </kappa>
+    </HKYModel>
+    <siteModel id="siteModel">
+        <substitutionModel>
+            <HKYModel idref="hky"/>
+        </substitutionModel>
+        <gammaShape gammaCategories="4">
+            <parameter id="siteModel.alpha" value="0.5" lower="0"/>
+        </gammaShape>
+    </siteModel>
+    <HKYModel id="gene2..hky">
+        <frequencies>
+            <frequencyModel dataType="nucleotide">
+                <frequencies>
+                    <parameter id="gene2..frequencies" value="0.25 0.25 0.25 0.25" dimension="4"/>
+                </frequencies>
+            </frequencyModel>
+        </frequencies>
+        <kappa>
+            <parameter id="gene2..kappa" value="2" lower="0" upper="100"/>
+        </kappa>
+    </HKYModel>
+    <siteModel id="gene2..siteModel">
+        <substitutionModel>
+            <HKYModel idref="gene2..hky"/>
+        </substitutionModel>
+        <gammaShape gammaCategories="4">
+            <parameter id="gene2..siteModel.alpha" value="0.5" lower="0"/>
+        </gammaShape>
+    </siteModel>
+    <strictClockBranchRates id="branchRates">
+        <rate>
+            <parameter id="clock.rate" value="0.01" lower="0"/>
+        </rate>
+    </strictClockBranchRates>
+    <treeLikelihood id="treeLikelihood">
+        <patterns idref="patterns.gene1"/>
+        <treeModel idref="treeModel"/>
+        <siteModel idref="siteModel"/>
+        <strictClockBranchRates idref="branchRates"/>
+    </treeLikelihood>
+    <treeLikelihood id="gene2..treeLikelihood">
+        <patterns idref="patterns.gene2"/>
+        <treeModel idref="treeModel"/>
+        <siteModel idref="gene2..siteModel"/>
+        <strictClockBranchRates idref="branchRates"/>
+    </treeLikelihood>
+    <speciationLikelihood id="speciation">
+        <model>
+            <yuleModel idref="yule"/>
+        </model>
+        <speciesTree>
+            <treeModel idref="treeModel"/>
+        </speciesTree>
+    </speciationLikelihood>
+    <!-- BXP-calibration: name=Catarrhini; source=fossil; type=soft; original_age=[25.0,30.0] -->
+    <tmrcaStatistic id="tmrca(Catarrhini)" includeStem="false">
+        <mrca>
+            <taxa idref="Catarrhini"/>
+        </mrca>
+        <treeModel idref="treeModel"/>
+    </tmrcaStatistic>
+    <monophylyStatistic id="monophyly(Catarrhini)">
+        <mrca>
+            <taxa idref="Catarrhini"/>
+        </mrca>
+        <treeModel idref="treeModel"/>
+    </monophylyStatistic>
+    <!-- BXP-calibration: name=Homininae; source=literature; type=soft; original_age=[6.0,8.0] -->
+    <tmrcaStatistic id="tmrca(Homininae)" includeStem="false">
+        <mrca>
+            <taxa idref="Homininae"/>
+        </mrca>
+        <treeModel idref="treeModel"/>
+    </tmrcaStatistic>
+    <monophylyStatistic id="monophyly(Homininae)">
+        <mrca>
+            <taxa idref="Homininae"/>
+        </mrca>
+        <treeModel idref="treeModel"/>
+    </monophylyStatistic>
+    <operators id="operators">
+        <scaleOperator scaleFactor="0.75" weight="1">
+            <parameter idref="yule.birthRate"/>
+        </scaleOperator>
+        <deltaExchange delta="0.01" weight="1">
+            <parameter idref="frequencies"/>
+        </deltaExchange>
+        <randomWalkOperator windowSize="1" weight="1">
+            <parameter idref="kappa"/>
+        </randomWalkOperator>
+        <scaleOperator scaleFactor="0.75" weight="1">
+            <parameter idref="siteModel.alpha"/>
+        </scaleOperator>
+        <deltaExchange delta="0.01" weight="1">
+            <parameter idref="gene2..frequencies"/>
+        </deltaExchange>
+        <randomWalkOperator windowSize="1" weight="1">
+            <parameter idref="gene2..kappa"/>
+        </randomWalkOperator>
+        <scaleOperator scaleFactor="0.75" weight="1">
+            <parameter idref="gene2..siteModel.alpha"/>
+        </scaleOperator>
+        <scaleOperator scaleFactor="0.75" weight="1">
+            <parameter idref="clock.rate"/>
+        </scaleOperator>
+        <subtreeSlide weight="15" size="1.7" gaussian="true">
+            <treeModel idref="treeModel"/>
+        </subtreeSlide>
+        <narrowExchange weight="15">
+            <treeModel idref="treeModel"/>
+        </narrowExchange>
+        <wideExchange weight="3">
+            <treeModel idref="treeModel"/>
+        </wideExchange>
+        <wilsonBalding weight="3">
+            <treeModel idref="treeModel"/>
+        </wilsonBalding>
+        <scaleOperator scaleFactor="0.75" weight="3">
+            <parameter idref="treeModel.rootHeight"/>
+        </scaleOperator>
+        <uniformOperator weight="30">
+            <parameter idref="treeModel.internalNodeHeights"/>
+        </uniformOperator>
+        <upDownOperator scaleFactor="0.75" weight="3">
+            <up>
+                <parameter idref="clock.rate"/>
+            </up>
+            <down>
+                <parameter idref="treeModel.allInternalNodeHeights"/>
+            </down>
+        </upDownOperator>
+    </operators>
+    <mcmc id="mcmc" chainLength="2000000" autoOptimize="true">
+        <posterior id="posterior">
+            <prior id="prior">
+                <logNormalPrior mean="1" stdev="0.5" meanInRealSpace="true" offset="25">
+                    <statistic idref="tmrca(Catarrhini)"/>
+                </logNormalPrior>
+                <booleanLikelihood>
+                    <monophylyStatistic idref="monophyly(Catarrhini)"/>
+                </booleanLikelihood>
+                <logNormalPrior mean="1" stdev="0.5" meanInRealSpace="true" offset="7">
+                    <statistic idref="tmrca(Homininae)"/>
+                </logNormalPrior>
+                <booleanLikelihood>
+                    <monophylyStatistic idref="monophyly(Homininae)"/>
+                </booleanLikelihood>
+                <!-- BXP auto prior (BEAUti-1.10.4 convention): parameter=yule.birthRate; distribution=logNormalPrior(mean=2, stdev=1.5, offset=0.0, meanInRealSpace=false); override under parameter_priors -->
+                <logNormalPrior mean="2" stdev="1.5" offset="0.0" meanInRealSpace="false">
+                    <parameter idref="yule.birthRate"/>
+                </logNormalPrior>
+                <!-- BXP auto prior (BeastXPy convention): parameter=frequencies; distribution=uniformPrior(lower=0, upper=1); override under parameter_priors -->
+                <uniformPrior lower="0" upper="1">
+                    <parameter idref="frequencies"/>
+                </uniformPrior>
+                <!-- BXP auto prior (BEAUti-1.10.4 convention): parameter=kappa; distribution=logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false); override under parameter_priors -->
+                <logNormalPrior mean="1" stdev="1.25" offset="0.0" meanInRealSpace="false">
+                    <parameter idref="kappa"/>
+                </logNormalPrior>
+                <!-- BXP auto prior (BeastXPy convention): parameter=siteModel.alpha; distribution=logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false); override under parameter_priors -->
+                <logNormalPrior mean="1" stdev="1.25" offset="0.0" meanInRealSpace="false">
+                    <parameter idref="siteModel.alpha"/>
+                </logNormalPrior>
+                <!-- BXP auto prior (BeastXPy convention): parameter=gene2..frequencies; distribution=uniformPrior(lower=0, upper=1); override under parameter_priors -->
+                <uniformPrior lower="0" upper="1">
+                    <parameter idref="gene2..frequencies"/>
+                </uniformPrior>
+                <!-- BXP auto prior (BEAUti-1.10.4 convention): parameter=gene2..kappa; distribution=logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false); override under parameter_priors -->
+                <logNormalPrior mean="1" stdev="1.25" offset="0.0" meanInRealSpace="false">
+                    <parameter idref="gene2..kappa"/>
+                </logNormalPrior>
+                <!-- BXP auto prior (BeastXPy convention): parameter=gene2..siteModel.alpha; distribution=logNormalPrior(mean=1, stdev=1.25, offset=0.0, meanInRealSpace=false); override under parameter_priors -->
+                <logNormalPrior mean="1" stdev="1.25" offset="0.0" meanInRealSpace="false">
+                    <parameter idref="gene2..siteModel.alpha"/>
+                </logNormalPrior>
+                <!-- BXP auto prior (BeastXPy convention): parameter=clock.rate; distribution=oneOnXPrior; override under parameter_priors -->
+                <oneOnXPrior>
+                    <parameter idref="clock.rate"/>
+                </oneOnXPrior>
+                <speciationLikelihood idref="speciation"/>
+            </prior>
+            <likelihood id="likelihood">
+                <treeLikelihood idref="treeLikelihood"/>
+                <treeLikelihood idref="gene2..treeLikelihood"/>
+            </likelihood>
+        </posterior>
+        <operators idref="operators"/>
+        <log id="screenLog" logEvery="20000">
+            <column label="Posterior" dp="4" width="12">
+                <posterior idref="posterior"/>
+            </column>
+            <column label="Prior" dp="4" width="12">
+                <prior idref="prior"/>
+            </column>
+            <column label="Likelihood" dp="4" width="12">
+                <likelihood idref="likelihood"/>
+            </column>
+            <column label="rootHeight" sf="6" width="12">
+                <parameter idref="treeModel.rootHeight"/>
+            </column>
+            <column label="clock.rate" sf="6" width="12">
+                <parameter idref="clock.rate"/>
+            </column>
+        </log>
+        <log id="fileLog" logEvery="1000" fileName="primates_reference.log" overwrite="false">
+            <posterior idref="posterior"/>
+            <prior idref="prior"/>
+            <likelihood idref="likelihood"/>
+            <parameter idref="treeModel.rootHeight"/>
+            <parameter idref="yule.birthRate"/>
+            <parameter idref="frequencies"/>
+            <parameter idref="kappa"/>
+            <parameter idref="siteModel.alpha"/>
+            <parameter idref="gene2..frequencies"/>
+            <parameter idref="gene2..kappa"/>
+            <parameter idref="gene2..siteModel.alpha"/>
+            <parameter idref="clock.rate"/>
+            <tmrcaStatistic idref="tmrca(Catarrhini)"/>
+            <tmrcaStatistic idref="tmrca(Homininae)"/>
+            <speciationLikelihood idref="speciation"/>
+        </log>
+        <logTree id="treeFileLog" logEvery="1000" nexusFormat="true" fileName="primates_reference.trees" sortTranslationTable="true">
+            <treeModel idref="treeModel"/>
+            <strictClockBranchRates idref="branchRates"/>
+            <posterior idref="posterior"/>
+        </logTree>
+    </mcmc>
+    <report>
+        <property name="timer">
+            <mcmc idref="mcmc"/>
+        </property>
+    </report>
+</beast>

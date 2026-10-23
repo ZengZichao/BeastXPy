@@ -1,0 +1,25 @@
+# BeastXPy check-data fixture: tip_format.
+metadata:
+  analysis_name: dc_tip_format
+
+alignments:
+  - id: aln1
+    file: aln.fasta
+    data_type: nucleotide
+
+
+partitions:
+  - id: p1
+    alignment_id: aln1
+    site_model:
+      substitution_model:
+        type: jc69
+        frequencies: {mode: uniform}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+
+tip_dates:
+  t1: recent
+  t2: 10.0

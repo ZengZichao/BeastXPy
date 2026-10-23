@@ -1,0 +1,30 @@
+# BeastXPy check-data fixture: cal_missing.
+metadata:
+  analysis_name: dc_cal_missing
+
+alignments:
+  - id: aln1
+    file: aln.fasta
+    data_type: nucleotide
+
+
+partitions:
+  - id: p1
+    alignment_id: aln1
+    site_model:
+      substitution_model:
+        type: jc69
+        frequencies: {mode: uniform}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+
+calibrations:
+  - name: cal1
+    taxa: [t1, ghost]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 5.0

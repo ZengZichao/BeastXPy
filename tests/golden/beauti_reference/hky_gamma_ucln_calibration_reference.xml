@@ -1,0 +1,99 @@
+<!--
+  BEAUti-convention reference for M5 case B (HKY + Gamma + UCLN + calibration).
+
+  Provenance: hand-transcribed from the BEAST 1.10.4 BEAUti code paths
+    src/dr/app/beauti/options/PartitionTreePrior.java
+    src/dr/app/beauti/options/PartitionSubstitutionModel.java
+    src/dr/app/beauti/options/PartitionClockModel.java
+    src/dr/app/beauti/generator/ParameterPriorGenerator.java
+    src/dr/app/beauti/generator/CalibrationPointGenerator.java
+  It is a reference subset, not a BEAUti run.
+
+  Documented deviations checked by tests/test_beauti_reference.py:
+    * ucld.mean: BEAUti uses ctmcScalePrior; BeastXPy emits oneOnXPrior.
+    * gamma shape: BEAUti uses exponential(mean 0.5); BeastXPy emits
+      lognormal(log mean 1, log sd 1.25).
+    * base frequencies: BEAUti uses Dirichlet(1); BeastXPy uses uniform.
+    * calibration: BEAUti defaults to meanInRealSpace=true; this BeastXPy
+      configuration omits it, so the XML carries false and Gate 2 warns.
+-->
+<beast version="1.10.4">
+  <HKYModel id="hky">
+    <frequencies>
+      <frequencyModel dataType="nucleotide">
+        <frequencies>
+          <parameter id="frequencies" value="0.25 0.25 0.25 0.25"/>
+        </frequencies>
+      </frequencyModel>
+    </frequencies>
+    <kappa>
+      <parameter id="kappa" value="2.0" lower="0.0"/>
+    </kappa>
+  </HKYModel>
+
+  <siteModel id="siteModel">
+    <substitutionModel>
+      <HKYModel idref="hky"/>
+    </substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="siteModel.alpha" value="0.5" lower="0.0"/>
+    </gammaShape>
+  </siteModel>
+
+  <discretizedBranchRates id="branchRates">
+    <distribution>
+      <logNormalDistributionModel meanInRealSpace="true">
+        <mean>
+          <parameter id="ucld.mean" value="0.01" lower="0.0"/>
+        </mean>
+        <stdev>
+          <parameter id="ucld.stdev" value="0.2" lower="0.0"/>
+        </stdev>
+      </logNormalDistributionModel>
+    </distribution>
+    <rateCategories>
+      <parameter id="branchRates.categories" dimension="22"/>
+    </rateCategories>
+  </discretizedBranchRates>
+
+  <treeLikelihood id="treeLikelihood" useAmbiguities="false">
+    <patterns idref="patterns"/>
+    <treeModel idref="treeModel"/>
+    <siteModel idref="siteModel"/>
+    <discretizedBranchRates idref="branchRates"/>
+  </treeLikelihood>
+
+  <tmrcaStatistic id="tmrca(Catarrhini)" includeStem="false">
+    <mrca>
+      <taxa idref="Catarrhini"/>
+    </mrca>
+    <treeModel idref="treeModel"/>
+  </tmrcaStatistic>
+
+  <prior id="prior">
+    <logNormalPrior mean="2.0" stdev="1.5" offset="0.0" meanInRealSpace="false">
+      <parameter idref="yule.birthRate"/>
+    </logNormalPrior>
+    <logNormalPrior mean="1.0" stdev="1.25" offset="0.0" meanInRealSpace="false">
+      <parameter idref="kappa"/>
+    </logNormalPrior>
+    <dirichletPrior alpha="1.0" sumsTo="1.0">
+      <parameter idref="frequencies"/>
+    </dirichletPrior>
+    <exponentialPrior mean="0.5" offset="0.0">
+      <parameter idref="siteModel.alpha"/>
+    </exponentialPrior>
+    <exponentialPrior mean="0.3333333333333333" offset="0.0">
+      <parameter idref="ucld.stdev"/>
+    </exponentialPrior>
+    <ctmcScalePrior>
+      <ctmcScale>
+        <parameter idref="ucld.mean"/>
+      </ctmcScale>
+      <treeModel idref="treeModel"/>
+    </ctmcScalePrior>
+    <logNormalPrior mean="1.0" stdev="0.5" meanInRealSpace="true" offset="25.0">
+      <statistic idref="tmrca(Catarrhini)"/>
+    </logNormalPrior>
+  </prior>
+</beast>

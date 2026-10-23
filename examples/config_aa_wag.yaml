@@ -1,0 +1,63 @@
+# BeastXPy example: amino-acid WAG + G4 + UCLN relaxed clock.
+metadata:
+  analysis_name: aa_wag
+
+alignments:
+  - id: alignment1
+    file: aminoacid.fasta
+    data_type: amino-acid
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: wag
+        frequencies: {mode: empirical}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: ucln
+      ucld_mean: {value: 0.01, lower: 0.0, estimate: true}
+      ucld_stdev: {value: 0.2, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: birth_death
+  birth_minus_death: {value: 0.5, lower: 0.0, estimate: true}
+  relative_death: {value: 0.5, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "Hominidae"
+    taxa: [Pan_troglodytes, Gorilla_gorilla, Pongo_pygmaeus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 15.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 15.0
+      original_age_max: 20.0
+  - name: "Catarrhini"
+    taxa: [Pan_troglodytes, Gorilla_gorilla, Pongo_pygmaeus, Hylobates_lar, Macaca_mulatta, Papio_hamadryas]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0
+
+mcmc:
+  chain_length: 1000000
+
+loggers:
+  trace_log: {file_name: aa_wag.log, log_every: 1000}
+  tree_log: {file_name: aa_wag.trees, log_every: 1000}
+
+control:
+  beast_version: 1.10.4

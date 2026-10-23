@@ -1,0 +1,14 @@
+testSimplePathSampling.xml is an unmodified copy of the official BEAST
+v1.10.4 example of the same name:
+
+  BEASTv1.10.4/examples/TestXML/testSimplePathSampling.xml
+  (beast-mcmc release v1.10.4)
+
+It defines a two-parameter normal model whose fixed-model marginal
+likelihood is analytic and is stated in the XML itself:
+
+  Fixed logML = -0.5 * log(4 * pi) - x^2 / 4 = -7.5155
+
+The test copies the XML into a temporary directory and reduces chainLength,
+pathSteps and logEvery so it runs quickly. No model or data values are
+changed. The file is reference data, not simulated output.

@@ -1,0 +1,58 @@
+Provenance of tests/fixtures/assess_multi (seeds 1 and 2) and
+tests/fixtures/assess_single (seed 1)
+================================================================
+
+These are REAL BEAST MCMC outputs, not synthetic data. They are deliberately
+tiny (100 steps, logged every 10 steps -> 11 samples per chain) so they can be
+committed to the repository. They exercise the assess parser paths and the
+multi-chain PSRF/ASDSF plumbing; with 9 post-burn-in samples they are FAR too
+short to say anything about convergence and must never be presented as
+convergence evidence.
+
+Date generated : 2026-10-21 (local, UTC+08:00)
+Machine        : Windows 10, Git Bash, generated inside git worktree F:/bxp_wt/a
+BEAST version  : 1.10.4 Prerelease #bc6cbd9 (packaged jar
+                 beastxpy/tools/jars/beast-1.10.4.jar,
+                 sha256 92c72c866ffa0c5a06d0411bc6bed478e7ee765dbe3cc7bb8973cac5a6bdff19)
+Java           : C:\Program Files\Java\jre1.8.0_451\bin\java.exe (64-bit JRE 1.8.0_451)
+BEAGLE         : native BEAGLE 3.1.0 loaded from
+                 _overnight/beagle/native/1.10.4 in the read-only reference tree
+                 (prepended to PATH so the JVM puts it on java.library.path).
+                 The worktree's default JAVA_HOME points at a 32-bit JDK 17,
+                 which cannot load the 64-bit hmsbeagle DLLs; the 64-bit JRE 8
+                 above was selected via BEASTX_JAVA/JAVA_HOME for generation.
+
+Source config  : examples/config_subst_jc69.yaml, copied to a scratch directory
+                 with three edits:
+                   metadata.analysis_name: subst_jc69 -> assess_fx
+                   mcmc.chain_length:    1000000    -> 100
+                   loggers.*.log_every:  1000       -> 10
+                 (alignment examples/primates.fasta copied alongside; JC69 +
+                 strict clock + Yule + one lognormal CrownPrimates calibration.)
+
+Exact commands (run from F:/bxp_wt/a):
+
+  export JAVA_HOME="C:/Program Files/Java/jre1.8.0_451"
+  export BEASTX_JAVA="C:/Program Files/Java/jre1.8.0_451/bin/java.exe"
+  export PATH="<reference-tree>/_overnight/beagle/native/1.10.4:$PATH"
+
+  python -m beastxpy.main run \
+      --config /f/bxp_wt/fxgen_a/config_assess_fx.yaml \
+      --workdir /f/bxp_wt/fxgen_a/multi --seeds 1,2 --timeout 600 --force
+
+  python -m beastxpy.main run \
+      --config /f/bxp_wt/fxgen_a/config_assess_fx.yaml \
+      --workdir /f/bxp_wt/fxgen_a/single --seeds 1 --timeout 600 --force
+
+Both runs finished with exit code 0 (seed status "ok", recorded in each
+run_meta.json). The four artefacts of each seed directory
+(seed_<S>_trace.log, seed_<S>_tree.log, run.log, run_meta.json) were copied
+here unchanged. assess_fx.xml (the generated BEAST XML, identical content
+fingerprint BXP-816d67dc492efc7f) and resume.state were intentionally not
+committed to keep the fixture small; the XML can be regenerated from the
+config edits above with `beastxpy generate`.
+
+Note: run_meta.json records the absolute paths of the scratch generation
+directory (F:\bxp_wt\fxgen_a\...). They are kept verbatim on purpose: the
+fixture is an unmodified record of a real run, and assess tolerates
+run_meta.json paths that no longer exist next to the fixture.

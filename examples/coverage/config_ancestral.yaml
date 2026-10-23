@@ -1,0 +1,52 @@
+# BeastXPy coverage fixture C03: ancestral state reconstruction.
+# The standard nucleotide alignment/tree analysis is extended with BEAST's
+# official <ancestralTreeLikelihood> reconstruction object (marginal states
+# at every node).  The reconstructed state vector is written into the tree
+# log as the "states" trait.  The ancestral object is a trait provider only:
+# the core <treeLikelihood> remains the data likelihood, so the same site
+# pattern matrix is not counted twice.
+metadata:
+  analysis_name: cov_ancestral
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: empirical}
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 40000
+
+loggers:
+  trace_log: {file_name: cov_ancestral.log, log_every: 1000}
+  tree_log: {file_name: cov_ancestral.trees, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_ancestral.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240603
+
+analysis:
+  beast_version: both
+  type: ancestral
+  states: all
+  state_tag_name: states

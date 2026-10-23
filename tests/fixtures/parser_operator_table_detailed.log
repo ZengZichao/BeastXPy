@@ -1,0 +1,15 @@
+# PARSER FIXTURE ONLY -- hand-written text. This file is NOT the output of a
+# BEAST run and must never be presented as convergence evidence or used to
+# compute diagnostics about any real analysis. It exists solely to exercise
+# tracestats.parse_operator_analysis against the detailed
+# "#Tried/#Accept/#Reject/Acceptance" operator-table layout (a compatibility
+# target not present in the committed real BEAST fixtures, which use the
+# simple "Count/Pr(accept)" layout).
+# Real BEAST output fixtures: tests/fixtures/assess_single, tests/fixtures/assess_multi.
+Operator analysis (truncating tail of chains):
+Operator                                          Tuning   #Tried   #Accept   #Reject   Acceptance   Mean Time      Min Time      Max Time
+scale(yule.birthRate)                             0.813    100      30        70        0.3000       0.0010         0.0000         0.0100
+Narrow Exchange(treeModel)                                 200      50        150       0.2500       0.0020         0.0000         0.0200
+scale(siteModel.alpha)                            0.750    0        0         0         ?            0.0000         0.0000         0.0000
+
+0.100 seconds

@@ -1,0 +1,49 @@
+# BeastXPy example: JC69 (HKY with kappa fixed to 1) + strict clock.
+metadata:
+  analysis_name: subst_jc69
+
+alignments:
+  - id: alignment1
+    file: primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: jc69
+        frequencies: {mode: uniform}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "CrownPrimates"
+    taxa: [Tarsius_syrichta, Lemur_catta, Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus, Saimiri_sciureus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 60.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 60.0
+      original_age_max: 65.0
+
+mcmc:
+  chain_length: 1000000
+
+loggers:
+  trace_log: {file_name: subst_jc69.log, log_every: 1000}
+  tree_log: {file_name: subst_jc69.trees, log_every: 1000}
+
+control:
+  beast_version: 1.10.4

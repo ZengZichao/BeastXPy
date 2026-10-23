@@ -1,0 +1,26 @@
+# Keep the build context small and reproducible.
+#
+# BuildKit looks for `<dockerfile>.dockerignore` next to the Dockerfile, so this
+# applies to `docker build -f deploy/Dockerfile .` without adding clutter to the
+# repository root.
+
+.git
+.gitignore
+.github
+_overnight
+work
+runs
+validation_runs
+diagnostics
+build
+dist
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.egg-info
+docs
+tests
+*.bundle
+*.sif

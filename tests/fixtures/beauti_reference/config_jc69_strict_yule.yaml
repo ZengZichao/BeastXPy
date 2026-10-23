@@ -1,0 +1,34 @@
+# M5 reference case A: JC69 (HKY with kappa fixed to 1), strict clock, Yule.
+metadata:
+  analysis_name: beauti_ref_jc69
+
+alignments:
+  - id: alignment1
+    file: ../../../examples/primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: jc69
+        frequencies: {mode: uniform}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+mcmc:
+  chain_length: 1000
+
+loggers:
+  trace_log: {file_name: beauti_ref_jc69.log, log_every: 100}
+
+control:
+  beast_version: 1.10.4

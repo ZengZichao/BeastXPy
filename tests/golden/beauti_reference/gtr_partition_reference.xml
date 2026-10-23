@@ -1,0 +1,144 @@
+<!--
+  BEAUti-convention reference for M5 case C (two GTR partitions + shared UCLN).
+
+  Provenance: hand-transcribed from the BEAST 1.10.4 BEAUti code paths
+    src/dr/app/beauti/options/PartitionSubstitutionModel.java
+    src/dr/app/beauti/options/PartitionClockModel.java
+    src/dr/app/beauti/generator/ParameterPriorGenerator.java
+  It is a reference subset, not a BEAUti run. BEAUti's "new GTR
+  parameterization" would emit a single Dirichlet over all six rates; the
+  legacy path emits five rateXX values with gamma priors, as shown here and
+  as BeastXPy does.
+
+  Documented deviations checked by tests/test_beauti_reference.py:
+    * GTR rates: BEAUti uses gamma(shape 0.05, scale 20); BeastXPy uses
+      uniform(0, 100) over the declared bounds.
+    * ucld.mean: BEAUti uses ctmcScalePrior; BeastXPy emits oneOnXPrior.
+    * gamma shape: BEAUti uses exponential(mean 0.5); BeastXPy emits
+      lognormal(log mean 1, log sd 1.25).
+    * base frequencies: BEAUti uses Dirichlet(1); BeastXPy uses uniform.
+-->
+<beast version="1.10.4">
+  <gtrModel id="gtr">
+    <frequencies>
+      <frequencyModel dataType="nucleotide">
+        <frequencies>
+          <parameter id="frequencies" value="0.25 0.25 0.25 0.25"/>
+        </frequencies>
+      </frequencyModel>
+    </frequencies>
+    <rateAC><parameter id="rateAC" value="1.0" lower="0.0"/></rateAC>
+    <rateAG><parameter id="rateAG" value="2.0" lower="0.0"/></rateAG>
+    <rateAT><parameter id="rateAT" value="1.0" lower="0.0"/></rateAT>
+    <rateCG><parameter id="rateCG" value="1.0" lower="0.0"/></rateCG>
+    <rateCT><parameter id="rateCT" value="2.0" lower="0.0"/></rateCT>
+  </gtrModel>
+
+  <gtrModel id="gene2..gtr">
+    <frequencies>
+      <frequencyModel dataType="nucleotide">
+        <frequencies>
+          <parameter id="gene2..frequencies" value="0.25 0.25 0.25 0.25"/>
+        </frequencies>
+      </frequencyModel>
+    </frequencies>
+    <rateAC><parameter id="gene2..rateAC" value="1.0" lower="0.0"/></rateAC>
+    <rateAG><parameter id="gene2..rateAG" value="3.0" lower="0.0"/></rateAG>
+    <rateAT><parameter id="gene2..rateAT" value="1.5" lower="0.0"/></rateAT>
+    <rateCG><parameter id="gene2..rateCG" value="1.0" lower="0.0"/></rateCG>
+    <rateCT><parameter id="gene2..rateCT" value="3.0" lower="0.0"/></rateCT>
+  </gtrModel>
+
+  <siteModel id="siteModel">
+    <substitutionModel><gtrModel idref="gtr"/></substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="siteModel.alpha" value="0.5" lower="0.0"/>
+    </gammaShape>
+  </siteModel>
+  <siteModel id="gene2..siteModel">
+    <substitutionModel><gtrModel idref="gene2..gtr"/></substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="gene2..siteModel.alpha" value="0.5" lower="0.0"/>
+    </gammaShape>
+  </siteModel>
+
+  <discretizedBranchRates id="branchRates">
+    <distribution>
+      <logNormalDistributionModel meanInRealSpace="true">
+        <mean><parameter id="ucld.mean" value="0.01" lower="0.0"/></mean>
+        <stdev><parameter id="ucld.stdev" value="0.2" lower="0.0"/></stdev>
+      </logNormalDistributionModel>
+    </distribution>
+    <rateCategories>
+      <parameter id="branchRates.categories" dimension="22"/>
+    </rateCategories>
+  </discretizedBranchRates>
+
+  <treeLikelihood id="treeLikelihood" useAmbiguities="false">
+    <patterns idref="patterns"/>
+    <treeModel idref="treeModel"/>
+    <siteModel idref="siteModel"/>
+    <discretizedBranchRates idref="branchRates"/>
+  </treeLikelihood>
+  <treeLikelihood id="gene2..treeLikelihood" useAmbiguities="false">
+    <patterns idref="gene2..patterns"/>
+    <treeModel idref="treeModel"/>
+    <siteModel idref="gene2..siteModel"/>
+    <discretizedBranchRates idref="branchRates"/>
+  </treeLikelihood>
+
+  <prior id="prior">
+    <logNormalPrior mean="2.0" stdev="1.5" offset="0.0" meanInRealSpace="false">
+      <parameter idref="yule.birthRate"/>
+    </logNormalPrior>
+    <dirichletPrior alpha="1.0" sumsTo="1.0">
+      <parameter idref="frequencies"/>
+    </dirichletPrior>
+    <dirichletPrior alpha="1.0" sumsTo="1.0">
+      <parameter idref="gene2..frequencies"/>
+    </dirichletPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="rateAC"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="rateAG"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="rateAT"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="rateCG"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="rateCT"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="gene2..rateAC"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="gene2..rateAG"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="gene2..rateAT"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="gene2..rateCG"/>
+    </gammaPrior>
+    <gammaPrior shape="0.05" scale="20.0" offset="0.0">
+      <parameter idref="gene2..rateCT"/>
+    </gammaPrior>
+    <exponentialPrior mean="0.5" offset="0.0">
+      <parameter idref="siteModel.alpha"/>
+    </exponentialPrior>
+    <exponentialPrior mean="0.5" offset="0.0">
+      <parameter idref="gene2..siteModel.alpha"/>
+    </exponentialPrior>
+    <exponentialPrior mean="0.3333333333333333" offset="0.0">
+      <parameter idref="ucld.stdev"/>
+    </exponentialPrior>
+    <ctmcScalePrior>
+      <ctmcScale><parameter idref="ucld.mean"/></ctmcScale>
+      <treeModel idref="treeModel"/>
+    </ctmcScalePrior>
+  </prior>
+</beast>

@@ -1,0 +1,68 @@
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Build and coverage artifacts
+build/
+dist/
+dist-core/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+coverage.json
+
+# BEAST / BeastXPy run outputs
+*.log
+*.trees
+*.state
+validation_runs/
+diagnostics/
+runs/
+.tmp_cli_test/
+examples/output/
+
+# Command artefacts (assessment, report, comparison, environment lock)
+assessment.json
+report.html
+beastxpy.lock
+compare_runs/
+work/
+.nextflow.log
+
+# Committed test fixtures are inputs, not run output: keep them even though
+# their extensions match the run-artefact rules above (real BEAST trace/tree
+# logs and run logs are checked in so the assessment tests exercise genuine
+# chain output rather than invented numbers).
+!tests/fixtures/**
+!tests/fixtures/**/*.log
+!tests/fixtures/**/*.trees
+!tests/fixtures/**/*.state
+
+# The reference-data case study's recorded artefacts are deliverables, not
+# disposable run output: keep the config, XML, lock, assessment and reports.
+!examples/empirical/results/
+!examples/empirical/results/**
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Virtual environments
+.venv/
+venv/
+env/
+.tools/
+
+# Nextflow runtime cache/history
+.nextflow/

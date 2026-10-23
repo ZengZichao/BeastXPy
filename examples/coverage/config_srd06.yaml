@@ -1,0 +1,39 @@
+# C07: SRD06 codon-position partition model (CP1+2 versus CP3, HKY each).
+metadata:
+  analysis_name: coverage_srd06
+
+alignments:
+  - id: alignment1
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+analysis:
+  beast_version: both
+  type: srd06
+
+mcmc:
+  chain_length: 200000
+
+loggers:
+  trace_log: {file_name: coverage_srd06.log, log_every: 1000}
+  tree_log: {file_name: coverage_srd06.trees, log_every: 1000}
+  screen_log: {log_every: 10000}
+
+control:
+  beast_version: 1.10.4

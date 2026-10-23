@@ -1,0 +1,58 @@
+# BeastXPy coverage fixture C01: discrete trait phylogeography.
+# The nucleotide alignment is analysed jointly with a three-state discrete
+# character (sampling region) under a general CTMC. Relative transition rates
+# and the trait clock rate are estimated; internal states are reconstructed.
+metadata:
+  analysis_name: cov_discrete_trait
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: empirical}
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 40000
+
+loggers:
+  trace_log: {file_name: cov_discrete_trait.log, log_every: 1000}
+  tree_log: {file_name: cov_discrete_trait.trees, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_discrete_trait.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240604
+
+analysis:
+  beast_version: both
+  type: discrete_trait
+  trait_name: region
+  states: [north, south, east]
+  values:
+    TaxA: north
+    TaxB: north
+    TaxC: south
+    TaxD: south
+    TaxE: east
+  clock_rate: 1.0
+  estimate_rates: true
+  estimate_clock_rate: true

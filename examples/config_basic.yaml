@@ -1,0 +1,69 @@
+# BeastXPy example: basic Yule + HKY+G4 + strict clock + 1 calibration.
+metadata:
+  analysis_name: basic
+  author: BeastXPy example
+
+alignments:
+  - id: alignment1
+    file: primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "CrownCatarrhini"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 20.0
+    provenance:
+      source: fossil
+      reference: "doi:10.1038/nature08603"
+      calibration_type: soft
+      original_age_min: 20.0
+      original_age_max: 25.0
+
+parameter_priors:
+  - parameter: kappa
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 1.25}
+      offset: 0.0
+  - parameter: clock_rate
+    distribution:
+      type: uniform
+      parameters: {lower: 0.0, upper: 100.0}
+
+mcmc:
+  chain_length: 1000000
+
+loggers:
+  trace_log: {file_name: basic.log, log_every: 1000}
+  tree_log: {file_name: basic.trees, log_every: 1000}
+  screen_log: {log_every: 10000}
+
+output:
+  file: output_basic.xml
+  embed_fingerprint: true
+
+control:
+  beast_version: 1.10.4
+  seed: 12345

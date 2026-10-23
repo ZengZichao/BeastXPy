@@ -1,0 +1,48 @@
+# C09: BEAST X 10.5.0-only absolute tree age statistic.
+# <ageStatistic> wraps a tree height and converts it to an absolute age on
+# the time axis of the dated tips (tip dates are required).
+metadata:
+  analysis_name: coverage_age_statistic
+
+alignments:
+  - id: alignment1
+    file: nuc.fasta
+    data_type: nucleotide
+
+tip_dates:
+  TaxA: {value: 0.0, direction: backwards, units: years}
+  TaxB: {value: 1.0, direction: backwards, units: years}
+  TaxC: {value: 2.0, direction: backwards, units: years}
+  TaxD: {value: 3.0, direction: backwards, units: years}
+  TaxE: {value: 4.0, direction: backwards, units: years}
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+analysis:
+  type: age_statistic
+  beast_version: "10.5.0"
+
+mcmc:
+  chain_length: 200000
+
+loggers:
+  trace_log: {file_name: coverage_age_statistic.log, log_every: 1000}
+  tree_log: {file_name: coverage_age_statistic.trees, log_every: 1000}
+  screen_log: {log_every: 10000}
+
+control:
+  beast_version: 10.5.0

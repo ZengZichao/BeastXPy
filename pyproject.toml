@@ -1,0 +1,109 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beastxpy"
+version = "0.1.0"
+description = "A Python framework for reproducible BEAST 1 divergence-time estimation with automated model specification, validation and diagnostics (LGPL-2.1 applies only to the bundled BEAST jars)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT AND LGPL-2.1-only" }
+authors = [{ name = "ZengZichao", email = "zengzichao@sjtu.edu.cn" }]
+keywords = ["phylogenetics", "BEAST", "BEAST 1", "MCMC", "divergence time", "reproducibility"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "pyyaml>=6.0",
+    "biopython>=1.80",
+    "numpy>=1.20",
+    "scipy>=1.8",
+    "matplotlib>=3.5",
+    "defusedxml>=0.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+    "pytest-cov>=5,<7",
+    "flake8>=7.1,<8",
+    "black>=24.10,<26",
+    "mypy>=1.13,<2",
+    "types-PyYAML>=6.0.12",
+    "hypothesis>=6.168,<7",
+]
+
+[project.scripts]
+beastxpy = "beastxpy.main:main"
+
+[tool.setuptools]
+include-package-data = false
+license-files = ["LICENSE", "NOTICE"]
+
+[tool.setuptools.packages.find]
+include = ["beastxpy*"]
+
+# Jars and the per-version validator classes are kept: the test suite and
+# Gate 3 use them offline.  BEAST itself is LGPL-2.1-only; the jars carry
+# their own META-INF/LICENSE.txt and META-INF/NOTICE.txt.
+[tool.setuptools.package-data]
+beastxpy = [
+    "data/*.json",
+    "data/*.yaml",
+    "tools/jars/*.jar",
+    "tools/jars/*.txt",
+    "tools/classes/*.class",
+    "tools/classes/*/*.class",
+    "tools/classes/*/bxpshim/*.class",
+    "tools/*.java",
+    "tools/java/bxpshim/*.java",
+    "tools/parsers/dr/app/beast/*.properties",
+    "tools/parsers/*/dr/app/beast/*.properties",
+    "tools/beastx_validate.sh",
+    "tools/beastx_validate.cmd",
+]
+
+[tool.setuptools.exclude-package-data]
+beastxpy = [
+    "**/*.log",
+    "**/*.trees",
+    "**/*.state",
+    "**/.DS_Store",
+    "**/__pycache__/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-rs"
+markers = [
+    "java: exercises Gate 3 / a real BEAST jar and fails when no JDK is available; deselect locally with -m 'not java'",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+[tool.coverage.run]
+source = ["beastxpy"]
+omit = [
+    "beastxpy/tools/build_jars.py",
+]
+
+[tool.coverage.report]
+# Fail CI below this line coverage.  The Java-free suite covers the Python
+# bodies; Gate-3 execution is covered by the full CI test job with a JDK.
+fail_under = 70
+skip_covered = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+]

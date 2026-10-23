@@ -1,0 +1,38 @@
+BeastXPy
+========
+
+The Python source code of BeastXPy is licensed under the MIT License (see
+LICENSE).
+
+Bundled BEAST jars
+------------------
+beastxpy/tools/jars/beast-1.10.4.jar and beast-10.5.0.jar are the *unmodified
+official release artifacts* from the BEAST project.  They are byte-for-byte
+copies of lib/beast.jar in the upstream distributions:
+
+* BEAST v1.10.4
+  https://github.com/beast-dev/beast-mcmc/releases/download/v1.10.4/BEAST.v1.10.4.zip
+  SHA-256 0f6eb4fdf7832c511aa8a1a99c233b88bec844698ae9322dabf8e74b156ae3b0
+* BEAST X v10.5.0
+  https://github.com/beast-dev/beast-mcmc/releases/download/v10.5.0/BEAST.X.v10.5.0.zip
+  SHA-256 df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d
+
+BeastXPy has not modified the BEAST source code in these jars.  The
+corresponding upstream source is available from
+https://github.com/beast-dev/beast-mcmc at tags v1.10.4 and v10.5.0.
+
+BEAST is free software distributed under the GNU Lesser General Public
+License, version 2.1 (LGPL-2.1-only).  The jars retain their upstream
+META-INF/LICENSE.txt and META-INF/NOTICE.txt entries.
+
+The Java source files under beastxpy/tools/ (BeastXValidator.java and the
+bxpshim parser) are part of BeastXPy and are distributed under the same
+LGPL-2.1-only terms as the BEAST classes they link against.  The compiled
+validator classes in beastxpy/tools/classes/ were built from those project
+files against the bundled official jars with
+``python beastxpy/tools/build_jars.py --skip-ant``; they are not part of the
+official BEAST artifacts.  The build manifest records the exact jar SHA-256
+used for each version.
+
+The bundled BEAST libraries are used for local validation only.  Refer to the
+upstream project for their citation and licensing terms.

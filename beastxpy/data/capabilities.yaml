@@ -1,0 +1,559 @@
+# BeastXPy capability manifest -- the single source of truth.
+#
+# `beastxpy capabilities`, the documentation pages and the tests all read this
+# file.  Do not restate this table anywhere else; add rows here instead.
+#
+# status:
+#   supported  BeastXPy generates the XML and the official BEAST jars accept it.
+#   partial    Generated, but only within a documented subset, or only on one
+#              of the two supported BEAST versions.
+#   blocked    Cannot be produced at all; `reason` names the upstream defect.
+#
+# requires_native_beagle refers to *execution* (a real MCMC likelihood), not to
+# XML generation or to java-core validation.  BEAGLE 3.1.0 pairs with BEAST
+# 1.10.4 and BEAGLE 4.0.1 with BEAST X 10.5.0; on Windows pass
+# --beagle-threads 1.
+#
+# A `supported` row is a statement about XML generation and official-parser
+# acceptance only.  Unless a reason says otherwise, the evidence mode is
+# `java-core`: the official BEAST parsers construct the document but the
+# project TreeLikelihood shim stands in for the likelihood.  `--mode beagle`
+# (native BEAGLE) is the only mode that exercises the full parser set and a
+# real likelihood; cite that mode when claiming "official validation".
+# It is not a claim that the model is appropriate for any particular data set,
+# and nothing here is a convergence or model-selection statement.
+
+schema_version: beastxpy.capabilities/v1
+beast_versions:
+  - "1.10.4"
+  - "10.5.0"
+
+features:
+  # ------------------------------------------------------------------ core
+  - id: nucleotide_substitution_models
+    name: Nucleotide substitution models (JC69, HKY, TN93, GTR)
+    category: substitution-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py --matrix "examples/config_*.yaml" --mode java-core
+
+  - id: amino_acid_substitution_models
+    name: Amino-acid substitution models (JTT, WAG, Dayhoff, Blosum62, mtREV, cpREV)
+    category: substitution-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py --matrix "examples/config_aa_*.yaml" --mode java-core
+
+  - id: site_rate_heterogeneity
+    name: Gamma site-rate categories and proportion-invariant sites
+    category: site-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_advanced.yaml --mode java-core
+
+  - id: strict_clock
+    name: Strict molecular clock
+    category: clock-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_subst_gtr.yaml --mode java-core
+
+  - id: relaxed_clock_ucln
+    name: Uncorrelated lognormal relaxed clock (UCLN)
+    category: clock-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_relaxed_clock.yaml --mode java-core
+
+  - id: relaxed_clock_uce
+    name: Uncorrelated exponential relaxed clock (UCE)
+    category: clock-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_relaxed_exponential.yaml --mode java-core
+
+  - id: relaxed_clock_rlc
+    name: Random local clock (RLC)
+    category: clock-model
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_rlc.yaml --mode java-core
+
+  - id: yule_prior
+    name: Yule speciation prior
+    category: tree-prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_calibrated_yule.yaml --mode java-core
+
+  - id: birth_death_prior
+    name: Birth-death speciation prior (incl. conditional-on-root)
+    category: tree-prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_advanced.yaml --mode java-core
+
+  - id: coalescent_priors
+    name: Coalescent priors (constant, exponential, expansion, logistic)
+    category: tree-prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_coalescent_exponential.yaml --mode java-core
+
+  - id: skyline_prior
+    name: Bayesian skyline plot
+    category: tree-prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_skyline.yaml --mode java-core
+
+  - id: ebsp
+    name: Extended Bayesian skyline plot
+    category: tree-prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_ebsp.yaml --mode java-core
+
+  - id: node_calibrations
+    name: Node calibrations (crown/stem, soft distributions, hyperpriors)
+    category: calibration
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_advanced.yaml --mode java-core
+
+  - id: tip_dates
+    name: Tip dates and time-stamped sequences
+    category: data
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_tip_dates.yaml --mode java-core
+
+  - id: multiple_partitions
+    name: Multiple partitions with shared or separate clocks
+    category: data
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_multi_partition.yaml --mode java-core
+
+  - id: prior_distributions
+    name: Prior distributions (13 families incl. half-normal, half-T, Laplace)
+    category: prior
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST 1.10.4 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Generated; accepted by the official BEAST X 10.5.0 parser set in java-core mode (project TreeLikelihood shim; construct-only, no likelihood evaluation). Full-parser, real-likelihood evidence needs --mode beagle with a native BEAGLE library."
+    verify_command: >-
+      python tools/official_validate.py examples/config_advanced.yaml --mode java-core
+
+  # ------------------------------------------------------- coverage families
+  - id: ancestral_state_reconstruction
+    name: Ancestral state reconstruction
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_ancestral.yaml
+
+  - id: birth_death_sampling
+    name: Birth-death skyline (BDSS) with sampled ancestors
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_bdss.yaml
+
+  - id: continuous_trait
+    name: Continuous trait evolution
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_continuous_trait.yaml
+
+  - id: discrete_trait
+    name: Discrete trait (asymmetric CTMC) phylogeography
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_discrete_trait.yaml
+
+  - id: dollo
+    name: Dollo parsimony model
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_dollo.yaml
+
+  - id: empirical_tree
+    name: Empirical tree with fixed topology
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_empirical_tree.yaml
+
+  - id: multidimensional_scaling
+    name: Multidimensional scaling (MDS) model
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_mds.yaml
+
+  - id: marginal_likelihood_estimation
+    name: Marginal likelihood estimation (path sampling / stepping stone)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim). Compare executes a real likelihood and requires native BEAGLE; it fails closed without it."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim). Compare executes a real likelihood and requires native BEAGLE; it fails closed without it."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_mle.yaml
+
+  - id: sequence_error_model
+    name: Sequencing error model
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_sequence_error.yaml
+
+  - id: skyride
+    name: Skyride coalescent
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_skyride.yaml
+
+  - id: srd06_codon
+    name: SRD06 partitioned codon model (the supported codon path)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle. This is the supported codon analysis; GY94 codon conversion is blocked (see codon_gy94)."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle. This is the supported codon analysis; GY94 codon conversion is blocked (see codon_gy94)."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_srd06.yaml
+
+  - id: starbeast
+    name: StarBEAST minimal subset (one locus, no calibrations, no tip dates)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: true
+        reason: "Minimal *BEAST subset validated end to end against BEAST 1.10.4 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Exactly one gene tree; node calibrations and tip dates are rejected. Full evidence needs --mode beagle."
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Minimal *BEAST subset validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Exactly one gene tree; node calibrations and tip dates are rejected. Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_starbeast.yaml
+
+  - id: amino_acid_mixture
+    name: Amino-acid mixture substitution model
+    category: analysis
+    versions:
+      "1.10.4":
+        status: blocked
+        requires_native_beagle: true
+        reason: Version-gated to BEAST X 10.5.0; the <aminoAcidMixtureModel> parser does not exist in BEAST 1.10.4. Gate 0 rejects this analysis when control.beast_version is 1.10.4.
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_aa_mixture.yaml
+
+  - id: age_statistic
+    name: Tree age statistic (<ageStatistic>)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: blocked
+        requires_native_beagle: true
+        reason: Version-gated to BEAST X 10.5.0; <ageStatistic> does not exist in BEAST 1.10.4. Gate 0 rejects this analysis when control.beast_version is 1.10.4.
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_age_statistic.yaml
+
+  - id: tree_report
+    name: Tree reporting (<reportTree>, branch-length statistic)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: blocked
+        requires_native_beagle: true
+        reason: Version-gated to BEAST X 10.5.0; <reportTree> and <branchLengthStatistic> do not exist in BEAST 1.10.4. Gate 0 rejects this analysis when control.beast_version is 1.10.4.
+      "10.5.0":
+        status: supported
+        requires_native_beagle: true
+        reason: "Coverage fixture validated end to end against BEAST X 10.5.0 in java-core mode (construct-only; project TreeLikelihood shim, no likelihood evaluation). Full evidence needs --mode beagle."
+    verify_command: >-
+      python tools/validate_coverage.py --configs examples/coverage/config_tree_report.yaml
+
+  # --------------------------------------------------------------- blocked
+  - id: codon_gy94
+    name: Codon models via <convert dataType="codon"> (GY94)
+    category: analysis
+    versions:
+      "1.10.4":
+        status: blocked
+        requires_native_beagle: true
+        reason: "Two independent upstream parser defects, rejected deliberately at Gate 0. (1) ConvertAlignmentParser's syntax rule rejects geneticCode (\"Unhandled attribute (typo?) geneticCode\"). (2) Without that attribute DataTypeUtils cannot resolve plain 'codon' because only 'codon-<geneticCode>' is registered, so BEAST 1.10.4 reports \"Incompatible alignment DataType\". The official testCodonLikelihood.xml fails identically. No legacy shim is enabled, and none is described as official BEAST support. Use srd06_codon instead."
+      "10.5.0":
+        status: blocked
+        requires_native_beagle: true
+        reason: "Same two upstream parser defects as BEAST 1.10.4, rejected deliberately at Gate 0. Here the missing 'codon' DataType surfaces as a NullPointerException in DataType.getDescription. The official testCodonLikelihood.xml fails identically. No legacy shim is enabled, and none is described as official BEAST support. Use srd06_codon instead."
+    verify_command: >-
+      python -m pytest tests/test_coverage_rejections.py::test_codon_is_rejected_due_to_upstream_parser_defect -q
+
+  - id: arg_recombination
+    name: Ancestral recombination graph (ARG) recombination
+    category: analysis
+    versions:
+      "1.10.4":
+        status: blocked
+        requires_native_beagle: true
+        reason: "The released <argTreeLikelihood> parser requires the legacy dr.oldevomodel.sitemodel.SiteModel object, but the released <siteModel> parser creates dr.evomodel.siteratemodel.GammaSiteRateModel. Separately, <argTreeModel> rejects <nodeRates> (\"Unexpected element in argTreeModel: nodeRates\") while <argEventOperator> requires that same node-rate compound, and the shipped arg-ecoli.xml fails identically. Both defects are upstream; supporting this would require a custom parser registration, which BeastXPy does not present as official behaviour. Gate 0 rejects the analysis."
+      "10.5.0":
+        status: blocked
+        requires_native_beagle: true
+        reason: "Identical upstream defects to BEAST 1.10.4: the legacy SiteModel requirement of <argTreeLikelihood> versus the GammaSiteRateModel that <siteModel> creates (\"Exactly one ELEMENT of type SiteModel REQUIRED\"), plus the <argTreeModel>/<nodeRates> versus <argEventOperator> conflict. The shipped arg-ecoli.xml fails identically. No custom parser registration is enabled by default. Gate 0 rejects the analysis."
+    verify_command: >-
+      python -m pytest tests/test_coverage_recomb_mds.py::test_recombination_is_rejected_with_upstream_reason -q
+
+  # ------------------------------------------------------------- toolchain
+  - id: snakemake_pipeline
+    name: Snakemake pipeline generation
+    category: tooling
+    versions:
+      "1.10.4":
+        status: supported
+        requires_native_beagle: false
+        reason: Pipeline text is generated and syntax-checked; running it needs Snakemake installed.
+      "10.5.0":
+        status: supported
+        requires_native_beagle: false
+        reason: Pipeline text is generated and syntax-checked; running it needs Snakemake installed.
+    verify_command: >-
+      python -m beastxpy.main pipeline --config examples/config_basic.yaml --type snakemake --output Snakefile
+
+  - id: nextflow_pipeline
+    name: Nextflow pipeline generation
+    category: tooling
+    versions:
+      "1.10.4":
+        status: partial
+        requires_native_beagle: false
+        reason: Pipeline text is generated and syntax-checked, but Nextflow is not natively supported on Windows (SIGHUP registration fails); run the generated pipeline under WSL or Linux.
+      "10.5.0":
+        status: partial
+        requires_native_beagle: false
+        reason: Pipeline text is generated and syntax-checked, but Nextflow is not natively supported on Windows (SIGHUP registration fails); run the generated pipeline under WSL or Linux.
+    verify_command: >-
+      python -m beastxpy.main pipeline --config examples/config_basic.yaml --type nextflow --output main.nf

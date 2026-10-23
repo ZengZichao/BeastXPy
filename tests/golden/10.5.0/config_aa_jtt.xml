@@ -1,0 +1,225 @@
+<beast>
+  <taxa id="taxa">
+    <taxon id="Pan_troglodytes" />
+    <taxon id="Gorilla_gorilla" />
+    <taxon id="Pongo_pygmaeus" />
+    <taxon id="Hylobates_lar" />
+    <taxon id="Macaca_mulatta" />
+    <taxon id="Papio_hamadryas" />
+    <taxon id="Saimiri_sciureus" />
+    <taxon id="Tarsius_syrichta" />
+    <taxon id="Lemur_catta" />
+    <taxon id="Mus_musculus" />
+  </taxa>
+  <taxa id="Hominidae">
+    <taxon idref="Pan_troglodytes" />
+    <taxon idref="Gorilla_gorilla" />
+    <taxon idref="Pongo_pygmaeus" />
+  </taxa>
+  <alignment dataType="amino acid" id="alignment1">
+    <sequence>
+      <taxon idref="Pan_troglodytes" />EAKIIFEVDWQCADHIRYAVHVQIRWKAGQMKFHMEDPENNYWCRVEPDVLYNWHDKILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMTSPRFKFPVVKWQWPNIFFSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFESVGKTYQHVHLPNRTREIIDMAWVIWIRDCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Gorilla_gorilla" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKNQWPNIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGPEQTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREIIDMAHVIWIYDHICCMDTIKSHVFWWSISQDEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Pongo_pygmaeus" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKYHMEGPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKTYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAECKMRLQGRAKTGTELTYHFNGVTAYMSAEDLICIWDDSDVFFSVGKTYQHVRLPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCEKPME</sequence>
+    <sequence>
+      <taxon idref="Hylobates_lar" />EAKIIFNVDWQCADHISYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWIHSPRFKFIVVKWQWPNIFTSDWEQGQYDPPYRTKWSEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPSRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Macaca_mulatta" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMCKDHWMHSPRFKFIVVKWQWENIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICHWDDSDVFFSVGKTTQFVHLPWRTREIIDMAWVIHIADCIDCMDTIKSHVFWWNISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Papio_hamadryas" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHVMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPPREKVAEVKMELQGQAKTGTELTMHFNGVTAYMSAENLICMWDDSDGFFSVGKTYQHVHLPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQYQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Saimiri_sciureus" />EAKHIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCISDIEPKRNGNNHKDYGVIGRPKVIMCICMPCDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYNFNGVTAYMSAENLICIWDDSAVFFSVGKTYQHVHLPNRTREIIDMAWVHWIADCIDCMDTIKSHVFWWSISQHEEQNQQRMEVPME</sequence>
+    <sequence>
+      <taxon idref="Tarsius_syrichta" />EAKIIFEVDWQCADIITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCVLDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDYEFGQYDPPYRTKVAEVKMELQGRAKTGCELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREGIDMAWVIWIADCIDHMDTIKSHVFWWSISCHEEQNQQLCECPME</sequence>
+    <sequence>
+      <taxon idref="Lemur_catta" />EAKIIFEVDWQCGDHITYAVHVQIRWKAYQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMDADHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAEVKMSLQGRNKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVELPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEYNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Mus_musculus" />EAKIIFEVDWQCADHITYAVHVCIRWKAGQMKFHMEDPENNYKCRVAPDVLYHWLDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPGYDTKVKEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREVIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+  </alignment>
+  <patterns from="1" id="patterns" to="234">
+    <alignment idref="alignment1" />
+  </patterns>
+  <constantSize id="startingTree.constantSize" units="substitutions">
+    <populationSize>
+      <parameter id="startingTree.constantSize.popSize" value="1" />
+    </populationSize>
+  </constantSize>
+  <coalescentSimulator height="16.8" id="startingTree">
+    <coalescentSimulator height="16">
+      <taxa idref="Hominidae" />
+      <constantSize idref="startingTree.constantSize" />
+    </coalescentSimulator>
+    <taxa idref="taxa" />
+    <constantSize idref="startingTree.constantSize" />
+  </coalescentSimulator>
+  <treeModel id="treeModel">
+    <coalescentSimulator idref="startingTree" />
+    <rootHeight>
+      <parameter id="treeModel.rootHeight" />
+    </rootHeight>
+    <nodeHeights internalNodes="true">
+      <parameter id="treeModel.internalNodeHeights" />
+    </nodeHeights>
+    <nodeHeights internalNodes="true" rootNode="true">
+      <parameter id="treeModel.allInternalNodeHeights" />
+    </nodeHeights>
+  </treeModel>
+  <yuleModel id="yule" units="substitutions">
+    <birthRate>
+      <parameter id="yule.birthRate" lower="0" value="1" />
+    </birthRate>
+  </yuleModel>
+  <aminoAcidModel id="aaModel" type="JTT" />
+  <siteModel id="siteModel">
+    <substitutionModel>
+      <aminoAcidModel idref="aaModel" />
+    </substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="siteModel.alpha" lower="0" value="0.5" />
+    </gammaShape>
+    <proportionInvariant>
+      <parameter id="siteModel.pInv" lower="0" upper="1" value="0.1" />
+    </proportionInvariant>
+  </siteModel>
+  <strictClockBranchRates id="branchRates">
+    <rate>
+      <parameter id="clock.rate" lower="0" value="0.01" />
+    </rate>
+  </strictClockBranchRates>
+  <treeLikelihood id="treeLikelihood">
+    <patterns idref="patterns" />
+    <treeModel idref="treeModel" />
+    <siteModel idref="siteModel" />
+    <strictClockBranchRates idref="branchRates" />
+  </treeLikelihood>
+  <speciationLikelihood id="speciation">
+    <model>
+      <yuleModel idref="yule" />
+    </model>
+    <speciesTree>
+      <treeModel idref="treeModel" />
+    </speciesTree>
+  </speciationLikelihood>
+  <tmrcaStatistic id="tmrca(Hominidae)" includeStem="false">
+    <mrca>
+      <taxa idref="Hominidae" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </tmrcaStatistic>
+  <monophylyStatistic id="monophyly(Hominidae)">
+    <mrca>
+      <taxa idref="Hominidae" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </monophylyStatistic>
+  <operators id="operators">
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="yule.birthRate" />
+    </scaleOperator>
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="siteModel.alpha" />
+    </scaleOperator>
+    <randomWalkOperator weight="1" windowSize="0.01">
+      <parameter idref="siteModel.pInv" />
+    </randomWalkOperator>
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="clock.rate" />
+    </scaleOperator>
+    <subtreeSlide gaussian="true" size="1.7" weight="15">
+      <treeModel idref="treeModel" />
+    </subtreeSlide>
+    <narrowExchange weight="15">
+      <treeModel idref="treeModel" />
+    </narrowExchange>
+    <wideExchange weight="3">
+      <treeModel idref="treeModel" />
+    </wideExchange>
+    <wilsonBalding weight="3">
+      <treeModel idref="treeModel" />
+    </wilsonBalding>
+    <scaleOperator scaleFactor="0.75" weight="3">
+      <parameter idref="treeModel.rootHeight" />
+    </scaleOperator>
+    <uniformOperator weight="30">
+      <parameter idref="treeModel.internalNodeHeights" />
+    </uniformOperator>
+    <upDownOperator scaleFactor="0.75" weight="3">
+      <up>
+        <parameter idref="clock.rate" />
+      </up>
+      <down>
+        <parameter idref="treeModel.allInternalNodeHeights" />
+      </down>
+    </upDownOperator>
+  </operators>
+  <mcmc autoOptimize="true" chainLength="1000000" id="mcmc">
+    <posterior id="posterior">
+      <prior id="prior">
+        <logNormalPrior mean="1" meanInRealSpace="false" offset="15" stdev="0.5">
+          <statistic idref="tmrca(Hominidae)" />
+        </logNormalPrior>
+        <booleanLikelihood>
+          <monophylyStatistic idref="monophyly(Hominidae)" />
+        </booleanLikelihood>
+        <logNormalPrior mean="2" meanInRealSpace="false" offset="0" stdev="1.5">
+          <parameter idref="yule.birthRate" />
+        </logNormalPrior>
+        <logNormalPrior mean="1" meanInRealSpace="false" offset="0" stdev="1.25">
+          <parameter idref="siteModel.alpha" />
+        </logNormalPrior>
+        <uniformPrior lower="0" upper="1">
+          <parameter idref="siteModel.pInv" />
+        </uniformPrior>
+        <oneOnXPrior>
+          <parameter idref="clock.rate" />
+        </oneOnXPrior>
+        <speciationLikelihood idref="speciation" />
+      </prior>
+      <likelihood id="likelihood">
+        <treeLikelihood idref="treeLikelihood" />
+      </likelihood>
+    </posterior>
+    <operators idref="operators" />
+    <log id="screenLog" logEvery="10000">
+      <column dp="4" label="Posterior" width="12">
+        <posterior idref="posterior" />
+      </column>
+      <column dp="4" label="Prior" width="12">
+        <prior idref="prior" />
+      </column>
+      <column dp="4" label="Likelihood" width="12">
+        <likelihood idref="likelihood" />
+      </column>
+      <column label="rootHeight" sf="6" width="12">
+        <parameter idref="treeModel.rootHeight" />
+      </column>
+      <column label="clock.rate" sf="6" width="12">
+        <parameter idref="clock.rate" />
+      </column>
+    </log>
+    <log fileName="aa_jtt.log" id="fileLog" logEvery="1000" overwrite="false">
+      <posterior idref="posterior" />
+      <prior idref="prior" />
+      <likelihood idref="likelihood" />
+      <parameter idref="treeModel.rootHeight" />
+      <parameter idref="yule.birthRate" />
+      <parameter idref="siteModel.alpha" />
+      <parameter idref="siteModel.pInv" />
+      <parameter idref="clock.rate" />
+      <tmrcaStatistic idref="tmrca(Hominidae)" />
+      <speciationLikelihood idref="speciation" />
+    </log>
+    <logTree fileName="aa_jtt.trees" id="treeFileLog" logEvery="1000" nexusFormat="true" sortTranslationTable="true">
+      <treeModel idref="treeModel" />
+      <strictClockBranchRates idref="branchRates" />
+      <posterior idref="posterior" />
+    </logTree>
+  </mcmc>
+  <report>
+    <property name="timer">
+      <mcmc idref="mcmc" />
+    </property>
+  </report>
+</beast>

@@ -1,0 +1,59 @@
+# BeastXPy coverage fixture C02: continuous trait (Brownian motion).
+# A one-dimensional quantitative trait (body size) evolves by Brownian motion
+# over the core tree; the diffusion precision (inverse variance rate) is
+# estimated by Gibbs sampling with a Wishart prior.
+metadata:
+  analysis_name: cov_continuous_trait
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: empirical}
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 40000
+
+loggers:
+  trace_log: {file_name: cov_continuous_trait.log, log_every: 1000}
+  tree_log: {file_name: cov_continuous_trait.trees, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_continuous_trait.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240605
+
+analysis:
+  beast_version: both
+  type: continuous_trait
+  trait_name: bodySize
+  values:
+    TaxA: 1.20
+    TaxB: 2.05
+    TaxC: 2.40
+    TaxD: 3.10
+    TaxE: 2.75
+  precision: 1.0
+  root_mean: 0.0
+  prior_scale: 1.0
+  prior_df: 1
+  estimate_rate: true

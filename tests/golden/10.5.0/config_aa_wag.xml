@@ -1,0 +1,288 @@
+<beast>
+  <taxa id="taxa">
+    <taxon id="Pan_troglodytes" />
+    <taxon id="Gorilla_gorilla" />
+    <taxon id="Pongo_pygmaeus" />
+    <taxon id="Hylobates_lar" />
+    <taxon id="Macaca_mulatta" />
+    <taxon id="Papio_hamadryas" />
+    <taxon id="Saimiri_sciureus" />
+    <taxon id="Tarsius_syrichta" />
+    <taxon id="Lemur_catta" />
+    <taxon id="Mus_musculus" />
+  </taxa>
+  <taxa id="Hominidae">
+    <taxon idref="Pan_troglodytes" />
+    <taxon idref="Gorilla_gorilla" />
+    <taxon idref="Pongo_pygmaeus" />
+  </taxa>
+  <taxa id="Catarrhini">
+    <taxon idref="Pan_troglodytes" />
+    <taxon idref="Gorilla_gorilla" />
+    <taxon idref="Pongo_pygmaeus" />
+    <taxon idref="Hylobates_lar" />
+    <taxon idref="Macaca_mulatta" />
+    <taxon idref="Papio_hamadryas" />
+  </taxa>
+  <alignment dataType="amino acid" id="alignment1">
+    <sequence>
+      <taxon idref="Pan_troglodytes" />EAKIIFEVDWQCADHIRYAVHVQIRWKAGQMKFHMEDPENNYWCRVEPDVLYNWHDKILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMTSPRFKFPVVKWQWPNIFFSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFESVGKTYQHVHLPNRTREIIDMAWVIWIRDCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Gorilla_gorilla" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKNQWPNIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGPEQTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREIIDMAHVIWIYDHICCMDTIKSHVFWWSISQDEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Pongo_pygmaeus" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKYHMEGPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKTYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAECKMRLQGRAKTGTELTYHFNGVTAYMSAEDLICIWDDSDVFFSVGKTYQHVRLPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCEKPME</sequence>
+    <sequence>
+      <taxon idref="Hylobates_lar" />EAKIIFNVDWQCADHISYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWIHSPRFKFIVVKWQWPNIFTSDWEQGQYDPPYRTKWSEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPSRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Macaca_mulatta" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMCKDHWMHSPRFKFIVVKWQWENIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICHWDDSDVFFSVGKTTQFVHLPWRTREIIDMAWVIHIADCIDCMDTIKSHVFWWNISQHEEQNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Papio_hamadryas" />EAKIIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHVMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPPREKVAEVKMELQGQAKTGTELTMHFNGVTAYMSAENLICMWDDSDGFFSVGKTYQHVHLPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQYQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Saimiri_sciureus" />EAKHIFEVDWQCADHITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCISDIEPKRNGNNHKDYGVIGRPKVIMCICMPCDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAEVKMELQGRAKTGTELTYNFNGVTAYMSAENLICIWDDSAVFFSVGKTYQHVHLPNRTREIIDMAWVHWIADCIDCMDTIKSHVFWWSISQHEEQNQQRMEVPME</sequence>
+    <sequence>
+      <taxon idref="Tarsius_syrichta" />EAKIIFEVDWQCADIITYAVHVQIRWKAGQMKFHMEDPENNYKCRVEPDVLYNWHDCVLDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDYEFGQYDPPYRTKVAEVKMELQGRAKTGCELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREGIDMAWVIWIADCIDHMDTIKSHVFWWSISCHEEQNQQLCECPME</sequence>
+    <sequence>
+      <taxon idref="Lemur_catta" />EAKIIFEVDWQCGDHITYAVHVQIRWKAYQMKFHMEDPENNYKCRVEPDVLYNWHDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMDADHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPPYRTKVAEVKMSLQGRNKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVELPNRTREIIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEYNQQRCECPME</sequence>
+    <sequence>
+      <taxon idref="Mus_musculus" />EAKIIFEVDWQCADHITYAVHVCIRWKAGQMKFHMEDPENNYKCRVAPDVLYHWLDCILDIEPKRNGNNHKDYGVIGRPKVIMCICMPKDHWMHSPRFKFIVVKWQWPNIFTSDCEFGQYDPGYDTKVKEVKMELQGRAKTGTELTYHFNGVTAYMSAENLICIWDDSDVFFSVGKTYQHVHLPNRTREVIDMAWVIWIADCIDCMDTIKSHVFWWSISQHEEQNQQRCECPME</sequence>
+  </alignment>
+  <patterns from="1" id="patterns" to="234">
+    <alignment idref="alignment1" />
+  </patterns>
+  <constantSize id="startingTree.constantSize" units="substitutions">
+    <populationSize>
+      <parameter id="startingTree.constantSize.popSize" value="1" />
+    </populationSize>
+  </constantSize>
+  <coalescentSimulator height="27.5625" id="startingTree">
+    <coalescentSimulator height="26.25">
+      <coalescentSimulator height="16">
+        <taxa idref="Hominidae" />
+        <constantSize idref="startingTree.constantSize" />
+      </coalescentSimulator>
+      <taxa idref="Catarrhini" />
+      <constantSize idref="startingTree.constantSize" />
+    </coalescentSimulator>
+    <taxa idref="taxa" />
+    <constantSize idref="startingTree.constantSize" />
+  </coalescentSimulator>
+  <treeModel id="treeModel">
+    <coalescentSimulator idref="startingTree" />
+    <rootHeight>
+      <parameter id="treeModel.rootHeight" />
+    </rootHeight>
+    <nodeHeights internalNodes="true">
+      <parameter id="treeModel.internalNodeHeights" />
+    </nodeHeights>
+    <nodeHeights internalNodes="true" rootNode="true">
+      <parameter id="treeModel.allInternalNodeHeights" />
+    </nodeHeights>
+  </treeModel>
+  <birthDeathModel id="birthDeath" units="substitutions">
+    <birthMinusDeathRate>
+      <parameter id="birthDeath.bMinusD" lower="0" value="0.5" />
+    </birthMinusDeathRate>
+    <relativeDeathRate>
+      <parameter id="birthDeath.relativeDeathRate" lower="0" upper="1" value="0.5" />
+    </relativeDeathRate>
+  </birthDeathModel>
+  <aminoAcidModel id="aaModel" type="WAG" />
+  <siteModel id="siteModel">
+    <substitutionModel>
+      <aminoAcidModel idref="aaModel" />
+    </substitutionModel>
+    <gammaShape gammaCategories="4">
+      <parameter id="siteModel.alpha" lower="0" value="0.5" />
+    </gammaShape>
+  </siteModel>
+  <discretizedBranchRates id="branchRates">
+    <treeModel idref="treeModel" />
+    <distribution>
+      <logNormalDistributionModel meanInRealSpace="true">
+        <mean>
+          <parameter id="ucld.mean" lower="0" value="0.01" />
+        </mean>
+        <stdev>
+          <parameter id="ucld.stdev" lower="0" value="0.2" />
+        </stdev>
+      </logNormalDistributionModel>
+    </distribution>
+    <rateCategories>
+      <parameter dimension="18" id="branchRates.categories" lower="0" value="1" />
+    </rateCategories>
+  </discretizedBranchRates>
+  <treeLikelihood id="treeLikelihood">
+    <patterns idref="patterns" />
+    <treeModel idref="treeModel" />
+    <siteModel idref="siteModel" />
+    <discretizedBranchRates idref="branchRates" />
+  </treeLikelihood>
+  <rateStatistic external="true" id="meanRate" internal="true" mode="mean" name="meanRate">
+    <treeModel idref="treeModel" />
+    <discretizedBranchRates idref="branchRates" />
+  </rateStatistic>
+  <rateStatistic external="true" id="coefficientOfVariation" internal="true" mode="coefficientOfVariation" name="coefficientOfVariation">
+    <treeModel idref="treeModel" />
+    <discretizedBranchRates idref="branchRates" />
+  </rateStatistic>
+  <speciationLikelihood id="speciation">
+    <model>
+      <birthDeathModel idref="birthDeath" />
+    </model>
+    <speciesTree>
+      <treeModel idref="treeModel" />
+    </speciesTree>
+  </speciationLikelihood>
+  <tmrcaStatistic id="tmrca(Hominidae)" includeStem="false">
+    <mrca>
+      <taxa idref="Hominidae" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </tmrcaStatistic>
+  <monophylyStatistic id="monophyly(Hominidae)">
+    <mrca>
+      <taxa idref="Hominidae" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </monophylyStatistic>
+  <tmrcaStatistic id="tmrca(Catarrhini)" includeStem="false">
+    <mrca>
+      <taxa idref="Catarrhini" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </tmrcaStatistic>
+  <monophylyStatistic id="monophyly(Catarrhini)">
+    <mrca>
+      <taxa idref="Catarrhini" />
+    </mrca>
+    <treeModel idref="treeModel" />
+  </monophylyStatistic>
+  <operators id="operators">
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="birthDeath.bMinusD" />
+    </scaleOperator>
+    <randomWalkOperator weight="1" windowSize="0.01">
+      <parameter idref="birthDeath.relativeDeathRate" />
+    </randomWalkOperator>
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="siteModel.alpha" />
+    </scaleOperator>
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="ucld.mean" />
+    </scaleOperator>
+    <swapOperator autoOptimize="false" size="1" weight="10">
+      <parameter idref="branchRates.categories" />
+    </swapOperator>
+    <scaleOperator scaleFactor="0.75" weight="1">
+      <parameter idref="ucld.stdev" />
+    </scaleOperator>
+    <subtreeSlide gaussian="true" size="1.7" weight="15">
+      <treeModel idref="treeModel" />
+    </subtreeSlide>
+    <narrowExchange weight="15">
+      <treeModel idref="treeModel" />
+    </narrowExchange>
+    <wideExchange weight="3">
+      <treeModel idref="treeModel" />
+    </wideExchange>
+    <wilsonBalding weight="3">
+      <treeModel idref="treeModel" />
+    </wilsonBalding>
+    <scaleOperator scaleFactor="0.75" weight="3">
+      <parameter idref="treeModel.rootHeight" />
+    </scaleOperator>
+    <uniformOperator weight="30">
+      <parameter idref="treeModel.internalNodeHeights" />
+    </uniformOperator>
+    <upDownOperator scaleFactor="0.75" weight="3">
+      <up>
+        <parameter idref="ucld.mean" />
+      </up>
+      <down>
+        <parameter idref="treeModel.allInternalNodeHeights" />
+      </down>
+    </upDownOperator>
+  </operators>
+  <mcmc autoOptimize="true" chainLength="1000000" id="mcmc">
+    <posterior id="posterior">
+      <prior id="prior">
+        <logNormalPrior mean="1" meanInRealSpace="false" offset="15" stdev="0.5">
+          <statistic idref="tmrca(Hominidae)" />
+        </logNormalPrior>
+        <booleanLikelihood>
+          <monophylyStatistic idref="monophyly(Hominidae)" />
+        </booleanLikelihood>
+        <logNormalPrior mean="1" meanInRealSpace="false" offset="25" stdev="0.5">
+          <statistic idref="tmrca(Catarrhini)" />
+        </logNormalPrior>
+        <booleanLikelihood>
+          <monophylyStatistic idref="monophyly(Catarrhini)" />
+        </booleanLikelihood>
+        <logNormalPrior mean="2" meanInRealSpace="false" offset="0" stdev="1.5">
+          <parameter idref="birthDeath.bMinusD" />
+        </logNormalPrior>
+        <uniformPrior lower="0" upper="1">
+          <parameter idref="birthDeath.relativeDeathRate" />
+        </uniformPrior>
+        <logNormalPrior mean="1" meanInRealSpace="false" offset="0" stdev="1.25">
+          <parameter idref="siteModel.alpha" />
+        </logNormalPrior>
+        <oneOnXPrior>
+          <parameter idref="ucld.mean" />
+        </oneOnXPrior>
+        <exponentialPrior mean="0.333333333333333">
+          <parameter idref="ucld.stdev" />
+        </exponentialPrior>
+        <speciationLikelihood idref="speciation" />
+      </prior>
+      <likelihood id="likelihood">
+        <treeLikelihood idref="treeLikelihood" />
+      </likelihood>
+    </posterior>
+    <operators idref="operators" />
+    <log id="screenLog" logEvery="10000">
+      <column dp="4" label="Posterior" width="12">
+        <posterior idref="posterior" />
+      </column>
+      <column dp="4" label="Prior" width="12">
+        <prior idref="prior" />
+      </column>
+      <column dp="4" label="Likelihood" width="12">
+        <likelihood idref="likelihood" />
+      </column>
+      <column label="rootHeight" sf="6" width="12">
+        <parameter idref="treeModel.rootHeight" />
+      </column>
+      <column label="ucld.mean" sf="6" width="12">
+        <parameter idref="ucld.mean" />
+      </column>
+    </log>
+    <log fileName="aa_wag.log" id="fileLog" logEvery="1000" overwrite="false">
+      <posterior idref="posterior" />
+      <prior idref="prior" />
+      <likelihood idref="likelihood" />
+      <parameter idref="treeModel.rootHeight" />
+      <parameter idref="birthDeath.bMinusD" />
+      <parameter idref="birthDeath.relativeDeathRate" />
+      <parameter idref="siteModel.alpha" />
+      <parameter idref="ucld.mean" />
+      <parameter idref="branchRates.categories" />
+      <parameter idref="ucld.stdev" />
+      <tmrcaStatistic idref="tmrca(Hominidae)" />
+      <tmrcaStatistic idref="tmrca(Catarrhini)" />
+      <speciationLikelihood idref="speciation" />
+      <rateStatistic idref="meanRate" />
+      <rateStatistic idref="coefficientOfVariation" />
+    </log>
+    <logTree fileName="aa_wag.trees" id="treeFileLog" logEvery="1000" nexusFormat="true" sortTranslationTable="true">
+      <treeModel idref="treeModel" />
+      <discretizedBranchRates idref="branchRates" />
+      <posterior idref="posterior" />
+    </logTree>
+  </mcmc>
+  <report>
+    <property name="timer">
+      <mcmc idref="mcmc" />
+    </property>
+  </report>
+</beast>

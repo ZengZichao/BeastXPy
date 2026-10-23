@@ -1,0 +1,63 @@
+# BeastXPy coverage fixture C06b: multidimensional scaling (MDS).
+#
+# The table in `analysis.distance_file` is a lower-triangular pairwise distance
+# matrix; the alignment below only supplies the taxon names and is not used as
+# sequence data.  The generated XML references it by the relative name
+# `mds_distances.txt`; the generator, runner and validation tools copy the
+# table next to every XML they write, so archive the XML and the table
+# together.  The plugin replaces the whole phylogenetic document with the
+# MDS model of examples/MDS/US_cities.xml:
+#   * Gaussian residual precision for the observed distances;
+#   * a locations matrix (one column per taxon, `dimensions` rows) initialised
+#     by classical MDS (principal coordinates) of the distance table;
+#   * Oh & Raftery (2001) hierarchical priors: per-dimension Gaussian with
+#     fixed mean zero and estimated precision, gamma priors, and a
+#     normal-gamma Gibbs operator for each precision.
+# Residual/fitted gamma scales are derived from the initial fit unless
+# `residual_scale` is given explicitly.
+metadata:
+  analysis_name: cov_mds
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 20000
+
+loggers:
+  trace_log: {file_name: cov_mds.log, log_every: 1000}
+  tree_log: {file_name: cov_mds.locations.log, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_mds.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240606
+
+analysis:
+  beast_version: both
+  type: mds
+  # Lower-triangular distance table, relative to this YAML file.
+  distance_file: mds_distances.txt
+  # Number of MDS axes (>= 2 and < number of taxa).
+  dimensions: 2
+  # Initial value of the residual precision (Gamma shape 1 by default).
+  residual_precision: 1.0
+  residual_shape: 1.0
+  # residual_scale: 0.1   # optional explicit Gamma scale; default n_pairs/SSR

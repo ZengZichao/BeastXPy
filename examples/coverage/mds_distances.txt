@@ -1,0 +1,6 @@
+taxon	TaxA	TaxB	TaxC	TaxD	TaxE
+TaxA	NA	1.0	2.0	3.0	4.5
+TaxB	NA	NA	1.2	2.1	3.8
+TaxC	NA	NA	NA	1.1	2.9
+TaxD	NA	NA	NA	NA	1.7
+TaxE	NA	NA	NA	NA	NA

@@ -1,0 +1,34 @@
+# BeastXPy check-data fixture: root_conflict_clade.
+metadata:
+  analysis_name: dc_root_conflict_clade
+
+alignments:
+  - id: aln1
+    file: aln.fasta
+    data_type: nucleotide
+
+
+partitions:
+  - id: p1
+    alignment_id: aln1
+    site_model:
+      substitution_model:
+        type: jc69
+        frequencies: {mode: uniform}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+
+calibrations:
+  - name: root_cal
+    taxa: null
+    distribution:
+      type: uniform
+      parameters: {lower: 1.0, upper: 2.0}
+  - name: cal1
+    taxa: [t1, t2]
+    monophyletic: true
+    distribution:
+      type: uniform
+      parameters: {lower: 10.0, upper: 20.0}

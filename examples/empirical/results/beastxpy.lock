@@ -1,0 +1,131 @@
+{
+  "schema_version": "beastxpy.lock/v1",
+  "generated_at": "2026-10-22T13:03:19Z",
+  "tool_version": "0.1.0",
+  "lock_version": 1,
+  "tool": {
+    "name": "beastxpy",
+    "version": "0.1.0"
+  },
+  "python": {
+    "version": "3.10.12",
+    "implementation": "CPython",
+    "platform": "linux",
+    "machine": "x86_64"
+  },
+  "beast": {
+    "version": "10.5.0",
+    "jar_name": "beast.jar",
+    "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+    "jar_size_bytes": 12262630,
+    "jar_source": "reference-install",
+    "jar_resolved": true,
+    "note": "the digest is of the jar BeastXPy actually resolved (reference-install), which may differ from an official BEAST distribution rebuild"
+  },
+  "java": {
+    "version": "17.0.20.1",
+    "vendor": "Eclipse Adoptium",
+    "arch_data_model": 64,
+    "executable_name": "java",
+    "executable_sha256": "f5aed21d3a0b0f4b05d3a3f9fe71263916d5bc0d47b53aa52a3340b90f0b4805",
+    "source": "JAVA_HOME"
+  },
+  "beagle": {
+    "required": true,
+    "available": true,
+    "expected_version": "4.0.1",
+    "observed_version": null,
+    "library_name": "libhmsbeagle-jni.so",
+    "library_sha256": "4a08e626af772f2a477d4fb757c30f7eebb0b6d1ebe66877082e1dcb0d6f0082",
+    "source": "env:BEASTX_BEAGLE_10_5_0_LIB",
+    "threads": 1,
+    "reason": null
+  },
+  "dependencies": {
+    "pyyaml": "6.0.3",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "biopython": "1.88",
+    "matplotlib": "3.10.9",
+    "defusedxml": "0.7.1"
+  },
+  "config": {
+    "file_name": "config_primates_reference.yaml",
+    "size_bytes": 2314,
+    "content_sha256": "301cd76727ede23451bbee5d312b0045a01fd82bb3d46f7d01499f252c0fdd72",
+    "beast_version": "10.5.0",
+    "analysis_fingerprint": "BXP-a40cdff055ca-0.1.0",
+    "content_fingerprint": "BXP-a40cdff055ca4058",
+    "data_digest": "909f6337667a2684",
+    "n_alignments": 1,
+    "n_partitions": 2,
+    "n_taxa": 12,
+    "n_sites": 898
+  },
+  "seeds": [
+    1
+  ],
+  "redaction": {
+    "policy": "no absolute paths, no user names, no host names, no environment variable values and no configuration content; every file is identified by its basename and SHA-256 digest",
+    "absolute_paths": "none",
+    "secrets": "none"
+  },
+  "integrity": {
+    "algorithm": "sha256",
+    "tracked_fields": [
+      "tool.version",
+      "python.version",
+      "python.platform",
+      "python.machine",
+      "beast.version",
+      "beast.jar_name",
+      "beast.jar_sha256",
+      "java.version",
+      "java.vendor",
+      "java.arch_data_model",
+      "java.executable_sha256",
+      "beagle.available",
+      "beagle.expected_version",
+      "beagle.observed_version",
+      "beagle.library_name",
+      "beagle.library_sha256",
+      "dependencies.pyyaml",
+      "dependencies.numpy",
+      "dependencies.scipy",
+      "dependencies.biopython",
+      "dependencies.matplotlib",
+      "dependencies.defusedxml",
+      "config.content_sha256",
+      "config.size_bytes",
+      "config.analysis_fingerprint"
+    ],
+    "field_digests": {
+      "tool.version": "8e633b4f41f99d4c388915bc852f2143cf4e9f5eaad70c76a81d4f4aa629eec1",
+      "python.version": "2531c4fd78f390156b0f220e7297a7481774fa0a50223691ceec589fcbbca9dc",
+      "python.platform": "f32af962aa06e4f20ceda568d6493687257ce3aff79853b582d13ee6fbf5171b",
+      "python.machine": "ac0e562184dfbaf46535d346181de0df918e33e491fef18bd2f919d31c64e5aa",
+      "beast.version": "794a5e367fc7233b4e5f2b1ed8656aaed4cfd789a6fb00d067a388a8ef0c32f3",
+      "beast.jar_name": "87c912d4d6942aff490464780af8738c1641804c37528f901a1978e0bbc58c80",
+      "beast.jar_sha256": "8e736137972424d4f704b3be31a1d2609fd4adc51d78ca254d184466563d0931",
+      "java.version": "98f042b312ed997c43d2ff61fd97407cb69e219164538d10d3ea65fc82d36ed5",
+      "java.vendor": "76d91d98b2d9adc87f1f140a64c538d01739dcc4a89dc087179e109decafa933",
+      "java.arch_data_model": "a68b412c4282555f15546cf6e1fc42893b7e07f271557ceb021821098dd66c1b",
+      "java.executable_sha256": "b834545465b3b2ac350157a1b0f2cfc5fc000a164da2cff134dfffa3c207cc17",
+      "beagle.available": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+      "beagle.expected_version": "5f85d809908a0e6673b22fe02368398bac4e71dac4c578531139b70adfbd0c96",
+      "beagle.observed_version": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "beagle.library_name": "fb7f9e6f47dd456b10d195a3e23e941a041c2a74495bd5de034e011d5f244a51",
+      "beagle.library_sha256": "3816ef4b6d7d8511df1e095c348bc903ab7f1b9ed04bfe6ac3285ba0de847b0f",
+      "dependencies.pyyaml": "3e3fa41437ab238c8a99b85f9564f6e5443fb2f47ca54f841fd20e26bf699fb4",
+      "dependencies.numpy": "b326b724e58dd42b170008ce3f77ed3b7544a697786ee8e3c9b9f20e2c7a2fb3",
+      "dependencies.scipy": "a25aba33b3262033bc89b4fb6998d5f97ef5158b362d71bc577943e9457279fa",
+      "dependencies.biopython": "cb6ac31c4face9072451e29329583ba58066dc498c21ccbf60ff565efb99abee",
+      "dependencies.matplotlib": "b2f0d96d114a6fe7d0e28bb18da22ace7aab732b6d5280495b510e7c9d71ddf4",
+      "dependencies.defusedxml": "3390bd74380206eeb7eac783c240dbb817e4d7c7b9ad5e8a9e8aca4184e575eb",
+      "config.content_sha256": "41ea84c7ea1d85c512ad62cf5dc2b0c8e749514d0895db6ef636fdf9a7e09993",
+      "config.size_bytes": "74bb05d20f937f744cbf930cc6174146b830b9cf0a7ba01d0ba3c11b613adcba",
+      "config.analysis_fingerprint": "0d7ad2339c7f795d468b5a6dfd11c978fd7377fd23692d7139f88ecf4957f513"
+    },
+    "payload_sha256": "1b7628cbd4aea6076265e084a8706910c9556e69681a6859c6776a2aa73198ca"
+  }
+}

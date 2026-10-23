@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: >-
+  If you use BeastXPy in your work, please cite it using this metadata. A DOI
+  will be added to this record once the release has been archived.
+title: "BeastXPy: a reproducible Python workflow for BEAST 1 divergence-time inference"
+abstract: >-
+  BeastXPy turns a strict YAML description into BEAST 1 / BEAST X XML,
+  validates it through four gates, runs a seed matrix, and reports MCMC
+  diagnostics, marginal-likelihood comparisons and reproducibility artefacts.
+  It is an independent workflow layer, not a reimplementation of BEAST. The
+  Python code is MIT-licensed; the bundled unmodified BEAST jars are
+  LGPL-2.1-only (see NOTICE).
+version: 0.1.0
+date-released: "2026-10-22"
+license: "MIT AND LGPL-2.1-only"
+keywords:
+  - phylogenetics
+  - BEAST
+  - divergence time
+  - MCMC
+  - reproducibility
+  - Bayesian inference
+authors:
+  - family-names: Zeng
+    given-names: Zichao
+    alias: ZengZichao
+    email: zengzichao@sjtu.edu.cn
+    orcid: "https://orcid.org/0000-0001-6553-970X"

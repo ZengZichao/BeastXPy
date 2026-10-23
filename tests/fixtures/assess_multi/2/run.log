@@ -1,0 +1,224 @@
+
+        BEAST v1.10.4 Prerelease #bc6cbd9, 2002-2018
+       Bayesian Evolutionary Analysis Sampling Trees
+                 Designed and developed by
+   Alexei J. Drummond, Andrew Rambaut and Marc A. Suchard
+                              
+               Department of Computer Science
+                   University of Auckland
+                  alexei@cs.auckland.ac.nz
+                              
+             Institute of Evolutionary Biology
+                  University of Edinburgh
+                     a.rambaut@ed.ac.uk
+                              
+              David Geffen School of Medicine
+           University of California, Los Angeles
+                     msuchard@ucla.edu
+                              
+                Downloads, Help & Resources:
+                  	http://beast.community
+                              
+Source code distributed under the GNU Lesser General Public License:
+          	http://github.com/beast-dev/beast-mcmc
+                              
+                     BEAST developers:
+	Alex Alekseyenko, Guy Baele, Trevor Bedford, Filip Bielejec, Erik Bloomquist, Matthew Hall,
+	Joseph Heled, Sebastian Hoehna, Denise Kuehnert, Philippe Lemey, Wai Lok Sibon Li,
+	Gerton Lunter, Sidney Markowitz, Vladimir Minin, Michael Defoin Platel,
+          	Oliver Pybus, Chieh-Hsi Wu, Walter Xie
+                              
+                         Thanks to:
+    	Roald Forsberg, Beth Shapiro and Korbinian Strimmer
+
+Using BEAGLE library v3.1.0 for accelerated, parallel likelihood evaluation
+2009-, BEAGLE Working Group - https://beagle-dev.github.io/
+Citation: Ayres et al (2012) Systematic Biology 61: 170-173 | doi:10.1093/sysbio/syr100
+
+
+Random number seed: 2
+
+
+Loading additional development parsers from development_parsers.properties, which is additional set of parsers only available for development version ...
+Parsing XML file: assess_fx.xml
+  File encoding: GBK
+Looking for plugins in F:\bxp_wt\fxgen_a\multi\2\plugins
+
+Read alignment: alignment1
+  Sequences = 12
+      Sites = 898
+   Datatype = nucleotide
+Site patterns 'patterns' created from positions 1-898 of alignment 'alignment1'
+  unique pattern count = 413
+
+Creating the tree model, 'treeModel'
+  taxon count = 12
+  tree height = 63.0
+
+Using Yule prior on tree
+
+Creating state frequencies model 'frequencies': Initial frequencies = {0.25, 0.25, 0.25, 0.25}
+
+Creating HKY substitution model. Initial kappa = 1.0
+
+Creating site rate model: 
+  4 category discrete gamma with initial shape = 0.5
+
+Using strict molecular clock model.
+
+Using BEAGLE TreeLikelihood
+  Branch rate model used: strictClockBranchRates
+  Using BEAGLE resource 0: CPU
+    with instance flags:  PRECISION_DOUBLE COMPUTATION_SYNCH EIGEN_REAL SCALING_MANUAL SCALERS_RAW VECTOR_SSE THREADING_CPP PROCESSOR_CPU FRAMEWORK_CPU
+  Ignoring ambiguities in tree likelihood.
+  With 413 unique site patterns.
+  Using rescaling scheme : dynamic (rescaling every 100 evaluations, delay rescaling until first overflow)
+
+Likelihood computation is using an auto sizing thread pool.
+
+Creating the MCMC chain:
+  chain length = 100
+  operator adaption = true
+  adaptation delayed for 1 steps
+
+Citations for this analysis: 
+
+FRAMEWORK
+BEAST primary citation:
+	Suchard MA, Lemey P, Baele G, Ayres DL, Drummond AJ, Rambaut A (2018) Bayesian phylogenetic and phylodynamic data integration using BEAST 1.10. Virus Evolution. vey016. DOI:10.1093/ve/vey016
+Using BEAGLE likelihood calculation library:
+	Ayres et al  (2012) BEAGLE: a common application programming inferface and high-performance computing library for statistical phylogenetics. Syst Biol. 61, 170-173. DOI:10.1093/sysbio/syr100
+
+TREE DENSITY MODELS
+Gernhard 2008 Birth Death Tree Model:
+	Gernhard T (2008) The conditioned reconstructed process. Journal of Theoretical Biology. 253, 769-778. DOI:10.1016/j.jtbi.2008.04.005
+
+SUBSTITUTION MODELS
+HKY nucleotide substitution model:
+	Hasegawa M, Kishino H, Yano T (1985) Dating the human-ape splitting by a molecular clock of mitochondrial DNA. J. Mol. Evol.. 22, 160-174
+Discrete gamma-distributed rate heterogeneity model:
+	Yang Z (1994) Maximum likelihood phylogenetic estimation from DNA sequences with variable rates over sites: approximate methods. J. Mol. Evol.. 39, 306-314
+
+
+# BEAST v1.10.4 Prerelease #bc6cbd9
+# Generated Wed Oct 21 02:26:47 CST 2026 [seed=2]
+# -seed 2 -overwrite -prefix seed_2_ F:\bxp_wt\fxgen_a\multi\2\assess_fx.xml
+state	Posterior   	Prior       	Likelihood  	rootHeight  	clock.rate  
+0	-13337.4225 	-129.2106   	-13208.2119 	63.0000     	1E-2        	-
+1	-13335.1817 	-129.3460   	-13205.8357 	63.0000     	1E-2        	-
+2	-12948.5079 	-129.7952   	-12818.7128 	63.0000     	1E-2        	-
+3	-12879.8998 	-129.8886   	-12750.0112 	63.0000     	1E-2        	-
+4	-12879.0644 	-129.8886   	-12749.1758 	63.0000     	1E-2        	-
+5	-12879.0644 	-129.8886   	-12749.1758 	63.0000     	1E-2        	-
+6	-12879.0644 	-129.8886   	-12749.1758 	63.0000     	1E-2        	-
+7	-12879.0644 	-129.8886   	-12749.1758 	63.0000     	1E-2        	-
+8	-12702.3212 	-129.8886   	-12572.4326 	63.0000     	1E-2        	-
+9	-12702.3212 	-129.8886   	-12572.4326 	63.0000     	1E-2        	-
+10	-12701.2016 	-129.9354   	-12571.2662 	63.0000     	1E-2        	-
+11	-12701.2016 	-129.9354   	-12571.2662 	63.0000     	1E-2        	-
+12	-12701.2016 	-129.9354   	-12571.2662 	63.0000     	1E-2        	-
+13	-12701.2016 	-129.9354   	-12571.2662 	63.0000     	1E-2        	-
+14	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+15	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+16	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+17	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+18	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+19	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+20	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+21	-12693.1014 	-127.0621   	-12566.0392 	60.8481     	1E-2        	-
+22	-12289.0777 	-127.2736   	-12161.8041 	60.8481     	1E-2        	-
+23	-12289.0777 	-127.2736   	-12161.8041 	60.8481     	1E-2        	-
+24	-12244.8815 	-127.2736   	-12117.6080 	60.8481     	1E-2        	-
+25	-12244.8815 	-127.2736   	-12117.6080 	60.8481     	1E-2        	-
+26	-12208.0882 	-127.2736   	-12080.8146 	60.8481     	1E-2        	-
+27	-12205.6044 	-127.2785   	-12078.3259 	60.8481     	1E-2        	-
+28	-12205.6044 	-127.2785   	-12078.3259 	60.8481     	1E-2        	-
+29	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+30	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+31	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+32	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+33	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+34	-12199.9349 	-127.2896   	-12072.6454 	60.8481     	1E-2        	-
+35	-12200.5422 	-127.2384   	-12073.3038 	60.8481     	1E-2        	-
+36	-12200.5422 	-127.2384   	-12073.3038 	60.8481     	1E-2        	-
+37	-12101.0031 	-127.2811   	-11973.7220 	60.8481     	1E-2        	-
+38	-12101.0031 	-127.2811   	-11973.7220 	60.8481     	1E-2        	-
+39	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+40	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+41	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+42	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+43	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+44	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+45	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+46	-12073.6029 	-127.3643   	-11946.2386 	60.8481     	1E-2        	-
+47	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+48	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+49	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+50	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+51	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+52	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+53	-12072.8262 	-127.3711   	-11945.4550 	60.8481     	1E-2        	-
+54	-12025.9825 	-127.3711   	-11898.6114 	60.8481     	1E-2        	-
+55	-11935.6090 	-127.4141   	-11808.1949 	60.8481     	1E-2        	-
+56	-11935.6090 	-127.4141   	-11808.1949 	60.8481     	1E-2        	-
+57	-11935.6090 	-127.4141   	-11808.1949 	60.8481     	1E-2        	-
+58	-11935.6090 	-127.4141   	-11808.1949 	60.8481     	1E-2        	-
+59	-11760.9485 	-129.7339   	-11631.2146 	60.8481     	1E-2        	-
+60	-11760.9485 	-129.7339   	-11631.2146 	60.8481     	1E-2        	-
+61	-11706.6763 	-129.8047   	-11576.8716 	60.8481     	1E-2        	-
+62	-11701.0299 	-129.8414   	-11571.1885 	60.8481     	1E-2        	-
+63	-11701.0299 	-129.8414   	-11571.1885 	60.8481     	1E-2        	-
+64	-11701.0299 	-129.8414   	-11571.1885 	60.8481     	1E-2        	-
+65	-11701.0299 	-129.8414   	-11571.1885 	60.8481     	1E-2        	-
+66	-11683.6677 	-129.8414   	-11553.8262 	60.8481     	1E-2        	-
+67	-11683.6677 	-129.8414   	-11553.8262 	60.8481     	1E-2        	-
+68	-11683.6677 	-129.8414   	-11553.8262 	60.8481     	1E-2        	-
+69	-11625.6641 	-129.8414   	-11495.8227 	60.8481     	1E-2        	-
+70	-11171.7797 	-129.8414   	-11041.9383 	60.8481     	1E-2        	-
+71	-11173.7125 	-129.7888   	-11043.9237 	60.8481     	1E-2        	-
+72	-11164.7659 	-129.7888   	-11034.9771 	60.8481     	1E-2        	-
+73	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+74	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+75	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+76	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+77	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+78	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+79	-11121.0022 	-129.8973   	-10991.1049 	60.8481     	1E-2        	-
+80	-10664.1215 	-132.3734   	-10531.7481 	60.8481     	1E-2        	-
+81	-10464.3446 	-132.3734   	-10331.9712 	60.8481     	1E-2        	-
+82	-10464.3446 	-132.3734   	-10331.9712 	60.8481     	1E-2        	-
+83	-10456.8312 	-132.4349   	-10324.3963 	60.8481     	1E-2        	-
+84	-10456.8312 	-132.4349   	-10324.3963 	60.8481     	1E-2        	-
+85	-10456.8312 	-132.4349   	-10324.3963 	60.8481     	1E-2        	-
+86	-10456.8312 	-132.4349   	-10324.3963 	60.8481     	1E-2        	-
+87	-10456.8312 	-132.4349   	-10324.3963 	60.8481     	1E-2        	-
+88	-10455.9341 	-132.3479   	-10323.5863 	60.8481     	1E-2        	-
+89	-10391.8002 	-132.4425   	-10259.3577 	60.8481     	1E-2        	-
+90	-10359.4386 	-132.5685   	-10226.8701 	60.8481     	1E-2        	-
+91	-10359.4386 	-132.5685   	-10226.8701 	60.8481     	1E-2        	-
+92	-10359.4386 	-132.5685   	-10226.8701 	60.8481     	1E-2        	-
+93	-10309.3785 	-132.5685   	-10176.8100 	60.8481     	1E-2        	-
+94	-10218.0596 	-133.8329   	-10084.2267 	60.8481     	1E-2        	-
+95	-10218.0596 	-133.8329   	-10084.2267 	60.8481     	1E-2        	-
+96	-10218.0596 	-133.8329   	-10084.2267 	60.8481     	1E-2        	-
+97	-10001.3765 	-134.7370   	-9866.6395  	60.8481     	1E-2        	-
+98	-10001.3765 	-134.7370   	-9866.6395  	60.8481     	1E-2        	-
+99	-10001.3765 	-134.7370   	-9866.6395  	60.8481     	1E-2        	-
+100	-9989.1023  	-135.3515   	-9853.7508  	60.8481     	1E-2        	-
+
+Operator analysis
+Operator                                          Tuning   Count      Time     Time/Op  Pr(accept) 
+scale(yule.birthRate)                             0.791   1          0        0.0      0.0         
+scale(siteModel.alpha)                            0.616   2          0        0.0      0.5         
+scale(clock.rate)                                 0.791   1          0        0.0      0.0         
+subtreeSlide(treeModel)                           2.213   17         0        0.0      0.2941      
+Narrow Exchange(treeModel)                                22         0        0.0      0.3636      
+Wide Exchange(treeModel)                                  6          0        0.0      0.5         
+wilsonBalding(treeModel)                                  5          16       3.2      0.4         
+scale(treeModel.rootHeight)                       0.664   4          0        0.0      0.25        
+uniform(nodeHeights(treeModel))                           38         5        0.13     0.4474      
+up:clock.rate down:nodeHeights(treeModel)         0.919   4          0        0.0      0.0         
+
+0.127 seconds
+
+WARNING: Likelihood component, branchRates, created but not used in the MCMC

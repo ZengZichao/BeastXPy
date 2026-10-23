@@ -1,0 +1,51 @@
+# BeastXPy example: random local clock (RLC) + HKY + G4, Yule prior.
+metadata:
+  analysis_name: rlc
+
+alignments:
+  - id: alignment1
+    file: primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: rlc
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+      rlc_indicators: 2
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "CrownCatarrhini"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0
+
+mcmc:
+  chain_length: 1000000
+
+loggers:
+  trace_log: {file_name: rlc.log, log_every: 1000}
+  tree_log: {file_name: rlc.trees, log_every: 1000}
+
+control:
+  beast_version: 1.10.4

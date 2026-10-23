@@ -1,0 +1,7 @@
+{
+  "arviz_version": "0.23.4",
+  "rank_rhat": 1.029308198810653,
+  "bulk_ess": 279.85746518357587,
+  "tail_ess": 723.8948757545861,
+  "bulk_ess_anticorrelated": 3000.0
+}

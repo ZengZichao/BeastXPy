@@ -1,0 +1,82 @@
+# BeastXPy reference-data case study: two HKY+G partitions, strict clock,
+# Yule prior, two fossil calibrations.
+# The alignment is the shipped reference/tutorial primates.fasta (898 bp,
+# 12 taxa). This is a workflow demonstration, not a biological inference.
+metadata:
+  analysis_name: primates_reference
+
+alignments:
+  - id: alignment1
+    file: ../primates.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    from: 1
+    to: 449
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+  - id: gene2
+    alignment_id: alignment1
+    from: 450
+    to: 898
+    site_model:
+      substitution_model:
+        type: hky
+        kappa: {value: 2.0, lower: 0.0, upper: 100.0, estimate: true}
+        frequencies: {mode: estimated}
+      gamma_categories: 4
+      gamma_shape: {value: 0.5, lower: 0.0, estimate: true}
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, estimate: true}
+
+calibrations:
+  - name: "Catarrhini"
+    taxa: [Homo_sapiens, Pan, Gorilla, Pongo, Hylobates, Macaca_fuscata, M_mulatta, M_fascicularis, M_sylvanus]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5, meanInRealSpace: true}
+      offset: 25.0
+    provenance:
+      source: fossil
+      calibration_type: soft
+      original_age_min: 25.0
+      original_age_max: 30.0
+  - name: "Homininae"
+    taxa: [Homo_sapiens, Pan, Gorilla]
+    monophyletic: true
+    distribution:
+      type: lognormal
+      parameters: {mean: 1.0, stdev: 0.5, meanInRealSpace: true}
+      offset: 7.0
+    provenance:
+      source: literature
+      calibration_type: soft
+      original_age_min: 6.0
+      original_age_max: 8.0
+
+mcmc:
+  chain_length: 2000000
+
+loggers:
+  trace_log: {file_name: primates_reference.log, log_every: 1000}
+  tree_log: {file_name: primates_reference.trees, log_every: 1000}
+
+control:
+  beast_version: 10.5.0
+  initial_tree: coalescent

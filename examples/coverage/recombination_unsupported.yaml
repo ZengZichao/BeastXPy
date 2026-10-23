@@ -1,0 +1,58 @@
+# BeastXPy coverage fixture C06a: recombination (ancestral recombination graph).
+#
+# The bundled 5-taxon / 66-site nucleotide alignment is cut by the plugin into
+# `analysis.partitions` contiguous blocks.  Each block gets its own HKY site
+# model and <argTreeLikelihood>; all blocks share one
+# <argTreeModel partitionType="recombination">.  Breakpoint positions are
+# moved by <argPartitionOperator> under a <poissonPartitionLikelihood> prior
+# (mean = analysis.breakpoint_mean; the default equals the block count).
+#
+# NOTE: this fixture reproduces the released examples/Recombination layout.
+# BEAST 1.10.4 and BEAST X 10.5.0 both reject <argTreeLikelihood> at
+# instantiation because the released <siteModel> parser now builds a
+# GammaSiteRateModel instead of the legacy dr.oldevomodel SiteModel that the
+# ARG likelihood requires; the shipped official example fails identically.
+metadata:
+  analysis_name: cov_recombination
+  author: BeastXPy coverage fixtures
+
+alignments:
+  - id: nuc
+    file: nuc.fasta
+    data_type: nucleotide
+
+partitions:
+  - id: gene1
+    alignment_id: nuc
+    clock_model:
+      type: strict
+      clock_rate: {value: 1.0, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+mcmc:
+  chain_length: 20000
+
+loggers:
+  trace_log: {file_name: cov_recombination.log, log_every: 1000}
+  tree_log: {file_name: cov_recombination.trees, log_every: 1000}
+  screen_log: {log_every: 2000}
+
+output:
+  file: cov_recombination.xml
+
+control:
+  beast_version: 1.10.4
+  seed: 20240605
+
+analysis:
+  type: recombination
+  # Number of contiguous alignment blocks linked by the ARG (>= 2).
+  partitions: 3
+  # Initial/prior HKY transition/transversion ratio for every block.
+  kappa: 2.0
+  estimate_kappa: true
+  # Poisson mean of the number of ARG breakpoints (defaults to `partitions`).
+  breakpoint_mean: 3.0

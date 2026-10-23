@@ -1,0 +1,39 @@
+# C07/C09: two-component amino-acid mixture (BEAST X 10.5.0 only).
+metadata:
+  analysis_name: coverage_aa_mixture
+
+alignments:
+  - id: alignment1
+    file: aa.fasta
+    data_type: amino-acid
+
+partitions:
+  - id: gene1
+    alignment_id: alignment1
+    site_model:
+      substitution_model:
+        type: wag
+    clock_model:
+      type: strict
+      clock_rate: {value: 0.01, lower: 0.0, upper: 100.0, estimate: true}
+
+tree_prior:
+  type: yule
+  birth_rate: {value: 1.0, lower: 0.0, upper: 1000.0, estimate: true}
+
+analysis:
+  type: aa_mixture
+  beast_version: "10.5.0"
+  components: [wag, jtt]
+  weight: {value: 0.5, lower: 0.0, upper: 1.0}
+
+mcmc:
+  chain_length: 200000
+
+loggers:
+  trace_log: {file_name: coverage_aa_mixture.log, log_every: 1000}
+  tree_log: {file_name: coverage_aa_mixture.trees, log_every: 1000}
+  screen_log: {log_every: 10000}
+
+control:
+  beast_version: 10.5.0
