@@ -1,5 +1,11 @@
 # BeastXPy
 
+[![CI](https://github.com/ZengZichao/BeastXPy/actions/workflows/ci.yml/badge.svg)](https://github.com/ZengZichao/BeastXPy/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/beastxpy)](https://pypi.org/project/beastxpy/)
+[![Python](https://img.shields.io/pypi/pyversions/beastxpy)](https://pypi.org/project/beastxpy/)
+[![License](https://img.shields.io/badge/license-MIT_%2B_LGPL--2.1-blue)](./LICENSE)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--6553--970X-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-6553-970X)
+
 BeastXPy generates, validates and diagnoses **BEAST 1** divergence-time analyses. It turns a strict YAML description into a BEAST XML document, checks that document against the packaged official BEAST 1.10.4 and BEAST X 10.5.0 jars (Gate 3; the evidence each mode proves is described under [Verification](#verification)), runs the seed matrix, and reports what the MCMC output actually looks like.
 
 Version 0.1.0. Python 3.10+.
@@ -7,11 +13,11 @@ Version 0.1.0. Python 3.10+.
 ## Install
 
 ```
-python -m pip install .
+python -m pip install beastxpy
 beastxpy --version
 ```
 
-Both BEAST jars ship inside the package, so Gate 3 works without a separate BEAST installation. A JDK is needed for validation and runs (`JAVA_HOME`); native BEAGLE is needed for a real likelihood (`BEASTX_BEAGLE_1_10_4_LIB`, `BEASTX_BEAGLE_10_5_0_LIB`). Step-by-step setup: [docs/en/installation.md](docs/en/installation.md).
+Both BEAST jars ship inside the package, so Gate 3 works without a separate BEAST installation. A JDK is needed for validation and runs (`JAVA_HOME`); native BEAGLE is needed for a real likelihood (`BEASTX_BEAGLE_1_10_4_LIB`, `BEASTX_BEAGLE_10_5_0_LIB`). To work from a source checkout instead, run `python -m pip install .` there. Step-by-step setup: [docs/en/installation.md](docs/en/installation.md).
 
 ## The six-command workflow
 

@@ -1,5 +1,11 @@
 # BeastXPy
 
+[![CI](https://github.com/ZengZichao/BeastXPy/actions/workflows/ci.yml/badge.svg)](https://github.com/ZengZichao/BeastXPy/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/beastxpy)](https://pypi.org/project/beastxpy/)
+[![Python](https://img.shields.io/pypi/pyversions/beastxpy)](https://pypi.org/project/beastxpy/)
+[![License](https://img.shields.io/badge/license-MIT_%2B_LGPL--2.1-blue)](./LICENSE)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0001--6553--970X-a6ce39?logo=orcid&logoColor=white)](https://orcid.org/0000-0001-6553-970X)
+
 BeastXPy 用于生成、校验并诊断 **BEAST 1** 分歧时间分析。它把一份严格的 YAML 描述转成 BEAST XML，用随包分发的官方 BEAST 1.10.4 与 BEAST X 10.5.0 jar 校验该文档（Gate 3；各模式分别证明了什么见“验证”一节），运行种子矩阵，并如实报告 MCMC 输出呈现出的样子。
 
 版本 0.1.0。需要 Python 3.10+。
@@ -7,11 +13,11 @@ BeastXPy 用于生成、校验并诊断 **BEAST 1** 分歧时间分析。它把�
 ## 安装
 
 ```
-python -m pip install .
+python -m pip install beastxpy
 beastxpy --version
 ```
 
-两个 BEAST jar 随包提供，因此 Gate 3 无需另外安装 BEAST。校验与运行需要 JDK（`JAVA_HOME`）；真实似然需要原生 BEAGLE（`BEASTX_BEAGLE_1_10_4_LIB`、`BEASTX_BEAGLE_10_5_0_LIB`）。分步安装说明见 [docs/zh/installation.md](docs/zh/installation.md)。
+两个 BEAST jar 随包提供，因此 Gate 3 无需另外安装 BEAST。校验与运行需要 JDK（`JAVA_HOME`）；真实似然需要原生 BEAGLE（`BEASTX_BEAGLE_1_10_4_LIB`、`BEASTX_BEAGLE_10_5_0_LIB`）。若从源码检出工作，改在该目录运行 `python -m pip install .`。分步安装说明见 [docs/zh/installation.md](docs/zh/installation.md)。
 
 ## 六命令工作流
 
