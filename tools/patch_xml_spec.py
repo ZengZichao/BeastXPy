@@ -244,15 +244,19 @@ def sha256_lines(lines: Iterable[str]) -> str:
 
 
 #: Official release artifacts and their upstream URLs (same hashes as
-#: beastxpy/tools/build_jars.py).  A matching jar is labelled official-release.
+#: beastxpy/tools/build_jars.py).  ``sha256`` is the distribution-archive
+#: digest, ``jar_sha256`` the digest of ``lib/beast.jar`` inside it; a jar
+#: matching ``jar_sha256`` is labelled official-release.
 OFFICIAL_RELEASES = {
     "1.10.4": {
         "url": "https://github.com/beast-dev/beast-mcmc/releases/download/v1.10.4/BEAST.v1.10.4.zip",
-        "sha256": "0f6eb4fdf7832c511aa8a1a99c233b88bec844698ae9322dabf8e74b156ae3b0",
+        "sha256": "05bb929433ad157ed22258908c08c0c04af7a84e1fee0820e03f9f0819a76bfa",
+        "jar_sha256": "0f6eb4fdf7832c511aa8a1a99c233b88bec844698ae9322dabf8e74b156ae3b0",
     },
     "10.5.0": {
         "url": "https://github.com/beast-dev/beast-mcmc/releases/download/v10.5.0/BEAST.X.v10.5.0.zip",
-        "sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
+        "sha256": "d46c99e84d915d736520b2fe6bc43f01f3043f75d1ce7e4b6bcf9a1d6b68564a",
+        "jar_sha256": "df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d",
     },
 }
 
@@ -594,7 +598,7 @@ def build_spec(
                     parser_source = "official-jar"
                     jar_digest = sha256_file(jar_path)
                     official = OFFICIAL_RELEASES.get(version, {})
-                    if official.get("sha256") == jar_digest:
+                    if official.get("jar_sha256") == jar_digest:
                         jar_source = "official-release"
                         jar_url = official.get("url")
                     else:

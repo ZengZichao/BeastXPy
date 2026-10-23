@@ -253,6 +253,14 @@ jobs:
       - name: Install BEAGLE build tools
         run: sudo apt-get update && sudo apt-get install -y libtool
 
+      # official_validate refuses the packaged project jar: the beagle matrix
+      # must run against a verified official BEAST installation.
+      - name: Fetch the official BEAST distribution
+        run: |
+          python tools/fetch_beast.py --version "${{ matrix.beast }}" \
+            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV" \
+            --verify-bundled-jar
+
       - name: Build paired BEAGLE and run the beagle matrix
         run: |
           python tools/run_beagle_evidence.py \
@@ -298,9 +306,11 @@ jobs:
       - name: Fetch both official BEAST distributions
         run: |
           python tools/fetch_beast.py --version 1.10.4 \
-            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV"
+            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV" \
+            --verify-bundled-jar
           python tools/fetch_beast.py --version 10.5.0 \
-            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV"
+            --dest "$RUNNER_TEMP/beast" --github-env "$GITHUB_ENV" \
+            --verify-bundled-jar
 
       - name: Verify xml_spec.json is byte-identical to a fresh evidence build
         run: python tools/patch_xml_spec.py --check

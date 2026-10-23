@@ -1,0 +1,6 @@
+# Recorded BEAST chain output and test fixtures are hashed byte-for-byte by
+# the test suite, so git must never normalise their line endings on checkout
+# (a CRLF conversion on Windows would break every sha256 golden check).
+tests/golden/** -text
+tests/fixtures/** -text
+examples/empirical/results/** -text

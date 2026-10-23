@@ -20,6 +20,7 @@ from beastxpy.model import ModelAssembler
 from beastxpy.validator import (
     GATE3_ENVIRONMENT_MISSING,
     GATE3_NOT_RUN,
+    _native_library_markers,
     find_java_runtime,
     lookup_beagle_details,
     lookup_jar_details,
@@ -128,14 +129,9 @@ def test_native_beagle_discovery_requires_a_real_library(tmp_path, monkeypatch):
     monkeypatch.setenv("BEASTX_BEAGLE_LIB", str(empty))
     assert lookup_beagle_details("1.10.4") is None
 
-    names = (
-        ["hmsbeagle64.dll", "hmsbeagle32.dll"]
-        if os.name == "nt"
-        else ["libhmsbeagle-jni.so", "libhmsbeagle.so"]
-    )
     native = tmp_path / "native"
     native.mkdir()
-    (native / names[0]).write_bytes(b"not a real library")
+    (native / _native_library_markers()[0]).write_bytes(b"not a real library")
     monkeypatch.setenv("BEASTX_BEAGLE_LIB", str(native))
     details = lookup_beagle_details("1.10.4")
     assert details is not None
