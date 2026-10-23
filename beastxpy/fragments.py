@@ -417,7 +417,7 @@ class _Document:
 
     def __init__(self, text: str) -> None:
         self.text = text
-        self.root = ET.fromstring(text)
+        self.root = defused_fromstring(text)
         self.elements: List[ET.Element] = list(self.root.iter())
         self.spans: List[_Span] = _scan_spans(text)
         if len(self.spans) != len(self.elements):

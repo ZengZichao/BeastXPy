@@ -37,7 +37,7 @@ def _generate(path: Path, version: str) -> str:
 
 
 def _elements(xml: str) -> set:
-    import xml.etree.ElementTree as ET
+    from defusedxml import ElementTree as ET
 
     return {element.tag for element in ET.fromstring(xml).iter()}
 

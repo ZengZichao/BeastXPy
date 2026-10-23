@@ -1024,14 +1024,9 @@ def _local_name(tag: str) -> str:
 
 
 def _parse_xml_with_parents(xml_str: str):
-    try:
-        from defusedxml import ElementTree as DET
+    from defusedxml import ElementTree as DET
 
-        root = DET.fromstring(xml_str)
-    except ImportError:
-        import xml.etree.ElementTree as ET
-
-        root = ET.fromstring(xml_str)
+    root = DET.fromstring(xml_str)
     parents = {child: parent for parent in root.iter() for child in parent}
     return root, parents
 

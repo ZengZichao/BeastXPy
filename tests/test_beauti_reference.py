@@ -15,6 +15,8 @@ from __future__ import annotations
 
 import math
 import xml.etree.ElementTree as ET
+
+from defusedxml import ElementTree as DT
 from pathlib import Path
 
 import pytest
@@ -32,11 +34,11 @@ def _generate(config_name: str) -> ET.Element:
     config = ConfigParser().parse(str(CONFIG_DIR / config_name))
     config.control.beast_version = "1.10.4"
     xml = write_xml(ModelAssembler(config).assemble(), beast_version="1.10.4")
-    return ET.fromstring(xml)
+    return DT.fromstring(xml)
 
 
 def _reference(name: str) -> ET.Element:
-    return ET.parse(REFERENCE_DIR / name).getroot()
+    return DT.parse(REFERENCE_DIR / name).getroot()
 
 
 def _prior_for(root: ET.Element, idref: str) -> ET.Element:
@@ -90,7 +92,7 @@ class TestReferences:
     )
     def test_reference_is_well_formed_and_documents_deviations(self, name):
         path = REFERENCE_DIR / name
-        ET.parse(path)  # must be well formed
+        DT.parse(path)  # must be well formed
         text = path.read_text(encoding="utf-8")
         assert "BEAUti-convention reference" in text
         assert "Documented deviations" in text

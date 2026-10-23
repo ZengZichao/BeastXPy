@@ -28,9 +28,8 @@ def make_primates() -> None:
     if not REF_NEX.exists():
         raise FileNotFoundError(f"Reference NEXUS not found: {REF_NEX}")
     recs = list(SeqIO.parse(str(REF_NEX), "nexus"))
-    with open(EXAMPLES / "primates.fasta", "w", encoding="utf-8") as handle:
-        for rec in recs:
-            handle.write(f">{rec.id}\n{str(rec.seq).upper()}\n")
+    fasta = "".join(f">{rec.id}\n{str(rec.seq).upper()}\n" for rec in recs)
+    (EXAMPLES / "primates.fasta").write_text(fasta, encoding="utf-8")
     print(f"primates.fasta: {len(recs)} taxa, {len(recs[0])} sites")
 
 
@@ -65,11 +64,12 @@ def make_aminoacid() -> None:
             pos = rng2.randrange(234)
             chars[pos] = rng2.choice([c for c in aa if c != chars[pos]])
         seqs[name] = "".join(chars)
-    with open(EXAMPLES / "aminoacid.fasta", "w", encoding="utf-8") as handle:
-        for name, seq in seqs.items():
-            if len(seq) != 234:
-                raise ValueError(f"{name}: length {len(seq)} != 234")
-            handle.write(f">{name}\n{seq}\n")
+    for name, seq in seqs.items():
+        if len(seq) != 234:
+            raise ValueError(f"{name}: length {len(seq)} != 234")
+    (EXAMPLES / "aminoacid.fasta").write_text(
+        "".join(f">{name}\n{seq}\n" for name, seq in seqs.items()), encoding="utf-8"
+    )
     print(f"aminoacid.fasta: {len(seqs)} taxa, 234 sites")
 
 

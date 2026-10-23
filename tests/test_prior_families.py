@@ -19,6 +19,8 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+from defusedxml import ElementTree as DT
+
 import pytest
 import yaml
 
@@ -113,7 +115,7 @@ def _find_parameter(root: ET.Element, param_id: str) -> ET.Element:
 def test_root_calibration_single_statistic_prior_and_constraint(tmp_path, version):
     config_path = _write_yaml(tmp_path, "rootcal.yaml", _root_calibration_payload())
     xml, _ = _generate(config_path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
 
     stats = [node for node in root.iter("tmrcaStatistic") if node.get("id") == "tmrca(RootCal)"]
     assert len(stats) == 1
@@ -182,7 +184,7 @@ def test_pre_burnin_reaches_xml_and_beast(tmp_path, version):
     data["mcmc"] = {"chain_length": 1000000, "pre_burnin": 100}
     config_path = _write_yaml(tmp_path, "preburnin.yaml", data)
     xml, _ = _generate(config_path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     mcmc = root.find("mcmc")
     assert mcmc is not None
     assert mcmc.get("preBurnin") == "100"
@@ -198,7 +200,7 @@ def test_operator_weights_change_named_operator(tmp_path):
     }
     config_path = _write_yaml(tmp_path, "weights.yaml", data)
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     operators = list(root.find("operators"))
     kappa_ops = [
         op for op in operators if any(ref.get("idref") == "kappa" for ref in op.iter("parameter"))
@@ -270,7 +272,7 @@ def test_skyline_dimensions_follow_config(tmp_path):
     }
     config_path = _write_yaml(tmp_path, "skyline.yaml", data)
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     pops = _find_parameter(root, "skyline.popSize")
     groups = _find_parameter(root, "skyline.groupSize")
     assert pops.get("dimension") == "5"
@@ -286,7 +288,7 @@ def test_ebsp_dimensions_follow_config(tmp_path):
     }
     config_path = _write_yaml(tmp_path, "ebsp.yaml", data)
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     pops = _find_parameter(root, "demographic.popSize")
     indicators = _find_parameter(root, "demographic.indicators")
     assert pops.get("dimension") == "6"
@@ -320,7 +322,7 @@ def test_distribution_offsets_supported_and_rejected(tmp_path):
     ]
     config_path = _write_yaml(tmp_path, "gamma_offset.yaml", data)
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     priors = [node for node in root.iter("gammaPrior")]
     assert len(priors) == 1 and priors[0].get("offset") == "5"
 
@@ -361,7 +363,7 @@ def test_per_partition_explicit_parameter_priors_resolve(tmp_path):
     ]
     config_path = _write_yaml(tmp_path, "partition_priors.yaml", data)
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     kappa_priors = [
         node
         for node in root.iter("uniformPrior")
@@ -401,7 +403,7 @@ def test_no_one_on_x_for_integer_category_or_tree_parameters(tmp_path):
         "skyline_pop_sizes": [1.0, 2.0, 3.0, 4.0, 5.0],
     }
     xml, _ = _generate(_write_yaml(tmp_path, "skyline_oneonx.yaml", skyline), "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     targets = {
         ref.get("idref") for prior in root.iter("oneOnXPrior") for ref in prior.iter("parameter")
     }
@@ -412,7 +414,7 @@ def test_no_one_on_x_for_integer_category_or_tree_parameters(tmp_path):
     multi = yaml.safe_load((EXAMPLES / "config_multi_partition.yaml").read_text(encoding="utf-8"))
     multi["alignments"][0]["file"] = str(EXAMPLES / "primates.fasta")
     xml, _ = _generate(_write_yaml(tmp_path, "multi_oneonx.yaml", multi), "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     targets = {
         ref.get("idref") for prior in root.iter("oneOnXPrior") for ref in prior.iter("parameter")
     }
@@ -423,7 +425,7 @@ def test_no_one_on_x_for_integer_category_or_tree_parameters(tmp_path):
 def test_ucln_categories_start_nonzero_and_use_swap(tmp_path):
     config_path = EXAMPLES / "config_multi_partition.yaml"
     xml, config = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     categories = _find_parameter(root, "branchRates.categories")
     values = categories.get("value").split()
     assert values and any(value != "0" for value in values)
@@ -455,7 +457,7 @@ def test_log_every_zero_is_rejected(tmp_path, section):
 def test_rlc_tree_log_has_rate_trait_and_consistent_columns():
     config_path = EXAMPLES / "config_rlc.yaml"
     xml, _ = _generate(config_path, "1.10.4")
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     tree_log = root.find(".//logTree")
     assert tree_log is not None
     rate_models = [
@@ -501,7 +503,7 @@ def test_coalescent_logistic_and_expansion_emit_beast_schema(tmp_path, version, 
     data["tree_prior"] = params
     path = _write_yaml(tmp_path, f"{prior}.yaml", data)
     xml, _ = _generate(path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     model = root.find(f".//{ 'logisticGrowth' if prior == 'coalescent_logistic' else 'expansion'}")
     assert model is not None
     child_tags = [child.tag for child in model]
@@ -544,7 +546,7 @@ def test_unbounded_exponential_growth_uses_random_walk(tmp_path, version):
     }
     path = _write_yaml(tmp_path, "exp_growth_unbounded.yaml", data)
     xml, _ = _generate(path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     operator = [
         op
         for op in root.iter("randomWalkOperator")
@@ -585,7 +587,7 @@ def test_separate_clocks_all_log_refs_resolve(tmp_path, version):
     )
     path = _write_yaml(tmp_path, "separate_clocks.yaml", data)
     xml, _ = _generate(path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     declared = {node.get("id") for node in root.iter() if node.get("id")}
     refs = {node.get("idref") for node in root.iter() if node.get("idref")}
     assert refs <= declared
@@ -649,7 +651,7 @@ def test_beta_calibration_offset_uses_coalescent_simulator(tmp_path, version):
     assert re.search(r'<betaPrior shape="2(?:\.0)?" shapeB="2(?:\.0)?" offset="20(?:\.0)?">', xml)
     _assert_beast_ok(tmp_path, xml, version, "beta_cal")
 
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     starts = [node for node in root.iter() if node.get("id") == "startingTree"]
     assert len(starts) == 1
     assert float(starts[0].get("height")) > 20.0
@@ -667,14 +669,14 @@ def test_auto_optimize_false_reaches_xml_and_beast(tmp_path, version):
     data["mcmc"] = {"chain_length": 1000000, "auto_optimize": False}
     path = _write_yaml(tmp_path, "auto_off.yaml", data)
     xml, _ = _generate(path, version)
-    root = ET.fromstring(xml)
+    root = DT.fromstring(xml)
     assert root.find("mcmc").get("autoOptimize") == "false"
     _assert_beast_ok(tmp_path, xml, version, "auto_off")
 
     data["mcmc"]["auto_optimize"] = True
     path = _write_yaml(tmp_path, "auto_on.yaml", data)
     xml, _ = _generate(path, version)
-    assert ET.fromstring(xml).find("mcmc").get("autoOptimize") == "true"
+    assert DT.fromstring(xml).find("mcmc").get("autoOptimize") == "true"
 
 
 def test_ambiguous_operator_tag_error_lists_operator_targets(tmp_path):

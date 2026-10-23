@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import os
 import xml.etree.ElementTree as ET
+
+from defusedxml import ElementTree as DT
 from functools import lru_cache
 from pathlib import Path
 
@@ -67,7 +69,7 @@ def _canonical(xml_text: str) -> str:
     normalized there.  Whitespace-only formatting is then discarded and the
     tree is re-indented, so a golden diff shows semantic changes only.
     """
-    root = ET.fromstring(normalize_xml_for_compare(xml_text))
+    root = DT.fromstring(normalize_xml_for_compare(xml_text))
     _strip_formatting(root)
     ET.indent(root, space="  ")
     return ET.tostring(root, encoding="unicode") + "\n"
@@ -81,7 +83,7 @@ def _normalized(config_name: str, version: str) -> str:
     config.control.beast_version = version
     tree = ModelAssembler(config).assemble()
     xml = write_xml(tree, beast_version=version)
-    ET.fromstring(xml)  # must be well formed before normalization
+    DT.fromstring(xml)  # must be well formed before normalization
     return _canonical(xml)
 
 
@@ -139,7 +141,7 @@ class TestGoldenGeneration:
         for name in sorted(expected):
             text = (directory / name).read_text(encoding="utf-8")
             assert _canonical(text) == text, f"{name} is not canonical"
-            ET.fromstring(text)
+            DT.fromstring(text)
 
     def test_normalized_output(self, config_basic):
         """Normalized XML should be stable across repeated generation."""
