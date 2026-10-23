@@ -5,6 +5,7 @@ Produces ``examples/primates.fasta`` (12 taxa x 898 bp, converted from the
 reference BEAST 1.10.4 Primates NEXUS) and ``examples/aminoacid.fasta``
 (10 taxa x 234 aa synthetic mitochondrial protein data).
 """
+
 from __future__ import annotations
 
 from pathlib import Path

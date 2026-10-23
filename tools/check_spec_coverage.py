@@ -4,6 +4,7 @@
 Usage: python tools/check_spec_coverage.py [config ...]
 Runs over all example configs by default.
 """
+
 from __future__ import annotations
 
 import json

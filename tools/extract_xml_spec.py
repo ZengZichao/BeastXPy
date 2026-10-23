@@ -21,7 +21,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from patch_xml_spec import main as patch_main  # noqa: E402
 
-
 if __name__ == "__main__":
     print(
         "extract_xml_spec.py is deprecated; using tools/patch_xml_spec.py "

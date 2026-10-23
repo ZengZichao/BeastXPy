@@ -45,6 +45,13 @@ work/
 !tests/fixtures/**/*.trees
 !tests/fixtures/**/*.state
 
+# The golden-regression baselines are checked-in inputs for the same reason:
+# their recorded trace logs must ship or every CI cell loses the file.
+!tests/golden/**
+!tests/golden/**/*.log
+!tests/golden/**/*.trees
+!tests/golden/**/*.state
+
 # The reference-data case study's recorded artefacts are deliverables, not
 # disposable run output: keep the config, XML, lock, assessment and reports.
 !examples/empirical/results/

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Verify every example config parses and passes gates 0-2 (no BEAST gate 3)."""
+
 from __future__ import annotations
 
 import sys

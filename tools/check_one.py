@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Generate one config and report gate-1 findings (for debugging)."""
+
 from __future__ import annotations
 
 import sys

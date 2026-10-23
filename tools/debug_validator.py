@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Debug why treeLikelihood children aren't found by the validator."""
+
 from __future__ import annotations
 
 import sys

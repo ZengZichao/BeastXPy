@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Dump the generated XML for a config to stdout (skips gate 1 validation)."""
+
 from __future__ import annotations
 
 import sys
