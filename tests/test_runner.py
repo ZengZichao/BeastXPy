@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 
+import os
+
 import pytest
 
 from beastxpy.runner import BeastRunner, RunSummary
@@ -180,11 +182,12 @@ def test_java_source_uses_resolved_executable_identity(monkeypatch, tmp_path):
 
     jdk = tmp_path / "jdk-17"
     (jdk / "bin").mkdir(parents=True)
-    java = jdk / "bin" / "java"
+    executable = "java.exe" if os.name == "nt" else "java"
+    java = jdk / "bin" / executable
     java.write_text("#!/bin/sh\n", encoding="utf-8")
     other = tmp_path / "other-java"
     other.write_text("#!/bin/sh\n", encoding="utf-8")
-    unrelated = tmp_path / "jdk-17-other" / "bin" / "java"
+    unrelated = tmp_path / "jdk-17-other" / "bin" / executable
     unrelated.parent.mkdir(parents=True)
     unrelated.write_text("#!/bin/sh\n", encoding="utf-8")
 
