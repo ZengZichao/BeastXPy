@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "A Python framework for reproducible BEAST 1 divergence-time estimation with automated model specification, validation and diagnostics (LGPL-2.1 applies only to the bundled BEAST jars)"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT AND LGPL-2.1-only" }
+license = "MIT AND LGPL-2.1-only"
+license-files = ["LICENSE", "NOTICE"]
 authors = [{ name = "ZengZichao", email = "zengzichao@sjtu.edu.cn" }]
 keywords = ["phylogenetics", "BEAST", "BEAST 1", "MCMC", "divergence time", "reproducibility"]
 classifiers = [
@@ -44,7 +45,6 @@ beastxpy = "beastxpy.main:main"
 
 [tool.setuptools]
 include-package-data = false
-license-files = ["LICENSE", "NOTICE"]
 
 [tool.setuptools.packages.find]
 include = ["beastxpy*"]

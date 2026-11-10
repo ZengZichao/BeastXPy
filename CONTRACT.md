@@ -2,6 +2,8 @@
 
 This document is the public statement of the interfaces and honesty rules that the code and tests enforce. It is referenced from source comments as `CONTRACT.md §<section>`. Section numbers are stable; prose may be clarified without renumbering.
 
+Numbering note: the public references keep their historical numbers. §3, §4 and §6 are not present in this revision; §5 F1 and §5 F2 are parallel sub-clauses of §5.
+
 ## §1 Scope
 
 BeastXPy is a workflow layer for BEAST 1.10.4 and BEAST X 10.5.0. It does not replace BEAST, does not assert that a model is biologically adequate, and does not declare MCMC convergence. Every number it reports is either computed from the named input artefact or reported as `not_computable` with a reason.
@@ -74,7 +76,7 @@ Exit codes: 0 = no findings or info only, 1 = warnings, 2 = errors.
 beastxpy assess <workdir> [--trace PATH ...] [--trees PATH ...]
                 [--burnin FRACTION|auto] [--ess THRESHOLD]
                 [--psrf THRESHOLD] [--strict] [--json PATH]
-                [--html PATH] [--no-plots] [-q]
+                [--html PATH] [-q]
 ```
 
 Exit codes:

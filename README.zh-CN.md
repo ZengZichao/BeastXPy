@@ -76,7 +76,7 @@ CI 在 3 个操作系统 × 2 个 Python 版本 × 2 个 BEAST 版本上运行�
 
 ## 数据可用性
 
-`examples/` 下的比对是用于跑通工作流的短参考序列，本仓库没有产生新的实证数据；它们不用于生物学推断。论文所用的验证记录见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
+`examples/` 下的比对是用于跑通工作流的短参考序列，本仓库没有产生新的实证数据；它们不用于生物学推断。论文所用的验证结果见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
 
 ## 作者
 

@@ -22,7 +22,7 @@ def declared_version() -> str:
     pyproject = (ROOT / "pyproject.toml").read_text(encoding="utf-8")
     match = re.search(r'^version = "(\d+\.\d+\.\d+)"', pyproject, re.M)
     if not match:
-        raise SystemExit("pyproject.toml does not declare version = \"X.Y.Z\"")
+        raise SystemExit('pyproject.toml does not declare version = "X.Y.Z"')
     return match.group(1)
 
 

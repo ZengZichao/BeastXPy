@@ -24,14 +24,21 @@ Gate-3 tests fail rather than skip when no JDK is found; this is deliberate (a v
 
 ## Quality gates
 
-The CI runs exactly these commands:
+The CI quality job runs these commands:
 
 ```
 python -m flake8 beastxpy tools
 python -m black --check --line-length 100 beastxpy tests tools
 python -m mypy beastxpy
-python -m pytest -q -m "not java" --cov=beastxpy --cov-fail-under=70
 ```
+
+The CI coverage job runs the full suite (including the Java-marked tests) with:
+
+```
+python -m pytest -q --cov=beastxpy --cov-fail-under=70
+```
+
+For a Java-free local run, use `python -m pytest -q -m "not java"`.
 
 Format with `python -m black --line-length 100 beastxpy tests tools` before opening a pull request. Do not add blanket `# type: ignore` or `# noqa` comments; fix the type or document why the suppression is unavoidable.
 

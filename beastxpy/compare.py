@@ -1164,7 +1164,10 @@ def verify_run_provenance(
         out.status = STATUS_FAILED
         out.reason = "BEAST produced no path-sampling log; the estimator never wrote samples"
         return out
-    assert ps_log is not None
+    if ps_log is None:  # pragma: no cover - record() above rejects this case
+        out.status = STATUS_FAILED
+        out.reason = "BEAST produced no path-sampling log; the estimator never wrote samples"
+        return out
     out.ps_log = str(ps_log)
 
     ps_mtime = ps_log.stat().st_mtime
@@ -1226,7 +1229,10 @@ def verify_run_provenance(
         out.status = STATUS_FAILED
         out.reason = "BEAST wrote no %s results file" % METHOD_LABELS[method]
         return out
-    assert results_file is not None
+    if results_file is None:  # pragma: no cover - record() above rejects this case
+        out.status = STATUS_FAILED
+        out.reason = "BEAST wrote no %s results file" % METHOD_LABELS[method]
+        return out
     out.results_file = str(results_file)
 
     results_mtime = results_file.stat().st_mtime

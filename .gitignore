@@ -45,6 +45,10 @@ work/
 !tests/fixtures/**/*.trees
 !tests/fixtures/**/*.state
 
+# The reference-diagnostics golden BEAST log is an input fixture, not run
+# output: keep it even though its extension matches the *.log rule above.
+!tests/golden/reference_diagnostics/tracer_input.log
+
 # The reference-data case study's recorded artefacts are deliverables, not
 # disposable run output: keep the config, XML, lock, assessment and reports.
 !examples/empirical/results/

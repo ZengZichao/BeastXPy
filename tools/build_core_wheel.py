@@ -63,8 +63,8 @@ def stage_tree(stage: Path = STAGE) -> Path:
         flags=re.M,
     )
     text = re.sub(
-        r'^license\s*=\s*\{\s*text\s*=\s*"MIT AND LGPL-2\.1-only"\s*\}',
-        'license = { text = "MIT" }',
+        r'^license\s*=\s*"MIT AND LGPL-2\.1-only"',
+        'license = "MIT"',
         text,
         count=1,
         flags=re.M,

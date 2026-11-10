@@ -26,6 +26,12 @@ thresholds were not crossed.
 | `results/report.html`, `results/report.json` | self-contained report and its machine-readable envelope |
 | `results/case_study_summary.json` | commands, exit codes, timings and the assessment summary |
 
+**Path note.** `results/config.yaml` is the exact configuration used for the
+recorded run, so its `file: ../primates.fasta` path is relative to
+`examples/empirical/`. Run it from that directory (or copy it there); running
+it from `results/` directly will fail Gate 0 because `../primates.fasta` then
+points to a nonexistent file.
+
 `results/` is produced by:
 
 ```

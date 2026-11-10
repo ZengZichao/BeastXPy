@@ -76,15 +76,23 @@ def main() -> int:
     )
     sub_file(
         ROOT / "pyproject.toml",
-        lambda s: re.sub(r'^version = "[^"]+"', f'version = "{args.new_version}"', s, count=1, flags=re.M),
+        lambda s: re.sub(
+            r'^version = "[^"]+"', f'version = "{args.new_version}"', s, count=1, flags=re.M
+        ),
     )
     sub_file(
         ROOT / "CITATION.cff",
         lambda s: re.sub(r"^version: .+$", f"version: {args.new_version}", s, count=1, flags=re.M),
-        lambda s: re.sub(r'^date-released: "[^"]*"$', f'date-released: "{args.date}"', s, count=1, flags=re.M),
+        lambda s: re.sub(
+            r'^date-released: "[^"]*"$', f'date-released: "{args.date}"', s, count=1, flags=re.M
+        ),
     )
 
-    doc_files = [ROOT / "README.md", ROOT / "README.zh-CN.md", ROOT / "tools" / "build_core_wheel.py"]
+    doc_files = [
+        ROOT / "README.md",
+        ROOT / "README.zh-CN.md",
+        ROOT / "tools" / "build_core_wheel.py",
+    ]
     doc_files += sorted((ROOT / "docs").glob("*/*.md"))
     for path in doc_files:
         text = path.read_text(encoding="utf-8")

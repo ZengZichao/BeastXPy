@@ -1580,9 +1580,10 @@ def _packaged_jar(version: str) -> Path:
 def jar_candidates(version: str, search_root: Optional[Path] = None) -> List[Tuple[Path, str]]:
     """Ordered ``(path, source)`` candidates for a BEAST jar.
 
-    Explicit environment overrides win over the packaged jar.  An official
-    installation found next to the checkout ranks above the packaged
-    source-build jar.
+    Explicit environment overrides win over the bundled jar.  An official
+    installation found next to the checkout ranks above the bundled fallback;
+    the shipped bundled jar is normally the unmodified official release and is
+    only a local rebuild if a maintainer replaced it.
     """
     tag = version.replace(".", "_")
     candidates: List[Tuple[Path, str]] = []
@@ -1615,8 +1616,10 @@ def jar_candidates(version: str, search_root: Optional[Path] = None) -> List[Tup
     for parent in (project.parent, project):
         for directory in _reference_install_dirs(version, parent):
             candidates.append((directory / "lib" / "beast.jar", "reference-install"))
-    # The bundled jar is a last resort: it is a project rebuild, not the
-    # official distribution.
+    # The bundled jar is the last resort.  Normally it is the unmodified
+    # official release; a local rebuild only appears here if a maintainer
+    # replaced it (the BEASTX_REF_DIR build/dist path above is the explicit
+    # local-build candidate).
     candidates.append((packaged, "packaged-fallback"))
     return candidates
 
@@ -1626,9 +1629,9 @@ def _reference_install_dirs(version: str, search_root: Path) -> List[Path]:
 
     The reference bundle uses several directory spellings (``BEASTv1.10.4``,
     ``BEAST.v1.10.4/BEAST v1.10.4``, ...), and Gate 3 must not silently fall
-    back to the packaged source-build jar just because one spelling was
-    hard-coded wrongly.  Each candidate is only accepted if it actually holds
-    ``lib/beast.jar`` (see :func:`jar_candidates`).
+    back to the bundled jar just because one spelling was hard-coded wrongly.
+    Each candidate is only accepted if it actually holds ``lib/beast.jar``
+    (see :func:`jar_candidates`).
     """
     directories: List[Path] = []
     reference = search_root / "BeastXPy-参考软件"

@@ -176,7 +176,7 @@ def probe_java() -> Optional[Dict[str, str]]:
         if discovered:
             candidates.append(str(discovered))
     except Exception:
-        pass
+        _LOGGER.debug("validator Java discovery failed", exc_info=True)
     candidates.extend(_java_candidates())
 
     seen = set()
@@ -243,15 +243,18 @@ def _jar_candidates(version: str) -> List[Tuple[str, str]]:
     tag = version.replace(".", "_")
     candidates: List[Tuple[str, str]] = []
 
-    # 1. Packaged jar (validator lookup, tolerant).
+    # 1. The validator's resolved candidate (environment override, reference
+    # install, or bundled fallback).  Preserve its source label: calling this
+    # "packaged" would misreport an official installation selected via
+    # BEAST_*_HOME/BEASTX_JAR in check-environment and compare reports.
     try:
-        from .validator import lookup_jar
+        from .validator import lookup_jar_details
 
-        packaged = lookup_jar(version)
-        if packaged:
-            candidates.append((str(packaged), "packaged"))
+        resolved = lookup_jar_details(version)
+        if resolved:
+            candidates.append((resolved["path"], resolved["source"]))
     except Exception:
-        pass
+        _LOGGER.debug("validator jar lookup failed for %s", version, exc_info=True)
 
     # 2. Version-specific environment variables.
     for env_key in (f"BEASTX_JAR_{tag}", f"BEAST_{tag}_JAR", "BEASTX_JAR"):
