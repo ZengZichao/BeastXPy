@@ -67,7 +67,7 @@ The output is `2 ln BF`, following the usual convention (Kass & Raftery 1995); t
 Three warnings:
 
 * A Bayes factor compares the models you gave it. It says nothing about a model you did not try.
-* Short chains, few path steps or poor mixing make the estimate unstable. The standard error is reported so you can see this; the interpretation string states whether `|log BF|` exceeds `2 * SE`. A log BF of 2 with a standard error of 3 is printed as "not distinguishable from zero" and is not evidence at all.
+* Short chains, few path steps or poor mixing make the estimate unstable. The standard error is reported so you can see this; the interpretation string states whether `|log BF|` exceeds `2 * SE`. A log BF of 2 with a standard error of 3 is printed as `not distinguishable from zero` and is not evidence at all.
 * The reported SE is a delta-method lower bound: path steps are treated as independent and residual dependence between them is not modelled. The true Monte-Carlo error can be larger.
 
 ## Outputs

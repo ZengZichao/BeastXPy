@@ -44,7 +44,7 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 
 **Example**
 
-Run `beastxpy run --seeds 1,2 --workdir runs/demo` first; two seeds are needed for PSRF.
+Run `beastxpy run --seeds 1,2 --workdir runs/demo` first; at least two seeds are needed for PSRF.
 
 ```
 beastxpy assess runs/demo --json runs/demo/assessment.json
@@ -631,7 +631,7 @@ A field-by-field comparison on stdout; --run re-executes BEAST.
 
 ### `beastxpy run`
 
-Run BEAST over a seed matrix; needs native BEAGLE. `--timeout` defaults to 86400 seconds (24 h) per seed; raise it or run in the background for long divergence-time analyses. A discovered BEAGLE directory is exposed to the BEAST process automatically (`-Djava.library.path` plus the loader path). `--java-only` maps to BEAST's `-java` flag; because BEAST's bundled pure-Java BEAGLE never implemented the site-likelihood entry point, it is refused up front (exit 1) for any document containing `<treeLikelihood>` - which is every document BeastXPy generates.
+Run BEAST over a seed matrix; needs native BEAGLE. `--timeout` defaults to 86400 seconds (24 h) per seed; raise it or run in the background for long divergence-time analyses. A discovered BEAGLE directory is exposed to the BEAST process automatically (`-Djava.library.path` plus the loader path). `--java-only` maps to BEAST's `-java` flag; because BEAST's bundled pure-Java BEAGLE never implemented the site log-likelihood entry point, it is refused up front (exit 1) for any document containing `<treeLikelihood>` - which is every document BeastXPy generates.
 
 **Synopsis**
 

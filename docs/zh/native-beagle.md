@@ -30,7 +30,7 @@ export BEASTX_BEAGLE_10_5_0_LIB="/opt/beagle/4.0.1"
 beastxpy check-environment
 ```
 
-`check-environment` 报告 Java 与两个 jar。要确认 BEAST 本身能用这个库，做一次 Gate 3 验证的生成——设置了变量后，Gate 3 会以 `beagle` 模式（最强验证）运行：
+`check-environment` 报告 jar 与 Java。要确认 BEAST 本身能用这个库，做一次 Gate 3 验证的生成——设置了变量后，Gate 3 会以 `beagle` 模式（最强验证）运行：
 
 ```
 beastxpy generate --config examples/config_subst_jc69.yaml \
@@ -41,7 +41,7 @@ beastxpy generate --config examples/config_subst_jc69.yaml \
 
 ## `run` 如何使用它
 
-`beastxpy run` 会像 Gate 3 一样把探测到的目录暴露给 BEAST 进程：`-Djava.library.path=<目录>` **加上**动态链接器路径（Linux 的 `LD_LIBRARY_PATH`、macOS 的 `DYLD_LIBRARY_PATH`、Windows 的 `PATH`）。后一半很关键：BEAGLE 通过 `dlopen`/`LoadLibrary` 按**裸库文件名**加载资源插件（`libhmsbeagle-cpu.so` 等），走的是链接器路径而不是 `java.library.path`。只设 `-Djava.library.path` 会得到：
+`beastxpy run` 会像 Gate 3 一样把探测到的目录暴露给 BEAST 进程：`-Djava.library.path=<dir>` **加上**动态链接器路径（Linux 的 `LD_LIBRARY_PATH`、macOS 的 `DYLD_LIBRARY_PATH`、Windows 的 `PATH`）。后一半很关键：BEAGLE 通过 `dlopen`/`LoadLibrary` 按**裸库文件名**加载资源插件（`libhmsbeagle-cpu.so` 等），走的是链接器路径而不是 `java.library.path`。只设 `-Djava.library.path` 会得到：
 
 ```
 Unable to load CPU plugin!

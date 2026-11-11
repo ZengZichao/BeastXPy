@@ -31,7 +31,7 @@ git push origin main --tags
 推送标签会启动发布流水线（`.github/workflows/release.yml`），它按顺序执行：
 
 1. 校验标签与 `pyproject.toml`、`beastxpy/__init__.py`、`CITATION.cff` 中声明的版本一致（`tools/check_release_tag.py`）；
-2. 构建 sdist 与 wheel，并用 `twine check --strict` 检查；
+2. 构建 sdist 与 wheel，并对两者都用 `twine check --strict` 校验；
 3. 构建免 jar 的 `beastxpy-core` wheel；
 4. 安装该 wheel，运行 `beastxpy --version` 与 `beastxpy capabilities` 作为冒烟检查；
 5. 通过可信发布（无需令牌）把包发布到 PyPI；
@@ -55,4 +55,4 @@ Zenodo 发出首个 DOI 后，把它写进 `CITATION.cff`（添加 `doi:` 字段
 
 ## 版本编号
 
-版本遵循语义化版本：`MAJOR.MINOR.PATCH`。新增模型或命令时提升 minor，修复问题时提升 patch。不要手工编辑版本字符串；`tools/bump_version.py` 的存在就是为了让 `pyproject.toml`、包本身、`CITATION.cff`、README 与文档保持一致，一旦不一致，`tests/test_release_contract.py` 会失败。
+版本遵循语义化版本：`MAJOR.MINOR.PATCH`。新增模型或命令时提升 minor，修复问题时提升 patch。切勿手工编辑版本字符串；`tools/bump_version.py` 的存在就是为了让 `pyproject.toml`、包本身、`CITATION.cff`、README 与文档保持一致，一旦不一致，`tests/test_release_contract.py` 会失败。

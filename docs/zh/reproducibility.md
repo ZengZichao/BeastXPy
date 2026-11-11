@@ -10,7 +10,7 @@
 beastxpy fingerprint --config demo.yaml
 ```
 
-打印只含三个键的 JSON：`fingerprint`（`BXP-<hash12>-<工具版本>`）、`data_digest` 与 `beastxpy_version`。同样的指纹会作为注释嵌入每份生成的 XML，因此文档可以追溯到产生它的配置。`generate` 的输出旁还会写伴生文件（`demo.fingerprint.json`）。
+打印只含三个键的 JSON：`fingerprint`（`BXP-<hash12>-<tool version>`）、`data_digest` 与 `beastxpy_version`。同样的指纹会作为注释嵌入每份生成的 XML，因此文档可以追溯到产生它的配置。`generate` 的输出旁还会写伴生文件（`demo.fingerprint.json`）。
 
 指纹负载刻意排除非科学元数据、日志文件名与溯源备注；包含 `control.seed` 与指纹嵌入开关，因为它们会改变分析本身。
 

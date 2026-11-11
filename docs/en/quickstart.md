@@ -4,7 +4,7 @@
 
 This walkthrough runs one complete analysis on the shipped primates alignment (898 bp, 12 taxa): JC69 + strict clock + Yule + one root calibration. Every step shows the command, the output you should see, and what to check before moving on.
 
-**Before you start:** finish [installation](installation.md). You need `beastxpy --version` to work, and `beastxpy check-environment` to find a JDK and both BEAST jars. Running step 5 additionally needs a native BEAGLE library (see [native-beagle](native-beagle.md)); on this walkthrough's reference machine the two environment variables below point at it:
+**Before you start:** finish [installation](installation.md). You need `beastxpy --version` to work, and `beastxpy check-environment` to find a JDK and both BEAST jars. Running step 4 additionally needs a native BEAGLE library (see [native-beagle](native-beagle.md)); on this walkthrough's reference machine the two environment variables below point at it:
 
 ```
 export JAVA_HOME=/path/to/jdk-17

@@ -36,13 +36,13 @@ python tools/validate_coverage.py
 
 ## 代码遵循的规则
 
-* [`CONTRACT.md`](../../CONTRACT.md) 中的行为契约是规范性的：闸门状态、`assess` 的诚实性规则、数据检查严重程度。
+* [`CONTRACT.md`](../../CONTRACT.md) 中的行为契约是规范性的：Gate 状态、`assess` 的诚实性规则、数据检查严重程度。
 * 兼容 Python 3.10 的类型写法，`from __future__ import annotations`。
 * 每次读写文件都显式 `encoding="utf-8"`。
 * `subprocess` 一律传参数列表，绝不用 `shell=True`。
 * 所有路径用 `pathlib.Path`。
-* 面向用户的错误必须带下一步建议。
-* 算不出的诊断报告为不可用，绝不猜测。
+* 面向用户的错误都带下一步建议。
+* 无法计算的诊断项报告为不可用，绝不猜测。
 
 ## 增加一项能力
 

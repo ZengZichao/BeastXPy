@@ -1,6 +1,6 @@
 # BeastXPy
 
-BeastXPy 用于生成、校验并诊断 **BEAST 1** 分歧时间分析。它把一份严格的 YAML 描述转成 BEAST XML，用随包分发的官方 BEAST 1.10.4 与 BEAST X 10.5.0 jar 校验该文档（Gate 3；各模式分别证明了什么见“验证”一节），运行种子矩阵，并如实报告 MCMC 输出呈现出的样子。
+BeastXPy 用于生成、校验并诊断 **BEAST 1** 分歧时间分析。它把一份严格的 YAML 描述转成 BEAST XML，用随包分发的官方 BEAST 1.10.4 与 BEAST X 10.5.0 jar 校验该文档（Gate 3；各模式分别证明了什么见[“验证”](#验证)），运行种子矩阵，并如实报告 MCMC 输出呈现出的样子。
 
 版本 0.1.0。需要 Python 3.10+。
 
@@ -32,13 +32,13 @@ BeastXPy 不宣称收敛、不做模型选择，也不判断模型是否适合�
 
 ## 平台范围与同类工具
 
-BeastXPy 面向 BEAST 1 谱系（1.10.4）及其延续版本 BEAST X 10.5.0，而不是 BEAST 2。BEAST 2 是另一个程序，XML 模式与扩展包生态都不同；既有 BEAST 1 分析和模型（EBSP、StarBEAST1、随机局部钟、经验密码子模型、MDS）需要该谱系。这里主张的新颖性是四道验证闸门、随包官方 jar、诚实多链诊断与锁文件级可复现性的组合，而不是"YAML 转 XML"本身。与 BEAUti、babette（BEAST 2）、BEASTifier、RevBayes 和 BEASTling 的对比见 [docs/zh/index.md#定位](docs/zh/index.md#定位)；英文概览见 [README.md](README.md) 与 [docs/en/index.md](docs/en/index.md)。
+BeastXPy 面向 BEAST 1 谱系（1.10.4）及其仍在维护的延续版本 BEAST X 10.5.0，而不是 BEAST 2。BEAST 2 是另一个程序，XML 模式与扩展包生态都不同；既有 BEAST 1 分析和模型（EBSP、StarBEAST1、随机局部钟、经验密码子模型、MDS）需要该谱系。这里主张的新颖性是四道验证 Gate、随包官方 jar、诚实多链诊断与锁文件级可复现性的组合，而不是"YAML 转 XML"本身。与 BEAUti、babette（BEAST 2）、BEASTifier、RevBayes 和 BEASTling 的对比见 [docs/zh/index.md#定位](docs/zh/index.md#定位)；英文概览见 [README.md](README.md) 与 [docs/en/index.md](docs/en/index.md)。
 
 ## 文档
 
 中文：[docs/zh/index.md](docs/zh/index.md) · [English](README.md) · [docs/en/index.md](docs/en/index.md)
 
-包含安装、快速上手、配置、完整 CLI 参考、四道校验闸门、原生 BEAGLE、流水线、运行后评估、报告、模型比较、可复现性、自定义 XML 片段、容器、故障排查、Python API、开发说明、能力边界与常见问题。
+包含安装、快速上手、配置、完整 CLI 参考、四道校验 Gate、原生 BEAGLE、流水线、运行后评估、报告、模型比较、可复现性、自定义 XML 片段、容器、故障排查、Python API、开发说明、能力边界与常见问题。
 
 ## 验证
 
@@ -57,7 +57,7 @@ python tools/validate_coverage.py
 | `parse`、`java-core` | 官方 BEAST 解析器 + BeastXPy 的 `TreeLikelihood` shim | 不计算（仅构建） | XML 被接受、模型图可以构建 |
 | `beagle` | 完整官方解析器集合 | 真实原生 hmsbeagle 似然 | 完整的解析器 + 似然校验 |
 
-只有 `beagle` 才是完整的官方验证。凡是准备在论文中声明的平台与 BEAST 版本，都应在该平台运行全示例矩阵，并报告“平台 × BEAST 版本 × 示例数”：
+只有 `beagle` 才是完整的官方验证。在你准备声明的每个平台与每个 BEAST 版本上运行全示例矩阵，并报告该次运行的“平台 × BEAST 版本 × 示例数”：
 
 ```
 python tools/official_validate.py --matrix "examples/config_*.yaml" \
@@ -76,7 +76,7 @@ CI 在 3 个操作系统 × 2 个 Python 版本 × 2 个 BEAST 版本上运行�
 
 ## 数据可用性
 
-`examples/` 下的比对是用于跑通工作流的短参考序列，本仓库没有产生新的实证数据；它们不用于生物学推断。论文所用的验证结果见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
+`examples/` 下的比对是篇幅很短的已发表/参考序列，只用于跑通工作流，本仓库没有产生新的实证数据；它们不用于生物学推断。论文所用的验证结果见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
 
 ## 作者
 

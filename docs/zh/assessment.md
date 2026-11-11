@@ -33,7 +33,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
     ...
 ```
 
-退出码 3 = 失败，0 = 通过/警告（`--strict` 下警告为 1，输入不可读为 2）。短链上得到 `fail` 是正确答案，不是工具坏了。
+退出码 3 = 失败，0 = 通过/警告（`--strict` 下警告为 1，工作目录不可读为 2）。短链上得到 `fail` 是正确答案，不是工具坏了。
 
 ## 第 3 步 —— 自上而下读错误
 
@@ -41,11 +41,11 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 
 ## 报告内容
 
-* **逐参数** —— ESS、ACT、均值、中位数与 95% HPD（ESS 采用 Geyer 初始单调序列估计量，Geyer 1992）。
+* **逐参数** —— ESS、ACT、均值、中位数与 95% HPD（ESS 采用 Geyer 初始单调序列估计量，Geyer 1992）。每一列还带 `per_chain`：逐条链给出各自的 `act`、`ess`、`act_max_lag` 与 `act_truncated`，因此即使合并的 `act_truncated` 为真，也能识别出被截断的那条链。
 * **多链 PSRF** —— 经典分半链 R-hat（Gelman & Rubin 1992；分半链变体见 Gelman 等 2013）**以及** 秩归一化分半链 R-hat（Vehtari 等 2021），并为每个参数给出 bulk ESS 与 tail ESS。阈值检查优先使用秩归一化值，无法计算时退回经典 R-hat；两列都会出现在 HTML 报告和 JSON（`multichain.rank_diagnostics`）中。
 * **拓扑 ASDSF** —— 分裂频率的平均标准差（MrBayes 惯例，Ronquist & Huelsenbeck 2003）。
 * **Operator** —— 每个移动的接受率，标记低于 1%、高于 95% 与从未触发的移动。
-* **树摘要** —— 树高、钟速率、`ucld.mean`、`ucld.stdev` 及其 HPD（当相应列存在）。
+* **树摘要** —— 根高、钟速率、`ucld.mean`、`ucld.stdev` 及其 HPD（当相应列存在）。
 
 ## 最重要的一条规则
 
@@ -67,8 +67,6 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 
 `assess` 是诊断工具。它不做模型选择（`compare` 负责边际似然），也不判断模型是否适合你的数据。
 
-每个参数列还带 `per_chain`：每条链各自的 `act`、`ess`、`act_max_lag` 与 `act_truncated`，因此即使合并的 `act_truncated` 为真，也能定位到具体链。
-
 ## 阈值与输出
 
 默认值——ESS 200、PSRF 1.01、ASDSF 0.05、算子接受率 0.01-0.95——是惯例而非定律：ESS 与 PSRF 建议沿用 BEAST 书（Drummond & Bouckaert 2015），ASDSF 阈值沿用 MrBayes 惯例。每一个都可以在命令行上调整；一手文献汇总在 [references](references.md)。
@@ -77,7 +75,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 beastxpy assess runs/demo --burnin 0.1 --ess 200 --psrf 1.01 --html report.html
 ```
 
-`--burnin` 是从每条链开头丢弃的比例（0..1）；`--burnin auto` 使用与 `beastxpy trace --burnin auto` 相同的 Geweke 自动 burn-in，并按链记录有效比例。若没有可计算的 Geweke 分数（样本少于 100，或所有参数恒定），该链标记为 `burnin_status: not_computable`，产生 warning finding，并把 verdict 降级为 `warn`；此时 burn-in 0 只是因为无法丢弃样本，明确不是收敛估计。请改传显式比例。`--html` 在 JSON 旁生成一个自包含摘要页。JSON 信封（`beastxpy.assessment/v1`）携带 `verdict`、`counts`、`chains`、`multichain`、`reasons` 与 `limitations`。
+`--burnin` 是从每条链开头丢弃的比例（0..1）；`--burnin auto` 使用与 `beastxpy trace --burnin auto` 相同的 Geweke 自动 burn-in，并按链记录有效比例。若没有可计算的 Geweke 分数（样本少于 100，或所有参数恒定），该次运行标记为 `burnin_status: not_computable`，产生 warning finding，并把 verdict 降级为 `warn`；此时 burn-in 0 只是因为无法丢弃样本，明确不是收敛估计。请改传显式比例。两者的默认值是刻意不同的：`trace` 只分析单个日志并默认使用自动探测，而 `assess` 默认固定 0.1，因此每个种子都以相同比例丢弃，且这一选择仅从 JSON 就能复现。想要跨种子使用自动探测时，请传 `--burnin auto`。`--html` 在 JSON 旁生成一个自包含摘要页，并打印实际使用的阈值，以免把 `pass` 误读成独立于设置的收敛证明。JSON 信封（`beastxpy.assessment/v1`）携带 `verdict`、`counts`、`chains`、`multichain`、`reasons` 与 `limitations`。
 
 ## 与参考实现的一致性
 

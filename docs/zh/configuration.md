@@ -134,15 +134,15 @@ loggers:
   tree_log: {file_name: demo.trees, log_every: 10000}  # names must differ
 ```
 
-`log_every` 默认为 `chain_length // 1000`；经验法则是记录 1000-10000 个样本以获得稳定的 ESS 估计。
+`log_every` 默认为 `chain_length // 1000`；经验法则是记录 1000-10000 个样本以获得稳定的 ESS 估计。代码注释里的约束同样必须满足：`pre_burnin` 必须小于链长；两个日志文件名必须不同；`parameter` 也可以用精确生成的参数 id（如 `gene2.clock.rate`）；`chain_length` 那行注释是真实分析的目标——争取 ESS > 200。
 
 `auto_optimize: true` 与 BEAUti 一致，会生成 `<mcmc autoOptimize="true">` 且不写 `targetAcceptance`，因此 BEAST 使用自身默认目标（树算子约 0.234，标量算子约 0.3）。BeastXPy 不覆盖这些默认值。
 
-**时间单位。** Yule、birth-death 与溯祖起始树模型带有 BEAST 属性 `units="substitutions"`。在 BEAST 1 中该属性只是描述性的，不会转换节点高度；标定与 tip 日期仍按写入的 Ma 解释。保留它是为了与官方解析器示例兼容，并不表示时间轴以替换数计。`pre_burnin` 必须小于 `chain_length`；两个日志文件名必须不同；`parameter` 也可以用精确生成的参数 id（如 `gene2.clock.rate`）。
+**时间单位。** Yule、birth-death 与溯祖起始树模型带有 BEAST 属性 `units="substitutions"`。在 BEAST 1 中该属性只是描述性的，不会转换节点高度；标定与 tip 日期仍按写入的 Ma 解释。保留它是为了与官方解析器示例兼容，并不表示时间轴以替换数计。
 
 ## 自动先验从哪里来
 
-`parameter_priors` 没有点名某个参数时，`ModelAssembler` 会发出默认先验。这些是 **起点**，不是普适推荐；依据列明确说明该值复制自 BEAUti 还是 BeastXPy 的约定。请按分析选择，需要时用 `parameter_priors` 覆盖。
+`parameter_priors` 没有点名某个参数时，`ModelAssembler` 会发出默认先验。这些是 **起点**，不是普适推荐；依据列明确说明该值复制自 BEAUti 还是 BeastXPy 的约定。需要时用 `parameter_priors` 覆盖。
 
 | 参数 | 发出的默认值 | 依据 |
 |---|---|---|
@@ -194,4 +194,4 @@ beastxpy capabilities
 Gate 0: FAILED -- partitions[0].site_model.gamma_shape: gamma_shape requires gamma_categories > 1
 ```
 
-照着修就行。`beastxpy check-data --config demo.yaml` 只跑数据侧预检（重复分类单元、含糊序列、标定冲突），不生成任何东西。
+只修被点名的那一项。`beastxpy check-data --config demo.yaml` 只跑数据侧预检（重复分类单元、含糊序列、标定冲突），不生成任何东西。

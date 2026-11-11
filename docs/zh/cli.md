@@ -31,10 +31,10 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `WORKDIR` | `--` | 除非使用 `--trace`，否则必填 |
-| `--trace` | `PATH` | 否（可重复，每条链一个） |
-| `--trees` | `PATH` | 否（与 `--trace` 同序、一一对应） |
-| `--burnin` | `FRACTION` 或 `auto` | 否 |
+| `WORKDIR` | `--` | required（除非使用 `--trace`） |
+| `--trace` | `PATH` | no（可重复，每条链一个） |
+| `--trees` | `PATH` | no（与 `--trace` 同序、一一对应） |
+| `--burnin` | `FRACTION` 或 `auto` | no |
 | `--ess` | `MIN` | no |
 | `--psrf` | `MAX` | no |
 | `--html` | `PATH` | no |
@@ -67,7 +67,7 @@ beastxpy assess --trace seed_1.log --trace seed_2.log \
 
 ### `beastxpy capabilities`
 
-打印功能 × BEAST 版本矩阵。
+打印功能 × BEAST 版本的支持矩阵。
 
 **Synopsis**
 
@@ -99,7 +99,7 @@ beastxpy capabilities
 
 ### `beastxpy check-data`
 
-对配置指向的数据与校准做预检。
+对配置指向的数据与标定做预检。
 
 **Synopsis**
 
@@ -163,7 +163,7 @@ beastxpy check-environment
 
 用真实 PS/SS 运行按边际似然比较模型；缺少 BEAGLE 时失败关闭。
 
-`--path-steps` 默认 8——这是快速估计并会打印一次性提醒；发表级结果请至少用 50。每个模型的 `--timeout` 默认 86400 秒（24 小时）。
+`--path-steps` 默认 8——这是快速估计并会打印一次性警告；发表级结果请至少用 50。每个模型的 `--timeout` 默认 86400 秒（24 小时）。
 
 **Synopsis**
 
@@ -241,7 +241,7 @@ beastxpy container --print docker
 
 ### `beastxpy diagnose`
 
-校准诊断（Gate 2 细节），可选敏感性扫描。
+标定诊断（Gate 2 细节），可选敏感性扫描。
 
 **Synopsis**
 
@@ -267,7 +267,7 @@ beastxpy diagnose --config examples/config_advanced.yaml --output-dir diagnostic
 
 **输出**
 
-校准发现项输出到 stdout，可选生成图文件。
+标定发现项输出到 stdout，可选生成图文件。
 
 **退出码**
 
@@ -335,7 +335,7 @@ beastxpy generate --config examples/config_basic.yaml --output out.xml --beast-v
 
 **输出**
 
-未给 --output 时 XML 写到 stdout；闸门进度写到 stderr。
+未给 --output 时 XML 写到 stdout；Gate 进度写到 stderr。
 
 **退出码**
 
@@ -405,7 +405,7 @@ beastxpy lock --config examples/config_basic.yaml --output beastxpy.lock
 
 **退出码**
 
-0 已写出，1 参数或配置不可读，2 写入失败。
+0 已写出，1 参数错误或配置不可读，2 写入失败。
 
 ### `beastxpy logcombine`
 
@@ -509,7 +509,7 @@ beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output 
 
 ### `beastxpy quick`
 
-无需先写 YAML 的单分区快速生成。链长默认 1,000,000，而不是长时间生产默认值。
+无需先写 YAML 的单分区快速生成。链长默认 1,000,000，并不是一个生产级长链默认值。
 
 **Synopsis**
 
@@ -631,7 +631,7 @@ beastxpy reproduce --lock beastxpy.lock --check --config examples/config_basic.y
 
 ### `beastxpy run`
 
-在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关，而 BEAST 自带的纯 Java BEAGLE 未实现位点似然入口，因此对任何含 `<treeLikelihood>` 的文档（即 BeastXPy 产出的全部文档）都会在启动前被拒绝并报错，退出码 1。
+在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关；因为 BEAST 自带的纯 Java BEAGLE 从未实现位点对数似然入口，任何含 `<treeLikelihood>` 的文档（也就是 BeastXPy 产出的全部文档）都会在启动前被拒绝，退出码 1。
 
 **Synopsis**
 
@@ -708,7 +708,7 @@ beastxpy trace --log runs/demo/1/seed_1_trace.log
 
 ### `beastxpy tree-annotate`
 
-为树日志标注分支支持度。注意：`--heights ca`（共同祖先高度）需要 Java TreeAnnotator；在 `--python-only` 或找不到可用 jar 时会被拒绝。
+为树日志标注 clade 支持度。注意：`--heights ca`（共同祖先高度）需要 Java TreeAnnotator；在 `--python-only` 或找不到可用 jar 时会被拒绝。
 
 **Synopsis**
 

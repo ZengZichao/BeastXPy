@@ -2,7 +2,7 @@
 
 [English](../en/troubleshooting.md) | [中文](troubleshooting.md)
 
-症状、原因、修法。条目按你碰到它们的先后排序：先是环境，再是配置，然后是运行。
+症状、原因、修法。条目按你最可能碰到它们的先后排序：先是环境，再是配置，然后是运行。
 
 ## `no usable Java runtime found` / `NOT RUN`
 
@@ -24,9 +24,9 @@ java -XshowSettings:properties -version 2>&1 | grep os.arch
 
 ## `Unable to load CPU plugin!` 随后 `error code -6 (No resource matches requirements)`
 
-JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有。插件按裸文件名 `dlopen`，跟随的是**链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle 库目录>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
+JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有。插件按裸文件名 `dlopen`，跟随的是**链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle lib dir>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
 
-## 运行几乎立刻停止，日志含 `No acceptable BEAGLE library plugins found`
+## 运行几乎立刻停止，并显示 `No acceptable BEAGLE library plugins found`
 
 JVM 完全没有可用的原生 BEAGLE。检查 `beastxpy check-environment`，设置 `BEASTX_BEAGLE_<version>_LIB` 后重跑。失败的种子会留下 `run.log`、`run_meta.json`（status `failed`）和部分日志；修好环境后用 `--force` 重跑（或 `--resume --rerun-successful`）。
 
@@ -42,7 +42,7 @@ JVM 完全没有可用的原生 BEAGLE。检查 `beastxpy check-environment`，�
 
 lognormal 的 `mean` 在对数尺度上，但仍必须为正。根高约 30 个时间单位用 `mean: 3.4`（e^3.4 ≈ 30），或用 `meanInRealSpace: true` 给真实尺度均值。
 
-## 校准导致 `Gate 2 failed`
+## 标定导致 `Gate 2 failed`
 
 标定之间或与树先验矛盾。运行 `beastxpy diagnose --config config.yaml --output-dir diag` 查看细节，包括先验密度图与重叠热图。
 

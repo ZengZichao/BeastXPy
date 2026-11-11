@@ -2,9 +2,9 @@
 
 [English](../en/validation.md) | [中文](validation.md)
 
-BeastXPy 有四道闸门。每道回答不同的问题，这个区别在读结果时很重要。
+BeastXPy 有四道 Gate。每道回答不同的问题，这个区别在读结果时很重要。
 
-| 闸门 | 问题 | 引擎 |
+| Gate | 问题 | 引擎 |
 |---|---|---|
 | 0 | YAML 是否是合法且自洽的分析？ | 纯 Python |
 | 1 | 生成的 XML 结构上是否是合法 BEAST 1？ | 纯 Python |
@@ -13,9 +13,9 @@ BeastXPy 有四道闸门。每道回答不同的问题，这个区别在读结�
 
 （BEAST：Drummond & Rambaut 2007、Drummond 等 2012——见 [references](references.md)。）
 
-## 第 1 步 —— 读懂每一道门的输出
+## 第 1 步 —— 读懂每一道 Gate 的输出
 
-`beastxpy generate --config demo.yaml --output demo.xml --beast-validate` 在 stderr 上逐门打印。以下是[快速上手](quickstart.md)演示配置的真实输出：
+`beastxpy generate --config demo.yaml --output demo.xml --beast-validate` 在 stderr 上逐个 Gate 打印。以下是[快速上手](quickstart.md)演示配置的真实输出：
 
 ```
 Gate 0 (parse-time, before the 3 generation gates): demo.yaml
@@ -35,7 +35,7 @@ Gate 3/3: BEAST 1.10.4 validation: OK [mode=java-core (construct-only shim; like
 * `Gate 2 [info]` 是提示而不是错误：它如实说明对数尺度标定均值的实际含义，并逐一列出 BeastXPy 自动添加的先验（可在 `parameter_priors` 中覆盖）。
 * Gate 3 行方括号里是实际使用的校验模式。在有原生 BEAGLE 的机器上，这里会显示 `[mode=beagle ...]`，WARNING 行消失，证据即完整官方验证。
 
-退出码 0 表示**每个被请求的门都真实运行且通过**。退出码的区分：1 = Gate 0-2 失败或配置错误；2 = Gate 3 无法运行（缺 Java/jar）；3 = Gate 3 运行且 BEAST 拒绝了文档。
+退出码 0 表示**每个被请求的 Gate 都真实运行且通过**。退出码的区分：1 = Gate 0-2 失败或配置错误；2 = Gate 3 无法运行（缺 Java/jar）；3 = Gate 3 运行且 BEAST 拒绝了文档。
 
 Gate 1 的元素名匹配**区分大小写**，因为 BEAST 的解析器注册表区分大小写。包含 `<TreeModel>` 的文档会以 `ELEMENT_CASE_MISMATCH` 被拒绝（finding 会指出正确的 `<treeModel>`），而不是被静默接受。
 
@@ -60,7 +60,7 @@ python tools/validate_coverage.py
 
 `--beast-validate` 用 BEAST jar 执行 XML 解析、MCMC 对象构建，并计算一次有限的初始后验。`passed` 表示官方解析器接受了文档，模型图可以建起来。
 
-底层结果有四种状态，而不是两种：`executed-pass`、`executed-fail`（BEAST 运行并拒绝）、`not-run`（校验根本没开始：超时、XML 缺失、验证器类缺失）与 `environment-missing`（没有可用的 Java 或 jar），每种都带原因。公开的 CLI/API 门面把 `environment-missing` 折叠进 `not-run`，但在 JSON 的 `raw_status` 与 `environment_error` 中保留区分，四态信息不会丢失。没运行过的门绝不会被打印成 `OK`。
+底层结果有四种状态，而不是两种：`executed-pass`、`executed-fail`（BEAST 运行并拒绝）、`not-run`（校验根本没开始：超时、XML 缺失、验证器类缺失）与 `environment-missing`（没有可用的 Java 或 jar），每种都带原因。公开的 CLI/API 门面把 `environment-missing` 折叠进 `not-run`，但在 JSON 的 `raw_status` 与 `environment_error` 中保留区分，四态信息不会丢失。没运行过的 Gate 绝不会被打印成 `OK`。
 
 ## 校验模式
 
@@ -94,20 +94,20 @@ python tools/official_validate.py --matrix "examples/config_*.yaml" \
 
 ### 已记录的验证矩阵
 
-以下矩阵于 2026-10-22 在本检出上实际运行（Linux x86_64、JDK 17.0.20.1、随包官方 jar；原生 BEAGLE 按各 BEAST 版本的固定源码构建）。每一行都覆盖完整的 `examples/config_*.yaml` 集合：
+以下矩阵于 2026-10-22 在本检出上实际运行（Linux x86_64、Temurin JDK 17.0.20.1、随包官方 jar；原生 BEAGLE 按各 BEAST 版本的固定源码构建）。每一行都覆盖完整的 `examples/config_*.yaml` 集合：
 
 | BEAST 版本 | 模式 | 原生 BEAGLE | 通过示例数 |
 |---|---|---|---|
 | 1.10.4 | `beagle` | 3.1.2（源码构建，SHA-256 `dd872b48...`） | 16/16 |
 | 10.5.0 | `beagle` | 4.0.1（源码构建，SHA-256 `9d258cd9...`） | 16/16 |
 
-两行都是完整解析器 + 真实似然的验证。同一检出还通过了 `examples/coverage/` 中所有适用于该版本的覆盖夹具（BEAST 1.10.4 为 12/12，BEAST X 10.5.0 为 15/15；其中三个夹具仅适用于 10.5.0）。两行均可重放：`tools/run_beagle_evidence.py` 下载固定版本 BEAGLE 源码、校验 SHA-256、构建（4.0.1 用 CMake，3.1.2 用 autotools）、运行矩阵，并写出 `evidence.json`（命令、哈希、通过数）。CI 的 `beagle-evidence` 作业按 BEAST 版本各运行一次并上传产物。自动构建需要 JDK；若检出路径含非 ASCII 字符，请在 ASCII 目录构建 3.1.2（其 autotools 的 `javac` 探测在 `LC_ALL=C` 下运行）。
+两行都是完整解析器 + 真实似然的验证。同一检出还通过了 `examples/coverage/` 中所有适用于该版本的覆盖夹具（BEAST 1.10.4 为 12/12，BEAST X 10.5.0 为 15/15；其中三个夹具仅适用于 10.5.0）。两行 `beagle` 记录均可重放：`tools/run_beagle_evidence.py` 下载固定版本 BEAGLE 源码、校验 SHA-256、构建（4.0.1 用 CMake，3.1.2 用 autotools）、运行矩阵，并写出 `evidence.json`（命令、哈希、通过数）。CI 的 `beagle-evidence` 作业在每次 push 时按 BEAST 版本各运行该脚本一次，并上传两个产物。自动构建需要 JDK；若检出路径含非 ASCII 字符，请在 ASCII 目录构建 3.1.2（其 autotools 的 `javac` 探测在 `LC_ALL=C` 下运行）。
 
 仅 `java-core` 的运行是原生 BEAGLE 不可用时的仅构建回退；如*证据强度* 表所示，其证据弱于 `beagle` 行。
 
 ### BEAUti 惯例参照对照
 
-黄金文件锁定的是本生成器的行为，不是外部真值。`tests/golden/beauti_reference/` 为三个代表性分析（JC69/严格钟/Yule、HKY+Gamma+UCLN 加一个标定、两个 GTR 分区）提供了手工誊录的参照子集。数值来自写 XML 模板的 BEAUti 1.10.4 option 类，并用 BEAST 源码树中 BEAUti 生成的 `examples/Benchmarks/benchmark1.xml` 交叉核对。`tests/test_beauti_reference.py` 逐元素、逐属性比较，并显式断言每一个有意差异：钟速率先验族、gamma 形状先验族、GTR 速率先验族、碱基频率先验族，以及标定的 `meanInRealSpace` 默认值。这些参照不是实时 BEAUti 输出（BEAUti 是图形界面，本环境无法无头导出），因此这是结构等价证据，不是后验对照。
+金标准文件锁定的是本生成器的行为，不是外部真值。`tests/golden/beauti_reference/` 为三个代表性分析（JC69/严格钟/Yule、HKY+Gamma+UCLN 加一个标定、两个 GTR 分区）提供了手工誊录的参照子集。数值来自写 XML 模板的 BEAUti 1.10.4 option 类，并用 BEAST 源码树中 BEAUti 生成的 `examples/Benchmarks/benchmark1.xml` 交叉核对。`tests/test_beauti_reference.py` 逐元素、逐属性比较，并显式断言每一个有意差异：钟速率先验族、gamma 形状先验族、GTR 速率先验族、碱基频率先验族，以及标定的 `meanInRealSpace` 默认值。这些参照不是实时 BEAUti 输出（BEAUti 是图形界面，本环境无法无头导出），因此这是结构等价证据，不是后验对照。
 
 ### 参考数据案例（工作流演示）
 
@@ -142,7 +142,7 @@ python tools/run_reference_case.py \
 
 ### 模拟数据的端到端恢复
 
-`tools/simulate_end_to_end.py` 是解析器矩阵之外的科学验证：在已知根树（(A:0.03,B:0.05):0.05,C:0.05,D:0.05；A 采样于年龄 0.02，因此根高为 0.10）上模拟四分类单元 JC69 比对，严格钟速率固定为 1.0，运行两个独立种子，并检查根高的 95% HPD 是否包含 0.10。
+`tools/simulate_end_to_end.py` 是与解析器矩阵配套的科学验证：在已知根树（(A:0.03,B:0.05):0.05,C:0.05,D:0.05；A 采样于年龄 0.02，因此根高为 0.10）上模拟四分类单元 JC69 比对，严格钟速率固定为 1.0，运行两个独立种子，并检查根高的 95% HPD 是否包含 0.10。
 
 ```
 python tools/simulate_end_to_end.py --out validation_runs/simulated_e2e \
@@ -156,7 +156,7 @@ python tools/simulate_end_to_end.py --out validation_runs/simulated_e2e \
 | 1 | [0.0903, 0.1020] | 0.0961 | 是 |
 | 2 | [0.0904, 0.1013] | 0.0964 | 是 |
 
-这条刻意较短的链在 `assess` 中的 verdict 为 `fail`（部分 ESS 低于 200）；脚本的通过标准只是 HPD 覆盖已知真值，不是收敛。
+那次刻意较短的运行在 `assess` 中的 verdict 为 `fail`（部分 ESS 低于 200）；脚本的通过标准只是 HPD 覆盖已知真值，不是收敛。
 
 ### 参数恢复研究（`--study recovery`）
 
@@ -171,12 +171,12 @@ python tools/simulate_end_to_end.py --study recovery \
 
 本检出上记录的结果（BEAST X 10.5.0、原生 BEAGLE 4.0.1，每行 4 个种子）：
 
-| ucld.stdev 真值 | 校准年龄 HPD 覆盖 1.0 | ucld.stdev HPD 覆盖真值 | 后验均值 | 相对误差中位数 | 最小 ESS | 真实 clade 支持度（最小） | ASDSF |
+| ucld.stdev 真值 | 标定年龄 HPD 覆盖 1.0 | ucld.stdev HPD 覆盖真值 | ucld.stdev 后验均值 | 相对误差中位数 | 最小 ESS | 真实 clade 支持度（最小） | ASDSF |
 |---|---|---|---|---|---|---|---|
 | 0.30 | 4/4 | 3/4 | 0.523 | 0.452 | 19.7 | 0.966 | 0.000 |
 | 0.15 | 4/4 | 4/4 | 0.128 | 0.260 | 105.1 | 1.000 | 0.000 |
 
-这些是 `recovery_summary.json` 的完整逐种子结果，不是挑选后的子集。两个格子的校准覆盖率合计为 8/8，真实拓扑被恢复（六个 clade 的后验支持度均 ≥ 0.966），但在真值 0.30 时每个 `ucld.stdev` 估计的 ESS 都低于 200 的筛查阈值，真值 0.15 时四个也都低于 200；因此 `assess` verdict 为 `fail`。0.30 格子还有一个种子的 ucld.stdev 后验远高于真值，所以覆盖率为 3/4、均值被抬高。论文级恢复表需要更长的链（或更有信息量的设计）；脚本如实报告 ESS，而不是隐藏这一限制。
+这些是 `recovery_summary.json` 的完整逐种子结果，不是挑选后的子集。两个格子的标定覆盖率合计为 8/8，真实拓扑被恢复（六个 clade 的后验支持度均 ≥ 0.966），但在真值 0.30 时每个 `ucld.stdev` 估计的 ESS 都低于 200 的筛查阈值，真值 0.15 时四个也都低于 200；因此 `assess` verdict 为 `fail`。0.30 格子还有一个种子的 ucld.stdev 后验远高于真值，所以覆盖率为 3/4、均值被抬高。论文级恢复表需要更长的链（或更有信息量的设计）；脚本如实报告 ESS，而不是隐藏这一限制。
 
 ## `--allow-unvalidated`
 
