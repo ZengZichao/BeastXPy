@@ -1,5 +1,7 @@
 # Offline BEAGLE source drop
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 `deploy/Dockerfile` and `deploy/apptainer.def` build native BEAGLE from source.
 
 By default the definition downloads the official release archive. If this

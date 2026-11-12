@@ -2,7 +2,7 @@
 
 [English](../en/cli.md) | [中文](cli.md)
 
-所有命令都由 `beastxpy.main` 注册。synopsis 与参数表由参数解析器生成，因此与 `--help` 一致。
+每个命令都由 `beastxpy.main` 注册。下文的 flag、metavar 名称、默认值与必选性都来自响应 `--help` 的同一个参数解析器：必选参数不带方括号，可重复的参数写成 `PATH ...`，`--print` 保留解析器自己的 `{docker,apptainer}` 顺序。synopsis 是 `--help` 的阅读形式而非逐字拷贝，因此省略 `[-h]`，并按稳定的阅读顺序排列单个取值不带重复的 flag。`tests/test_docs.py` 会针对真实解析器检查这一对应关系。
 
 全局选项：
 
@@ -19,9 +19,9 @@ beastxpy --version
 
 ### `beastxpy assess`
 
-诊断 MCMC 输出：ESS/ACT/HPD、PSRF 与 ASDSF、operator、树摘要。仅作诊断。
+诊断 MCMC 输出：ESS/ACT/HPD、PSRF 与 ASDSF、算子、树摘要。仅作诊断。
 
-**Synopsis**
+**用法**
 
 ```
 beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTION|auto] [--ess MIN] [--psrf MAX] [--html PATH] [--strict] [--json PATH] [-q]
@@ -31,26 +31,26 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `WORKDIR` | `--` | required（除非使用 `--trace`） |
-| `--trace` | `PATH` | no（可重复，每条链一个） |
-| `--trees` | `PATH` | no（与 `--trace` 同序、一一对应） |
-| `--burnin` | `FRACTION` 或 `auto` | no |
-| `--ess` | `MIN` | no |
-| `--psrf` | `MAX` | no |
-| `--html` | `PATH` | no |
-| `--strict` | `flag` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `WORKDIR` | `--` | 否（未给 `--trace` 时必填） |
+| `--trace` | `PATH` | 否（可重复，每条链一个） |
+| `--trees` | `PATH` | 否（与 `--trace` 同序、一一对应） |
+| `--burnin` | `FRACTION` 或 `auto` | 否 |
+| `--ess` | `MIN` | 否 |
+| `--psrf` | `MAX` | 否 |
+| `--html` | `PATH` | 否 |
+| `--strict` | `flag` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
-请先运行 `beastxpy run --seeds 1,2 --workdir runs/demo`；PSRF 至少需要两个种子。
+请先运行 `beastxpy run --config examples/config_basic.yaml --seeds 1,2 --workdir runs/demo`；PSRF 至少需要两个种子。
 
 ```
 beastxpy assess runs/demo --json runs/demo/assessment.json
 ```
 
-也可直接评估 BeastXPy 目录之外的 BEAST 日志：每个 `--trace` 是一条链（按 1..N 标号），`--trees` 提供对应的树日志用于 ASDSF：
+也可直接评估 BeastXPy 工作目录之外的 BEAST 日志：每个 `--trace` 是一条链（按 1..N 标号），`--trees` 提供对应的树日志用于 ASDSF：
 
 ```
 beastxpy assess --trace seed_1.log --trace seed_2.log \
@@ -69,7 +69,7 @@ beastxpy assess --trace seed_1.log --trace seed_2.log \
 
 打印功能 × BEAST 版本的支持矩阵。
 
-**Synopsis**
+**用法**
 
 ```
 beastxpy capabilities [--beast-version {1.10.4,10.5.0,both}] [--json PATH] [-q]
@@ -79,9 +79,9 @@ beastxpy capabilities [--beast-version {1.10.4,10.5.0,both}] [--json PATH] [-q]
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--beast-version` | `{1.10.4,10.5.0,both}` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `--beast-version` | `{1.10.4,10.5.0,both}` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
@@ -101,20 +101,20 @@ beastxpy capabilities
 
 对配置指向的数据与标定做预检。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy check-data [--config PATH] [--ambiguity-threshold FRACTION] [--json PATH] [-q]
+beastxpy check-data --config PATH [--ambiguity-threshold FRACTION] [--json PATH] [-q]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `PATH` | yes |
-| `--ambiguity-threshold` | `FRACTION` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `--config` | `PATH` | 是 |
+| `--ambiguity-threshold` | `FRACTION` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
@@ -134,7 +134,7 @@ beastxpy check-data --config examples/config_basic.yaml
 
 探测 Python、Java 与 BEAST jar。
 
-**Synopsis**
+**用法**
 
 ```
 beastxpy check-environment
@@ -165,33 +165,33 @@ beastxpy check-environment
 
 `--path-steps` 默认 8——这是快速估计并会打印一次性警告；发表级结果请至少用 50。每个模型的 `--timeout` 默认 86400 秒（24 小时）。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy compare [--configs PATH] [--method {stepping-stone,path-sampling}] [--workdir DIR] [--seeds 1,2] [--parallel N] [--chain-length N] [--path-steps N] [--path-scheme {linear,oneSidedBeta,beta,betaQuantile,sigmoid}] [--log-every N] [--beast-version {1.10.4,10.5.0}] [--beagle-dir DIR] [--beagle-threads N] [--timeout SECONDS] [--csv PATH] [--html PATH] [--json PATH] [-q]
+beastxpy compare --configs PATH [PATH ...] --method {stepping-stone,path-sampling} --workdir DIR [--seeds 1,2] [--parallel N] [--chain-length N] [--path-steps N] [--path-scheme {linear,oneSidedBeta,beta,betaQuantile,sigmoid}] [--log-every N] [--beast-version {1.10.4,10.5.0}] [--beagle-dir DIR] [--beagle-threads N] [--timeout SECONDS] [--csv PATH] [--html PATH] [--json PATH] [-q]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--configs` | `PATH` | yes |
-| `--method` | `{stepping-stone,path-sampling}` | yes |
-| `--workdir` | `DIR` | yes |
-| `--seeds` | `1,2` | no |
-| `--parallel` | `N` | no（每个模型的种子并发执行） |
-| `--chain-length` | `N` | no |
-| `--path-steps` | `N` | no |
-| `--path-scheme` | `{linear,oneSidedBeta,beta,betaQuantile,sigmoid}` | no |
-| `--log-every` | `N` | no |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
-| `--beagle-dir` | `DIR` | no |
-| `--beagle-threads` | `N` | no |
-| `--timeout` | `SECONDS` | no |
-| `--csv` | `PATH` | no |
-| `--html` | `PATH` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `--configs` | `PATH` | 是 |
+| `--method` | `{stepping-stone,path-sampling}` | 是 |
+| `--workdir` | `DIR` | 是 |
+| `--seeds` | `1,2` | 否 |
+| `--parallel` | `N` | 否（每个模型的种子并发执行） |
+| `--chain-length` | `N` | 否 |
+| `--path-steps` | `N` | 否 |
+| `--path-scheme` | `{linear,oneSidedBeta,beta,betaQuantile,sigmoid}` | 否 |
+| `--log-every` | `N` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
+| `--beagle-dir` | `DIR` | 否 |
+| `--beagle-threads` | `N` | 否 |
+| `--timeout` | `SECONDS` | 否 |
+| `--csv` | `PATH` | 否 |
+| `--html` | `PATH` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
@@ -211,19 +211,19 @@ beastxpy compare --configs examples/config_subst_jc69.yaml examples/config_subst
 
 ### `beastxpy container`
 
-原样打印随附的 Docker 或 Apptainer 定义。
+逐字节原样打印随附的 Docker 或 Apptainer 定义。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy container [--print {apptainer,docker}]
+beastxpy container --print {docker,apptainer}
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--print` | `{apptainer,docker}` | yes |
+| `--print` | `{docker,apptainer}` | 是 |
 
 **示例**
 
@@ -243,21 +243,21 @@ beastxpy container --print docker
 
 标定诊断（Gate 2 细节），可选敏感性扫描。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy diagnose [--config CONFIG] [--output-dir OUTPUT_DIR] [--report REPORT] [--sensitivity] [--no-visualize]
+beastxpy diagnose --config CONFIG [--output-dir OUTPUT_DIR] [--report REPORT] [--sensitivity] [--no-visualize]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--output-dir` | `OUTPUT_DIR` | no |
-| `--report` | `REPORT` | no |
-| `--sensitivity` | `flag` | no |
-| `--no-visualize` | `flag` | no |
+| `--config` | `CONFIG` | 是 |
+| `--output-dir` | `OUTPUT_DIR` | 否 |
+| `--report` | `REPORT` | 否 |
+| `--sensitivity` | `flag` | 否 |
+| `--no-visualize` | `flag` | 否 |
 
 **示例**
 
@@ -277,18 +277,18 @@ beastxpy diagnose --config examples/config_advanced.yaml --output-dir diagnostic
 
 打印分析指纹、内容指纹与数据摘要。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy fingerprint [--config CONFIG] [--output OUTPUT]
+beastxpy fingerprint --config CONFIG [--output OUTPUT]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--output` | `OUTPUT` | no |
+| `--config` | `CONFIG` | 是 |
+| `--output` | `OUTPUT` | 否 |
 
 **示例**
 
@@ -308,24 +308,24 @@ beastxpy fingerprint --config examples/config_basic.yaml
 
 从 YAML 配置生成 BEAST 1 XML；加 `--beast-validate` 才运行 Gate 3。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy generate [--config CONFIG] [--output OUTPUT] [--beast-validate] [--allow-unvalidated] [--no-data-check] [--allow-custom-fragments] [--beast-version {1.10.4,10.5.0,both}] [--force]
+beastxpy generate --config CONFIG [--output OUTPUT] [--beast-validate] [--allow-unvalidated] [--no-data-check] [--allow-custom-fragments] [--beast-version {1.10.4,10.5.0,both}] [--force]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--output` | `OUTPUT` | no |
-| `--beast-validate` | `flag` | no |
-| `--allow-unvalidated` | `flag` | no |
-| `--no-data-check` | `flag` | no |
-| `--allow-custom-fragments` | `flag` | no |
-| `--beast-version` | `{1.10.4,10.5.0,both}` | no |
-| `--force` | `flag` | no |
+| `--config` | `CONFIG` | 是 |
+| `--output` | `OUTPUT` | 否 |
+| `--beast-validate` | `flag` | 否 |
+| `--allow-unvalidated` | `flag` | 否 |
+| `--no-data-check` | `flag` | 否 |
+| `--allow-custom-fragments` | `flag` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0,both}` | 否 |
+| `--force` | `flag` | 否 |
 
 **示例**
 
@@ -345,7 +345,7 @@ beastxpy generate --config examples/config_basic.yaml --output out.xml --beast-v
 
 列出已注册的模型、钟、树先验与分布。
 
-**Synopsis**
+**用法**
 
 ```
 beastxpy list-models
@@ -374,24 +374,24 @@ beastxpy list-models
 
 写出环境锁：摘要、配置哈希与种子。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy lock [--config PATH] [--output PATH] [--beast-version {1.10.4,10.5.0}] [--seeds 1,2,3] [--beagle-lib DIR] [--beagle-threads N] [--json PATH] [-q]
+beastxpy lock --config PATH --output PATH [--beast-version {1.10.4,10.5.0}] [--seeds 1,2,3] [--beagle-lib DIR] [--beagle-threads N] [--json PATH] [-q]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `PATH` | yes |
-| `--output` | `PATH` | yes |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
-| `--seeds` | `1,2,3` | no |
-| `--beagle-lib` | `DIR` | no |
-| `--beagle-threads` | `N` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `--config` | `PATH` | 是 |
+| `--output` | `PATH` | 是 |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
+| `--seeds` | `1,2,3` | 否 |
+| `--beagle-lib` | `DIR` | 否 |
+| `--beagle-threads` | `N` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
@@ -405,32 +405,32 @@ beastxpy lock --config examples/config_basic.yaml --output beastxpy.lock
 
 **退出码**
 
-0 已写出，1 参数错误或配置不可读，2 写入失败。
+0 锁已写出，1 参数错误或配置不可读，2 写入失败。
 
 ### `beastxpy logcombine`
 
 合并多个种子的 trace 或 tree 日志。注意：`--burnin` 在纯 Python 路径按**日志行数**计，在 Java LogCombiner 路径按**状态数**计；所选 jar 可用时走 Java 路径。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy logcombine [--logs LOGS] [--output OUTPUT] [--burnin BURNIN] [--resample RESAMPLE] [--strip] [--beast-version {1.10.4,10.5.0}]
+beastxpy logcombine --logs LOGS [LOGS ...] --output OUTPUT [--burnin BURNIN] [--resample RESAMPLE] [--strip] [--beast-version {1.10.4,10.5.0}]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--logs` | `LOGS` | yes |
-| `--output` | `OUTPUT` | yes |
-| `--burnin` | `BURNIN` | no |
-| `--resample` | `RESAMPLE` | no |
-| `--strip` | `flag` | no |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
+| `--logs` | `LOGS` | 是 |
+| `--output` | `OUTPUT` | 是 |
+| `--burnin` | `BURNIN` | 否 |
+| `--resample` | `RESAMPLE` | 否 |
+| `--strip` | `flag` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
 
 **示例**
 
-请先运行 `beastxpy run --seeds 1,2 --workdir runs/demo`。
+请先运行 `beastxpy run --config examples/config_basic.yaml --seeds 1,2 --workdir runs/demo`。
 
 ```
 beastxpy logcombine --logs runs/demo/1/seed_1_trace.log runs/demo/2/seed_2_trace.log --output combined.log
@@ -448,18 +448,18 @@ beastxpy logcombine --logs runs/demo/1/seed_1_trace.log runs/demo/2/seed_2_trace
 
 生成 LaTeX 方法段落。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy methods [--config CONFIG] [--output OUTPUT]
+beastxpy methods --config CONFIG [--output OUTPUT]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--output` | `OUTPUT` | no |
+| `--config` | `CONFIG` | 是 |
+| `--output` | `OUTPUT` | 否 |
 
 **示例**
 
@@ -479,29 +479,29 @@ LaTeX 段落输出到 stdout。
 
 写出 Snakemake 或 Nextflow 流水线。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy pipeline [--config CONFIG] [--type {snakemake,nextflow}] [--output-dir OUTPUT_DIR]
+beastxpy pipeline --config CONFIG [--type {snakemake,nextflow}] [--output-dir OUTPUT_DIR]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--type` | `{snakemake,nextflow}` | no |
-| `--output-dir` | `OUTPUT_DIR` | no |
+| `--config` | `CONFIG` | 是 |
+| `--type` | `{snakemake,nextflow}` | 否 |
+| `--output-dir` | `OUTPUT_DIR` | 否 |
 
 **示例**
 
 ```
-beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output Snakefile
+beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output-dir pipeline
 ```
 
 **输出**
 
-在 --output 写出流水线文件。
+在 `--output-dir`（不存在时自动创建）下写出流水线文件：`--type snakemake` 写出 `Snakefile`，`--type nextflow` 写出 `main.nf`；YAML 配置同时复制到该目录，使其自包含。CLI 只为流水线文件打印 `wrote <path>`。
 
 **退出码**
 
@@ -509,30 +509,30 @@ beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output 
 
 ### `beastxpy quick`
 
-无需先写 YAML 的单分区快速生成。链长默认 1,000,000，并不是一个生产级长链默认值。
+无需先写 YAML 的单分区生成。链长默认 1,000,000，并不是一个生产级长链默认值。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy quick [--alignment ALIGNMENT] [--tree-prior TREE_PRIOR] [--subst-model SUBST_MODEL] [--clock-model CLOCK_MODEL] [--calibration-yaml CALIBRATION_YAML] [--chain-length CHAIN_LENGTH] [--name NAME] [--output OUTPUT] [--beast-version {1.10.4,10.5.0}] [--beast-validate] [--allow-unvalidated] [--force]
+beastxpy quick --alignment ALIGNMENT [--tree-prior TREE_PRIOR] [--subst-model SUBST_MODEL] [--clock-model CLOCK_MODEL] [--calibration-yaml CALIBRATION_YAML] [--chain-length CHAIN_LENGTH] [--name NAME] [--output OUTPUT] [--beast-version {1.10.4,10.5.0}] [--beast-validate] [--allow-unvalidated] [--force]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--alignment` | `ALIGNMENT` | yes |
-| `--tree-prior` | `TREE_PRIOR` | no |
-| `--subst-model` | `SUBST_MODEL` | no |
-| `--clock-model` | `CLOCK_MODEL` | no |
-| `--calibration-yaml` | `CALIBRATION_YAML` | no |
-| `--chain-length` | `CHAIN_LENGTH` | no |
-| `--name` | `NAME` | no |
-| `--output` | `OUTPUT` | no |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
-| `--beast-validate` | `flag` | no |
-| `--allow-unvalidated` | `flag` | no |
-| `--force` | `flag` | no |
+| `--alignment` | `ALIGNMENT` | 是 |
+| `--tree-prior` | `TREE_PRIOR` | 否 |
+| `--subst-model` | `SUBST_MODEL` | 否 |
+| `--clock-model` | `CLOCK_MODEL` | 否 |
+| `--calibration-yaml` | `CALIBRATION_YAML` | 否 |
+| `--chain-length` | `CHAIN_LENGTH` | 否 |
+| `--name` | `NAME` | 否 |
+| `--output` | `OUTPUT` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
+| `--beast-validate` | `flag` | 否 |
+| `--allow-unvalidated` | `flag` | 否 |
+| `--force` | `flag` | 否 |
 
 **示例**
 
@@ -552,29 +552,29 @@ beastxpy quick --alignment examples/primates.fasta --subst-model hky --output qu
 
 为运行目录渲染单个离线 HTML 报告。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy report WORKDIR [--output PATH] [--lang {en,zh}] [--include-config] [--assessment PATH] [--ess-threshold N] [--no-plot] [--json PATH] [-q]
+beastxpy report WORKDIR --output PATH [--lang {en,zh}] [--include-config] [--assessment PATH] [--ess-threshold N] [--no-plot] [--json PATH] [-q]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `WORKDIR` | `--` | yes |
-| `--output` | `PATH` | yes |
-| `--lang` | `{en,zh}` | no |
-| `--include-config` | `flag` | no |
-| `--assessment` | `PATH` | no |
-| `--ess-threshold` | `N` | no |
-| `--no-plot` | `flag` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `WORKDIR` | `--` | 是 |
+| `--output` | `PATH` | 是 |
+| `--lang` | `{en,zh}` | 否 |
+| `--include-config` | `flag` | 否 |
+| `--assessment` | `PATH` | 否 |
+| `--ess-threshold` | `N` | 否 |
+| `--no-plot` | `flag` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
-请先运行 `beastxpy run --workdir runs/demo`。
+请先运行 `beastxpy run --config examples/config_basic.yaml --workdir runs/demo`。
 
 ```
 beastxpy report runs/demo --output runs/demo/report.html --lang en
@@ -592,26 +592,26 @@ beastxpy report runs/demo --output runs/demo/report.html --lang en
 
 逐字段校验锁（`--check`）或重放（`--run`）。`--run` 时每个种子的 `--timeout` 默认 86400 秒（24 小时）。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy reproduce [--lock PATH] [--check] [--run] [--config PATH] [--workdir DIR] [--beagle-lib DIR] [--beagle-threads N] [--timeout SECONDS] [--json PATH] [-q]
+beastxpy reproduce --lock PATH (--check | --run) [--config PATH] [--workdir DIR] [--beagle-lib DIR] [--beagle-threads N] [--timeout SECONDS] [--json PATH] [-q]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--lock` | `PATH` | yes |
-| `--check` | `flag` | no |
-| `--run` | `flag` | no |
-| `--config` | `PATH` | no |
-| `--workdir` | `DIR` | no |
-| `--beagle-lib` | `DIR` | no |
-| `--beagle-threads` | `N` | no |
-| `--timeout` | `SECONDS` | no |
-| `--json` | `PATH` | no |
-| `-q, --quiet` | `flag` | no |
+| `--lock` | `PATH` | 是 |
+| `--check` | `flag` | 是，`--check`/`--run` 二选一 |
+| `--run` | `flag` | 是，`--check`/`--run` 二选一 |
+| `--config` | `PATH` | 否 |
+| `--workdir` | `DIR` | 否 |
+| `--beagle-lib` | `DIR` | 否 |
+| `--beagle-threads` | `N` | 否 |
+| `--timeout` | `SECONDS` | 否 |
+| `--json` | `PATH` | 否 |
+| `-q, --quiet` | `flag` | 否 |
 
 **示例**
 
@@ -631,30 +631,30 @@ beastxpy reproduce --lock beastxpy.lock --check --config examples/config_basic.y
 
 ### `beastxpy run`
 
-在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关；因为 BEAST 自带的纯 Java BEAGLE 从未实现位点对数似然入口，任何含 `<treeLikelihood>` 的文档（也就是 BeastXPy 产出的全部文档）都会在启动前被拒绝，退出码 1。
+在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加动态链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关；因为 BEAST 自带的纯 Java BEAGLE 从未实现位点对数似然入口，任何含 `<treeLikelihood>` 的文档（也就是 BeastXPy 产出的全部文档）都会在启动前被拒绝，退出码 1。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy run [--config CONFIG] [--workdir WORKDIR] [--seeds SEEDS] [--parallel N] [--beast-version {1.10.4,10.5.0}] [--timeout TIMEOUT] [--resume] [--rerun-successful] [--checkpoint-every CHECKPOINT_EVERY] [--java-only] [--no-data-check] [--force]
+beastxpy run --config CONFIG [--workdir WORKDIR] [--seeds SEEDS] [--parallel N] [--beast-version {1.10.4,10.5.0}] [--timeout TIMEOUT] [--resume] [--rerun-successful] [--checkpoint-every CHECKPOINT_EVERY] [--java-only] [--no-data-check] [--force]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--config` | `CONFIG` | yes |
-| `--workdir` | `WORKDIR` | no |
-| `--seeds` | `SEEDS` | no |
-| `--parallel` | `N` | no（默认 1；按种子并发执行） |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
-| `--timeout` | `TIMEOUT` | no |
-| `--resume` | `flag` | no |
-| `--rerun-successful` | `flag` | no |
-| `--checkpoint-every` | `CHECKPOINT_EVERY` | no |
-| `--java-only` | `flag` | no |
-| `--no-data-check` | `flag` | no |
-| `--force` | `flag` | no |
+| `--config` | `CONFIG` | 是 |
+| `--workdir` | `WORKDIR` | 否 |
+| `--seeds` | `SEEDS` | 否 |
+| `--parallel` | `N` | 否（默认 1；按种子并发执行） |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
+| `--timeout` | `TIMEOUT` | 否 |
+| `--resume` | `flag` | 否 |
+| `--rerun-successful` | `flag` | 否 |
+| `--checkpoint-every` | `CHECKPOINT_EVERY` | 否 |
+| `--java-only` | `flag` | 否 |
+| `--no-data-check` | `flag` | 否 |
+| `--force` | `flag` | 否 |
 
 **示例**
 
@@ -664,7 +664,7 @@ beastxpy run --config examples/config_basic.yaml --workdir runs/demo --seeds 1,2
 
 **输出**
 
-每个种子在 workdir 下生成一个子目录。
+每个种子在工作目录下生成一个子目录。
 
 **退出码**
 
@@ -672,23 +672,23 @@ beastxpy run --config examples/config_basic.yaml --workdir runs/demo --seeds 1,2
 
 ### `beastxpy trace`
 
-纯 Python 的 trace 统计：ESS、ACT、HPD。
+纯 Python 的 trace 文件统计：ESS、ACT、HPD。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy trace [--log LOG] [--burnin BURNIN] [--ess-threshold ESS_THRESHOLD] [--plot PLOT] [--json]
+beastxpy trace --log LOG [--burnin BURNIN] [--ess-threshold ESS_THRESHOLD] [--plot PLOT] [--json]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--log` | `LOG` | yes |
-| `--burnin` | `BURNIN` | no |
-| `--ess-threshold` | `ESS_THRESHOLD` | no |
-| `--plot` | `PLOT` | no |
-| `--json` | `flag` | no |
+| `--log` | `LOG` | 是 |
+| `--burnin` | `BURNIN` | 否 |
+| `--ess-threshold` | `ESS_THRESHOLD` | 否 |
+| `--plot` | `PLOT` | 否 |
+| `--json` | `flag` | 否 |
 
 **示例**
 
@@ -710,27 +710,27 @@ beastxpy trace --log runs/demo/1/seed_1_trace.log
 
 为树日志标注 clade 支持度。注意：`--heights ca`（共同祖先高度）需要 Java TreeAnnotator；在 `--python-only` 或找不到可用 jar 时会被拒绝。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy tree-annotate [--trees TREES] [--output OUTPUT] [--heights {keep,median,mean,ca}] [--burnin BURNIN] [--limit LIMIT] [--python-only] [--beast-version {1.10.4,10.5.0}]
+beastxpy tree-annotate --trees TREES --output OUTPUT [--heights {keep,median,mean,ca}] [--burnin BURNIN] [--limit LIMIT] [--python-only] [--beast-version {1.10.4,10.5.0}]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--trees` | `TREES` | yes |
-| `--output` | `OUTPUT` | yes |
-| `--heights` | `{keep,median,mean,ca}` | no |
-| `--burnin` | `BURNIN` | no |
-| `--limit` | `LIMIT` | no |
-| `--python-only` | `flag` | no |
-| `--beast-version` | `{1.10.4,10.5.0}` | no |
+| `--trees` | `TREES` | 是 |
+| `--output` | `OUTPUT` | 是 |
+| `--heights` | `{keep,median,mean,ca}` | 否 |
+| `--burnin` | `BURNIN` | 否 |
+| `--limit` | `LIMIT` | 否 |
+| `--python-only` | `flag` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0}` | 否 |
 
 **示例**
 
-请先运行 `beastxpy run --workdir runs/demo`。
+请先运行 `beastxpy run --config examples/config_basic.yaml --workdir runs/demo`。
 
 ```
 beastxpy tree-annotate --trees runs/demo/1/seed_1_tree.log --output tree.tre
@@ -748,24 +748,24 @@ beastxpy tree-annotate --trees runs/demo/1/seed_1_tree.log --output tree.tre
 
 校验已有 XML；`--beast` 追加 Gate 3。
 
-**Synopsis**
+**用法**
 
 ```
-beastxpy validate [--xml XML] [--beast] [--beast-version {1.10.4,10.5.0,both}] [--allow-unvalidated]
+beastxpy validate --xml XML [--beast] [--beast-version {1.10.4,10.5.0,both}] [--allow-unvalidated]
 ```
 
 **参数**
 
 | 参数 | 取值 | 必填 |
 |---|---|---|
-| `--xml` | `XML` | yes |
-| `--beast` | `flag` | no |
-| `--beast-version` | `{1.10.4,10.5.0,both}` | no |
-| `--allow-unvalidated` | `flag` | no |
+| `--xml` | `XML` | 是 |
+| `--beast` | `flag` | 否 |
+| `--beast-version` | `{1.10.4,10.5.0,both}` | 否 |
+| `--allow-unvalidated` | `flag` | 否 |
 
 **示例**
 
-请先运行 `beastxpy generate ... --output out.xml`。
+请先运行 `beastxpy generate --config examples/config_basic.yaml --output out.xml`。
 
 ```
 beastxpy validate --xml out.xml --beast

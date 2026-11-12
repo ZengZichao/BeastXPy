@@ -12,7 +12,7 @@
 beastxpy assess runs/demo --json runs/demo/assessment.json
 ```
 
-如果没有评估就调用 `report`，报告会写 **not assessed / 未评估**，并且不显示任何诊断数字——绝不估算或回填。
+这一步可以跳过：跳过后 `report` 就按下面的第一条诚实规则处理。
 
 ## 第 2 步 —— 渲染
 
@@ -59,4 +59,4 @@ JSON 携带与 HTML 相同的数值，模式为 `beastxpy.report/v1`。
 
 ## 选项
 
-`--include-config` 嵌入运行目录中找到的配置；`--assessment PATH` 指定默认查找之外的评估文件；`--no-plot` 跳过 trace 图以减小文件；`--ess-threshold N` 改变报告绘制的 ESS 参考线，不会重新运行评估。
+`--include-config` 嵌入运行目录中找到的配置；`--assessment PATH` 指定默认查找之外的评估文件；`--no-plot` 跳过 trace 图以减小文件；`--ess-threshold N` 改变判定 trace 参数偏低的 ESS 阈值（默认 200），不会重新运行评估。

@@ -14,7 +14,7 @@
 | `tree_prior` | Yule、生灭、各类溯祖、skyline、EBSP |
 | `calibrations` | 节点标定及其分布与出处 |
 | `parameter_priors` | 命名参数的先验 |
-| `mcmc` | `chain_length`、`pre_burnin`、`auto_optimize`、operator 权重 |
+| `mcmc` | `chain_length`、`pre_burnin`、`auto_optimize`、算子权重 |
 | `loggers` | trace 与 tree 日志文件及记录间隔 |
 | `output` | 输出 XML 名、是否嵌入指纹 |
 | `control` | `beast_version`、`seed`、`strict`、`overlap_measure` |
@@ -51,7 +51,7 @@ output: {file: demo.xml}
 control: {beast_version: "1.10.4", seed: 1}
 ```
 
-要点：`file` 相对本 YAML 文件解析；`from`/`to` 是 1 基闭区间。不落盘生成（XML 打到 stdout）：
+不落盘生成（XML 打到 stdout）：
 
 ```
 beastxpy generate --config demo.yaml
@@ -82,7 +82,7 @@ beastxpy generate --config demo.yaml
 
 ## 第 4 步 —— 添加标定
 
-每个标定都必须给分布——没有默认均匀分布兜底：
+每个标定都必须给分布——没有静默的均匀分布兜底：
 
 ```yaml
 calibrations:
@@ -102,7 +102,7 @@ calibrations:
       original_age_max: 7.0
 ```
 
-即：`taxa: null` 表示根标定；lognormal 的 `mean` 在对数尺度上且必须为正；`calibration_method` 取 `crown` 或 `stem`；`calibration_type` 为 `hard` 时违反原始化石区间是错误，`soft` 是警告。最容易踩坑的分布参数规则：
+最容易踩坑的分布参数规则：
 
 | 类型 | 参数 | 说明 |
 |---|---|---|
@@ -111,11 +111,11 @@ calibrations:
 | `exponential` | `mean`（或 `rate`，按 `1/rate` 存储） | |
 | `gamma` | `shape`、`scale` | 别名 `alpha`/`beta` |
 | `poisson` | `mean` | `offset` **必填** |
-| 其他 | 见 `--help` 与 `check-data` 报错提示 | `offset` 仅用于 lognormal/exponential/gamma/inverse_gamma/beta |
+| 其他 | 见 `--help` 中的 `check-data` 报错说明 | `offset` 仅用于 lognormal/exponential/gamma/inverse_gamma/beta |
 
 `chi_square` 是可识别的拼写，但因不受支持而被拒绝（两个版本的官方 BEAST 都没有卡方先验解析器）。矛盾或部分重叠的单系 clade 是 Gate 0/Gate 2 错误；细节用 `beastxpy diagnose` 查看。
 
-**`meanInRealSpace` 陷阱。** 除非写 `parameters.meanInRealSpace: true`，BEAST 把 lognormal 的 `mean`/`stdev` 当作对数空间参数；BEAUti 的标定构建器默认按实空间均值解释。若未显式声明该标志，Gate 2 会给出 `info` 级提示（`LOGNORMAL_LOG_SPACE_MEAN`），写明实际的先验中位数与 95% 区间。例如 offset 25、`mean: 1.0, stdev: 0.5` 的中位数约为 27.7 Ma，而不是 25 Ma。若你的 `mean` 就是 Ma 日期，请显式设置该标志。
+**`meanInRealSpace` 陷阱。** 除非写 `parameters.meanInRealSpace: true`，BEAST 把 lognormal 的 `mean`/`stdev` 当作对数空间参数；BEAUti 的标定构建器默认按实空间均值解释。若未显式声明该标志，Gate 2 会发出一条 `info` 发现项（`LOGNORMAL_LOG_SPACE_MEAN`），写明实际的先验中位数与 95% 区间。例如 offset 25、`mean: 1.0, stdev: 0.5` 的中位数约为 27.7 Ma，而不是 25 Ma。若你的 `mean` 就是 Ma 日期，请显式设置该标志。
 
 ## 第 5 步 —— 设置先验、链长与日志
 
@@ -134,7 +134,7 @@ loggers:
   tree_log: {file_name: demo.trees, log_every: 10000}  # names must differ
 ```
 
-`log_every` 默认为 `chain_length // 1000`；经验法则是记录 1000-10000 个样本以获得稳定的 ESS 估计。代码注释里的约束同样必须满足：`pre_burnin` 必须小于链长；两个日志文件名必须不同；`parameter` 也可以用精确生成的参数 id（如 `gene2.clock.rate`）；`chain_length` 那行注释是真实分析的目标——争取 ESS > 200。
+`log_every` 默认为 `chain_length // 1000`；经验法则是记录 1000-10000 个样本以获得稳定的 ESS 估计。
 
 `auto_optimize: true` 与 BEAUti 一致，会生成 `<mcmc autoOptimize="true">` 且不写 `targetAcceptance`，因此 BEAST 使用自身默认目标（树算子约 0.234，标量算子约 0.3）。BeastXPy 不覆盖这些默认值。
 
@@ -155,21 +155,21 @@ loggers:
 | `popSize` | uniform（0, 1e8） | BeastXPy 约定；BEAUti 使用 oneOnX |
 | `relativeDeathRate` | uniform（0, 1） | BEAUti 1.10.4 `PartitionTreePrior` 与 BEAST 隐式界 |
 | `pInv`、GTR 速率 | 在声明界内的 uniform | BEAST 参数界约定 |
-| simplex 频率 | 在单纯形上的 uniform | BeastXPy 约定；BEAUti 使用 Dirichlet 先验 |
-| 其他无界参数 | lognormal（对数均值 1、对数标准差 1.25） | BeastXPy 回退值，刻意弱信息 |
+| 单纯形频率 | 在单纯形上的 uniform | BeastXPy 约定；BEAUti 使用 Dirichlet 先验 |
+| 其他无约束参数 | lognormal（对数均值 1、对数标准差 1.25） | BeastXPy 回退值，刻意弱信息 |
 
 BEAUti 归因行已对照写 XML 模板的 1.10.4 代码路径核验。BeastXPy 约定行是有意选择，并非 BEAUti 默认；生成的 XML 注释与 Gate 2 会给出相同依据。回退值在真实分析中应替换。
 
 自动先验在每个环节都可见：
 
 1. **XML。** 每个自动先验元素前都有以 `BXP auto prior (BEAUti-1.10.4 convention)` 开头的注释，注明参数与发出的分布。
-2. **Gate 2。** `generate --beast-validate` 会把每个自动先验列为 `info` 发现，代码为 `AUTO_PRIOR`。
+2. **Gate 2。** `generate --beast-validate` 会把每个自动先验列为 `info` 发现项，代码为 `AUTO_PRIOR`。
 3. **报告。** `beastxpy report` 有 **自动先验（Automatic priors）** 一节，列出生成 XML 中发现的全部注释。
 4. **覆盖。** 可在 `parameter_priors` 中替换任意一项。
 
 默认值没有隐藏。
 
-## 第 6 步 —— 版本、种子、tip dates
+## 第 6 步 —— 版本、种子、tip 日期
 
 * `control.beast_version`：`"1.10.4"`（默认）、`"10.5.0"` 或 `"both"`；命令行 `--beast-version` 可覆盖。
 * `control.seed`：默认随机种子（0..2^31-1）；`run --seeds` 可覆盖。

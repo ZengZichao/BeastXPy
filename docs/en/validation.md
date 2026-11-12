@@ -90,7 +90,7 @@ python tools/official_validate.py --matrix "examples/config_*.yaml" \
     --mode beagle --versions 1.10.4 10.5.0
 ```
 
-`beastxpy capabilities` prints the source-jar SHA-256 recorded in `data/xml_spec.json` for each BEAST version, so a stale element whitelist is visible next to the installed BEAST version.
+`beastxpy capabilities` prints the source-jar SHA-256 recorded in `beastxpy/data/xml_spec.json` for each BEAST version, so a stale element whitelist is visible next to the installed BEAST version.
 
 ### Recorded evidence
 
@@ -156,7 +156,7 @@ The run recorded from this checkout (5000 sites, 500,000 steps, BEAST X 10.5.0 w
 | 1 | [0.0903, 0.1020] | 0.0961 | yes |
 | 2 | [0.0904, 0.1013] | 0.0964 | yes |
 
-The assess verdict for that deliberately short run was `fail` (some ESS values were below 200); the script's pass criterion is only HPD coverage of the known truth, not convergence.
+The `assess` verdict for that deliberately short run was `fail` (some ESS values were below 200); the script's pass criterion is only HPD coverage of the known truth, not convergence.
 
 ### Parameter-recovery study (`--study recovery`)
 

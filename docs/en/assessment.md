@@ -33,7 +33,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
     ...
 ```
 
-Exit code 3 = fail, 0 = pass/warn (1 = warn under `--strict`, 2 = unreadable workdir). A `fail` on a short chain is the correct answer, not a tool malfunction.
+Exit code 3 = fail, 0 = pass/warn (1 = warn under `--strict`, 2 = unreadable inputs or no usable chains). A `fail` on a short chain is the correct answer, not a tool malfunction.
 
 ## Step 3 — Read the errors top-down
 
@@ -75,7 +75,7 @@ The defaults - ESS 200, PSRF 1.01, ASDSF 0.05, operator acceptance 0.01-0.95 - a
 beastxpy assess runs/demo --burnin 0.1 --ess 200 --psrf 1.01 --html report.html
 ```
 
-`--burnin` is a fraction (0..1) discarded from the start of each chain, or `--burnin auto` to use the same Geweke-based automatic burn-in as `beastxpy trace --burnin auto`; the effective fraction is recorded per chain. If no Geweke score is computable (fewer than 100 samples, or every parameter constant), the run is marked `burnin_status: not_computable`, a warning finding is emitted, and the verdict is downgraded to `warn`; burn-in 0 is used only because no samples can be discarded, and is explicitly not an estimate of convergence. Pass an explicit fraction in that case. The defaults differ on purpose: `trace` analyses one log and defaults to the automatic probe, while `assess` defaults to a fixed 0.1 so every seed is discarded identically and the choice is reproducible from the JSON alone. Pass `--burnin auto` when you want the probe across seeds. `--html` writes a self-contained summary page next to the JSON and prints the thresholds actually used, so a pass cannot be mistaken for a convergence proof independent of its settings. The JSON envelope (`beastxpy.assessment/v1`) carries `verdict`, `counts`, `chains`, `multichain`, `reasons` and `limitations`.
+`--burnin` is a fraction (0..1) discarded from the start of each chain, or `--burnin auto` to use the same Geweke-based automatic burn-in as `beastxpy trace --burnin auto`; the effective fraction is recorded per chain. If no Geweke score is computable (fewer than 100 samples, or every parameter constant), the run is marked `burnin_status: not_computable`, a warning finding is emitted, and the verdict is downgraded to `warn`; burn-in 0 is used only because no samples can be discarded, and is explicitly not an estimate of convergence. Pass an explicit fraction in that case. The defaults differ on purpose: `trace` analyses one log and defaults to the automatic probe, while `assess` defaults to a fixed 0.1 so every seed is discarded identically and the choice is reproducible from the JSON alone. Pass `--burnin auto` when you want the probe across seeds. `--html` writes a self-contained summary page next to the JSON and prints the thresholds actually used, so a pass cannot be mistaken for a convergence proof independent of its settings. The JSON envelope (`beastxpy.assessment/v1`) always carries the top-level keys listed in [`CONTRACT.md` §7](../../CONTRACT.md): `schema_version`, `generated_at`, `tool_version`, `workdir`, `verdict`, `strict`, `thresholds`, `counts`, `chains`, `multichain`, `reasons` and `limitations`; `counts` is the finding tally in `reasons` (`error`, `warning`, `info`).
 
 ## Agreement with reference implementations
 

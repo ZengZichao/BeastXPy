@@ -14,7 +14,6 @@ Expected output:
 
 ```
 wrote pipeline/Snakefile
-wrote pipeline/config_basic.yaml
 ```
 
 The generated text is syntax-checked by the command itself, and the config is copied next to it so the directory is self-contained. `--type nextflow` writes `pipeline/main.nf` instead.

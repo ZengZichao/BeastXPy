@@ -51,7 +51,7 @@ java -version
 
 ## 第 4 步 —— 决定 BEAST jar 的来源
 
-默认使用 `beastxpy/tools/jars/` 内自带的两份 jar，因此 Gate 3 无需任何外部安装。若要改用自己的 BEAST：
+默认使用 `beastxpy/tools/jars/` 内自带的两份 jar，因此 Gate 3 无需任何外部安装。若要改用自己的 BEAST 构建：
 
 ```
 export BEAST_1_10_4_HOME="/path/to/BEAST v1.10.4"
@@ -60,16 +60,16 @@ export BEAST_10_5_0_HOME="/path/to/BEAST X v10.5.0"
 
 `BEASTX_JAR` 可显式指定单个 jar。查找顺序：显式环境变量（`BEASTX_JAR_<tag>`、`BEAST_<tag>_JAR`、`BEASTX_JAR`）→ 安装目录（`BEAST_<tag>_HOME`）→ `BEASTX_REF_DIR` 下的 `beast-mcmc-<version>/build/dist/beast.jar` → 检出目录旁边的官方安装 → 最后才是自带 jar。
 
-**wheel 体积与归档。** 随包的两个 jar 是未经修改的官方 BEAST v1.10.4 与 BEAST X v10.5.0 release 制品（SHA-256 见 `NOTICE` 与 `tools/jars/MANIFEST.txt`），会让 wheel 与 sdist 增加约 22 MB。如果本机已装 BEAST，可用 `BEASTX_JAR`（或 `BEAST_<tag>_HOME`）指向它；自带副本虽然仍在包里，但不会再被使用。准备 Zenodo 或期刊存档时请把这份体积计入，并遵循仓库的单文件大小建议；不含 jar 的源码包要小得多。
+**wheel 体积与归档。** 随包的两个 jar 是未经修改的官方 BEAST v1.10.4 与 BEAST X v10.5.0 发布产物（SHA-256 见 `NOTICE` 与 `beastxpy/tools/jars/MANIFEST.txt`），会让 wheel 与 sdist 增加约 22 MB。如果本机已装 BEAST，可用 `BEASTX_JAR`（或 `BEAST_<tag>_HOME`）指向它；自带副本虽然仍在包里，但不会再被使用。准备 Zenodo 或期刊存档时请把这份体积计入，并遵循仓库的单文件大小建议；不含 jar 的源码包要小得多。
 
-**无 jar 变体。** 如果已经安装 BEAST，可以构建不含 jar 的 `beastxpy-core` wheel；Python 代码相同，只是缺少两个 BEAST jar：
+**无 jar 变体。** 如果已经安装 BEAST，可以构建 `beastxpy-core` wheel，它包含相同的 Python 代码但不含任何 jar：
 
 ```
 python tools/build_core_wheel.py
 python -m pip install dist-core/beastxpy_core-0.1.0-py3-none-any.whl
 ```
 
-该安装下的 Gate 3 与 `run` 需要 `BEASTX_JAR`（或 `BEAST_<tag>_HOME`）；`beastxpy check-environment` 会报告缺失的 jar 及修复方法。LGPL-2.1 义务仅适用于随附的 BEAST 二进制，因此 core wheel 只适用 MIT。
+该安装下的 Gate 3 与 `run` 需要 `BEASTX_JAR`（或 `BEAST_<tag>_HOME`）；`beastxpy check-environment` 会报告缺失的 jar 以及下一步该做什么。LGPL-2.1 义务仅适用于随附的 BEAST 二进制，因此 core wheel 只适用 MIT。
 
 ## 第 5 步 —— 指向原生 BEAGLE（`run` 必需）
 
@@ -82,7 +82,7 @@ export BEASTX_BEAGLE_10_5_0_LIB="/path/to/beagle-4.0.x"
 
 该目录必须包含原生库本身，而不是 BEAST 的 `lib/beagle`（那里只有 Java 封装）。`run` 会把探测到的目录自动暴露给 JVM（`-Djava.library.path` 加动态链接器路径），无需再做别的。细节与版本配对见 [原生 BEAGLE](native-beagle.md)。
 
-## 第 6 步 —— 校验环境
+## 第 6 步 —— 验证环境
 
 ```
 beastxpy check-environment
@@ -102,6 +102,6 @@ beagle 10.5.0: /path/to/beagle-4.0.x/lib (source env:BEASTX_BEAGLE_10_5_0_LIB)
 
 * `source` 说明每一项是通过哪种机制解析到的（`JAVA_HOME`、`PATH`、`env:BEAST_1_10_4_HOME`、`reference-install`、`packaged-fallback`）。
 * 出现 `missing:` 行且退出码为 2 表示缺少必需项——先修复再进入 [快速上手](quickstart.md)。
-* 缺少 BEAGLE 时会打印 `beagle <version>: NOT FOUND`，并为每个版本打印一行 `guidance:`，指出需要设置的 `BEASTX_BEAGLE_<tag>_LIB` 变量。缺少 BEAGLE 不会让 `check-environment` 失败：`generate` 与 `check-data` 仍可用，Gate 3 回退到 `java-core`，而 `run`/`compare` 会拒绝启动。
+* 缺少 BEAGLE 时会打印 `beagle <version>: NOT FOUND`，并为每个版本打印一行 `guidance:`，指出需要设置的确切 `BEASTX_BEAGLE_<tag>_LIB` 变量。缺少 BEAGLE 不会让 `check-environment` 失败：`generate` 与 `check-data` 仍可用，Gate 3 回退到 `java-core`，而 `run`/`compare` 会拒绝启动。
 
 继续阅读[快速上手](quickstart.md)。

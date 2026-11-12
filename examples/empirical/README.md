@@ -1,5 +1,7 @@
 # BeastXPy reference-data case study
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 This directory runs the complete BeastXPy workflow on the shipped
 `examples/primates.fasta` alignment (12 taxa, 898 bp). Those sequences are a
 short published/reference tutorial alignment already part of this repository;

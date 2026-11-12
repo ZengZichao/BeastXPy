@@ -60,7 +60,7 @@ export BEAST_10_5_0_HOME="/path/to/BEAST X v10.5.0"
 
 `BEASTX_JAR` selects a single jar explicitly. Discovery order: explicit environment (`BEASTX_JAR_<tag>`, `BEAST_<tag>_JAR`, `BEASTX_JAR`) → installation homes (`BEAST_<tag>_HOME`) → a `beast-mcmc-<version>/build/dist/beast.jar` under `BEASTX_REF_DIR` → official installs found next to the checkout → bundled jar last.
 
-**Wheel size and archives.** The two bundled jars are the unmodified official BEAST v1.10.4 and BEAST X v10.5.0 release artifacts (SHA-256 values are in `NOTICE` and `tools/jars/MANIFEST.txt`). They add about 22 MB to the wheel and sdist. If you already have BEAST installed, point `BEASTX_JAR` (or `BEAST_<tag>_HOME`) at it; the bundled copy is then unused, though it is still present in the package. When preparing a Zenodo or journal archive, account for that payload and follow the repository's per-file size guidance; the source archive without jars is much smaller.
+**Wheel size and archives.** The two bundled jars are the unmodified official BEAST v1.10.4 and BEAST X v10.5.0 release artifacts (SHA-256 values are in `NOTICE` and `beastxpy/tools/jars/MANIFEST.txt`). They add about 22 MB to the wheel and sdist. If you already have BEAST installed, point `BEASTX_JAR` (or `BEAST_<tag>_HOME`) at it; the bundled copy is then unused, though it is still present in the package. When preparing a Zenodo or journal archive, account for that payload and follow the repository's per-file size guidance; the source archive without jars is much smaller.
 
 **Jar-free variant.** If you already have BEAST installed, build the `beastxpy-core` wheel, which contains the same Python code but no jars:
 

@@ -4,19 +4,42 @@
 
 ## 目录结构
 
+下面按流水线阶段列出 `beastxpy/` 下的每个模块；`cli_<name>.py` 一项列出的是那八个自注册模块。
+
 ```
-beastxpy/            package
-  main.py            CLI registration and dispatch only
-  api.py             the facade
+beastxpy/
+  __init__.py        the version string
+  main.py            CLI registration and dispatch, no analysis logic
+  api.py             the facade every command goes through
   _contracts.py      schema ids, exit codes, JSON helpers
-  config.py          Gate 0
-  validator.py       Gate 1 and Gate 3
+  utils.py           shared helpers
+  config.py          Gate 0: strict YAML parsing
+  partition.py       Gate 0: partition checks
+  datacheck.py       pre-flight data and calibration checks
+  sequence.py        sequence reading and validation
+  models.py          data model definitions
+  calibration.py     calibration assembly
+  validator.py       Gate 1 (pure Python) and Gate 3 (official jars)
+  diagnostics.py     Gate 2 calibration diagnostics and diagnose
   model.py           XML assembly
+  xml_writer.py      canonical BEAST 1 XML serialisation
+  fragments.py       user-supplied XML spliced into the document
   registry.py        the element/model registry
   runner.py          the seed matrix
+  assessment.py      ESS/ACT/PSRF/ASDSF for assess
+  tracestats.py      trace statistics for trace
+  treetools.py       tree-annotate and logcombine
+  compare.py         marginal-likelihood model comparison
+  report.py          the self-contained HTML report
+  lockfile.py        environment lock files
+  reproducibility.py fingerprints, LaTeX methods, pipelines
+  capabilities.py    the capability matrix
   coverage/          one module per non-standard analysis family
-  data/              capabilities.yaml, spec data
-  tools/jars/        the official BEAST jars
+  cli_<name>.py      the commands that self-register: assess,
+                     capabilities, check-data, compare, container, lock,
+                     report, reproduce
+  data/              capabilities.yaml, xml_spec.json
+  tools/             the BEAST validator harness and the official jars
 deploy/              container definitions
 docs/en, docs/zh     this documentation
 examples/            the config matrices
@@ -24,7 +47,7 @@ tests/               pytest suite
 tools/               validation matrices and helpers
 ```
 
-`main.py` 不承载业务逻辑。一个命令就是一个 `beastxpy/cli_<name>.py` 模块，暴露 `register(subparsers)`；发现是自动的。
+`main.py` 不承载分析逻辑：它解析参数、调用 `api.py` 或某个模块，然后打印输出。命令要么在 `main.py` 中注册，要么由一个暴露 `register(subparsers)` 的 `beastxpy/cli_<name>.py` 模块注册；后者会被自动发现，因此新增命令从不需要改动 `main.py`。
 
 ## 测试
 

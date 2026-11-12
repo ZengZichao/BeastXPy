@@ -2,7 +2,7 @@
 
 [English](../en/troubleshooting.md) | [中文](troubleshooting.md)
 
-症状、原因、修法。条目按你最可能碰到它们的先后排序：先是环境，再是配置，然后是运行。
+症状、原因、修复。条目按你最可能碰到它们的先后排序：先是环境，再是配置，然后是运行。
 
 ## `no usable Java runtime found` / `NOT RUN`
 
@@ -10,7 +10,7 @@ Gate 3 或 runner 起不来 JVM。`beastxpy check-environment` 显示实际解�
 
 ## `jar ... NOT FOUND`
 
-找不到该版本的 BEAST jar。要么用自带 jar（什么都不用做），要么设置 `BEAST_1_10_4_HOME` / `BEAST_10_5_0_HOME` / `BEASTX_JAR`。`check-environment` 的 `source:` 字段说明最终是哪种机制生效。
+找不到该版本的 BEAST jar。要么用自带 jar（什么都不用做），要么设置 `BEAST_1_10_4_HOME` / `BEAST_10_5_0_HOME` / `BEASTX_JAR`。`check-environment` 输出的 `source` 值会说明最终是哪种机制生效。
 
 ## `native hmsbeagle library not found in java.library.path`
 
@@ -20,15 +20,15 @@ Gate 3 或 runner 起不来 JVM。`beastxpy check-environment` 显示实际解�
 java -XshowSettings:properties -version 2>&1 | grep os.arch
 ```
 
-`amd64` 是 64 位，`x86` 是 32 位。把 `JAVA_HOME` 指向 64 位 JDK，再把 `BEASTX_BEAGLE_1_10_4_LIB` 或 `BEASTX_BEAGLE_10_5_0_LIB` 指向**包含库本身**的目录（不是 BEAST 的 `lib/beagle` 封装目录）。
+`amd64` 是 64 位，`x86` 是 32 位。把 `JAVA_HOME` 指向 64 位 JDK，再把 `BEASTX_BEAGLE_1_10_4_LIB` 或 `BEASTX_BEAGLE_10_5_0_LIB` 指向包含库本身的目录（不是 BEAST 的 `lib/beagle` 封装目录）。
 
 ## `Unable to load CPU plugin!` 随后 `error code -6 (No resource matches requirements)`
 
-JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有。插件按裸文件名 `dlopen`，跟随的是**链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle lib dir>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
+JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有。插件按裸文件名 `dlopen`，跟随的是**动态链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle lib dir>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
 
 ## 运行几乎立刻停止，并显示 `No acceptable BEAGLE library plugins found`
 
-JVM 完全没有可用的原生 BEAGLE。检查 `beastxpy check-environment`，设置 `BEASTX_BEAGLE_<version>_LIB` 后重跑。失败的种子会留下 `run.log`、`run_meta.json`（status `failed`）和部分日志；修好环境后用 `--force` 重跑（或 `--resume --rerun-successful`）。
+JVM 完全没有可用的原生 BEAGLE。检查 `beastxpy check-environment`，设置 `BEASTX_BEAGLE_<version>_LIB` 后重跑。失败的种子会留下 `run.log`、`run_meta.json`（status `failed`）和部分日志；修好环境后用 `--force` 重跑（或配合 `--rerun-successful` 使用 `--resume`）。
 
 ## `run: --java-only cannot run this analysis`
 

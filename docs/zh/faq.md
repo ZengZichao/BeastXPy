@@ -12,7 +12,7 @@
 
 **为什么短测试链上 `assess` 判定失败？** 因为链短。这正是正确的报告；短链 ESS 很低，不应通过。
 
-**`pass` 是收敛结论吗？** 不是。参见[能力边界](limitations.md)。
+**`pass` 判定是收敛结论吗？** 不是。参见[能力边界](limitations.md)。
 
 **能用我自己的 XML 吗？** 可以——那正是 BEAST 的用途。`custom_fragments` 只支持一个很小的惰性元素白名单，并且总是强制 Gate 3。
 
@@ -20,8 +20,8 @@
 
 **没有 BEAGLE 时 `compare` 能用吗？** 不能。它以退出码 2 结束且不报告任何数字。
 
-**如何在另一台机器上复现？** 在那台机器上 `beastxpy lock`，在这里 `beastxpy reproduce --check`。
+**如何在另一台机器上复现一次运行？** 在那台机器上 `beastxpy lock`，在这里 `beastxpy reproduce --check`。
 
-**支持哪些 Python 版本？** 3.10 与 3.11。
+**支持哪些 Python 版本？** 发行元数据允许 3.10 及以上；3.10 与 3.11 是 CI 实际验证过的两个版本。
 
 **能在容器里运行吗？** 可以：`docker build -f deploy/Dockerfile .`。参见[容器](container.md)。

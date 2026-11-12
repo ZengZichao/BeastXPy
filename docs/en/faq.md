@@ -22,6 +22,6 @@
 
 **How do I reproduce a run on another machine?** `beastxpy lock` there and `beastxpy reproduce --check` here.
 
-**Which Python versions?** 3.10 and 3.11.
+**Which Python versions?** The package metadata allows 3.10 and above; 3.10 and 3.11 are the two versions CI actually tests.
 
 **Can I run it in a container?** Yes: `docker build -f deploy/Dockerfile .`. See [container](container.md).

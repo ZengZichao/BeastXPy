@@ -10,7 +10,7 @@ Gate 3 or the runner could not start a JVM. `beastxpy check-environment` shows w
 
 ## `jar ... NOT FOUND`
 
-No BEAST jar for that version. Either rely on the bundled jars (do nothing) or set `BEAST_1_10_4_HOME` / `BEAST_10_5_0_HOME` / `BEASTX_JAR`. The `check-environment` `source:` field tells you which mechanism won.
+No BEAST jar for that version. Either rely on the bundled jars (do nothing) or set `BEAST_1_10_4_HOME` / `BEAST_10_5_0_HOME` / `BEASTX_JAR`. The `source` value that `check-environment` prints tells you which mechanism won.
 
 ## `native hmsbeagle library not found in java.library.path`
 
@@ -20,7 +20,7 @@ The library exists but the JVM cannot load it. Almost always a **bitness** misma
 java -XshowSettings:properties -version 2>&1 | grep os.arch
 ```
 
-`amd64` is 64-bit, `x86` is 32-bit. Point `JAVA_HOME` at a 64-bit JDK, then set `BEASTX_BEAGLE_1_10_4_LIB` or `BEASTX_BEAGLE_10_5_0_LIB` at the directory holding the library itself (not BEAST's `lib/beagle` wrapper folder).
+`amd64` is 64-bit, `x86` is 32-bit. Point `JAVA_HOME` at a 64-bit JDK, then set `BEASTX_BEAGLE_1_10_4_LIB` or `BEASTX_BEAGLE_10_5_0_LIB` to the directory holding the library itself (not BEAST's `lib/beagle` wrapper folder).
 
 ## `Unable to load CPU plugin!` then `error code -6 (No resource matches requirements)`
 
@@ -32,7 +32,7 @@ No native BEAGLE was available to the JVM at all. Check `beastxpy check-environm
 
 ## `run: --java-only cannot run this analysis`
 
-`--java-only` maps to BEAST's `-java` flag, and BEAST's bundled pure-Java BEAGLE does not implement `getSiteLogLikelihoods` - so any document with a `<treeLikelihood>` (which is every BeastXPy document) aborts under it. Install native BEAGLE and drop the flag.
+`--java-only` maps to BEAST's `-java` flag, and BEAST's bundled pure-Java BEAGLE does not implement `getSiteLogLikelihoods` — so any document with a `<treeLikelihood>` (which is every BeastXPy document) aborts under it. Install native BEAGLE and drop the flag.
 
 ## `Gate 0: unknown key`
 
@@ -48,7 +48,7 @@ Calibrations contradict each other or the tree prior. Run `beastxpy diagnose --c
 
 ## `Gate 3/3: ... FAILED` with a BEAST parse error
 
-BEAST itself rejected the document. The message names the XML path and the parser complaint; this is a BeastXPy bug or a custom fragment problem - please report it with the config attached. If you must ship the document while debugging, `--allow-unvalidated` writes it labelled `UNVALIDATED` (never for custom fragments, which must pass Gate 3).
+BEAST itself rejected the document. The message names the XML path and the parser complaint; this is a BeastXPy bug or a custom fragment problem — please report it with the config attached. If you must ship the document while debugging, `--allow-unvalidated` writes it labelled `UNVALIDATED` (never for custom fragments, which must pass Gate 3).
 
 ## Nextflow fails on Windows
 
@@ -64,4 +64,4 @@ It is telling the truth. PSRF and ASDSF need at least two chains; run more seeds
 
 ## `reproduce --check` fails
 
-A field differs from the lock. The output names it. If the environment really changed, regenerate the lock; do not edit it - an edited lock is rejected outright with exit 3.
+A field differs from the lock. The output names it. If the environment really changed, regenerate the lock; do not edit it — an edited lock is rejected outright with exit 3.

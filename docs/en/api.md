@@ -5,7 +5,7 @@
 The command line is the supported interface; the Python facade mirrors it for notebooks and scripts.
 
 ```
-from beastxpy import BeastXPy
+from beastxpy.api import BeastXPy
 
 bxp = BeastXPy()
 xml = bxp.generate_xml("config.yaml", beast_validate=True)

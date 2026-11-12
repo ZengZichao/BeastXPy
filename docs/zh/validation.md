@@ -15,7 +15,7 @@ BeastXPy 有四道 Gate。每道回答不同的问题，这个区别在读结果
 
 ## 第 1 步 —— 读懂每一道 Gate 的输出
 
-`beastxpy generate --config demo.yaml --output demo.xml --beast-validate` 在 stderr 上逐个 Gate 打印。以下是[快速上手](quickstart.md)演示配置的真实输出：
+`beastxpy generate --config demo.yaml --output demo.xml --beast-validate` 在 stderr 上每个 Gate 打印一行。以下是[快速上手](quickstart.md)演示配置的真实输出：
 
 ```
 Gate 0 (parse-time, before the 3 generation gates): demo.yaml
@@ -33,11 +33,11 @@ Gate 3/3: BEAST 1.10.4 validation: OK [mode=java-core (construct-only shim; like
 解读要点：
 
 * `Gate 2 [info]` 是提示而不是错误：它如实说明对数尺度标定均值的实际含义，并逐一列出 BeastXPy 自动添加的先验（可在 `parameter_priors` 中覆盖）。
-* Gate 3 行方括号里是实际使用的校验模式。在有原生 BEAGLE 的机器上，这里会显示 `[mode=beagle ...]`，WARNING 行消失，证据即完整官方验证。
+* Gate 3 行方括号里是实际使用的校验模式。在有原生 BEAGLE 的机器上，这里会显示 `[mode=beagle ...]`，WARNING 行消失，证据即完整的官方校验。
 
 退出码 0 表示**每个被请求的 Gate 都真实运行且通过**。退出码的区分：1 = Gate 0-2 失败或配置错误；2 = Gate 3 无法运行（缺 Java/jar）；3 = Gate 3 运行且 BEAST 拒绝了文档。
 
-Gate 1 的元素名匹配**区分大小写**，因为 BEAST 的解析器注册表区分大小写。包含 `<TreeModel>` 的文档会以 `ELEMENT_CASE_MISMATCH` 被拒绝（finding 会指出正确的 `<treeModel>`），而不是被静默接受。
+Gate 1 的元素名匹配**区分大小写**，因为 BEAST 的解析器注册表区分大小写。包含 `<TreeModel>` 的文档会以 `ELEMENT_CASE_MISMATCH` 被拒绝（该发现项会指出规范的 `<treeModel>`），而不是被静默接受。
 
 ## 第 2 步 —— 校验已有 XML
 
@@ -60,7 +60,7 @@ python tools/validate_coverage.py
 
 `--beast-validate` 用 BEAST jar 执行 XML 解析、MCMC 对象构建，并计算一次有限的初始后验。`passed` 表示官方解析器接受了文档，模型图可以建起来。
 
-底层结果有四种状态，而不是两种：`executed-pass`、`executed-fail`（BEAST 运行并拒绝）、`not-run`（校验根本没开始：超时、XML 缺失、验证器类缺失）与 `environment-missing`（没有可用的 Java 或 jar），每种都带原因。公开的 CLI/API 门面把 `environment-missing` 折叠进 `not-run`，但在 JSON 的 `raw_status` 与 `environment_error` 中保留区分，四态信息不会丢失。没运行过的 Gate 绝不会被打印成 `OK`。
+底层结果有四种状态，而不是两种：`executed-pass`、`executed-fail`（BEAST 运行并拒绝）、`not-run`（校验根本没开始：超时、XML 缺失、校验器类缺失）与 `environment-missing`（没有可用的 Java 或 jar），每种都带原因。公开的 CLI/API 门面把 `environment-missing` 折叠进 `not-run`，但在 JSON 的 `raw_status` 与 `environment_error` 中保留区分，四态信息绝不会丢失。没运行过的 Gate 绝不会被打印成 `OK`。
 
 ## 校验模式
 
@@ -73,7 +73,7 @@ Gate 3 以本机支持的最强模式运行：
 | `java-core` | 解析 + 实例化 + 初始后验 | 官方集合 + 项目 `treeLikelihood` shim（见下） |
 | `beagle` | 解析 + 实例化 + 真实原生似然 | 官方 |
 
-**`parse` 与 `java-core` 模式只对 `<treeLikelihood>` 子树替换成 BeastXPy 自带的解析器。** BEAST 内置的纯 Java BEAGLE 没有实现位点对数似然入口，因此改用旧版 Java 似然核心。该解析器属于校验工装，不是 BEAST 功能，也不是受支持的分析路径。它的语法规则逐行镜像两个随包 BEAST 版本的 `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules`；反射测试（`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`）会在两者偏离时失败。Gate 3 还会在 environment 阶段与 JSON 结果中记录 `tree_likelihood_rule_source=shim` 或 `official`。镜像规则接受 `<branchModel>` 子元素，但 shim 无法计算它；此时会发出 `SHIM_BRANCH_MODEL` 警告并只使用 `<siteModel>`。只有 `beagle` 模式运行原样的官方解析器集合，所以原生 BEAGLE 验证才是更强的证据。选择按 BEAST 版本自动进行：能发现原生 hmsbeagle 库（`BEASTX_BEAGLE_<version>_LIB`、`BEASTX_BEAGLE_LIB`、`BEAGLE_HOME`，或 jar 同级的 `lib/beagle`）时用 `beagle`，否则用 `java-core`。库存在但加载失败时会给出提示并退回较弱核心——不可用的 BEAGLE 是环境问题，不是生成 XML 的缺陷。
+**`parse` 与 `java-core` 模式只对 `<treeLikelihood>` 子树替换成 BeastXPy 自带的解析器。** BEAST 内置的纯 Java BEAGLE 从不实现位点对数似然入口，因此改用旧版 Java 似然核心。该解析器属于校验工装，不是 BEAST 功能，也不是受支持的分析路径。它的语法规则逐行镜像两个随包 BEAST 版本的 `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules`；反射测试（`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`）会在两者偏离时失败。Gate 3 还会在 environment 阶段与 JSON 结果中记录 `tree_likelihood_rule_source=shim` 或 `official`。镜像规则接受 `<branchModel>` 子元素，但 shim 无法计算它；此时会发出 `SHIM_BRANCH_MODEL` 警告并只使用 `<siteModel>`。只有 `beagle` 模式运行原样的官方解析器集合，所以原生 BEAGLE 校验才是更强的证据。选择按 BEAST 版本自动进行：能发现原生 hmsbeagle 库（`BEASTX_BEAGLE_<version>_LIB`、`BEASTX_BEAGLE_LIB`、`BEAGLE_HOME`，或 jar 同级的 `lib/beagle`）时用 `beagle`，否则用 `java-core`。库存在但加载失败时会给出提示并退回较弱核心——不可用的 BEAGLE 是环境问题，不是生成 XML 的缺陷。
 
 ### 证据强度（一个声明到底意味着什么）
 
@@ -81,29 +81,29 @@ Gate 3 以本机支持的最强模式运行：
 |---|---|---|---|
 | `parse` | 官方解析器；`treeLikelihood` 子树用项目 shim | 无 | XML 良构，元素/id 在解析阶段被接受，且 `treeLikelihood` 子树满足 shim 镜像的规则面 |
 | `java-core` | 官方解析器 + 项目自带的 `TreeLikelihood` shim | 不计算（仅构建） | 模型图可以构建，初始后验对象存在；似然没有由官方核心计算 |
-| `beagle` | 完整官方解析器集合 | 真实原生 hmsbeagle 似然 | 真实似然下的完整官方验证 |
+| `beagle` | 完整官方解析器集合 | 真实原生 hmsbeagle 似然 | 真实似然下的完整官方校验 |
 
-`beastxpy capabilities` 中的每一行 “supported”、每条 reason 以及 README 中的每条声明，除非明确写出 `beagle`，否则指的都是 `java-core`。论文或发布说明若声称“已用 BEAST X.Y 验证”，必须写明模式，并报告实际运行过的矩阵：平台 × BEAST 版本 × 示例配置数。下面的命令用来运行该矩阵；在记录下你所在平台的输出之前，它本身不是一个声明。
+`beastxpy capabilities` 中的每一行 “supported”、每条 reason 以及 README 中的每条声明，除非明确写出 `beagle`，否则指的都是 `java-core`。论文或发布说明若声称“已用 BEAST X.Y 校验”，必须写明模式，并报告实际运行过的矩阵：平台 × BEAST 版本 × 示例配置数。下面的命令用来运行该矩阵；在记录下你所在平台的输出之前，它本身不是一个声明。
 
 ```
 python tools/official_validate.py --matrix "examples/config_*.yaml" \
     --mode beagle --versions 1.10.4 10.5.0
 ```
 
-`beastxpy capabilities` 会打印 `data/xml_spec.json` 中记录的每个 BEAST 版本的源 jar SHA-256，因此元素白名单过期与否可以与已安装的 BEAST 版本对照。
+`beastxpy capabilities` 会打印 `beastxpy/data/xml_spec.json` 中记录的每个 BEAST 版本的源 jar SHA-256，因此元素白名单过期与否可以与已安装的 BEAST 版本对照。
 
-### 已记录的验证矩阵
+### 已记录的证据
 
-以下矩阵于 2026-10-22 在本检出上实际运行（Linux x86_64、Temurin JDK 17.0.20.1、随包官方 jar；原生 BEAGLE 按各 BEAST 版本的固定源码构建）。每一行都覆盖完整的 `examples/config_*.yaml` 集合：
+以下矩阵于 2026-10-22 在本检出上实际运行（Linux x86_64、Temurin JDK 17.0.20.1、随包官方 jar；原生 BEAGLE 按各 BEAST 版本固定的源码归档构建）。每一行都覆盖完整的 `examples/config_*.yaml` 集合：
 
 | BEAST 版本 | 模式 | 原生 BEAGLE | 通过示例数 |
 |---|---|---|---|
 | 1.10.4 | `beagle` | 3.1.2（源码构建，SHA-256 `dd872b48...`） | 16/16 |
 | 10.5.0 | `beagle` | 4.0.1（源码构建，SHA-256 `9d258cd9...`） | 16/16 |
 
-两行都是完整解析器 + 真实似然的验证。同一检出还通过了 `examples/coverage/` 中所有适用于该版本的覆盖夹具（BEAST 1.10.4 为 12/12，BEAST X 10.5.0 为 15/15；其中三个夹具仅适用于 10.5.0）。两行 `beagle` 记录均可重放：`tools/run_beagle_evidence.py` 下载固定版本 BEAGLE 源码、校验 SHA-256、构建（4.0.1 用 CMake，3.1.2 用 autotools）、运行矩阵，并写出 `evidence.json`（命令、哈希、通过数）。CI 的 `beagle-evidence` 作业在每次 push 时按 BEAST 版本各运行该脚本一次，并上传两个产物。自动构建需要 JDK；若检出路径含非 ASCII 字符，请在 ASCII 目录构建 3.1.2（其 autotools 的 `javac` 探测在 `LC_ALL=C` 下运行）。
+两行都是完整解析器 + 真实似然的校验。同一检出还通过了 `examples/coverage/` 中所有适用于该版本的覆盖夹具（BEAST 1.10.4 为 12/12，BEAST X 10.5.0 为 15/15；其中三个夹具仅适用于 10.5.0）。两行 `beagle` 记录均可重放：`tools/run_beagle_evidence.py` 下载固定版本的 BEAGLE 归档、校验 SHA-256、构建（4.0.1 用 CMake，3.1.2 用 autotools）、运行矩阵，并写出 `evidence.json`（命令、哈希、通过数）。CI 的 `beagle-evidence` job 在每次 push 时按 BEAST 版本各运行该脚本一次，并上传两个产物。自动构建需要 JDK；若检出路径含非 ASCII 字符，请在 ASCII 目录构建 3.1.2（其 autotools 的 `javac` 探测在 `LC_ALL=C` 下运行）。
 
-仅 `java-core` 的运行是原生 BEAGLE 不可用时的仅构建回退；如*证据强度* 表所示，其证据弱于 `beagle` 行。
+仅 `java-core` 的运行是原生 BEAGLE 不可用时的仅构建回退；如*证据强度*表所示，其证据弱于 `beagle` 行。
 
 ### BEAUti 惯例参照对照
 
@@ -142,7 +142,7 @@ python tools/run_reference_case.py \
 
 ### 模拟数据的端到端恢复
 
-`tools/simulate_end_to_end.py` 是与解析器矩阵配套的科学验证：在已知根树（(A:0.03,B:0.05):0.05,C:0.05,D:0.05；A 采样于年龄 0.02，因此根高为 0.10）上模拟四分类单元 JC69 比对，严格钟速率固定为 1.0，运行两个独立种子，并检查根高的 95% HPD 是否包含 0.10。
+`tools/simulate_end_to_end.py` 是解析器矩阵在科学层面的配套实验：在已知根树（(A:0.03,B:0.05):0.05,C:0.05,D:0.05；A 采样于年龄 0.02，因此根高为 0.10）上模拟四分类单元 JC69 比对，严格钟速率固定为 1.0，运行两个独立种子，并检查根高的 95% HPD 是否包含 0.10。
 
 ```
 python tools/simulate_end_to_end.py --out validation_runs/simulated_e2e \
@@ -156,7 +156,7 @@ python tools/simulate_end_to_end.py --out validation_runs/simulated_e2e \
 | 1 | [0.0903, 0.1020] | 0.0961 | 是 |
 | 2 | [0.0904, 0.1013] | 0.0964 | 是 |
 
-那次刻意较短的运行在 `assess` 中的 verdict 为 `fail`（部分 ESS 低于 200）；脚本的通过标准只是 HPD 覆盖已知真值，不是收敛。
+那次刻意较短的运行在 `assess` 中的判定为 `fail`（部分 ESS 低于 200）；脚本的通过标准只是 HPD 覆盖已知真值，不是收敛。
 
 ### 参数恢复研究（`--study recovery`）
 
@@ -176,7 +176,7 @@ python tools/simulate_end_to_end.py --study recovery \
 | 0.30 | 4/4 | 3/4 | 0.523 | 0.452 | 19.7 | 0.966 | 0.000 |
 | 0.15 | 4/4 | 4/4 | 0.128 | 0.260 | 105.1 | 1.000 | 0.000 |
 
-这些是 `recovery_summary.json` 的完整逐种子结果，不是挑选后的子集。两个格子的标定覆盖率合计为 8/8，真实拓扑被恢复（六个 clade 的后验支持度均 ≥ 0.966），但在真值 0.30 时每个 `ucld.stdev` 估计的 ESS 都低于 200 的筛查阈值，真值 0.15 时四个也都低于 200；因此 `assess` verdict 为 `fail`。0.30 格子还有一个种子的 ucld.stdev 后验远高于真值，所以覆盖率为 3/4、均值被抬高。论文级恢复表需要更长的链（或更有信息量的设计）；脚本如实报告 ESS，而不是隐藏这一限制。
+这些是 `recovery_summary.json` 的完整逐种子结果，不是挑选后的子集。两个格子的标定覆盖率合计为 8/8，真实拓扑被恢复（六个 clade 的后验支持度均 ≥ 0.966），但在真值 0.30 时每个 `ucld.stdev` 估计的 ESS 都低于 200 的筛查阈值，真值 0.15 时四个也都低于 200；因此 `assess` 判定为 `fail`。0.30 格子还有一个种子的 ucld.stdev 后验远高于真值，所以覆盖率为 3/4、均值被抬高。论文级恢复表需要更长的链（或更有信息量的设计）；脚本如实报告 ESS，而不是隐藏这一限制。
 
 ## `--allow-unvalidated`
 

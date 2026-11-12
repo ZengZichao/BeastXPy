@@ -1,5 +1,7 @@
 # Contributing to BeastXPy
 
+[English](CONTRIBUTING.md) | [中文](CONTRIBUTING.zh-CN.md)
+
 Thank you for improving BeastXPy. This project is a scientific tool: a change that makes the XML, a statistic or a documented claim less trustworthy is a regression even if the tests pass.
 
 ## Setup
@@ -51,11 +53,11 @@ Format with `python -m black --line-length 100 beastxpy tests tools` before open
 
 ## Bundled BEAST jars
 
-`beastxpy/tools/jars/` must contain the unmodified official release artifacts. The SHA-256 values are recorded in `NOTICE`, `tools/jars/MANIFEST.txt` and `data/xml_spec.json`; `tools/build_jars.py` checks them when it writes a manifest. Never commit a locally rebuilt jar as a release artifact, and never record absolute paths, user names or host names in a build manifest.
+`beastxpy/tools/jars/` must contain the unmodified official release artifacts. The SHA-256 values are recorded in `NOTICE`, `beastxpy/tools/jars/MANIFEST.txt` and `beastxpy/data/xml_spec.json`; `beastxpy/tools/build_jars.py` checks them when it writes a manifest. Never commit a locally rebuilt jar as a release artifact, and never record absolute paths, user names or host names in a build manifest.
 
 ## Documentation
 
-English and Chinese pages are kept in one-to-one correspondence. If you change a default, a flag, a threshold or a validation claim, update both `docs/en/` and `docs/zh/`, plus the command reference. Reference DOIs should be checked against the publisher before a release.
+English and Chinese pages are kept in one-to-one correspondence, and English is the authoritative version: when the two disagree, English wins and the Chinese page is corrected. Every reader-facing document exists in both languages — `docs/en/` and `docs/zh/`, `README.md` and `README.zh-CN.md`, and each auxiliary document as a `<name>.zh-CN.md` sibling of its English file (`CONTRACT.md`, `CONTRIBUTING.md`, `deploy/README.md`, `deploy/beagle/README.md`, `examples/empirical/README.md`, `tests/golden/beauti_reference/README.md`). Language-switch links list English first. If you change a default, a flag, a threshold or a validation claim, update both languages plus the command reference; `tests/test_docs.py` enforces the pairing, the switch links, that code blocks and table tokens match, and that `docs/<lang>/cli.md` agrees with the argument parser on every registered flag, value set, required option and synopsis. Reference DOIs should be checked against the publisher before a release.
 
 ## Releases
 

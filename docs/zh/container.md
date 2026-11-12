@@ -13,7 +13,7 @@ beastxpy container --print apptainer
 
 ## 镜像内容
 
-Python 3.10、JDK 17、来自 `beastxpy/tools/jars/` 的两个 BEAST jar、从源码编译的原生 BEAGLE 4.0.1，以及 BeastXPy 0.1.0。以非特权用户 `beastxpy`（uid 10001）运行，入口为 `beastxpy`。基础镜像按 digest 固定；无论在线下载还是离线提供的 BEAGLE 源码包都必须匹配固定的 SHA-256，digest 为空或不匹配时构建失败。
+Python 3.10、JDK 17、来自 `beastxpy/tools/jars/` 的两个 BEAST jar、从源码编译的原生 BEAGLE 4.0.1，以及 BeastXPy 0.1.0。以非特权用户 `beastxpy`（uid 10001）运行，入口点为 `beastxpy`。基础镜像按 digest 固定；无论在线下载还是离线提供的 BEAGLE 源码包都必须匹配固定的 SHA-256，digest 为空或不匹配时构建失败。
 
 ## 构建与运行
 

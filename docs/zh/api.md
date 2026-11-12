@@ -2,10 +2,10 @@
 
 [English](../en/api.md) | [中文](api.md)
 
-命令行是受支持的接口；Python 门面逐一镜像这些命令，供 notebook 与脚本使用。
+命令行是受支持的接口；Python 门面镜像同一套接口，供 notebook 与脚本使用。
 
 ```
-from beastxpy import BeastXPy
+from beastxpy.api import BeastXPy
 
 bxp = BeastXPy()
 xml = bxp.generate_xml("config.yaml", beast_validate=True)
