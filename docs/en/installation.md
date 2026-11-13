@@ -73,7 +73,7 @@ In that installation Gate 3 and `run` require `BEASTX_JAR` (or `BEAST_<tag>_HOME
 
 ## Step 5 — Point at a native BEAGLE (needed for `run`)
 
-BEAST's JNI library is version-specific. Set the directory that holds `hmsbeagle64.dll` (Windows) or `libhmsbeagle-jni.so` / `libhmsbeagle.so` (Linux):
+BEAST's JNI library is version-specific. Set the directory that holds `hmsbeagle64.dll` (Windows), `libhmsbeagle-jni.so` / `libhmsbeagle.so` (Linux), or `libhmsbeagle-jni.jnilib` / `libhmsbeagle.dylib` (macOS):
 
 ```
 export BEASTX_BEAGLE_1_10_4_LIB="/path/to/beagle-3.1.x"

@@ -13,7 +13,7 @@
 
 （BEAGLE 本身：Ayres 等 2012——见 [references](references.md)。）
 
-两者 ABI 互不兼容：3.1.x 不能服务 BEAST X 10.5.0，反之亦然。安装或编译你的 BEAST 所需的版本，然后找到**包含库文件本身**的目录：Windows 上的 `hmsbeagle64.dll`，Linux 上的 `libhmsbeagle-jni.so` / `libhmsbeagle.so`。BEAST 自带的 `lib/beagle` 目录只有 Java 封装，永远不算数。
+两者 ABI 互不兼容：3.1.x 不能服务 BEAST X 10.5.0，反之亦然。安装或编译你的 BEAST 所需的版本，然后找到**包含库文件本身**的目录：Windows 上的 `hmsbeagle64.dll`，Linux 上的 `libhmsbeagle-jni.so` / `libhmsbeagle.so`，macOS 上的 `libhmsbeagle-jni.jnilib` / `libhmsbeagle.dylib`。BEAST 自带的 `lib/beagle` 目录只有 Java 封装，永远不算数。
 
 ## 第 2 步 —— 告诉 BeastXPy 位置
 

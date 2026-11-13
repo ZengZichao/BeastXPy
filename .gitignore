@@ -58,6 +58,11 @@ work/
 !examples/empirical/results/
 !examples/empirical/results/**
 
+# The optional offline BEAGLE source drop is a build input, never a deliverable
+# (see deploy/beagle/README.md): shipping a third-party source archive here
+# would blur the licensing position.
+deploy/beagle/beagle-lib.tar.gz
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

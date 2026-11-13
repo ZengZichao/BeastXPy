@@ -13,7 +13,7 @@ A real MCMC likelihood needs the native hmsbeagle JNI library. Without it BEAST 
 
 (BEAGLE itself: Ayres et al. 2012 - see [references](references.md).)
 
-The ABI is not compatible across these; a 3.1.x library does not serve BEAST X 10.5.0 and vice versa. Build or install the version your BEAST needs, then locate the directory that contains the library **itself**: `hmsbeagle64.dll` (Windows) or `libhmsbeagle-jni.so` / `libhmsbeagle.so` (Linux). BEAST's own `lib/beagle` folder only contains a Java wrapper and never counts.
+The ABI is not compatible across these; a 3.1.x library does not serve BEAST X 10.5.0 and vice versa. Build or install the version your BEAST needs, then locate the directory that contains the library **itself**: `hmsbeagle64.dll` (Windows), `libhmsbeagle-jni.so` / `libhmsbeagle.so` (Linux), or `libhmsbeagle-jni.jnilib` / `libhmsbeagle.dylib` (macOS). BEAST's own `lib/beagle` folder only contains a Java wrapper and never counts.
 
 ## Step 2 — Point BeastXPy at it
 

@@ -73,7 +73,7 @@ python -m pip install dist-core/beastxpy_core-0.1.0-py3-none-any.whl
 
 ## 第 5 步 —— 指向原生 BEAGLE（`run` 必需）
 
-BEAST 的 JNI 库与版本绑定。把包含 `hmsbeagle64.dll`（Windows）或 `libhmsbeagle-jni.so` / `libhmsbeagle.so`（Linux）的目录指出来：
+BEAST 的 JNI 库与版本绑定。把包含 `hmsbeagle64.dll`（Windows）、`libhmsbeagle-jni.so` / `libhmsbeagle.so`（Linux）或 `libhmsbeagle-jni.jnilib` / `libhmsbeagle.dylib`（macOS）的目录指出来：
 
 ```
 export BEASTX_BEAGLE_1_10_4_LIB="/path/to/beagle-3.1.x"

@@ -62,7 +62,7 @@ A path-sampling run needs native BEAGLE. Without it `compare` exits 2 with no nu
 
 ## Reading a Bayes factor
 
-The output is `2 ln BF`, following the usual convention (Kass & Raftery 1995); the marginal likelihoods come from BEAST's own path sampling and stepping-stone estimators (Xie et al. 2011; Baele et al. 2013 - see [references](references.md)). Larger positive values favour the first model, larger negative values favour the second, and the Kass-Raftery bands are a **reporting convention, not a decision rule**.
+Two quantities appear. `logBF` is signed, `a - b`: positive favours the first model, negative favours the second. `2 ln BF` is `2 * |logBF|`, so it is never negative and the favoured model is named in the same line. The bands follow the usual convention (Kass & Raftery 1995); the marginal likelihoods come from BEAST's own path sampling and stepping-stone estimators (Xie et al. 2011; Baele et al. 2013 - see [references](references.md)). The bands are a **reporting convention, not a decision rule**.
 
 Three warnings:
 

@@ -62,7 +62,7 @@ pairwise log Bayes factors (a - b):
 
 ## 如何读贝叶斯因子
 
-输出是 `2 ln BF`，沿用常见约定（Kass & Raftery 1995）；边际似然来自 BEAST 自带的路径采样与 stepping-stone 估计量（Xie 等 2011；Baele 等 2013——见 [references](references.md)）。正值越大越支持第一个模型，负值的绝对值越大越支持第二个；Kass-Raftery 分档是**报告约定，不是决策规则**。
+输出里有两个量。`logBF` 带符号，即 `a - b`：正值支持第一个模型，负值支持第二个。`2 ln BF` 等于 `2 * |logBF|`，因此永不为负，被支持的模型在同一行直接写明。分档沿用常见约定（Kass & Raftery 1995）；边际似然来自 BEAST 自带的路径采样与 stepping-stone 估计量（Xie 等 2011；Baele 等 2013——见 [references](references.md)）。这些分档是**报告约定，不是决策规则**。
 
 三点警告：
 

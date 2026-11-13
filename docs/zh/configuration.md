@@ -191,7 +191,7 @@ beastxpy capabilities
 错误会指明小节、键和原因：
 
 ```
-Gate 0: FAILED -- partitions[0].site_model.gamma_shape: gamma_shape requires gamma_categories > 1
+Gate 0: FAILED -- partitions[0].gamma_shape: requires gamma_categories > 1 (it would otherwise be silently ignored)
 ```
 
 只修被点名的那一项。`beastxpy check-data --config demo.yaml` 只跑数据侧预检（重复分类单元、含糊序列、标定冲突），不生成任何东西。

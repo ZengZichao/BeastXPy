@@ -191,7 +191,7 @@ prints the authoritative list. `codon` and `recombination` are rejected at Gate 
 The error names the section, the key and the reason:
 
 ```
-Gate 0: FAILED -- partitions[0].site_model.gamma_shape: gamma_shape requires gamma_categories > 1
+Gate 0: FAILED -- partitions[0].gamma_shape: requires gamma_categories > 1 (it would otherwise be silently ignored)
 ```
 
 Fix exactly what is named. `beastxpy check-data --config demo.yaml` runs the data-side pre-checks (duplicate taxa, ambiguous sequences, calibration conflicts) without generating anything.
