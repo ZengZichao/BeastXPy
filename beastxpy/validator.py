@@ -1713,9 +1713,10 @@ def lookup_beagle_details(
 
     Only *native* (JNI) installations count.  The beagle.jar wrapper that
     ships with BEAST is never accepted as evidence of native support.
-    Discovery order: explicit argument, version-specific environment
-    variable, generic environment variable, then the conventional
-    ``lib/beagle`` directory next to the selected BEAST jar.
+    Discovery order: an explicit argument, then ``BEASTX_BEAGLE_<tag>_LIB``,
+    ``BEASTX_BEAGLE_LIB``, ``BEAGLE_HOME`` and ``BEAGLE_LIB`` (each also tried
+    with ``/lib`` and ``/bin`` appended), then a ``beagle`` directory next to
+    the selected BEAST jar.
     """
     tag = beast_version.replace(".", "_")
     candidates: List[Tuple[Path, str]] = []
@@ -1941,8 +1942,9 @@ def run_beast_validation(
         native_beagle: Use the native BEAGLE likelihood core (implies
             ``require_beagle``) and expose ``beagle_dir`` to the JVM.
         beagle_dir: Native BEAGLE installation directory; when omitted it is
-            discovered from ``BEASTX_BEAGLE_*_LIB``/``BEAGLE_HOME`` or the
-            ``lib/beagle`` directory next to the BEAST jar.
+            discovered from ``BEASTX_BEAGLE_<tag>_LIB``,
+            ``BEASTX_BEAGLE_LIB``, ``BEAGLE_HOME`` or ``BEAGLE_LIB``, then a
+            ``beagle`` directory next to the BEAST jar.
         beagle_threads: Value for BEAST's ``beagle.thread.count`` property.
     """
     if beast_version not in VALID_BEAST_VERSIONS:
