@@ -45,9 +45,13 @@ work/
 !tests/fixtures/**/*.trees
 !tests/fixtures/**/*.state
 
-# The reference-diagnostics golden BEAST log is an input fixture, not run
-# output: keep it even though its extension matches the *.log rule above.
-!tests/golden/reference_diagnostics/tracer_input.log
+# The golden-regression baselines are checked-in inputs for the same reason:
+# their recorded trace logs must ship or every CI cell loses the file. This
+# covers tests/golden/reference_diagnostics/tracer_input.log as well.
+!tests/golden/**
+!tests/golden/**/*.log
+!tests/golden/**/*.trees
+!tests/golden/**/*.state
 
 # The reference-data case study's recorded artefacts are deliverables, not
 # disposable run output: keep the config, XML, lock, assessment and reports.

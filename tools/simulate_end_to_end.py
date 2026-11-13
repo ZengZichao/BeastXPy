@@ -122,9 +122,8 @@ def simulate_alignment(path: Path, sites: int, seed: int) -> None:
 
 
 def _write_fasta(path: Path, sequences: Dict[str, List[str]]) -> None:
-    with open(path, "w", encoding="utf-8") as handle:
-        for tip, sequence in sequences.items():
-            handle.write(f">{tip}\n{''.join(sequence)}\n")
+    fasta = "".join(f">{tip}\n{''.join(sequence)}\n" for tip, sequence in sequences.items())
+    path.write_text(fasta, encoding="utf-8")
 
 
 def _evolve(rng: np.random.Generator, state: int, distance: float) -> int:

@@ -46,7 +46,41 @@ def _find_home(root: Path) -> Path:
     return jars[0].parent.parent
 
 
-def fetch(version: str, dest: Path, *, github_env: Path | None = None) -> Path:
+def _verify_bundled_jar(version: str, archive: Path) -> None:
+    """Prove the shipped ``tools/jars/beast-<version>.jar`` is byte-identical
+    to the ``lib/beast.jar`` inside the freshly downloaded official archive."""
+    official = OFFICIAL_RELEASES[version]
+    with zipfile.ZipFile(archive) as bundle:
+        inner = [name for name in bundle.namelist() if name.endswith("lib/beast.jar")]
+        if len(inner) != 1:
+            raise SystemExit(f"expected exactly one lib/beast.jar in {archive}, got {inner}")
+        inner_digest = _sha256_stream(bundle.open(inner[0]))
+    expected = official.get("jar_sha256")
+    if expected is not None and inner_digest != expected:
+        raise SystemExit(
+            f"BEAST {version} inner jar SHA-256 mismatch: got {inner_digest}, "
+            f"expected {expected} ({inner[0]})"
+        )
+    bundled = ROOT / "beastxpy" / "tools" / "jars" / f"beast-{version}.jar"
+    bundled_digest = _sha256(bundled)
+    if bundled_digest != inner_digest:
+        raise SystemExit(
+            f"bundled {bundled} SHA-256 {bundled_digest} differs from the "
+            f"official {inner[0]} SHA-256 {inner_digest}"
+        )
+    print(f"bundled beast-{version}.jar is byte-identical to {inner[0]} (sha256 {inner_digest})")
+
+
+def _sha256_stream(handle) -> str:
+    hasher = hashlib.sha256()
+    for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+        hasher.update(chunk)
+    return hasher.hexdigest()
+
+
+def fetch(
+    version: str, dest: Path, *, github_env: Path | None = None, verify_bundled_jar: bool = False
+) -> Path:
     official = OFFICIAL_RELEASES[version]
     dest.mkdir(parents=True, exist_ok=True)
     archive = dest / f"beast-{version}.zip"
@@ -66,6 +100,8 @@ def fetch(version: str, dest: Path, *, github_env: Path | None = None) -> Path:
         with zipfile.ZipFile(archive) as handle:
             handle.extractall(extract_dir)
     home = _find_home(extract_dir)
+    if verify_bundled_jar:
+        _verify_bundled_jar(version, archive)
     print(f"BEAST {version} verified (sha256 {digest}) at {home}")
     if github_env is not None:
         key = f"BEAST_{version.replace('.', '_')}_HOME"
@@ -79,9 +115,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--version", required=True, choices=sorted(OFFICIAL_RELEASES))
     parser.add_argument("--dest", required=True, type=Path)
     parser.add_argument("--github-env", type=Path, default=None)
+    parser.add_argument(
+        "--verify-bundled-jar",
+        action="store_true",
+        help="also prove the shipped jar is byte-identical to lib/beast.jar "
+        "inside the downloaded archive",
+    )
     parser.add_argument("--print-home", action="store_true")
     args = parser.parse_args(argv)
-    home = fetch(args.version, args.dest, github_env=args.github_env)
+    home = fetch(
+        args.version,
+        args.dest,
+        github_env=args.github_env,
+        verify_bundled_jar=args.verify_bundled_jar,
+    )
     if args.print_home:
         print(home)
     return 0

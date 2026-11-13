@@ -100,10 +100,11 @@ def format_indent(xml_str: str, indent: str = "    ") -> str:
     emitted verbatim on a single line rather than being silently dropped.
     """
     import xml.etree.ElementTree as ET
+    from defusedxml import ElementTree as DT
 
     try:
-        root = ET.fromstring(xml_str)
-    except ET.ParseError:
+        root = DT.fromstring(xml_str)
+    except DT.ParseError:
         return xml_str
     lines: List[str] = []
 
@@ -186,6 +187,7 @@ def normalize_xml_for_compare(xml_str: str) -> str:
     distinct ids such as ``"0001"`` and ``"1"`` stay distinct.
     """
     import xml.etree.ElementTree as ET
+    from defusedxml import ElementTree as DT
 
     text = strip_xml_comments(xml_str)
 
@@ -200,7 +202,7 @@ def normalize_xml_for_compare(xml_str: str) -> str:
             return str(int(f))
         return f"{f:.15g}"
 
-    tree = ET.fromstring(text)
+    tree = DT.fromstring(text)
 
     def _norm(node: ET.Element) -> None:
         attrs = {

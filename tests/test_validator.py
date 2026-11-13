@@ -129,13 +129,14 @@ class TestCoalescentChildRules:
     )
     def test_missing_required_child_is_a_gate1_error(self, config_basic, prior, child):
         import xml.etree.ElementTree as ET
+        from defusedxml import ElementTree as DT
 
         from beastxpy.models import TreePriorType
 
         config_basic.tree_prior.type = TreePriorType(prior)
         config_basic.tree_prior.params = {}
         xml = write_xml(ModelAssembler(config_basic).assemble())
-        root = ET.fromstring(xml)
+        root = DT.fromstring(xml)
         model_tag = "logisticGrowth" if prior == "coalescent_logistic" else "expansion"
         model = root.find(f".//{model_tag}")
         assert model is not None

@@ -57,14 +57,14 @@ class TestXmlWriterInvariants:
         asm = ModelAssembler(config_basic)
         xml = write_xml(asm.assemble())
         # Should be well-formed XML
-        import xml.etree.ElementTree as ET
+        from defusedxml import ElementTree as ET
 
         ET.fromstring(xml)
 
     def test_generated_xml_all_examples(self, examples_dir):
         """All example configs should generate well-formed XML."""
         import glob
-        import xml.etree.ElementTree as ET
+        from defusedxml import ElementTree as ET
 
         from beastxpy.config import ConfigParser
 

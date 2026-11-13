@@ -16,6 +16,8 @@ import subprocess
 import sys
 import types
 import xml.etree.ElementTree as ET
+
+from defusedxml import ElementTree as DT
 from pathlib import Path
 
 import pytest
@@ -127,7 +129,7 @@ class TestGenerateStdout:
         assert "<beast>" in captured.out
         assert "wrote <stdout>" not in captured.out
         assert "Gate 1/3" in captured.err
-        ET.fromstring(captured.out)  # complete, well-formed document
+        DT.fromstring(captured.out)  # complete, well-formed document
 
     def test_both_without_output_is_a_clear_error(self, capsys, monkeypatch):
         monkeypatch.chdir(Path(__file__).resolve().parent.parent)
@@ -169,7 +171,7 @@ class TestBothVersions:
         # Same model content; only version metadata/validation differ.
         f104_text = f104.read_text(encoding="utf-8")
         f105_text = f105.read_text(encoding="utf-8")
-        assert ET.tostring(ET.fromstring(f104_text)) == ET.tostring(ET.fromstring(f105_text))
+        assert ET.tostring(DT.fromstring(f104_text)) == ET.tostring(DT.fromstring(f105_text))
         assert strip_xml_comments(f104_text) == strip_xml_comments(f105_text)
         assert f104_text != f105_text
         for version in ("1.10.4", "10.5.0"):
@@ -554,7 +556,7 @@ class TestXmlSafety:
                 "children": [{"tag": "newick", "text": "(A<1>&B:1);"}],
             }
         )
-        ET.fromstring(xml)
+        DT.fromstring(xml)
         assert "&lt;1&gt;&amp;B" in xml
         for match in re_find_comments(xml):
             assert "--" not in match
@@ -587,7 +589,7 @@ class TestXmlSafety:
         raw = target.read_bytes()
         assert "é".encode("utf-8") in raw
         assert b"\r\n" not in raw
-        ET.parse(target)
+        DT.parse(target)
 
 
 def re_find_comments(xml: str):
@@ -1002,4 +1004,4 @@ class TestCliSubprocess:
         assert proc.returncode == 0, proc.stderr
         assert proc.stdout.startswith("<?xml")
         assert "Gate 0" in proc.stderr
-        ET.fromstring(proc.stdout)
+        DT.fromstring(proc.stdout)

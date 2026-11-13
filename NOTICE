@@ -12,10 +12,12 @@ copies of lib/beast.jar in the upstream distributions:
 
 * BEAST v1.10.4
   https://github.com/beast-dev/beast-mcmc/releases/download/v1.10.4/BEAST.v1.10.4.zip
-  SHA-256 0f6eb4fdf7832c511aa8a1a99c233b88bec844698ae9322dabf8e74b156ae3b0
+  archive SHA-256 05bb929433ad157ed22258908c08c0c04af7a84e1fee0820e03f9f0819a76bfa
+  lib/beast.jar SHA-256 0f6eb4fdf7832c511aa8a1a99c233b88bec844698ae9322dabf8e74b156ae3b0
 * BEAST X v10.5.0
   https://github.com/beast-dev/beast-mcmc/releases/download/v10.5.0/BEAST.X.v10.5.0.zip
-  SHA-256 df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d
+  archive SHA-256 d46c99e84d915d736520b2fe6bc43f01f3043f75d1ce7e4b6bcf9a1d6b68564a
+  lib/beast.jar SHA-256 df11dea1d7118ff1570ad687621912b776fb683c5023333f3dbf2bc762ee136d
 
 BeastXPy has not modified the BEAST source code in these jars.  The
 corresponding upstream source is available from

@@ -2214,9 +2214,8 @@ def build_report(
     data["output_html"] = C.display_path(target)
     target.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = target.with_name(target.name + ".part")
-    # Open explicitly so newline handling is pinned across platforms.
-    with open(tmp_path, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write(document)
+    # Write via pathlib with an explicit newline so it is pinned across platforms.
+    tmp_path.write_text(document, encoding="utf-8", newline="\n")
     tmp_path.replace(target)
     if json_path:
         C.write_json(json_path, to_envelope(data))
