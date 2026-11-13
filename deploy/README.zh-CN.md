@@ -21,7 +21,7 @@
   因此 Gate 3 在运行时无需网络访问
 - 原生 BEAGLE 4.0.1，在构建期间从源码编译，安装到
   `/usr/local/lib` 并作为 `BEASTX_BEAGLE_10_5_0_LIB` 导出
-- BeastXPy 0.1.0，入口点 `beastxpy`
+- BeastXPy 0.1.1，入口点 `beastxpy`
 - 一个非特权用户 `beastxpy`（uid/gid 10001）；`/work`
   是它的可写工作目录
 
@@ -30,7 +30,7 @@
 在仓库根目录执行（构建上下文必须包含 `beastxpy/`）：
 
 ```
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 ```
 
 构建会编译 BEAGLE，所以它需要 C/C++ 工具链；
@@ -45,7 +45,7 @@ digest 为空或不正确时构建会中止，而不是给出警告。
 
 ```
 cp /path/to/beagle-lib-4.0.1.tar.gz deploy/beagle/beagle-lib.tar.gz
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 rm deploy/beagle/beagle-lib.tar.gz    # never commit the tarball
 ```
 
@@ -71,23 +71,23 @@ docker tag  docker.m.daocloud.io/eclipse-temurin:17-jdk-jammy eclipse-temurin:17
 ## 运行
 
 ```
-docker run --rm beastxpy:0.1.0 --help
-docker run --rm beastxpy:0.1.0 --version
+docker run --rm beastxpy:0.1.1 --help
+docker run --rm beastxpy:0.1.1 --version
 
 # work on files in the current directory
-docker run --rm -v "$PWD:/work" beastxpy:0.1.0 \
+docker run --rm -v "$PWD:/work" beastxpy:0.1.1 \
     generate --config /work/config.yaml --output /work/out.xml --beast-validate
 
-docker run --rm -v "$PWD:/work" beastxpy:0.1.0 \
+docker run --rm -v "$PWD:/work" beastxpy:0.1.1 \
     check-data --config /work/config.yaml
 ```
 
 Apptainer：
 
 ```
-apptainer build beastxpy_0.1.0.sif deploy/apptainer.def
-apptainer run beastxpy_0.1.0.sif --help
-apptainer exec --bind "$PWD:/work" beastxpy_0.1.0.sif \
+apptainer build beastxpy_0.1.1.sif deploy/apptainer.def
+apptainer run beastxpy_0.1.1.sif --help
+apptainer exec --bind "$PWD:/work" beastxpy_0.1.1.sif \
     beastxpy generate --config /work/config.yaml --help
 ```
 
@@ -123,13 +123,13 @@ jar 带有自己的 `META-INF/LICENSE.txt` 与 `META-INF/NOTICE.txt`，
 因此构建没有执行任何下载。
 
 ```
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .        -> exit 0
-docker run --rm beastxpy:0.1.0 --version                     -> beastxpy 0.1.0
-docker run --rm --entrypoint id beastxpy:0.1.0               -> uid=10001(beastxpy)
-docker run --rm beastxpy:0.1.0 check-environment             -> JDK 17.0.20.1,
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .        -> exit 0
+docker run --rm beastxpy:0.1.1 --version                     -> beastxpy 0.1.1
+docker run --rm --entrypoint id beastxpy:0.1.1               -> uid=10001(beastxpy)
+docker run --rm beastxpy:0.1.1 check-environment             -> JDK 17.0.20.1,
                                                                 both jars resolved
-docker run --rm beastxpy:0.1.0 capabilities                  -> 35 rows, exit 0
-docker run --rm -v ...:/data:ro beastxpy:0.1.0 generate \
+docker run --rm beastxpy:0.1.1 capabilities                  -> 35 rows, exit 0
+docker run --rm -v ...:/data:ro beastxpy:0.1.1 generate \
     --config /data/config_subst_jc69.yaml --beast-validate    -> Gate 3 OK, exit 0
 ```
 

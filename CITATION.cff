@@ -10,8 +10,8 @@ abstract: >-
   It is an independent workflow layer, not a reimplementation of BEAST. The
   Python code is MIT-licensed; the bundled unmodified BEAST jars are
   LGPL-2.1-only (see NOTICE).
-version: 0.1.0
-date-released: "2026-10-22"
+version: 0.1.1
+date-released: "2026-11-13"
 license: "MIT AND LGPL-2.1-only"
 keywords:
   - phylogenetics

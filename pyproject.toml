@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beastxpy"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Python framework for reproducible BEAST 1 divergence-time estimation with automated model specification, validation and diagnostics (LGPL-2.1 applies only to the bundled BEAST jars)"
 readme = "README.md"
 requires-python = ">=3.10"

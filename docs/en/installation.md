@@ -27,7 +27,7 @@ beastxpy --version
 Expected:
 
 ```
-beastxpy 0.1.0
+beastxpy 0.1.1
 ```
 
 If the `beastxpy` executable is not on your `PATH` (common with `pip install --user`), check `~/.local/bin`, or run the same code as `python3 -m beastxpy.main` — that works straight from a source checkout without installing.
@@ -66,7 +66,7 @@ export BEAST_10_5_0_HOME="/path/to/BEAST X v10.5.0"
 
 ```
 python tools/build_core_wheel.py
-python -m pip install dist-core/beastxpy_core-0.1.0-py3-none-any.whl
+python -m pip install dist-core/beastxpy_core-0.1.1-py3-none-any.whl
 ```
 
 In that installation Gate 3 and `run` require `BEASTX_JAR` (or `BEAST_<tag>_HOME`); `beastxpy check-environment` reports the missing jar and the next step. The LGPL-2.1 obligation applies only to the bundled BEAST binaries, so the core wheel is MIT-only.
@@ -92,7 +92,7 @@ Expected on a working machine:
 
 ```
 python: 3.11.0
-beastxpy: 0.1.0
+beastxpy: 0.1.1
 java: /path/to/jdk-17/bin/java (version 17.0.2, source JAVA_HOME)
 jar beast-1.10.4: /path/to/beast.jar sha256:0f6eb4fd...
 jar beast-10.5.0: /path/to/beast.jar sha256:df11dea1...

@@ -13,14 +13,14 @@ The command prints the file verbatim and builds nothing. The definitions live ne
 
 ## What the image contains
 
-Python 3.10, JDK 17, both BEAST jars from `beastxpy/tools/jars/`, native BEAGLE 4.0.1 compiled from source, and BeastXPy 0.1.0. It runs as the unprivileged user `beastxpy` (uid 10001) and its entrypoint is `beastxpy`. The base image is pinned by digest, and both the downloaded and the offline BEAGLE archive must match a pinned SHA-256; the build fails on an empty or wrong digest.
+Python 3.10, JDK 17, both BEAST jars from `beastxpy/tools/jars/`, native BEAGLE 4.0.1 compiled from source, and BeastXPy 0.1.1. It runs as the unprivileged user `beastxpy` (uid 10001) and its entrypoint is `beastxpy`. The base image is pinned by digest, and both the downloaded and the offline BEAGLE archive must match a pinned SHA-256; the build fails on an empty or wrong digest.
 
 ## Build and run
 
 ```
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
-docker run --rm beastxpy:0.1.0 --version
-docker run --rm -v "$PWD:/work" beastxpy:0.1.0     generate --config /work/config.yaml --beast-validate
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
+docker run --rm beastxpy:0.1.1 --version
+docker run --rm -v "$PWD:/work" beastxpy:0.1.1     generate --config /work/config.yaml --beast-validate
 ```
 
 For an offline build, put `beagle-lib.tar.gz` in `deploy/beagle/` first. See `deploy/README.md` for mirrors, the BEAGLE version pairing and the licensing position.

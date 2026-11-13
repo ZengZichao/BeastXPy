@@ -1,4 +1,4 @@
-# BeastXPy 0.1.0
+# BeastXPy 0.1.1
 
 [English](../en/index.md) | [中文](index.md)
 

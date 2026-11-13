@@ -135,7 +135,7 @@ beastxpy run --config demo.yaml --workdir runs/demo --seeds 1,2
   seed 2: OK in 4.6s [log: runs/demo/2/run.log]
     trace: runs/demo/2/seed_2_trace.log
     trees: runs/demo/2/seed_2_tree.log
-fingerprint: BXP-a836c87ba7de-0.1.0 (content: BXP-a836c87ba7de6055)
+fingerprint: BXP-a836c87ba7de-0.1.1 (content: BXP-a836c87ba7de6055)
 ```
 
 两个种子是第 5 步链间统计量的最低要求；正式分析用四个或更多。工作目录结构：

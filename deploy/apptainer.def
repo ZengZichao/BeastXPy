@@ -3,7 +3,7 @@ From: eclipse-temurin:17-jdk-jammy@sha256:73ed442231ec66cfe48cae0b263ce619a75ab9
 
 %labels
     org.opencontainers.image.title BeastXPy
-    org.opencontainers.image.version 0.1.0
+    org.opencontainers.image.version 0.1.1
     org.opencontainers.image.licenses MIT AND LGPL-2.1-only
 
 %files
@@ -71,7 +71,7 @@ From: eclipse-temurin:17-jdk-jammy@sha256:73ed442231ec66cfe48cae0b263ce619a75ab9
     exec beastxpy "$@"
 
 %help
-    BeastXPy 0.1.0 - reproducible BEAST 1 divergence-time estimation.
+    BeastXPy 0.1.1 - reproducible BEAST 1 divergence-time estimation.
 
     The image contains Python, a JDK 17, the BEAST 1.10.4 and BEAST X 10.5.0
     jars that ship with the repository, and native BEAGLE 4.0.1 for BEAST X
@@ -79,8 +79,8 @@ From: eclipse-temurin:17-jdk-jammy@sha256:73ed442231ec66cfe48cae0b263ce619a75ab9
     `beastxpy`.
 
     Example:
-        apptainer run beastxpy_0.1.0.sif --help
-        apptainer exec --bind "$PWD:/work" beastxpy_0.1.0.sif \
+        apptainer run beastxpy_0.1.1.sif --help
+        apptainer exec --bind "$PWD:/work" beastxpy_0.1.1.sif \
             beastxpy generate --config /work/config.yaml --help
 
     BEAGLE 3.1.0 (the ABI BEAST 1.10.4 needs) is not bundled; bind-mount it and

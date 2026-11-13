@@ -27,7 +27,7 @@ beastxpy --version
 预期输出：
 
 ```
-beastxpy 0.1.0
+beastxpy 0.1.1
 ```
 
 如果 `beastxpy` 可执行文件不在 `PATH` 上（`pip install --user` 常见），检查 `~/.local/bin`，或用 `python3 -m beastxpy.main` 运行同样的代码——不安装也能直接从源码树运行。
@@ -66,7 +66,7 @@ export BEAST_10_5_0_HOME="/path/to/BEAST X v10.5.0"
 
 ```
 python tools/build_core_wheel.py
-python -m pip install dist-core/beastxpy_core-0.1.0-py3-none-any.whl
+python -m pip install dist-core/beastxpy_core-0.1.1-py3-none-any.whl
 ```
 
 该安装下的 Gate 3 与 `run` 需要 `BEASTX_JAR`（或 `BEAST_<tag>_HOME`）；`beastxpy check-environment` 会报告缺失的 jar 以及下一步该做什么。LGPL-2.1 义务仅适用于随附的 BEAST 二进制，因此 core wheel 只适用 MIT。
@@ -92,7 +92,7 @@ beastxpy check-environment
 
 ```
 python: 3.11.0
-beastxpy: 0.1.0
+beastxpy: 0.1.1
 java: /path/to/jdk-17/bin/java (version 17.0.2, source JAVA_HOME)
 jar beast-1.10.4: /path/to/beast.jar sha256:0f6eb4fd...
 jar beast-10.5.0: /path/to/beast.jar sha256:df11dea1...

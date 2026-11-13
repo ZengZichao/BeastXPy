@@ -21,7 +21,7 @@ verbatim, so what you read here is exactly what you build.
   network access at run time
 - Native BEAGLE 4.0.1, compiled from source during the build, installed to
   `/usr/local/lib` and exported as `BEASTX_BEAGLE_10_5_0_LIB`
-- BeastXPy 0.1.0, entrypoint `beastxpy`
+- BeastXPy 0.1.1, entrypoint `beastxpy`
 - An unprivileged user, `beastxpy` (uid/gid 10001); `/work` is its writable
   working directory
 
@@ -30,7 +30,7 @@ verbatim, so what you read here is exactly what you build.
 From the repository root (the build context must contain `beastxpy/`):
 
 ```
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 ```
 
 The build compiles BEAGLE, so it needs a C/C++ toolchain; the image installs one
@@ -46,7 +46,7 @@ put the archive in `deploy/beagle/` first:
 
 ```
 cp /path/to/beagle-lib-4.0.1.tar.gz deploy/beagle/beagle-lib.tar.gz
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 rm deploy/beagle/beagle-lib.tar.gz    # never commit the tarball
 ```
 
@@ -72,23 +72,23 @@ image name; the mirror is a property of the machine, not of the deliverable.
 ## Run
 
 ```
-docker run --rm beastxpy:0.1.0 --help
-docker run --rm beastxpy:0.1.0 --version
+docker run --rm beastxpy:0.1.1 --help
+docker run --rm beastxpy:0.1.1 --version
 
 # work on files in the current directory
-docker run --rm -v "$PWD:/work" beastxpy:0.1.0 \
+docker run --rm -v "$PWD:/work" beastxpy:0.1.1 \
     generate --config /work/config.yaml --output /work/out.xml --beast-validate
 
-docker run --rm -v "$PWD:/work" beastxpy:0.1.0 \
+docker run --rm -v "$PWD:/work" beastxpy:0.1.1 \
     check-data --config /work/config.yaml
 ```
 
 Apptainer:
 
 ```
-apptainer build beastxpy_0.1.0.sif deploy/apptainer.def
-apptainer run beastxpy_0.1.0.sif --help
-apptainer exec --bind "$PWD:/work" beastxpy_0.1.0.sif \
+apptainer build beastxpy_0.1.1.sif deploy/apptainer.def
+apptainer run beastxpy_0.1.1.sif --help
+apptainer exec --bind "$PWD:/work" beastxpy_0.1.1.sif \
     beastxpy generate --config /work/config.yaml --help
 ```
 
@@ -124,13 +124,13 @@ and make the corresponding source available as those licences require.
 no download.
 
 ```
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .        -> exit 0
-docker run --rm beastxpy:0.1.0 --version                     -> beastxpy 0.1.0
-docker run --rm --entrypoint id beastxpy:0.1.0               -> uid=10001(beastxpy)
-docker run --rm beastxpy:0.1.0 check-environment             -> JDK 17.0.20.1,
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .        -> exit 0
+docker run --rm beastxpy:0.1.1 --version                     -> beastxpy 0.1.1
+docker run --rm --entrypoint id beastxpy:0.1.1               -> uid=10001(beastxpy)
+docker run --rm beastxpy:0.1.1 check-environment             -> JDK 17.0.20.1,
                                                                 both jars resolved
-docker run --rm beastxpy:0.1.0 capabilities                  -> 35 rows, exit 0
-docker run --rm -v ...:/data:ro beastxpy:0.1.0 generate \
+docker run --rm beastxpy:0.1.1 capabilities                  -> 35 rows, exit 0
+docker run --rm -v ...:/data:ro beastxpy:0.1.1 generate \
     --config /data/config_subst_jc69.yaml --beast-validate    -> Gate 3 OK, exit 0
 ```
 

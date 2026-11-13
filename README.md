@@ -8,7 +8,7 @@
 
 BeastXPy generates, validates and diagnoses **BEAST 1** divergence-time analyses. It turns a strict YAML description into a BEAST XML document, checks that document against the packaged official BEAST 1.10.4 and BEAST X 10.5.0 jars (Gate 3; the evidence each mode proves is described under [Verification](#verification)), runs the seed matrix, and reports what the MCMC output actually looks like.
 
-Version 0.1.0. Python 3.10+.
+Version 0.1.1. Python 3.10+.
 
 ## Install
 

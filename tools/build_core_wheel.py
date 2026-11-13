@@ -7,7 +7,7 @@ wheel and a simpler LGPL surface, can build the same code as
 ``beastxpy-core`` without the jars:
 
     python tools/build_core_wheel.py
-    pip install dist-core/beastxpy_core-0.1.0-py3-none-any.whl
+    pip install dist-core/beastxpy_core-0.1.1-py3-none-any.whl
 
 The resulting package has every Python command, but Gate 3 is unavailable
 until the user points ``BEASTX_JAR`` (or ``BEAST_*_HOME``) at their own BEAST

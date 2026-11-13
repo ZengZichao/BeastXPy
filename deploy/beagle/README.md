@@ -12,7 +12,7 @@ air-gapped machine or on a network where GitHub is unreachable.
 ```
 # optional: enable an offline build
 cp /path/to/beagle-lib-4.0.1.tar.gz deploy/beagle/beagle-lib.tar.gz
-docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 rm deploy/beagle/beagle-lib.tar.gz   # do not commit the tarball
 ```
 

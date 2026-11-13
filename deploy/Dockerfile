@@ -1,9 +1,9 @@
-# BeastXPy 0.1.0 - reproducible BEAST 1 runtime image.
+# BeastXPy 0.1.1 - reproducible BEAST 1 runtime image.
 #
 # Build from the repository root so the committed BEAST jars and the BeastXPy
 # source are both in the build context:
 #
-#   docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
+#   docker build -f deploy/Dockerfile -t beastxpy:0.1.1 .
 #
 # The image contains Python, a JDK 17, the two official BEAST jars that ship
 # with this repository, and a native BEAGLE library built from source.  It runs
@@ -109,6 +109,6 @@ ENTRYPOINT ["beastxpy"]
 CMD ["--help"]
 
 LABEL org.opencontainers.image.title="BeastXPy" \
-      org.opencontainers.image.version="0.1.0" \
+      org.opencontainers.image.version="0.1.1" \
       org.opencontainers.image.description="Reproducible BEAST 1 divergence-time estimation" \
       org.opencontainers.image.licenses="MIT AND LGPL-2.1-only"

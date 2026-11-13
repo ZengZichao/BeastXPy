@@ -135,7 +135,7 @@ Expected output:
   seed 2: OK in 4.6s [log: runs/demo/2/run.log]
     trace: runs/demo/2/seed_2_trace.log
     trees: runs/demo/2/seed_2_tree.log
-fingerprint: BXP-a836c87ba7de-0.1.0 (content: BXP-a836c87ba7de6055)
+fingerprint: BXP-a836c87ba7de-0.1.1 (content: BXP-a836c87ba7de6055)
 ```
 
 Two seeds are the minimum for the between-chain statistics in step 5; real analyses use four or more. The workdir layout:
