@@ -8,8 +8,12 @@ One command updates every place that must agree before a release:
 
 Updated files: ``pyproject.toml`` (``version``), ``beastxpy/__init__.py``
 (``__version__``), ``CITATION.cff`` (``version`` and ``date-released``), both
-READMEs, every page under ``docs/en`` and ``docs/zh``, and the jar-free wheel
-example in ``tools/build_core_wheel.py``.
+READMEs, every page under ``docs/en`` and ``docs/zh``, the jar-free wheel
+example in ``tools/build_core_wheel.py``, and everything under ``deploy/``
+that names a version -- the image recipes, whose
+``org.opencontainers.image.version`` label and ``beastxpy:X`` /
+``beastxpy_X.sif`` names are quoted by ``docs/*/container.md`` and the deploy
+READMEs.
 
 The replacement is token-exact: only the old version string is replaced, and
 never inside a longer number such as ``3.11.0`` or ``10.5.0``. Run the test
@@ -94,6 +98,9 @@ def main() -> int:
         ROOT / "tools" / "build_core_wheel.py",
     ]
     doc_files += sorted((ROOT / "docs").glob("*/*.md"))
+    doc_files += sorted((ROOT / "deploy").rglob("README.md"))
+    doc_files += sorted((ROOT / "deploy").rglob("README.zh-CN.md"))
+    doc_files += [ROOT / "deploy" / "Dockerfile", ROOT / "deploy" / "apptainer.def"]
     for path in doc_files:
         text = path.read_text(encoding="utf-8")
         new_text = replace_token(text, old, args.new_version)

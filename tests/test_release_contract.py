@@ -446,6 +446,45 @@ def test_ci_runs_replayable_beagle_evidence_and_spec_drift_guard():
     assert "actions/setup-java" in coverage_text
 
 
+def test_no_version_string_lags_the_declared_version():
+    """Every version a reader can copy equals the declared package version.
+
+    ``tools/bump_version.py`` rewrites these tokens.  A file it does not cover
+    would keep publishing a docker tag, an image label or a wheel filename for
+    a release that does not exist, and nothing else would notice.
+    """
+    import re
+
+    from beastxpy import __version__ as pkg_version
+
+    patterns = (
+        r"beastxpy:(\d+\.\d+\.\d+)",
+        r"beastxpy_(\d+\.\d+\.\d+)\.sif",
+        r"beastxpy_core-(\d+\.\d+\.\d+)",
+        r"org\.opencontainers\.image\.version[= ]?\"?(\d+\.\d+\.\d+)",
+        r"[Bb]east[Xx][Pp]y[ _](\d+\.\d+\.\d+)",
+    )
+    files = [
+        ROOT / "README.md",
+        ROOT / "README.zh-CN.md",
+        ROOT / "tools" / "build_core_wheel.py",
+        ROOT / "deploy" / "Dockerfile",
+        ROOT / "deploy" / "apptainer.def",
+    ]
+    files += sorted((ROOT / "docs").glob("*/*.md"))
+    files += sorted((ROOT / "deploy").rglob("README.md"))
+    files += sorted((ROOT / "deploy").rglob("README.zh-CN.md"))
+
+    stale = []
+    for path in files:
+        text = path.read_text(encoding="utf-8")
+        for pattern in patterns:
+            for found in re.findall(pattern, text):
+                if found != pkg_version:
+                    stale.append(f"{path.relative_to(ROOT)}: {found}")
+    assert not stale, "version strings lag the release: " + ", ".join(sorted(set(stale)))
+
+
 def test_citation_and_project_urls_are_not_placeholders():
     """The citation record names the real author; no invented URL or DOI."""
     citation = yaml.safe_load((ROOT / "CITATION.cff").read_text(encoding="utf-8"))
