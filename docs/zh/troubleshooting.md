@@ -24,7 +24,7 @@ java -XshowSettings:properties -version 2>&1 | grep os.arch
 
 ## `Unable to load CPU plugin!` 随后 `error code -6 (No resource matches requirements)`
 
-JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有。插件按裸文件名 `dlopen`，跟随的是**动态链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle lib dir>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
+JNI 库加载成功，但 BEAGLE 的资源插件（`libhmsbeagle-cpu.so` 等）没有加载成功。插件按裸文件名 `dlopen`，跟随的是**动态链接器路径**而不是 `java.library.path`。通过 `beastxpy run` 运行时会替你设好；手动运行 BEAST 时，请自己导出 `LD_LIBRARY_PATH=<beagle lib dir>`（Linux）、`DYLD_LIBRARY_PATH`（macOS）或前置 `PATH`（Windows）。
 
 ## 运行几乎立刻停止，并显示 `No acceptable BEAGLE library plugins found`
 
@@ -42,7 +42,7 @@ JVM 完全没有可用的原生 BEAGLE。检查 `beastxpy check-environment`，�
 
 lognormal 的 `mean` 在对数尺度上，但仍必须为正。根高约 30 个时间单位用 `mean: 3.4`（e^3.4 ≈ 30），或用 `meanInRealSpace: true` 给真实尺度均值。
 
-## 标定导致 `Gate 2 failed`
+## 与标定相关的 `Gate 2 failed`
 
 标定之间或与树先验矛盾。运行 `beastxpy diagnose --config config.yaml --output-dir diag` 查看细节，包括先验密度图与重叠热图。
 
@@ -58,7 +58,7 @@ Nextflow 的 SIGHUP 进程注册在 Windows 上无法原生工作。请用 WSL �
 
 它在说实话。PSRF 与 ASDSF 至少需要两条链；多跑几个种子。某个统计量缺失意味着日志里没有这一列，而不是数值为零。
 
-## 报告显示 "not assessed"
+## 报告显示 “not assessed”
 
 要么没跑 `assess`，要么它的 JSON 不在报告查找的位置。运行 `beastxpy assess <workdir> --json <workdir>/assessment.json`，或传 `--assessment PATH`。
 

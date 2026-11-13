@@ -24,7 +24,7 @@ python -m pytest -q -m "not java"   # Java-free subset
 
 找不到 JDK 时，Gate-3 测试会失败而非跳过；这是有意为之（一项校验主张绝不能悄无声息地消失）。`java` 标记是本地工作的逃生通道，会被 `-m "not java"` 排除。
 
-## 质量关卡
+## 质量 Gate
 
 CI 质量作业运行以下命令：
 
@@ -46,9 +46,9 @@ python -m pytest -q --cov=beastxpy --cov-fail-under=70
 
 ## 科学不变量
 
-- 绝不编造统计量。当某个值无法计算时，报告 `not_computable`/`None` 并给出原因。特别地，不要把一个不可计算的诊断变成零，或变成一个猜测的数字。
+- 绝不编造统计量。当某个值无法计算时，报告 `not_computable`/`None` 并给出原因。特别地，不要把一个无法计算的诊断变成零，或变成一个猜测的数字。
 - 保持校验证据的分层。`java-core` 只做构建，并使用项目自带的 `TreeLikelihood` shim；只有 `beagle` 才是完整解析器、真实似然的校验。若证据发生变化，要一并更新 `capabilities.yaml` 的原因说明与 README。
-- 为每一个新的数值估计器添加参考值测试或解析测试。"能跑起来"不是数值测试。
+- 为每一个新的数值估计器添加参考值测试或解析测试。“能跑起来”不是数值测试。
 - `tests/golden/` 下的金标准 XML 文件是回归产物。只能通过有记录的刷新机制来刷新它们，并说明 XML 为何改变。
 
 ## 随包的 BEAST jar

@@ -32,7 +32,7 @@ BeastXPy 不宣称收敛、不做模型选择，也不判断模型是否适合�
 
 ## 平台范围与同类工具
 
-BeastXPy 面向 BEAST 1 谱系（1.10.4）及其仍在维护的延续版本 BEAST X 10.5.0，而不是 BEAST 2。BEAST 2 是另一个程序，XML 模式与扩展包生态都不同；既有 BEAST 1 分析和模型（EBSP、StarBEAST1、随机局部钟、经验密码子模型、MDS）需要该谱系。这里主张的新颖性是四道校验 Gate、随包官方 jar、诚实多链诊断与锁文件级可复现性的组合，而不是"YAML 转 XML"本身。与 BEAUti、babette（BEAST 2）、BEASTifier、RevBayes 和 BEASTling 的对比见 [docs/zh/index.md#定位](docs/zh/index.md#定位)；英文概览见 [README.md](README.md) 与 [docs/en/index.md](docs/en/index.md)。
+BeastXPy 面向 BEAST 1 谱系（1.10.4）及其仍在维护的延续版本 BEAST X 10.5.0，而不是 BEAST 2。BEAST 2 是另一个程序，XML 模式与扩展包生态都不同；既有 BEAST 1 分析和模型（EBSP、StarBEAST1、随机局部钟、经验密码子模型、MDS）需要该谱系。这里主张的新颖性是四道校验 Gate、随包官方 jar、诚实多链诊断与锁文件级可复现性的组合，而不是“YAML 转 XML”本身。与 BEAUti、babette（BEAST 2）、BEASTifier、RevBayes 和 BEASTling 的对比见 [docs/zh/index.md#定位](docs/zh/index.md#定位)；英文概览见 [README.md](README.md) 与 [docs/en/index.md](docs/en/index.md)。
 
 ## 文档
 
@@ -76,11 +76,11 @@ CI 在 3 个操作系统 × 2 个 Python 版本 × 2 个 BEAST 版本上运行�
 
 ## 数据可用性
 
-`examples/` 下的比对是篇幅很短的已发表/参考序列，只用于跑通工作流，本仓库没有产生新的实证数据；它们不用于生物学推断。论文所用的校验结果见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
+`examples/` 下的比对是篇幅很短的已发表/参考序列，只用于跑通工作流，本仓库没有产生新的实证数据；它们并不以生物学推断为目的。论文所用的校验结果见 [docs/zh/validation.md](docs/zh/validation.md)。端到端参考数据案例（配置、生成的 XML、锁文件、评估与报告）在 `examples/empirical/`；它使用同一份随包教程比对，并明确只是工作流演示，不是生物学结论。
 
 ## 作者
 
-BeastXPy 由 **曾子超（ZengZichao）** 开发与维护 —zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X)。
+BeastXPy 由 **曾子超（ZengZichao）** 开发与维护 —— zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X)。
 
 ## 许可
 

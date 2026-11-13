@@ -33,11 +33,10 @@
 docker build -f deploy/Dockerfile -t beastxpy:0.1.0 .
 ```
 
-构建会编译 BEAGLE，所以它需要 C/C++ 工具链；镜像在一个早期层里就
-安装了该工具链。基础镜像按 digest 固定
-（`eclipse-temurin:17-jdk-jammy@sha256:73ed4422...`），BEAGLE 源码
-归档会对照其 SHA-256 校验；digest 为空或不正确时构建会中止，
-而不是给出警告。
+构建会编译 BEAGLE，所以它需要 C/C++ 工具链；
+镜像在一个早期层里就安装了该工具链。基础镜像按 digest 固定（`eclipse-temurin:17-jdk-jammy@sha256:73ed4422...`），
+BEAGLE 源码归档会对照其 SHA-256 校验；
+digest 为空或不正确时构建会中止，而不是给出警告。
 
 ### 无网络访问时构建
 
@@ -111,11 +110,11 @@ BEAST 的 JNI ABI 随版本而变：
 
 ## 许可
 
-BeastXPy 采用 MIT AND LGPL-2.1-only。BEAST 是 LGPL-2.1-only；jar 带有
-自己的 `META-INF/LICENSE.txt` 与 `META-INF/NOTICE.txt`，它们在打包后的 jar 内
-被保留下来。BEAGLE 是 LGPL-3.0。本仓库的 `LICENSE` 与 `NOTICE` 适用于
-BeastXPy 自己的代码。若你重新分发该镜像，请保留这些声明，
-并按这些许可证的要求提供相应源码。
+BeastXPy 采用 MIT AND LGPL-2.1-only。BEAST 是 LGPL-2.1-only；
+jar 带有自己的 `META-INF/LICENSE.txt` 与 `META-INF/NOTICE.txt`，
+它们在打包后的 jar 内被保留下来。BEAGLE 是 LGPL-3.0。
+本仓库的 `LICENSE` 与 `NOTICE` 适用于 BeastXPy 自己的代码。
+若你重新分发该镜像，请保留这些声明，并按这些许可证的要求提供相应源码。
 
 ## 验证状态
 

@@ -58,7 +58,7 @@ reproduce: mode=check verdict=match
 
 `--check` 逐字段比对当前机器，任何不匹配都以非零码退出（2 = 字段不同，3 = 锁文件损坏或被编辑过）。如果环境真的变了，重新生成锁；不要手改。
 
-不带 `--config` 时无法核验配置内容字段，因此判定为 `match_partial`（退出码 0），原因列表会逐项点出哪些字段未核验。只有每个记录在案的字段都比较过，才会打印 `match` 判定；不要把 `match_partial` 引用为"环境完全一致"。
+不带 `--config` 时无法核验配置内容字段，因此判定为 `match_partial`（退出码 0），原因列表会逐项点出哪些字段未核验。只有每个记录在案的字段都比较过，才会打印 `match` 判定；不要把 `match_partial` 引用为“环境完全一致”。
 
 ## 重放（`--run`）
 
@@ -75,4 +75,4 @@ beastxpy reproduce --lock beastxpy.lock --run --config demo.yaml --workdir runs/
 两个已知边界被显式记录：
 
 * **Java**：只锚定启动器可执行文件的 SHA-256，以及报告的版本、供应商与架构；JRE 的其余部分（模块、共享库、随附的信任库）不参与哈希。一个保留启动器与版本字符串的重新打包 JRE 不会被发现。
-* **BEAGLE**：同时记录期望版本（配置）与观测版本（运行时）以及 JNI 库的 SHA-256。`reproduce --check` 会比较观测版本，因此未声明的 BEAGLE 升级即使库哈希未变也会报告为字段不匹配。
+* **BEAGLE**：同时记录期望版本（配置）与观测版本（运行时）以及 JNI 库的 SHA-256。`reproduce --check` 还会比较观测版本，因此未声明的 BEAGLE 升级即使库哈希未变也会报告为字段不匹配。

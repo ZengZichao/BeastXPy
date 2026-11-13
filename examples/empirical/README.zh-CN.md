@@ -53,4 +53,4 @@ BEAST X 10.5.0、BEAGLE 4.0.1、Temurin JDK 17.0.20.1、Linux x86_64；四个种
 
 ## 与 BEAUti 的后验对照
 
-独立的 BEAUti 后验对照需要运行 BEAUti，而 BEAUti 是图形界面程序；本仓库的校验环境既没有显示器，也没有 BEAUti 自动化。因此这里检查的是 `tests/golden/beauti_reference/` 与 `tests/test_beauti_reference.py` 中 XML 惯例的结构等价性（逐元素、逐属性，每一个有意差异都已有记录）。后验摘要的对照仍未完成，已列入 `docs/zh/limitations.md`；此处不作宣称。
+独立的 BEAUti 后验对照需要运行 BEAUti，而 BEAUti 是图形界面程序；本仓库的校验环境既没有显示器，也没有 BEAUti 自动化。这里改为检查 `tests/golden/beauti_reference/` 与 `tests/test_beauti_reference.py` 中 XML 惯例的结构等价性（逐元素、逐属性，每一个有意差异都已有记录）。后验摘要的对照仍未完成，已列入 `docs/zh/limitations.md`；此处不作宣称。

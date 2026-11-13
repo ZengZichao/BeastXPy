@@ -13,7 +13,7 @@
 | BEAST jar | Gate 3、运行 BEAST | 仓库内自带 1.10.4 与 10.5.0 |
 | 原生 BEAGLE | 真实 MCMC 似然 | 1.10.4 配 3.1.x，10.5.0 配 4.0.x |
 
-`generate`、`validate`、`check-data`、`assess`、`report`、`lock` 等大多数命令无需原生 BEAGLE；`run` 和 `compare` 必须有（见 [native-beagle](native-beagle.md)）。
+`generate`、`validate`、`check-data`、`assess`、`report`、`lock` 等大多数命令无需原生 BEAGLE；`run` 和 `compare` 必须有（见 [原生 BEAGLE](native-beagle.md)）。
 
 ## 第 2 步 —— 安装软件包
 

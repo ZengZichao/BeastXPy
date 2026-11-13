@@ -14,16 +14,16 @@ BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` �
 * **babette** - Bilderbeek RJC, Etienne RS (2018) babette: BEAUti 2, BEAST 2 and Tracer for R. *Methods in Ecology and Evolution* 9(9):2034-2040. doi:[10.1111/2041-210X.13032](https://doi.org/10.1111/2041-210X.13032)
 * **RevBayes** - Höhna S, Landis MJ, Heath TA, Boussau B, Lartillot N, Moore BR, Huelsenbeck JP, Ronquist F (2016) RevBayes: Bayesian phylogenetic inference using graphical models and an interactive model-specification language. *Systematic Biology* 65(4):726-736. doi:[10.1093/sysbio/syw021](https://doi.org/10.1093/sysbio/syw021)
 * **BEASTifier** - Joseph WB, BEASTifier: generate BEAST XML files for simulation experiments; [github.com/josephwb/BEASTifier](https://github.com/josephwb/BEASTifier)
-* **BEAST 书** - Drummond AJ, Bouckaert RR (2015) *Bayesian Evolutionary Analysis with BEAST*. Cambridge University Press. doi:[10.1017/CBO9781139095112](https://doi.org/10.1017/CBO9781139095112)
+* **《BEAST 一书》** - Drummond AJ, Bouckaert RR (2015) *Bayesian Evolutionary Analysis with BEAST*. Cambridge University Press. doi:[10.1017/CBO9781139095112](https://doi.org/10.1017/CBO9781139095112)
 
 ## MCMC 诊断
 
-* **ESS / ACT** - Geyer CJ (1992) Practical Markov chain Monte Carlo. *Statistical Science* 7(4):473-483. doi:[10.1214/ss/1177011137](https://doi.org/10.1214/ss/1177011137)（`beastxpy trace` 所实现的初始正序列与初始单调序列积分自相关时间估计量。）
+* **ESS / ACT** - Geyer CJ (1992) Practical Markov chain Monte Carlo. *Statistical Science* 7(4):473-483. doi:[10.1214/ss/1177011137](https://doi.org/10.1214/ss/1177011137)（`beastxpy trace` 所实现的积分自相关时间的初始正序列与初始单调序列估计量。）
 * **Burn-in** - Geweke J (1992) Evaluating the accuracy of sampling-based approaches to the calculation of posterior moments. In: Bernardo JM, Berger JO, Dawid AP, Smith AFM (eds) *Bayesian Statistics 4*. Oxford University Press, pp 169-193.（自动 burn-in 探测的依据。）
 * **PSRF / R-hat** - Gelman A, Rubin DB (1992) Inference from iterative simulation using multiple sequences. *Statistical Science* 7(4):457-472. doi:[10.1214/ss/1177011136](https://doi.org/10.1214/ss/1177011136)（分半链变体见 Gelman A 等 (2013) *Bayesian Data Analysis*, 3rd ed., CRC Press。）
 * **秩归一化 R-hat** - Vehtari A, Gelman A, Simpson D, Carpenter B, Bürkner P-C (2021) Rank-normalization, folding, and localization: an improved R-hat for assessing convergence of MCMC. *Bayesian Analysis* 16(2):667-718. doi:[10.1214/20-BA1221](https://doi.org/10.1214/20-BA1221)（`assess` 报告秩归一化分半链 R-hat 以及 bulk/tail ESS；经典分半链 R-hat 仍保留用于对照。）
 * **ASDSF** - 分裂频率平均标准差，因 MrBayes 而普及：Ronquist F, Huelsenbeck JP (2003) MrBayes 3: Bayesian phylogenetic inference under mixed models. *Bioinformatics* 19(12):1572-1574. doi:[10.1093/bioinformatics/btg180](https://doi.org/10.1093/bioinformatics/btg180)
-* **阈值惯例** - ESS > 200 与 PSRF < 1.01 沿用 BEAST 书（Drummond & Bouckaert 2015）的建议；ASDSF 警告阈值 0.05 沿用 MrBayes 惯例（Ronquist & Huelsenbeck 2003）。它们是默认值而非定律——每一个都可以在 `assess` 命令行上调整。
+* **阈值惯例** - ESS > 200 与 PSRF < 1.01 沿用《BEAST 一书》（Drummond & Bouckaert 2015）的建议；ASDSF 警告阈值 0.05 沿用 MrBayes 惯例（Ronquist & Huelsenbeck 2003）。它们是默认值而非定律——每一个都可以在 `assess` 命令行上调整。
 
 ## 模型比较
 

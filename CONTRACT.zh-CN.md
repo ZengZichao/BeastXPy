@@ -2,7 +2,7 @@
 
 [English](CONTRACT.md) | [中文](CONTRACT.zh-CN.md)
 
-本文档公开声明代码与测试所强制执行的接口和诚实性规则。源码注释中以 `CONTRACT.md §<section>` 的形式引用它。章节编号保持稳定；散文措辞可以在不重新编号的情况下澄清。
+本文档公开声明代码与测试所强制执行的接口和诚实性规则。源码注释中以 `CONTRACT.md §<section>` 的形式引用它。章节编号保持稳定；正文措辞可以在不重新编号的情况下澄清。
 
 编号说明：对外引用保留其历史编号。本次修订中没有 §3、§4 和 §6；§5 F1 与 §5 F2 是 §5 下并列的两个子条款。
 
@@ -105,7 +105,7 @@ thresholds, counts, chains, multichain, reasons, limitations
 
 凡是因为配置未指定而由 BeastXPy 添加的先验，都会：
 
-1. 在生成的 XML 中以一条以 `BXP auto prior (BEAUti-1.10.4 convention)` 开头的注释标出；
+1. 在生成的 XML 中以一条以 `BXP auto prior (` 开头、其后紧跟该项先验的溯源标签（例如 `BEAUti-1.10.4 convention`）的注释标出；
 2. 作为 Gate-2 的 `info` 发现项报告，代码为 `AUTO_PRIOR`，可在 `generate --beast-validate` 的输出中看到；
 3. 列在 `report` 的 HTML 章节“自动先验”中；
 4. 可在 YAML 的 `parameter_priors` 下覆盖。

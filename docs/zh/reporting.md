@@ -55,7 +55,7 @@ assessment: present (verdict fail)
 beastxpy report runs/demo --output report.html --json report.json
 ```
 
-JSON 携带与 HTML 相同的数值，模式为 `beastxpy.report/v1`。
+JSON 携带与 HTML 渲染结果相同的取值，信封标识为 `beastxpy.report/v1`。
 
 ## 选项
 

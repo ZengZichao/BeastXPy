@@ -4,7 +4,7 @@
 
 本指南在自带的 primates 比对（898 bp、12 个分类单元）上完整跑通一个分析：JC69 + 严格钟 + Yule + 一个根标定。每一步都给出命令、应当看到的输出，以及进入下一步之前需要确认的事项。
 
-**开始之前**：先完成[安装](installation.md)。要求 `beastxpy --version` 可用，且 `beastxpy check-environment` 能找到 JDK 和两个 BEAST jar。第 4 步的运行还需要原生 BEAGLE 库（见 [native-beagle](native-beagle.md)）；在编写本指南的参考机器上，用下面列出的环境变量指向它：
+**开始之前**：先完成[安装](installation.md)。要求 `beastxpy --version` 可用，且 `beastxpy check-environment` 能找到 JDK 和两个 BEAST jar。第 4 步的运行还需要原生 BEAGLE 库（见 [原生 BEAGLE](native-beagle.md)）；在本指南运行所用的参考机器上，用下面列出的环境变量指向它：
 
 ```
 export JAVA_HOME=/path/to/jdk-17
@@ -95,7 +95,7 @@ verdict: fail (1 error(s), 0 warning(s))
 beastxpy generate --config demo.yaml --output demo.xml --beast-validate
 ```
 
-预期输出（进度在 stderr，"wrote" 行在 stdout）：
+预期输出（进度在 stderr，“wrote” 行在 stdout）：
 
 ```
 Gate 0 (parse-time, before the 3 generation gates): demo.yaml
@@ -187,7 +187,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 * **ASDSF** —— 链间拓扑一致性；这里 `0.0000` 表示两条链对每个分裂都一致。
 * **算子** —— 接受率；低于 1% 或高于 95% 的移动会被标记。
 
-退出码：`0` 通过/警告，`1` 为 `--strict` 下的警告，`2` 输入不可读，`3` 失败。这里的 `fail` 描述的是样本状态，不是"模型错了"的判断（见 [assessment](assessment.md) 与 [limitations](limitations.md)）。
+退出码：`0` 通过/警告，`1` 为 `--strict` 下的警告，`2` 输入不可读，`3` 失败。这里的 `fail` 描述的是样本状态，不是“模型错了”的判断（见 [assessment](assessment.md) 与 [能力边界](limitations.md)）。
 
 ## 第 6 步 —— 生成离线 HTML 报告
 
@@ -244,6 +244,6 @@ reproduce: mode=check verdict=match
 * [cli](cli.md) —— 全部 21 个命令的精确参数与退出码。
 * [validation](validation.md) —— 四道 Gate 各自证明与不证明什么。
 * [assessment](assessment.md) —— 诚实解读 ESS/PSRF/ASDSF。
-* [compare](compare.md) —— 边缘似然与贝叶斯因子。
+* [compare](compare.md) —— 边际似然与贝叶斯因子。
 * [references](references.md) —— 本指南用到的每个统计量、阈值与模型的一手文献。
 * [troubleshooting](troubleshooting.md) —— 症状、原因、修法。

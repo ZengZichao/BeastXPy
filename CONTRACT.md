@@ -105,7 +105,7 @@ Per-chain entries always include `seed`, `status`, `trace_log`, `tree_log`, `run
 
 Every prior that BeastXPy adds because the configuration did not specify one is:
 
-1. marked in the generated XML with a comment beginning `BXP auto prior (BEAUti-1.10.4 convention)`;
+1. marked in the generated XML with a comment beginning `BXP auto prior (` followed by that prior's provenance label, for example `BEAUti-1.10.4 convention`;
 2. reported as a Gate-2 `info` finding with code `AUTO_PRIOR`, visible in `generate --beast-validate` output;
 3. listed in the `report` HTML section "Automatic priors";
 4. overridable under `parameter_priors` in the YAML.

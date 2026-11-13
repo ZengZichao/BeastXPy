@@ -32,7 +32,7 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 | 参数 | 取值 | 必填 |
 |---|---|---|
 | `WORKDIR` | `--` | 否（未给 `--trace` 时必填） |
-| `--trace` | `PATH` | 否（可重复，每条链一个） |
+| `--trace` | `PATH` | 否（评估多条链时重复使用） |
 | `--trees` | `PATH` | 否（与 `--trace` 同序、一一对应） |
 | `--burnin` | `FRACTION` 或 `auto` | 否 |
 | `--ess` | `MIN` | 否 |
@@ -91,7 +91,7 @@ beastxpy capabilities
 
 **输出**
 
-对齐表格输出到 stdout；--json 写信封。
+对齐表格输出到 stdout；--json 写出信封。
 
 **退出码**
 
@@ -124,7 +124,7 @@ beastxpy check-data --config examples/config_basic.yaml
 
 **输出**
 
-带位置与修复建议的发现项输出到 stdout；--json 写信封。
+带位置与修复建议的发现项输出到 stdout；--json 写出信封。
 
 **退出码**
 
@@ -343,7 +343,7 @@ beastxpy generate --config examples/config_basic.yaml --output out.xml --beast-v
 
 ### `beastxpy list-models`
 
-列出已注册的模型、钟、树先验与分布。
+列出已注册的模型、分子钟、树先验与分布。
 
 **用法**
 
@@ -409,7 +409,7 @@ beastxpy lock --config examples/config_basic.yaml --output beastxpy.lock
 
 ### `beastxpy logcombine`
 
-合并多个种子的 trace 或 tree 日志。注意：`--burnin` 在纯 Python 路径按**日志行数**计，在 Java LogCombiner 路径按**状态数**计；所选 jar 可用时走 Java 路径。
+合并多个种子的 trace 日志或树日志。注意：`--burnin` 在纯 Python 路径按**日志行数**计，在 Java LogCombiner 路径按**状态数**计；所选 jar 可用时走 Java 路径。
 
 **用法**
 
@@ -577,7 +577,7 @@ beastxpy report WORKDIR --output PATH [--lang {en,zh}] [--include-config] [--ass
 请先运行 `beastxpy run --config examples/config_basic.yaml --workdir runs/demo`。
 
 ```
-beastxpy report runs/demo --output runs/demo/report.html --lang en
+beastxpy report runs/demo --output runs/demo/report.html --lang zh
 ```
 
 **输出**
@@ -590,7 +590,7 @@ beastxpy report runs/demo --output runs/demo/report.html --lang en
 
 ### `beastxpy reproduce`
 
-逐字段校验锁（`--check`）或重放（`--run`）。`--run` 时每个种子的 `--timeout` 默认 86400 秒（24 小时）。
+逐字段验证锁（`--check`）或重放（`--run`）。`--run` 时每个种子的 `--timeout` 默认 86400 秒（24 小时）。
 
 **用法**
 
@@ -631,7 +631,7 @@ beastxpy reproduce --lock beastxpy.lock --check --config examples/config_basic.y
 
 ### `beastxpy run`
 
-在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加动态链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关；因为 BEAST 自带的纯 Java BEAGLE 从未实现位点对数似然入口，任何含 `<treeLikelihood>` 的文档（也就是 BeastXPy 产出的全部文档）都会在启动前被拒绝，退出码 1。
+在种子矩阵上运行 BEAST；需要原生 BEAGLE。每个种子的 `--timeout` 默认 86400 秒（24 小时）；长时间分歧时间分析可调高或放到后台运行。探测到的 BEAGLE 目录会自动暴露给 BEAST 进程（`-Djava.library.path` 加动态链接器路径）。`--java-only` 对应 BEAST 的 `-java` 开关；因为 BEAST 自带的纯 Java BEAGLE 从未实现位点对数似然入口，所以对任何含 `<treeLikelihood>` 的文档（也就是 BeastXPy 产出的全部文档），`--java-only` 都会在启动前被拒绝，退出码 1。
 
 **用法**
 
@@ -738,7 +738,7 @@ beastxpy tree-annotate --trees runs/demo/1/seed_1_tree.log --output tree.tre
 
 **输出**
 
-在 --output 写出带注释的树文件。
+在 --output 写出标注后的树文件。
 
 **退出码**
 

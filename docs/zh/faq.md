@@ -6,7 +6,7 @@
 
 **需要原生 BEAGLE 吗？** `run` 与 `compare` 需要；`generate`、`validate`、`check-data`、`assess`、`report`、`lock` 不需要。
 
-**为什么 `run --java-only` 直接拒绝启动？** BEAST 自带的纯 Java BEAGLE 从未实现 `getSiteLogLikelihoods`，因此 `-java` 在任何含 `<treeLikelihood>` 的文档上都会中止——而 BeastXPy 生成的每份文档都含这个元素。请改用原生 BEAGLE。见[原生 BEAGLE](native-beagle.md)。
+**为什么 `run --java-only` 直接拒绝启动？** BEAST 自带的纯 Java BEAGLE 从未实现 `getSiteLogLikelihoods`，因此 `-java` 在任何含 `<treeLikelihood>` 的文档上都会中止——而 BeastXPy 生成的每份文档都含这个元素。请改为安装原生 BEAGLE。见[原生 BEAGLE](native-beagle.md)。
 
 **为什么 `assess` 显示 `not_computable`？** PSRF 与 ASDSF 至少需要两条链，多跑几个种子。某个统计量缺失意味着日志里没有这一列，而不是数值为零。
 

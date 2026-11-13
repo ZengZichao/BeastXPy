@@ -54,7 +54,7 @@ python tools/official_validate.py --matrix "examples/config_*.yaml" --mode java-
 python tools/validate_coverage.py
 ```
 
-以上三步是日常使用的表面；本页其余部分解释 Gate 3 的证据到底证明什么、不证明什么。
+以上三步是日常用到的表层；本页其余部分解释 Gate 3 的证据到底证明什么、不证明什么。
 
 ## Gate 3 实际做了什么
 
@@ -73,7 +73,7 @@ Gate 3 以本机支持的最强模式运行：
 | `java-core` | 解析 + 实例化 + 初始后验 | 官方集合 + 项目 `treeLikelihood` shim（见下） |
 | `beagle` | 解析 + 实例化 + 真实原生似然 | 官方 |
 
-**`parse` 与 `java-core` 模式只对 `<treeLikelihood>` 子树替换成 BeastXPy 自带的解析器。** BEAST 内置的纯 Java BEAGLE 从不实现位点对数似然入口，因此改用旧版 Java 似然核心。该解析器属于校验工装，不是 BEAST 功能，也不是受支持的分析路径。它的语法规则逐行镜像两个随包 BEAST 版本的 `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules`；反射测试（`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`）会在两者偏离时失败。Gate 3 还会在 environment 阶段与 JSON 结果中记录 `tree_likelihood_rule_source=shim` 或 `official`。镜像规则接受 `<branchModel>` 子元素，但 shim 无法计算它；此时会发出 `SHIM_BRANCH_MODEL` 警告并只使用 `<siteModel>`。只有 `beagle` 模式运行原样的官方解析器集合，所以原生 BEAGLE 校验才是更强的证据。选择按 BEAST 版本自动进行：能发现原生 hmsbeagle 库（`BEASTX_BEAGLE_<version>_LIB`、`BEASTX_BEAGLE_LIB`、`BEAGLE_HOME`，或 jar 同级的 `lib/beagle`）时用 `beagle`，否则用 `java-core`。库存在但加载失败时会给出提示并退回较弱核心——不可用的 BEAGLE 是环境问题，不是生成 XML 的缺陷。
+**`parse` 与 `java-core` 模式只把 `<treeLikelihood>` 子树替换成 BeastXPy 自带的解析器。** BEAST 内置的纯 Java BEAGLE 从不实现位点对数似然入口，因此改用旧版 Java 似然核心。该解析器属于校验工装，不是 BEAST 功能，也不是受支持的分析路径。它的语法规则逐行镜像两个随包 BEAST 版本的 `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules`；反射测试（`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`）会在两者偏离时失败。Gate 3 还会在 environment 阶段与 JSON 结果中记录 `tree_likelihood_rule_source=shim` 或 `official`。镜像规则接受 `<branchModel>` 子元素，但 shim 无法计算它；此时会发出 `SHIM_BRANCH_MODEL` 警告并只使用 `<siteModel>`。只有 `beagle` 模式运行原样的官方解析器集合，所以原生 BEAGLE 校验才是更强的证据。选择按 BEAST 版本自动进行：能发现原生 hmsbeagle 库（`BEASTX_BEAGLE_<version>_LIB`、`BEASTX_BEAGLE_LIB`、`BEAGLE_HOME`，或 jar 同级的 `lib/beagle`）时用 `beagle`，否则用 `java-core`。库存在但加载失败会被报告并改用较弱核心——不可用的 BEAGLE 是环境故障，不是生成 XML 的缺陷。
 
 ### 证据强度（一个声明到底意味着什么）
 

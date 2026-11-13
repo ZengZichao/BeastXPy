@@ -23,7 +23,7 @@ docker run --rm beastxpy:0.1.0 --version
 docker run --rm -v "$PWD:/work" beastxpy:0.1.0     generate --config /work/config.yaml --beast-validate
 ```
 
-离线构建时，先把 `beagle-lib.tar.gz` 放进 `deploy/beagle/`。镜像源、BEAGLE 版本配对与许可相关事宜见 `deploy/README.md`。
+离线构建时，先把 `beagle-lib.tar.gz` 放进 `deploy/beagle/`。镜像源、BEAGLE 版本配对与许可立场见 `deploy/README.md`。
 
 ## 已验证内容
 

@@ -49,7 +49,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 
 ## 最重要的一条规则
 
-可用链少于两条时，PSRF 与 ASDSF 报告为 `not_computable` 并给出原因。既然不存在这个数值，就不编造。某列在日志中缺失时同理。
+可用链少于两条时，PSRF 与 ASDSF 报告为 `not_computable` 并给出原因。既然不存在这个数值，就不编造。日志中缺失某一列时，对应统计量的处理同理。
 
 ## 判定
 
@@ -65,11 +65,11 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 
 `pass` 只意味着没有越过你设置的阈值，**不**意味着链收敛了。ESS 与 R-hat 是有限样本估计，在短链上噪声很大；一条尚未探索后验的链也可能看起来正常。
 
-`assess` 是诊断工具。它不做模型选择（`compare` 负责边际似然），也不判断模型是否适合你的数据。
+`assess` 是诊断工具。它不做模型选择（`compare` 负责边际似然），也不判断你的模型是否合适。
 
 ## 阈值与输出
 
-默认值——ESS 200、PSRF 1.01、ASDSF 0.05、算子接受率 0.01-0.95——是惯例而非定律：ESS 与 PSRF 的取值依据 BEAST 书（Drummond & Bouckaert 2015），ASDSF 区间沿用 MrBayes 惯例。每一个都可以在命令行上调整；一手文献汇总在 [references](references.md)。
+默认值——ESS 200、PSRF 1.01、ASDSF 0.05、算子接受率 0.01-0.95——是惯例而非定律：ESS 与 PSRF 的取值依据《BEAST 一书》（Drummond & Bouckaert 2015），ASDSF 区间沿用 MrBayes 惯例。每一个都可以在命令行上调整；一手文献汇总在 [references](references.md)。
 
 ```
 beastxpy assess runs/demo --burnin 0.1 --ess 200 --psrf 1.01 --html report.html
@@ -82,6 +82,6 @@ beastxpy assess runs/demo --burnin 0.1 --ess 200 --psrf 1.01 --html report.html
 `tests/golden/reference_diagnostics/` 中两组固定模拟数据把数值行为钉在社区工具上（由 `tests/test_reference_diagnostics.py` 验证）：
 
 * **ArviZ 0.23.4**（`rank` R-hat、`bulk`/`tail` ESS）：在四条固定 AR(1) 链上，秩归一化分半链 R-hat、bulk ESS 与分半链 tail ESS 与 ArviZ 在打印精度内一致（相对差 < 1e-9）。ESS 刻意**不封顶于 `m*n`**：存储的反相关夹具只有 1,000 个抽样，但 BeastXPy 与 ArviZ 都给出 ESS 3,000，因为反相关抽样可以比独立抽样携带更多信息。这是参考实现的行为，不是上界声明。
-* **Tracer 1.7.2**（固定 BEAST 风格日志）：均值与 95% HPD 端点相对差 < 1e-9，ESS 与 ACT 相对差 < 0.1%，中位数差 < 0.002（Tracer 的中位数插值不同）。ACT 以抽样数计；Tracer 以记录状态数计，比较前需除以记录间隔。
+* **Tracer 1.7.2**（固定 BEAST 风格日志）：均值与 95% HPD 端点相对差 < 1e-9，ESS 与 ACT 相对差 < 0.1%，中位数绝对差 < 0.002（Tracer 的中位数插值不同）。ACT 以抽样数计；Tracer 以记录状态数计，比较前需先把 Tracer 的 ACT 除以记录间隔。
 
-95% HPD 是包含 `ceil((1-alpha) * n)` 个观测的最短窗口。小样本时 Tracer 可能选择相差一个顺序统计量的窗口；该差异被记录而不是隐藏。单链 ACT 保留无偏 `n/(n-lag)` 自协方差修正；在固定夹具上与 Tracer 相差 0.06%。多链 ESS 采用 Vehtari et al. (2021) 边际方差分解所需的有偏自协方差。
+95% HPD 是包含 `ceil((1-alpha) * n)` 个观测的最短窗口。小样本时 Tracer 可能选择相差一个顺序统计量的窗口；该差异被记录而不是隐藏。单链 ACT 保留无偏 `n/(n-lag)` 自协方差修正；在固定夹具上与 Tracer 的差在 0.06% 以内。多链 ESS 采用 Vehtari et al. (2021) 边际方差分解所需的有偏自协方差。

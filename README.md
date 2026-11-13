@@ -80,7 +80,7 @@ The alignments under `examples/` are short published/reference sequences used on
 
 ## Author
 
-BeastXPy is developed and maintained by **ZengZichao (曾子超)** —zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X).
+BeastXPy is developed and maintained by **ZengZichao (曾子超)** — zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X).
 
 ## Licence
 

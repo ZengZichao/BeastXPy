@@ -8,7 +8,7 @@ BeastXPy 用于生成、校验并诊断 **BEAST 1** 分歧时间分析。它把�
 
 * **严格配置。** 未知键直接报错而不是被忽略；先验名字写错，在 BEAST 启动前就会被拦下。
 * **四道 Gate。** Gate 0 解析配置，Gate 1 做 XML 结构校验，Gate 2 检查标定，Gate 3 用官方 BEAST jar 对结果实际运行。
-* **诚实的诊断。** `assess` 报告 ESS、ACT、PSRF 与 ASDSF；输入不足时写 `not_computable`，绝不编造数值。
+* **诚实的诊断。** `assess` 报告 ESS、ACT、PSRF 与 ASDSF；输入缺失时写 `not_computable`，绝不编造数值。
 * **可复现产物。** 指纹、环境锁、自包含 HTML 报告，以及 Snakemake/Nextflow 流水线。
 
 ## 作者
@@ -34,17 +34,17 @@ BeastXPy 是围绕 BEAST 1 / BEAST X 构建的独立工作流层；它不是 BEA
 | LogCombiner / TreeAnnotator（BEAST） | BEAST 1 | 日志/树后处理工具 | 由 `logcombine`/`tree-annotate` 封装，种子矩阵无需手动操作 |
 | [BEAGLE](https://github.com/beagle-dev/beagle-lib)（Ayres 等 2012） | BEAST 1 与 BEAST 2 | 似然计算库 | 自动探测、核对版本并暴露给 `run` |
 
-我们未能核实 "SnowBEAST" 这一名称的权威公开仓库，因此不将其列为可比工具；上表只列有可核实公开文档的工具。
+我们未能核实 “SnowBEAST” 这一名称的权威公开仓库，因此不将其列为可比工具；上表只列有可核实公开文档的工具。
 
 ### 为什么选择 BEAST 1 / BEAST X
 
 BEAST 2 是新分析的主流平台，但它是另一个程序：不同的 XML 模式、包管理器，以及不同的解析器与算子生态。BEAST 1 XML 不能由 BEAST 2 加载，重新实现 BEAST 2 扩展包会是另一个项目。BeastXPy 有意面向 BEAST 1 谱系：
 
-* **既有分析。** 许多已发表的分化时间研究使用 BEAST 1.10.4 或其仍在维护的延续版本 BEAST X 10.5.0。重跑、审计或扩展这些分析需要该谱系，而不是翻译成 BEAST 2。
+* **既有分析。** 许多已发表的分歧时间研究使用 BEAST 1.10.4 或其仍在维护的延续版本 BEAST X 10.5.0。重跑、审计或扩展这些分析需要该谱系，而不是翻译成 BEAST 2。
 * **仍属于 BEAST 1 扩展包的模型。** EBSP、StarBEAST1、随机局部钟、经验密码子模型与 MDS 属于 BEAST 1 生态；BeastXPy 的能力矩阵明确列出所支持的子集。
 * **可审计的等价性。** 随包分发的官方 jar 让 Gate 3 用用户实际运行的同一 BEAST 构建来验证生成的文档，无需额外安装。
 
-这里主张的新颖性不是"YAML 转 XML"，而是四道校验 Gate、随包官方 jar、诚实的多链诊断与锁文件级可复现性在同一条可审计流水线中的组合。目标用户是已有 BEAST 1 / BEAST X 分析的研究组、需要为期刊投稿准备可审计校验证据的实验室，以及复现遗留 BEAST 1 模型的方法开发者。BEAST 2 支持不在范围内，也不作承诺；见 [能力边界](limitations.md)。
+这里主张的新颖性不是“YAML 转 XML”，而是四道校验 Gate、随包官方 jar、诚实的多链诊断与锁文件级可复现性在同一条可审计流水线中的组合。目标用户是已有 BEAST 1 / BEAST X 分析的研究组、需要为期刊投稿准备可审计校验证据的实验室，以及复现遗留 BEAST 1 模型的方法开发者。BEAST 2 支持不在范围内，也不作承诺；见 [能力边界](limitations.md)。
 
 本文提到的每个统计量与模型的一手文献：[references](references.md)。
 
@@ -59,7 +59,7 @@ BEAST 2 是新分析的主流平台，但它是另一个程序：不同的 XML �
 | [configuration](configuration.md) | 每个 YAML 键、模型名、标定分布 |
 | [cli](cli.md) | 全部 21 个命令、参数、退出码与 JSON 模式 |
 | [validation](validation.md) | 四道 Gate 各自证明了什么 |
-| [native-beagle](native-beagle.md) | BEAGLE 安装、版本配对、`run` 如何使用它 |
+| [native-beagle](native-beagle.md) | BEAGLE 安装、版本配对、`run` 如何暴露它 |
 | [pipelines](pipelines.md) | Snakemake 与 Nextflow 输出 |
 | [assessment](assessment.md) | ESS/ACT/PSRF/ASDSF 及如何解读 |
 | [reporting](reporting.md) | 离线 HTML 报告 |
@@ -75,7 +75,7 @@ BEAST 2 是新分析的主流平台，但它是另一个程序：不同的 XML �
 | [references](references.md) | 每个统计量、阈值与模型的一手文献 |
 | [faq](faq.md) | 简短问答 |
 
-命令行是主要接口。关于"什么能用"的每一条结论都有能力矩阵支撑，你可以自己打印：
+命令行是主要接口。关于“什么能用”的每一条结论都有能力矩阵支撑，你可以自己打印：
 
 ```
 beastxpy capabilities

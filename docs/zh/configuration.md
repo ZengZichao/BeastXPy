@@ -12,7 +12,7 @@
 | `alignments` | 输入文件及其数据类型 |
 | `partitions` | 位点区间与每分区模型 |
 | `tree_prior` | Yule、生灭、各类溯祖、skyline、EBSP |
-| `calibrations` | 节点标定及其分布与出处 |
+| `calibrations` | 节点标定及其分布与溯源 |
 | `parameter_priors` | 命名参数的先验 |
 | `mcmc` | `chain_length`、`pre_burnin`、`auto_optimize`、算子权重 |
 | `loggers` | trace 与 tree 日志文件及记录间隔 |
@@ -115,7 +115,7 @@ calibrations:
 
 `chi_square` 是可识别的拼写，但因不受支持而被拒绝（两个版本的官方 BEAST 都没有卡方先验解析器）。矛盾或部分重叠的单系 clade 是 Gate 0/Gate 2 错误；细节用 `beastxpy diagnose` 查看。
 
-**`meanInRealSpace` 陷阱。** 除非写 `parameters.meanInRealSpace: true`，BEAST 把 lognormal 的 `mean`/`stdev` 当作对数空间参数；BEAUti 的标定构建器默认按实空间均值解释。若未显式声明该标志，Gate 2 会发出一条 `info` 发现项（`LOGNORMAL_LOG_SPACE_MEAN`），写明实际的先验中位数与 95% 区间。例如 offset 25、`mean: 1.0, stdev: 0.5` 的中位数约为 27.7 Ma，而不是 25 Ma。若你的 `mean` 就是 Ma 日期，请显式设置该标志。
+**`meanInRealSpace` 陷阱。** 除非写 `parameters.meanInRealSpace: true`，BEAST 把 lognormal 的 `mean`/`stdev` 当作对数空间参数；BEAUti 的标定构建器默认按实空间均值解释。若未显式声明该标志，Gate 2 会发出一条 `info` 发现项（`LOGNORMAL_LOG_SPACE_MEAN`），写明实际的先验中位数与 95% 区间。例如 offset 25、`mean: 1.0, stdev: 0.5` 的中位数约为 27.7 Ma，而不是 25 Ma。若你希望 `mean` 表示一个以 Ma 为单位的日期，请显式设置该标志。
 
 ## 第 5 步 —— 设置先验、链长与日志
 
@@ -162,7 +162,7 @@ BEAUti 归因行已对照写 XML 模板的 1.10.4 代码路径核验。BeastXPy 
 
 自动先验在每个环节都可见：
 
-1. **XML。** 每个自动先验元素前都有以 `BXP auto prior (BEAUti-1.10.4 convention)` 开头的注释，注明参数与发出的分布。
+1. **XML。** 每个自动先验元素前都有以 `BXP auto prior (` 开头、其后紧跟该项先验的溯源标签（例如 `BEAUti-1.10.4 convention`）的注释，注明参数与发出的分布。
 2. **Gate 2。** `generate --beast-validate` 会把每个自动先验列为 `info` 发现项，代码为 `AUTO_PRIOR`。
 3. **报告。** `beastxpy report` 有 **自动先验（Automatic priors）** 一节，列出生成 XML 中发现的全部注释。
 4. **覆盖。** 可在 `parameter_priors` 中替换任意一项。
@@ -174,7 +174,7 @@ BEAUti 归因行已对照写 XML 模板的 1.10.4 代码路径核验。BeastXPy 
 * `control.beast_version`：`"1.10.4"`（默认）、`"10.5.0"` 或 `"both"`；命令行 `--beast-version` 可覆盖。
 * `control.seed`：默认随机种子（0..2^31-1）；`run --seeds` 可覆盖。
 * `control.initial_tree`：`coalescent`（默认）、`upgma` 或 `newick`；后两者不能与标定同用。
-* `tip_dates`：分类单元 → 年代的映射，如 `tip_dates: {Bovine: 1.0}`，或逐分类单元 `{value: 1.0, direction: forward, units: years}`。时间轴必须可识别：至少给出一个标定、一个 tip 日期，或让钟速率可估计。
+* `tip_dates`：分类单元 → 年代的映射，如 `tip_dates: {Bovine: 1.0}`，或逐分类单元 `{value: 1.0, direction: forwards, units: years}`。时间轴必须可识别：至少给出一个标定、一个 tip 日期，或让钟速率可估计。
 
 ## 覆盖分析族与片段
 
