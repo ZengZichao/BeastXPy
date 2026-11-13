@@ -49,7 +49,7 @@ Fragments may declare taxa and taxon sets, numeric `parameter` elements, read-on
 * unresolvable `idref`s
 * `<!DOCTYPE>` and entity declarations (no external entities are ever expanded)
 * `file:` paths that escape the config directory, and absolute paths
-* anything that would reach `mcmc`, the loggers, the operators or another core block
+* anything that would reach `mcmc`, the `loggers`, the `operators` or another core block
 
 ## Gate 3 is mandatory
 

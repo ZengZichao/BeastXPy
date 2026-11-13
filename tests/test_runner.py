@@ -199,3 +199,29 @@ def test_java_source_uses_resolved_executable_identity(monkeypatch, tmp_path):
 
     monkeypatch.setenv("BEASTX_JAVA", str(other))
     assert _java_source(str(other)) == "BEASTX_JAVA"
+
+
+def test_jar_source_preserves_environment_provenance(monkeypatch, tmp_path):
+    """An official HOME must not be reported as the packaged fallback."""
+    from beastxpy import runner as runner_module
+
+    home = tmp_path / "BEASTv1.10.4"
+    (home / "lib").mkdir(parents=True)
+    jar = home / "lib" / "beast.jar"
+    jar.write_bytes(b"official")
+
+    for key in (
+        "BEASTX_JAR_1_10_4",
+        "BEAST_1_10_4_JAR",
+        "BEASTX_JAR",
+        "BEASTX_1_10_4_HOME",
+        "BEAST_HOME",
+        "BEASTX_REF_DIR",
+    ):
+        monkeypatch.delenv(key, raising=False)
+    monkeypatch.setenv("BEAST_1_10_4_HOME", str(home))
+
+    details = runner_module.resolve_jar_details("1.10.4")
+    assert details is not None
+    assert details["path"] == str(jar)
+    assert details["source"] == "env:BEAST_1_10_4_HOME"

@@ -6,7 +6,7 @@ operators, default priors) and applies BEAST-version gating (``since``).
 
 The element whitelist consulted by the validator comes from
 ``beastxpy/data/xml_spec.json``, which is generated from the reference source
-trees by ``tools/extract_xml_spec.py`` and committed to the repository.
+trees by ``tools/patch_xml_spec.py`` and committed to the repository.
 """
 
 from __future__ import annotations

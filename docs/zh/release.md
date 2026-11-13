@@ -7,12 +7,12 @@
 ## 一次性配置
 
 1. **GitHub 仓库。** 把本仓库推送到 GitHub，并确认该仓库启用了 Actions。
-2. **PyPI 可信发布。** 发布到 PyPI 不需要保存任何令牌。在 pypi.org 打开 *Account → Publishing*，添加一个待发布者（pending publisher），各项取值必须与下面完全一致：
-- PyPI 项目名：`beastxpy`
-- Owner：你的 GitHub 用户名或组织名
-- Repository：仓库名
-- Workflow filename：`release.yml`
-- Environment name：`pypi`
+2. **PyPI 可信发布。** 发布到 PyPI 不需要保存任何令牌。在 pypi.org 打开 `beastxpy` 项目的 *Publishing* 标签页（项目还不存在时先创建它），添加一个待发布者（pending publisher），各项取值必须与下面完全一致：
+   - PyPI project name：`beastxpy`
+   - Owner：你的 GitHub 用户名或组织名
+   - Repository：仓库名
+   - Workflow filename：`release.yml`
+   - Environment name：`pypi`
 3. **Zenodo。** 用 GitHub 账号登录 zenodo.org，授权 Zenodo–GitHub 集成，并打开该仓库的开关。此后每个 GitHub release 都会被自动归档，获得一个版本 DOI 以及覆盖所有版本的概念 DOI。Zenodo 会读取发布记录与 `CITATION.cff`。
 
 ## 切版发布
@@ -28,10 +28,10 @@ git tag v0.2.0
 git push origin main --tags
 ```
 
-推送标签会启动发布流水线（`.github/workflows/release.yml`），它按顺序执行：
+推送标签会启动发布流水线（`.github/workflows/release.yml`）。单个构建 job 执行第 1-4 步，之后第 5、6 步作为两个互不依赖的 job 运行：
 
-1. 校验标签与 `pyproject.toml`、`beastxpy/__init__.py`、`CITATION.cff` 中声明的版本一致（`tools/check_release_tag.py`）；
-2. 构建 sdist 与 wheel，并用 `twine check --strict` 检查；
+1. 验证标签与 `pyproject.toml`、`beastxpy/__init__.py`、`CITATION.cff` 中声明的版本一致（`tools/check_release_tag.py`）；
+2. 构建 sdist 与 wheel，并对两者都用 `twine check --strict` 校验；
 3. 构建免 jar 的 `beastxpy-core` wheel；
 4. 安装该 wheel，运行 `beastxpy --version` 与 `beastxpy capabilities` 作为冒烟检查；
 5. 通过可信发布（无需令牌）把包发布到 PyPI；
@@ -55,4 +55,4 @@ Zenodo 发出首个 DOI 后，把它写进 `CITATION.cff`（添加 `doi:` 字段
 
 ## 版本编号
 
-版本遵循语义化版本：`MAJOR.MINOR.PATCH`。新增模型或命令时提升 minor，修复问题时提升 patch。不要手工编辑版本字符串；`tools/bump_version.py` 的存在就是为了让 `pyproject.toml`、包本身、`CITATION.cff`、README 与文档保持一致，一旦不一致，`tests/test_release_contract.py` 会失败。
+版本遵循语义化版本：`MAJOR.MINOR.PATCH`。新增模型或命令时提升 minor，修复问题时提升 patch。切勿手工编辑版本字符串；`tools/bump_version.py` 的存在就是为了让 `pyproject.toml`、包本身、`CITATION.cff`、README、文档与 `tools/build_core_wheel.py` 保持一致，一旦不一致，`tests/test_release_contract.py` 会失败。

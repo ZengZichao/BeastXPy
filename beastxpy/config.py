@@ -1741,13 +1741,14 @@ class ConfigParser:
         self, cal: CalibrationPoint, warnings: List[str], errors: List[str]
     ) -> None:
         prov = cal.provenance
-        assert prov is not None
+        if prov is None:
+            return
         if prov.original_age_min is None or prov.original_age_max is None:
             return
-        assert cal.distribution is not None
-        q = distribution_quantiles(
-            cal.distribution.type, cal.distribution.parameters, cal.distribution.offset
-        )
+        distribution = cal.distribution
+        if distribution is None:
+            return
+        q = distribution_quantiles(distribution.type, distribution.parameters, distribution.offset)
         if q is None:
             return
         q025, q975 = q

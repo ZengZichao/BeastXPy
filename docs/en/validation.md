@@ -73,7 +73,7 @@ Gate 3 runs in the strongest mode the machine supports:
 | `java-core` | parse + instantiate + initial posterior | official set + project `treeLikelihood` shim (see below) |
 | `beagle` | parse + instantiate + real native likelihood | official |
 
-**The `parse` and `java-core` modes substitute a BeastXPy-supplied parser for the `<treeLikelihood>` subtree only.** BEAST's bundled pure-Java BEAGLE never implements the site log-likelihood entry point, so the legacy Java likelihood core is used instead. That parser is a validation harness component, not BEAST functionality and not a supported analysis path. Its syntax rules are a line-for-line mirror of `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules` from both bundled BEAST versions, and a reflection test (`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`) fails if they diverge. Gate 3 also records `tree_likelihood_rule_source=shim` or `official` in the environment stage and in the JSON result. A `<branchModel>` child is accepted by the mirrored rules but the shim cannot evaluate it; in that case it emits a `SHIM_BRANCH_MODEL` warning and uses only `<siteModel>`. Only `beagle` mode runs the stock official parser set, which is why native BEAGLE validation is the stronger evidence. The selection is automatic per BEAST version: `beagle` when a native hmsbeagle library is discoverable (`BEASTX_BEAGLE_<version>_LIB`, `BEASTX_BEAGLE_LIB`, `BEAGLE_HOME`, or `lib/beagle` next to the jar), otherwise `java-core`. A library that exists but fails to load is reported and the weaker core is used — an unusable BEAGLE is an environment fault, not a defect in the generated XML.
+**The `parse` and `java-core` modes substitute a BeastXPy-supplied parser for the `<treeLikelihood>` subtree only.** BEAST's bundled pure-Java BEAGLE never implements the site log-likelihood entry point, so the legacy Java likelihood core is used instead. That parser is a validation harness component, not BEAST functionality and not a supported analysis path. Its syntax rules are a line-for-line mirror of `dr.evomodelxml.treelikelihood.BeagleTreeLikelihoodParser.rules` from both bundled BEAST versions, and a reflection test (`tests/test_beast_validation.py::test_shim_syntax_rules_equal_official_parser`) fails if they diverge. Gate 3 also records `tree_likelihood_rule_source=shim` or `official` in the environment stage and in the JSON result. A `<branchModel>` child is accepted by the mirrored rules but the shim cannot evaluate it; in that case it emits a `SHIM_BRANCH_MODEL` warning and uses only `<siteModel>`. Only `beagle` mode runs the stock official parser set, which is why native BEAGLE validation is the stronger evidence. The selection is automatic per BEAST version: `beagle` when a native hmsbeagle library is discoverable (`BEASTX_BEAGLE_<version>_LIB`, `BEASTX_BEAGLE_LIB`, `BEAGLE_HOME` or `BEAGLE_LIB`, each also tried with `/lib` and `/bin` appended, or a `beagle` directory next to the selected jar), otherwise `java-core`. A library that exists but fails to load is reported and the weaker core is used — an unusable BEAGLE is an environment fault, not a defect in the generated XML.
 
 ### Evidence strength (what a claim means)
 
@@ -90,7 +90,7 @@ python tools/official_validate.py --matrix "examples/config_*.yaml" \
     --mode beagle --versions 1.10.4 10.5.0
 ```
 
-`beastxpy capabilities` prints the source-jar SHA-256 recorded in `data/xml_spec.json` for each BEAST version, so a stale element whitelist is visible next to the installed BEAST version.
+`beastxpy capabilities` prints the source-jar SHA-256 recorded in `beastxpy/data/xml_spec.json` for each BEAST version, so a stale element whitelist is visible next to the installed BEAST version.
 
 ### Recorded evidence
 
@@ -156,7 +156,7 @@ The run recorded from this checkout (5000 sites, 500,000 steps, BEAST X 10.5.0 w
 | 1 | [0.0903, 0.1020] | 0.0961 | yes |
 | 2 | [0.0904, 0.1013] | 0.0964 | yes |
 
-The assess verdict for that deliberately short run was `fail` (some ESS values were below 200); the script's pass criterion is only HPD coverage of the known truth, not convergence.
+The `assess` verdict for that deliberately short run was `fail` (some ESS values were below 200); the script's pass criterion is only HPD coverage of the known truth, not convergence.
 
 ### Parameter-recovery study (`--study recovery`)
 

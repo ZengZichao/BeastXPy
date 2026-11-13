@@ -2,10 +2,10 @@
 
 [English](../en/api.md) | [中文](api.md)
 
-命令行是受支持的接口；Python 门面为 notebook 与脚本提供同样的能力。
+命令行是受支持的接口；Python 门面镜像同一套接口，供 notebook 与脚本使用。
 
 ```
-from beastxpy import BeastXPy
+from beastxpy.api import BeastXPy
 
 bxp = BeastXPy()
 xml = bxp.generate_xml("config.yaml", beast_validate=True)
@@ -19,7 +19,7 @@ print(result.documents[0].gate3.status)
 |---|---|
 | `parse_config(path)` | Gate 0 |
 | `generate_xml(path, ...)` | 生成并返回主文档 |
-| `generate_xml_result(path, ...)` | 生成并返回所有文档与闸门结果 |
+| `generate_xml_result(path, ...)` | 生成并返回所有文档与 Gate 结果 |
 | `validate_xml(path, beast=True)` | Gate 1，可选 Gate 3 |
 | `diagnose(...)` | Gate 2 细节 |
 | `run_analysis(...)` | 种子矩阵 |
@@ -33,7 +33,7 @@ print(result.documents[0].gate3.status)
 
 `run_analysis(..., parallel=N)` 与 `beastxpy run --parallel N` 使用同一套并发种子执行。
 
-`GateError` 携带闸门名、发现项与消息；`ContractError` 携带 `fix` 属性说明下一步。两者都可以直接展示给用户。
+`GateError` 携带 Gate 名、发现项与消息；`ContractError` 携带 `fix` 属性说明下一步。两者都可以直接展示给用户。
 
 ## 面向输出的命令
 

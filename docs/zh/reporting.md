@@ -4,7 +4,7 @@
 
 `beastxpy report` 把一个运行目录变成单个 HTML 文件。
 
-## 第 1 步 —— 先做（或有意跳过）评估
+## 第 1 步 —— 完成（或跳过）评估
 
 报告在能找到评估结果时会将其纳入。正常顺序：
 
@@ -12,7 +12,7 @@
 beastxpy assess runs/demo --json runs/demo/assessment.json
 ```
 
-如果没有评估就调用 `report`，报告会写 **not assessed / 未评估**，并且不显示任何诊断数字——绝不估算或回填。
+这一步可以跳过：跳过后 `report` 就按下面的第一条诚实规则处理。
 
 ## 第 2 步 —— 渲染
 
@@ -42,7 +42,7 @@ assessment: present (verdict fail)
 ## 诚实规则
 
 * 没有运行 `assess` 时，报告明确写 **not assessed / 未评估**，并且不显示任何诊断数字，绝不估算或回填。
-* 未运行的闸门显示为 `not-run` 并附原因，绝不会显示成对勾。
+* 未运行的 Gate 显示为 `not-run` 并附原因，绝不会显示成对勾。
 * 所有用户提供的字符串在写入前都做 HTML 转义。
 
 ## 语言
@@ -55,8 +55,8 @@ assessment: present (verdict fail)
 beastxpy report runs/demo --output report.html --json report.json
 ```
 
-JSON 携带与 HTML 相同的数值，模式为 `beastxpy.report/v1`。
+JSON 携带与 HTML 渲染结果相同的取值，信封标识为 `beastxpy.report/v1`。
 
 ## 选项
 
-`--include-config` 嵌入运行目录中找到的配置；`--assessment PATH` 指定默认查找之外的评估文件；`--no-plot` 跳过轨迹图以减小文件；`--ess-threshold N` 改变报告绘制的 ESS 参考线，不会重新运行评估。
+`--include-config` 嵌入运行目录中找到的配置；`--assessment PATH` 指定默认查找之外的评估文件；`--no-plot` 跳过 trace 图以减小文件；`--ess-threshold N` 改变判定 trace 参数偏低的 ESS 阈值（默认 200），不会重新运行评估。

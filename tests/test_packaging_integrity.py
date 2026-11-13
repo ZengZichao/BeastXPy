@@ -23,7 +23,7 @@ class TestReleaseIntegrity:
         assert jars == []
         pyproject = (stage / "pyproject.toml").read_text(encoding="utf-8")
         assert 'name = "beastxpy-core"' in pyproject
-        assert 'license = { text = "MIT" }' in pyproject
+        assert 'license = "MIT"' in pyproject
         assert "MIT-only" in pyproject
         assert '"tools/jars/*.jar"' not in pyproject
 

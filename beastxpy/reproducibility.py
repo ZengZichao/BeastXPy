@@ -606,7 +606,8 @@ rule fingerprint_check:
         from pathlib import Path
         text = Path(input[0]).read_text(encoding="utf-8")
         expected = "{fingerprint}"
-        assert expected in text, f"fingerprint mismatch in {{input[0]}}: expected {{expected}}"
+        if expected not in text:
+            raise ValueError(f"fingerprint mismatch in {{input[0]}}: expected {{expected}}")
         Path(output[0]).write_text(expected + "\\n", encoding="utf-8")
 
 rule beast:

@@ -2,7 +2,7 @@
 
 [English](cli.md) | [中文](../zh/cli.md)
 
-Every command is registered by `beastxpy.main`. Synopses and argument tables are generated from the argument parser, so they match `--help`.
+Every command is registered by `beastxpy.main`. The flags, metavar names, defaults and required-ness below come from the same argument parser that answers `--help`: a required argument appears without brackets, a repeatable one is written `PATH ...`, and `--print` keeps the parser's own `{docker,apptainer}` order. The synopsis is a reading form of `--help`, not a verbatim copy, so it omits `[-h]` and keeps one-per-value flags in a stable reading order. `tests/test_docs.py` checks this correspondence against the live parser.
 
 Global options:
 
@@ -31,7 +31,7 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 
 | Argument | Value | Required |
 |---|---|---|
-| `WORKDIR` | `--` | required unless `--trace` is used |
+| `WORKDIR` | `--` | no (required unless `--trace` is given) |
 | `--trace` | `PATH` | no (repeat for multiple chains) |
 | `--trees` | `PATH` | no (one per `--trace`, same order) |
 | `--burnin` | `FRACTION` or `auto` | no |
@@ -44,7 +44,7 @@ beastxpy assess [WORKDIR] [--trace PATH ...] [--trees PATH ...] [--burnin FRACTI
 
 **Example**
 
-Run `beastxpy run --seeds 1,2 --workdir runs/demo` first; two seeds are needed for PSRF.
+Run `beastxpy run --config examples/config_basic.yaml --seeds 1,2 --workdir runs/demo` first; at least two seeds are needed for PSRF.
 
 ```
 beastxpy assess runs/demo --json runs/demo/assessment.json
@@ -104,7 +104,7 @@ Pre-flight the data and calibrations a config points at.
 **Synopsis**
 
 ```
-beastxpy check-data [--config PATH] [--ambiguity-threshold FRACTION] [--json PATH] [-q]
+beastxpy check-data --config PATH [--ambiguity-threshold FRACTION] [--json PATH] [-q]
 ```
 
 **Arguments**
@@ -168,7 +168,7 @@ Compare models by marginal likelihood with real PS/SS runs; fails closed without
 **Synopsis**
 
 ```
-beastxpy compare [--configs PATH] [--method {stepping-stone,path-sampling}] [--workdir DIR] [--seeds 1,2] [--parallel N] [--chain-length N] [--path-steps N] [--path-scheme {linear,oneSidedBeta,beta,betaQuantile,sigmoid}] [--log-every N] [--beast-version {1.10.4,10.5.0}] [--beagle-dir DIR] [--beagle-threads N] [--timeout SECONDS] [--csv PATH] [--html PATH] [--json PATH] [-q]
+beastxpy compare --configs PATH [PATH ...] --method {stepping-stone,path-sampling} --workdir DIR [--seeds 1,2] [--parallel N] [--chain-length N] [--path-steps N] [--path-scheme {linear,oneSidedBeta,beta,betaQuantile,sigmoid}] [--log-every N] [--beast-version {1.10.4,10.5.0}] [--beagle-dir DIR] [--beagle-threads N] [--timeout SECONDS] [--csv PATH] [--html PATH] [--json PATH] [-q]
 ```
 
 **Arguments**
@@ -216,14 +216,14 @@ Print the bundled Docker or Apptainer definition byte for byte.
 **Synopsis**
 
 ```
-beastxpy container [--print {apptainer,docker}]
+beastxpy container --print {docker,apptainer}
 ```
 
 **Arguments**
 
 | Argument | Value | Required |
 |---|---|---|
-| `--print` | `{apptainer,docker}` | yes |
+| `--print` | `{docker,apptainer}` | yes |
 
 **Example**
 
@@ -246,7 +246,7 @@ Calibration diagnostics (Gate 2 detail), optionally with a sensitivity sweep.
 **Synopsis**
 
 ```
-beastxpy diagnose [--config CONFIG] [--output-dir OUTPUT_DIR] [--report REPORT] [--sensitivity] [--no-visualize]
+beastxpy diagnose --config CONFIG [--output-dir OUTPUT_DIR] [--report REPORT] [--sensitivity] [--no-visualize]
 ```
 
 **Arguments**
@@ -280,7 +280,7 @@ Print the analysis fingerprint, content fingerprint and data digest.
 **Synopsis**
 
 ```
-beastxpy fingerprint [--config CONFIG] [--output OUTPUT]
+beastxpy fingerprint --config CONFIG [--output OUTPUT]
 ```
 
 **Arguments**
@@ -311,7 +311,7 @@ Generate a BEAST 1 XML from a YAML config; Gate 3 runs with `--beast-validate`.
 **Synopsis**
 
 ```
-beastxpy generate [--config CONFIG] [--output OUTPUT] [--beast-validate] [--allow-unvalidated] [--no-data-check] [--allow-custom-fragments] [--beast-version {1.10.4,10.5.0,both}] [--force]
+beastxpy generate --config CONFIG [--output OUTPUT] [--beast-validate] [--allow-unvalidated] [--no-data-check] [--allow-custom-fragments] [--beast-version {1.10.4,10.5.0,both}] [--force]
 ```
 
 **Arguments**
@@ -377,7 +377,7 @@ Write an environment lock: digests, config hash and seeds.
 **Synopsis**
 
 ```
-beastxpy lock [--config PATH] [--output PATH] [--beast-version {1.10.4,10.5.0}] [--seeds 1,2,3] [--beagle-lib DIR] [--beagle-threads N] [--json PATH] [-q]
+beastxpy lock --config PATH --output PATH [--beast-version {1.10.4,10.5.0}] [--seeds 1,2,3] [--beagle-lib DIR] [--beagle-threads N] [--json PATH] [-q]
 ```
 
 **Arguments**
@@ -414,7 +414,7 @@ Combine trace or tree logs from several seeds. Note: `--burnin` counts **log row
 **Synopsis**
 
 ```
-beastxpy logcombine [--logs LOGS] [--output OUTPUT] [--burnin BURNIN] [--resample RESAMPLE] [--strip] [--beast-version {1.10.4,10.5.0}]
+beastxpy logcombine --logs LOGS [LOGS ...] --output OUTPUT [--burnin BURNIN] [--resample RESAMPLE] [--strip] [--beast-version {1.10.4,10.5.0}]
 ```
 
 **Arguments**
@@ -430,7 +430,7 @@ beastxpy logcombine [--logs LOGS] [--output OUTPUT] [--burnin BURNIN] [--resampl
 
 **Example**
 
-Run `beastxpy run --seeds 1,2 --workdir runs/demo` first.
+Run `beastxpy run --config examples/config_basic.yaml --seeds 1,2 --workdir runs/demo` first.
 
 ```
 beastxpy logcombine --logs runs/demo/1/seed_1_trace.log runs/demo/2/seed_2_trace.log --output combined.log
@@ -451,7 +451,7 @@ Generate a LaTeX methods paragraph.
 **Synopsis**
 
 ```
-beastxpy methods [--config CONFIG] [--output OUTPUT]
+beastxpy methods --config CONFIG [--output OUTPUT]
 ```
 
 **Arguments**
@@ -482,7 +482,7 @@ Write a Snakemake or Nextflow pipeline.
 **Synopsis**
 
 ```
-beastxpy pipeline [--config CONFIG] [--type {snakemake,nextflow}] [--output-dir OUTPUT_DIR]
+beastxpy pipeline --config CONFIG [--type {snakemake,nextflow}] [--output-dir OUTPUT_DIR]
 ```
 
 **Arguments**
@@ -496,12 +496,12 @@ beastxpy pipeline [--config CONFIG] [--type {snakemake,nextflow}] [--output-dir 
 **Example**
 
 ```
-beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output Snakefile
+beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output-dir pipeline
 ```
 
 **Output**
 
-A pipeline file at --output.
+`--output-dir` (created when missing) gets the pipeline file — `Snakefile` for `--type snakemake`, `main.nf` for `--type nextflow` — and a copy of the YAML config, so that directory is self-contained. The CLI prints `wrote <path>` for the pipeline file only.
 
 **Exit codes**
 
@@ -514,7 +514,7 @@ Single-partition generation without writing a YAML file first. The chain length 
 **Synopsis**
 
 ```
-beastxpy quick [--alignment ALIGNMENT] [--tree-prior TREE_PRIOR] [--subst-model SUBST_MODEL] [--clock-model CLOCK_MODEL] [--calibration-yaml CALIBRATION_YAML] [--chain-length CHAIN_LENGTH] [--name NAME] [--output OUTPUT] [--beast-version {1.10.4,10.5.0}] [--beast-validate] [--allow-unvalidated] [--force]
+beastxpy quick --alignment ALIGNMENT [--tree-prior TREE_PRIOR] [--subst-model SUBST_MODEL] [--clock-model CLOCK_MODEL] [--calibration-yaml CALIBRATION_YAML] [--chain-length CHAIN_LENGTH] [--name NAME] [--output OUTPUT] [--beast-version {1.10.4,10.5.0}] [--beast-validate] [--allow-unvalidated] [--force]
 ```
 
 **Arguments**
@@ -555,7 +555,7 @@ Render a single offline HTML report for a run directory.
 **Synopsis**
 
 ```
-beastxpy report WORKDIR [--output PATH] [--lang {en,zh}] [--include-config] [--assessment PATH] [--ess-threshold N] [--no-plot] [--json PATH] [-q]
+beastxpy report WORKDIR --output PATH [--lang {en,zh}] [--include-config] [--assessment PATH] [--ess-threshold N] [--no-plot] [--json PATH] [-q]
 ```
 
 **Arguments**
@@ -574,7 +574,7 @@ beastxpy report WORKDIR [--output PATH] [--lang {en,zh}] [--include-config] [--a
 
 **Example**
 
-Run `beastxpy run --workdir runs/demo` first.
+Run `beastxpy run --config examples/config_basic.yaml --workdir runs/demo` first.
 
 ```
 beastxpy report runs/demo --output runs/demo/report.html --lang en
@@ -595,7 +595,7 @@ Verify a lock field by field (`--check`) or replay it (`--run`). For `--run`, `-
 **Synopsis**
 
 ```
-beastxpy reproduce [--lock PATH] [--check] [--run] [--config PATH] [--workdir DIR] [--beagle-lib DIR] [--beagle-threads N] [--timeout SECONDS] [--json PATH] [-q]
+beastxpy reproduce --lock PATH (--check | --run) [--config PATH] [--workdir DIR] [--beagle-lib DIR] [--beagle-threads N] [--timeout SECONDS] [--json PATH] [-q]
 ```
 
 **Arguments**
@@ -603,8 +603,8 @@ beastxpy reproduce [--lock PATH] [--check] [--run] [--config PATH] [--workdir DI
 | Argument | Value | Required |
 |---|---|---|
 | `--lock` | `PATH` | yes |
-| `--check` | `flag` | no |
-| `--run` | `flag` | no |
+| `--check` | `flag` | yes, one of `--check`/`--run` |
+| `--run` | `flag` | yes, one of `--check`/`--run` |
 | `--config` | `PATH` | no |
 | `--workdir` | `DIR` | no |
 | `--beagle-lib` | `DIR` | no |
@@ -631,12 +631,12 @@ A field-by-field comparison on stdout; --run re-executes BEAST.
 
 ### `beastxpy run`
 
-Run BEAST over a seed matrix; needs native BEAGLE. `--timeout` defaults to 86400 seconds (24 h) per seed; raise it or run in the background for long divergence-time analyses. A discovered BEAGLE directory is exposed to the BEAST process automatically (`-Djava.library.path` plus the loader path). `--java-only` maps to BEAST's `-java` flag; because BEAST's bundled pure-Java BEAGLE never implemented the site-likelihood entry point, it is refused up front (exit 1) for any document containing `<treeLikelihood>` - which is every document BeastXPy generates.
+Run BEAST over a seed matrix; needs native BEAGLE. `--timeout` defaults to 86400 seconds (24 h) per seed; raise it or run in the background for long divergence-time analyses. A discovered BEAGLE directory is exposed to the BEAST process automatically (`-Djava.library.path` plus the loader path). `--java-only` maps to BEAST's `-java` flag; because BEAST's bundled pure-Java BEAGLE never implemented the site log-likelihood entry point, it is refused up front (exit 1) for any document containing `<treeLikelihood>` - which is every document BeastXPy generates.
 
 **Synopsis**
 
 ```
-beastxpy run [--config CONFIG] [--workdir WORKDIR] [--seeds SEEDS] [--parallel N] [--beast-version {1.10.4,10.5.0}] [--timeout TIMEOUT] [--resume] [--rerun-successful] [--checkpoint-every CHECKPOINT_EVERY] [--java-only] [--no-data-check] [--force]
+beastxpy run --config CONFIG [--workdir WORKDIR] [--seeds SEEDS] [--parallel N] [--beast-version {1.10.4,10.5.0}] [--timeout TIMEOUT] [--resume] [--rerun-successful] [--checkpoint-every CHECKPOINT_EVERY] [--java-only] [--no-data-check] [--force]
 ```
 
 **Arguments**
@@ -677,7 +677,7 @@ Trace-file statistics in pure Python: ESS, ACT, HPD.
 **Synopsis**
 
 ```
-beastxpy trace [--log LOG] [--burnin BURNIN] [--ess-threshold ESS_THRESHOLD] [--plot PLOT] [--json]
+beastxpy trace --log LOG [--burnin BURNIN] [--ess-threshold ESS_THRESHOLD] [--plot PLOT] [--json]
 ```
 
 **Arguments**
@@ -713,7 +713,7 @@ Annotate a tree log with clade support. Note: `--heights ca` (common-ancestor he
 **Synopsis**
 
 ```
-beastxpy tree-annotate [--trees TREES] [--output OUTPUT] [--heights {keep,median,mean,ca}] [--burnin BURNIN] [--limit LIMIT] [--python-only] [--beast-version {1.10.4,10.5.0}]
+beastxpy tree-annotate --trees TREES --output OUTPUT [--heights {keep,median,mean,ca}] [--burnin BURNIN] [--limit LIMIT] [--python-only] [--beast-version {1.10.4,10.5.0}]
 ```
 
 **Arguments**
@@ -730,7 +730,7 @@ beastxpy tree-annotate [--trees TREES] [--output OUTPUT] [--heights {keep,median
 
 **Example**
 
-Run `beastxpy run --workdir runs/demo` first.
+Run `beastxpy run --config examples/config_basic.yaml --workdir runs/demo` first.
 
 ```
 beastxpy tree-annotate --trees runs/demo/1/seed_1_tree.log --output tree.tre
@@ -751,7 +751,7 @@ Validate an existing XML file; `--beast` adds Gate 3.
 **Synopsis**
 
 ```
-beastxpy validate [--xml XML] [--beast] [--beast-version {1.10.4,10.5.0,both}] [--allow-unvalidated]
+beastxpy validate --xml XML [--beast] [--beast-version {1.10.4,10.5.0,both}] [--allow-unvalidated]
 ```
 
 **Arguments**
@@ -765,7 +765,7 @@ beastxpy validate [--xml XML] [--beast] [--beast-version {1.10.4,10.5.0,both}] [
 
 **Example**
 
-Run `beastxpy generate ... --output out.xml` first.
+Run `beastxpy generate --config examples/config_basic.yaml --output out.xml` first.
 
 ```
 beastxpy validate --xml out.xml --beast

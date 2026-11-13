@@ -2,7 +2,7 @@
 
 [English](../en/references.md) | [中文](references.md)
 
-BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` 命令会把你的分析用到的 `\\citep` 引用键嵌入其 LaTeX 段落。DOI 均经仔细誊录，但定稿前请对照出版方逐一核验。
+BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` 命令会把你的分析用到的 `\\citep` 引用键嵌入其 LaTeX 段落。DOI 均经仔细誊录，但定稿送投前请对照出版方核验。
 
 ## 软件
 
@@ -14,16 +14,16 @@ BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` �
 * **babette** - Bilderbeek RJC, Etienne RS (2018) babette: BEAUti 2, BEAST 2 and Tracer for R. *Methods in Ecology and Evolution* 9(9):2034-2040. doi:[10.1111/2041-210X.13032](https://doi.org/10.1111/2041-210X.13032)
 * **RevBayes** - Höhna S, Landis MJ, Heath TA, Boussau B, Lartillot N, Moore BR, Huelsenbeck JP, Ronquist F (2016) RevBayes: Bayesian phylogenetic inference using graphical models and an interactive model-specification language. *Systematic Biology* 65(4):726-736. doi:[10.1093/sysbio/syw021](https://doi.org/10.1093/sysbio/syw021)
 * **BEASTifier** - Joseph WB, BEASTifier: generate BEAST XML files for simulation experiments; [github.com/josephwb/BEASTifier](https://github.com/josephwb/BEASTifier)
-* **BEAST 书** - Drummond AJ, Bouckaert RR (2015) *Bayesian Evolutionary Analysis with BEAST*. Cambridge University Press. doi:[10.1017/CBO9781139095112](https://doi.org/10.1017/CBO9781139095112)
+* **《BEAST 一书》** - Drummond AJ, Bouckaert RR (2015) *Bayesian Evolutionary Analysis with BEAST*. Cambridge University Press. doi:[10.1017/CBO9781139095112](https://doi.org/10.1017/CBO9781139095112)
 
 ## MCMC 诊断
 
-* **ESS / ACT** - Geyer CJ (1992) Practical Markov chain Monte Carlo. *Statistical Science* 7(4):473-483. doi:[10.1214/ss/1177011137](https://doi.org/10.1214/ss/1177011137)（`beastxpy trace` 所实现的初始正序列与初始单调序列积分自相关时间估计量。）
-* **Burn-in** - Geweke J (1992) Evaluating the accuracy of sampling-based approaches to the calculation of posterior moments. 载于：Bernardo JM, Berger JO, Dawid AP, Smith AFM (eds) *Bayesian Statistics 4*. Oxford University Press, pp 169-193.（自动 burn-in 探测的依据。）
-* **PSRF / R-hat** - Gelman A, Rubin DB (1992) Inference from iterative simulation using multiple sequences. *Statistical Science* 7(4):457-472. doi:[10.1214/ss/1177011136](https://doi.org/10.1214/ss/1177011136)（分半链变体见 Gelman A 等 (2013) *Bayesian Data Analysis*, 第 3 版, CRC Press。）
-* **秩归一化 R-hat** - Vehtari A, Gelman A, Simpson D, Carpenter B, Bürkner P-C (2021) Rank-normalization, folding, and localization: an improved R-hat for assessing convergence of MCMC. *Bayesian Analysis* 16(2):667-718. doi:[10.1214/20-BA1221](https://doi.org/10.1214/20-BA1221)（`assess` 现在报告秩归一化分半链 R-hat 以及 bulk/tail ESS；经典分半链 R-hat 仍保留用于对照。）
+* **ESS / ACT** - Geyer CJ (1992) Practical Markov chain Monte Carlo. *Statistical Science* 7(4):473-483. doi:[10.1214/ss/1177011137](https://doi.org/10.1214/ss/1177011137)（`beastxpy trace` 所实现的积分自相关时间的初始正序列与初始单调序列估计量。）
+* **Burn-in** - Geweke J (1992) Evaluating the accuracy of sampling-based approaches to the calculation of posterior moments. In: Bernardo JM, Berger JO, Dawid AP, Smith AFM (eds) *Bayesian Statistics 4*. Oxford University Press, pp 169-193.（自动 burn-in 探测的依据。）
+* **PSRF / R-hat** - Gelman A, Rubin DB (1992) Inference from iterative simulation using multiple sequences. *Statistical Science* 7(4):457-472. doi:[10.1214/ss/1177011136](https://doi.org/10.1214/ss/1177011136)（分半链变体见 Gelman A 等 (2013) *Bayesian Data Analysis*, 3rd ed., CRC Press。）
+* **秩归一化 R-hat** - Vehtari A, Gelman A, Simpson D, Carpenter B, Bürkner P-C (2021) Rank-normalization, folding, and localization: an improved R-hat for assessing convergence of MCMC. *Bayesian Analysis* 16(2):667-718. doi:[10.1214/20-BA1221](https://doi.org/10.1214/20-BA1221)（`assess` 报告秩归一化分半链 R-hat 以及 bulk/tail ESS；经典分半链 R-hat 仍保留用于对照。）
 * **ASDSF** - 分裂频率平均标准差，因 MrBayes 而普及：Ronquist F, Huelsenbeck JP (2003) MrBayes 3: Bayesian phylogenetic inference under mixed models. *Bioinformatics* 19(12):1572-1574. doi:[10.1093/bioinformatics/btg180](https://doi.org/10.1093/bioinformatics/btg180)
-* **阈值惯例** - ESS > 200 与 PSRF < 1.01 沿用 BEAST 书（Drummond & Bouckaert 2015）的建议；ASDSF 警告阈值 0.05 沿用 MrBayes 惯例（Ronquist & Huelsenbeck 2003）。它们是默认值而非定律——每一个都可以在 `assess` 命令行上调整。
+* **阈值惯例** - ESS > 200 与 PSRF < 1.01 沿用《BEAST 一书》（Drummond & Bouckaert 2015）的建议；ASDSF 警告阈值 0.05 沿用 MrBayes 惯例（Ronquist & Huelsenbeck 2003）。它们是默认值而非定律——每一个都可以在 `assess` 命令行上调整。
 
 ## 模型比较
 
@@ -33,7 +33,7 @@ BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` �
 
 ## 替换模型
 
-* **JC69** - Jukes TH, Cantor CR (1969) Evolution of protein molecules. 载于：Munro HN (ed) *Mammalian Protein Metabolism*, vol 3. Academic Press, New York, pp 21-132.
+* **JC69** - Jukes TH, Cantor CR (1969) Evolution of protein molecules. In: Munro HN (ed) *Mammalian Protein Metabolism*, vol 3. Academic Press, New York, pp 21-132.
 * **HKY** - Hasegawa M, Kishino H, Yano T (1985) Dating of the human-ape splitting by a molecular clock of mitochondrial DNA. *Journal of Molecular Evolution* 22(2):160-174. doi:[10.1007/BF02101694](https://doi.org/10.1007/BF02101694)
 * **TN93** - Tamura K, Nei M (1993) Estimation of the number of nucleotide substitutions in the control region of mitochondrial DNA in humans and chimpanzees. *Molecular Biology and Evolution* 10(3):512-526. doi:[10.1093/oxfordjournals.molbev.a040023](https://doi.org/10.1093/oxfordjournals.molbev.a040023)
 * **GTR** - Tavaré S (1986) Some probabilistic and statistical problems in the analysis of DNA sequences. *Lectures on Mathematics in the Life Sciences* 17:57-86.
@@ -41,14 +41,14 @@ BeastXPy 所用统计量、阈值与模型的一手文献。`beastxpy methods` �
 * **JTT** - Jones DT, Taylor WR, Thornton JM (1992) The rapid generation of mutation data matrices from protein sequences. *Computer Applications in the Biosciences* 8(3):275-282. doi:[10.1093/bioinformatics/8.3.275](https://doi.org/10.1093/bioinformatics/8.3.275)
 * **WAG** - Whelan S, Goldman N (2001) A general empirical model of protein evolution derived from multiple protein families using a maximum-likelihood approach. *Molecular Biology and Evolution* 18(5):691-693. doi:[10.1093/oxfordjournals.molbev.a003851](https://doi.org/10.1093/oxfordjournals.molbev.a003851)
 * **BLOSUM62** - Henikoff S, Henikoff JG (1992) Amino acid substitution matrices from protein blocks. *PNAS* 89(22):10915-10919. doi:[10.1073/pnas.89.22.10915](https://doi.org/10.1073/pnas.89.22.10915)
-* **Dayhoff** - Dayhoff MO, Schwartz RM, Orcutt BC (1978) A model of evolutionary change in proteins. 载于：*Atlas of Protein Sequence and Structure*, vol 5, suppl 3. National Biomedical Research Foundation, Washington DC, pp 345-352.
+* **Dayhoff** - Dayhoff MO, Schwartz RM, Orcutt BC (1978) A model of evolutionary change in proteins. In: *Atlas of Protein Sequence and Structure*, vol 5, suppl 3. National Biomedical Research Foundation, Washington DC, pp 345-352.
 * **MTREV** - Adachi J, Hasegawa M (1996) Model of amino acid substitution in proteins encoded by mitochondrial DNA. *Journal of Molecular Evolution* 42(4):459-468. doi:[10.1007/BF02338802](https://doi.org/10.1007/BF02338802)
 * **CPREV** - Adachi J, Waddell PJ, Martin W, Hasegawa M (2000) Plastid genome phylogeny and a model of amino acid substitution for proteins encoded by chloroplast DNA. *Journal of Molecular Evolution* 50(4):348-358. doi:[10.1007/s002399910038](https://doi.org/10.1007/s002399910038)
 * **SRD06** - Shapiro B, Rambaut A, Drummond AJ (2006) Choosing appropriate substitution models for the phylogenetic analysis of protein-coding sequences. *Molecular Biology and Evolution* 23(1):7-9. doi:[10.1093/molbev/msj021](https://doi.org/10.1093/molbev/msj021)
 
 ## 分子钟
 
-* **分子钟** - Zuckerkandl E, Pauling L (1965) Evolutionary divergence and convergence in proteins. 载于：Bryson V, Vogel HJ (eds) *Evolving Genes and Proteins*. Academic Press, New York, pp 97-166.
+* **分子钟** - Zuckerkandl E, Pauling L (1965) Evolutionary divergence and convergence in proteins. In: Bryson V, Vogel HJ (eds) *Evolving Genes and Proteins*. Academic Press, New York, pp 97-166.
 * **松弛钟（ucln、uce）** - Drummond AJ, Ho SYW, Phillips MJ, Rambaut A (2006) Relaxed phylogenetics and dating with confidence. *PLoS Biology* 4(5):e88. doi:[10.1371/journal.pbio.0040088](https://doi.org/10.1371/journal.pbio.0040088)
 * **随机局部钟（rlc）** - Drummond AJ, Suchard MA (2010) Bayesian random local clocks, or one rate to rule them all. *BMC Biology* 8:114. doi:[10.1186/1741-7007-8-114](https://doi.org/10.1186/1741-7007-8-114)
 

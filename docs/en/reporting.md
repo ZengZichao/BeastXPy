@@ -12,7 +12,7 @@ The report includes the assessment if it can find one. Normal order:
 beastxpy assess runs/demo --json runs/demo/assessment.json
 ```
 
-If you call `report` without an assessment, the report says **not assessed / 未评估** and shows no diagnostic numbers - it never estimates or back-fills them.
+You can skip this step: `report` then follows the first honesty rule below.
 
 ## Step 2 — Render
 
@@ -31,7 +31,7 @@ assessment: present (verdict fail)
 
 (The full output also echoes `language: en`; with `--lang zh` it echoes `language: zh`.)
 
-The file has no external CSS, JavaScript, fonts or images: it opens from `file://` on a machine with no network. Figures are inlined as `data:` URIs. The tree log itself stays a standard BEAST NEXUS file - for interactive exploration (rotations, dating, colouring) open it in FigTree or iTOL; the report is the static, shareable summary, not a tree viewer.
+The file has no external CSS, JavaScript, fonts or images: it opens from `file://` on a machine with no network. Figures are inlined as `data:` URIs. The tree log itself stays a standard BEAST NEXUS file — for interactive exploration (rotations, dating, colouring) open it in FigTree or iTOL; the report is the static, shareable summary, not a tree viewer.
 
 ## Sections
 
@@ -59,4 +59,4 @@ The JSON carries the same values the HTML renders, under `beastxpy.report/v1`.
 
 ## Options
 
-`--include-config` embeds the configuration found in the run directory. `--assessment PATH` points at an assessment file outside the default lookup. `--no-plot` skips the trace figure for a smaller file. `--ess-threshold N` changes the ESS line the report draws; it does not re-run the assessment.
+`--include-config` embeds the configuration found in the run directory. `--assessment PATH` points at an assessment file outside the default lookup. `--no-plot` skips the trace figure for a smaller file. `--ess-threshold N` changes the ESS value below which a trace parameter is flagged (default 200); it does not re-run the assessment.

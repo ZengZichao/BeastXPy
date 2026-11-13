@@ -14,10 +14,9 @@ beastxpy pipeline --config examples/config_basic.yaml --type snakemake --output-
 
 ```
 wrote pipeline/Snakefile
-wrote pipeline/config_basic.yaml
 ```
 
-命令生成文本时会自行做语法检查，且会把配置一并拷入，使该目录自包含。`--type nextflow` 则写 `pipeline/main.nf`。
+生成的文本会由命令自身做语法检查，配置也会被拷到它旁边，使该目录自包含。`--type nextflow` 则写 `pipeline/main.nf`。
 
 ## 第 2 步 —— 运行
 
@@ -30,4 +29,4 @@ snakemake -s Snakefile --cores 4
 
 Nextflow 在 Windows 上**不**被原生支持：它的 SIGHUP 进程注册在那里会失败。请在 WSL 或 Linux 下运行生成的流水线。
 
-两条流水线都假设 `beastxpy` 在 `PATH` 中，并继承[原生 BEAGLE](native-beagle.md) 与[安装](installation.md)里描述的环境变量。流水线只是把你能手敲的命令包了一层——若你需要检查中间状态，或只跑一个分析，直接用 [快速上手](quickstart.md)里的命令更容易推理。
+两条流水线都假设 `beastxpy` 在 `PATH` 中，并继承[原生 BEAGLE](native-beagle.md) 与[安装](installation.md)里描述的 BEAST 与 BEAGLE 环境变量。流水线只是把你能手敲的命令包了一层——若你需要检查中间状态，或只跑一个分析，直接用 [快速上手](quickstart.md)里的命令更容易理解。

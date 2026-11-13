@@ -46,7 +46,8 @@ work/
 !tests/fixtures/**/*.state
 
 # The golden-regression baselines are checked-in inputs for the same reason:
-# their recorded trace logs must ship or every CI cell loses the file.
+# their recorded trace logs must ship or every CI cell loses the file. This
+# covers tests/golden/reference_diagnostics/tracer_input.log as well.
 !tests/golden/**
 !tests/golden/**/*.log
 !tests/golden/**/*.trees
@@ -56,6 +57,11 @@ work/
 # disposable run output: keep the config, XML, lock, assessment and reports.
 !examples/empirical/results/
 !examples/empirical/results/**
+
+# The optional offline BEAGLE source drop is a build input, never a deliverable
+# (see deploy/beagle/README.md): shipping a third-party source archive here
+# would blur the licensing position.
+deploy/beagle/beagle-lib.tar.gz
 
 # OS / editor noise
 .DS_Store

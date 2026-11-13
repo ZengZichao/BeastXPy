@@ -10,11 +10,11 @@
 beastxpy fingerprint --config demo.yaml
 ```
 
-打印只含三个键的 JSON：`fingerprint`（`BXP-<hash12>-<工具版本>`）、`data_digest` 与 `beastxpy_version`。同样的指纹会作为注释嵌入每份生成的 XML，因此文档可以追溯到产生它的配置。`generate` 的输出旁还会写伴生文件（`demo.fingerprint.json`）。
+打印只含三个键的 JSON：`fingerprint`（`BXP-<hash12>-<tool version>`）、`data_digest` 与 `beastxpy_version`。同样的指纹会作为注释嵌入每份生成的 XML，因此文档可以追溯到产生它的配置。`generate` 的输出旁还会写伴生文件（`demo.fingerprint.json`）。
 
 指纹负载刻意排除非科学元数据、日志文件名与溯源备注；包含 `control.seed` 与指纹嵌入开关，因为它们会改变分析本身。
 
-`methods` 写出的上文 LaTeX 段落会为分析用到的每个模型（替换模型、分子钟、树先验、标定密度、MCMC 方案）嵌入 `\citep` 引用命令，并在末尾以 LaTeX 注释列出每个引用键的完整文献——见 [references](references.md)。
+`methods` 会写出上文提到的 LaTeX 段落，并为分析用到的每个模型（替换模型、分子钟、树先验、标定密度、MCMC 方案）嵌入 `\citep` 命令，末尾再以一条 LaTeX 注释列出每个引用键的完整文献——见 [references](references.md)。
 
 ## 锁
 
@@ -45,7 +45,7 @@ lock: beastxpy.lock
 
 只记录文件名与摘要，绝不记录绝对路径；写入前还会扫描形似凭据的值。文档用逐字段摘要封存，任何改动都可被发现。
 
-## 校验（`--check`）
+## 验证（`--check`）
 
 ```
 beastxpy reproduce --lock beastxpy.lock --check --config demo.yaml
@@ -58,7 +58,7 @@ reproduce: mode=check verdict=match
 
 `--check` 逐字段比对当前机器，任何不匹配都以非零码退出（2 = 字段不同，3 = 锁文件损坏或被编辑过）。如果环境真的变了，重新生成锁；不要手改。
 
-不带 `--config` 时无法核验配置内容字段，verdict 为 `match_partial`（退出码 0），原因列表会逐项说明哪些字段未核验。只有所有记录字段都比较过才会打印 `match`；不要把 `match_partial` 引用为“环境完全一致”。
+不带 `--config` 时无法核验配置内容字段，因此判定为 `match_partial`（退出码 0），原因列表会逐项点出哪些字段未核验。只有每个记录在案的字段都比较过，才会打印 `match` 判定；不要把 `match_partial` 引用为“环境完全一致”。
 
 ## 重放（`--run`）
 
@@ -70,9 +70,9 @@ beastxpy reproduce --lock beastxpy.lock --run --config demo.yaml --workdir runs/
 
 ## 边界
 
-锁能固定版本与文件身份，但固定不了操作系统的数学库、CPU 的浮点行为或 BEAST 自己的随机数实现。不承诺跨机器逐位一致；承诺的是输入可复现。
+锁能固定版本与文件身份，但固定不了操作系统的数学库、CPU 的浮点行为或 BEAST 自己的随机数实现。不承诺跨机器逐位一致；承诺的是*输入*可复现。
 
 两个已知边界被显式记录：
 
-* **Java**：只锚定启动器可执行文件的 SHA-256，以及报告的版本、供应商与架构；JRE 的其余部分（模块、共享库、信任库）不参与哈希。一个保留启动器与版本字符串的重新打包 JRE 不会被发现。
-* **BEAGLE**：同时记录期望版本（配置）与观测版本（运行时）以及 JNI 库的 SHA-256。`reproduce --check` 会比较观测版本，因此未声明的 BEAGLE 升级即使库哈希未变也会报告为字段不匹配。
+* **Java**：只锚定启动器可执行文件的 SHA-256，以及报告的版本、供应商与架构；JRE 的其余部分（模块、共享库、随附的信任库）不参与哈希。一个保留启动器与版本字符串的重新打包 JRE 不会被发现。
+* **BEAGLE**：同时记录期望版本（配置）与观测版本（运行时）以及 JNI 库的 SHA-256。`reproduce --check` 还会比较观测版本，因此未声明的 BEAGLE 升级即使库哈希未变也会报告为字段不匹配。

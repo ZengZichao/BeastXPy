@@ -12,4 +12,4 @@ exclude =
     build,
     dist,
     htmlcov,
-    beastxpy/tools/paras
+    beastxpy/tools/parsers

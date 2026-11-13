@@ -10,7 +10,7 @@
 beastxpy run --config demo.yaml --workdir runs/demo --seeds 1,2
 ```
 
-两条链是 PSRF 与 ASDSF 的最低要求；正式研究通常跑四条或更多。
+两条链是 PSRF 与 ASDSF 的最低要求；发表级工作的常态是四条或更多。
 
 ## 第 2 步 —— 评估
 
@@ -33,23 +33,23 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
     ...
 ```
 
-退出码 3 = 失败，0 = 通过/警告（`--strict` 下警告为 1，输入不可读为 2）。短链上得到 `fail` 是正确答案，不是工具坏了。
+退出码 3 = 失败，0 = 通过/警告（`--strict` 下警告为 1，输入不可读或没有可用链时为 2）。短链上得到 `fail` 是正确答案，不是工具坏了。
 
 ## 第 3 步 —— 自上而下读错误
 
-`ess-below-threshold` 指出哪些参数没有充分移动。解决办法是加长链（必要时调整算子），而不是调高 `--ess` 阈值。`psrf-above-threshold` 说明各链对参数位置意见不一。`bulk-ess-below-threshold` 与 `tail-ess-below-threshold` 说明位置或尾部采样不足。`asdsf-high`（警告阈值 0.05）说明各链对拓扑意见不一。
+`ess-below-threshold` 指出哪些参数没有充分移动。解决办法是加长链（也可能需要更好地调优算子），而不是调高 `--ess` 阈值。`psrf-above-threshold` 说明各链对参数位置意见不一。`bulk-ess-below-threshold` 与 `tail-ess-below-threshold` 说明位置或尾部采样不足。`asdsf-high`（警告阈值 0.05）说明各链对拓扑意见不一。
 
 ## 报告内容
 
-* **逐参数** —— ESS、ACT、均值、中位数与 95% HPD（ESS 采用 Geyer 初始单调序列估计量，Geyer 1992）。
+* **逐参数** —— ESS、ACT、均值、中位数与 95% HPD（ESS 采用 Geyer 初始单调序列估计量，Geyer 1992）。每一列还带 `per_chain`：逐条链给出各自的 `act`、`ess`、`act_max_lag` 与 `act_truncated`，因此即使合并的 `act_truncated` 为真，也能识别出被截断的那条链。
 * **多链 PSRF** —— 经典分半链 R-hat（Gelman & Rubin 1992；分半链变体见 Gelman 等 2013）**以及** 秩归一化分半链 R-hat（Vehtari 等 2021），并为每个参数给出 bulk ESS 与 tail ESS。阈值检查优先使用秩归一化值，无法计算时退回经典 R-hat；两列都会出现在 HTML 报告和 JSON（`multichain.rank_diagnostics`）中。
 * **拓扑 ASDSF** —— 分裂频率的平均标准差（MrBayes 惯例，Ronquist & Huelsenbeck 2003）。
-* **Operator** —— 每个移动的接受率，标记低于 1%、高于 95% 与从未触发的移动。
-* **树摘要** —— 树高、钟速率、`ucld.mean`、`ucld.stdev` 及其 HPD（当相应列存在）。
+* **算子** —— 每个移动的接受率，标记低于 1%、高于 95% 与从未触发的移动。
+* **树摘要** —— 根高、钟速率、`ucld.mean`、`ucld.stdev` 及其 HPD（当相应列存在）。
 
 ## 最重要的一条规则
 
-可用链少于两条时，PSRF 与 ASDSF 报告为 `not_computable` 并给出原因。既然不存在这个数值，就不编造。某列在日志中缺失时同理。
+可用链少于两条时，PSRF 与 ASDSF 报告为 `not_computable` 并给出原因。既然不存在这个数值，就不编造。日志中缺失某一列时，对应统计量的处理同理。
 
 ## 判定
 
@@ -65,25 +65,23 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 
 `pass` 只意味着没有越过你设置的阈值，**不**意味着链收敛了。ESS 与 R-hat 是有限样本估计，在短链上噪声很大；一条尚未探索后验的链也可能看起来正常。
 
-`assess` 是诊断工具。它不做模型选择（`compare` 负责边际似然），也不判断模型是否适合你的数据。
-
-每个参数列还带 `per_chain`：每条链各自的 `act`、`ess`、`act_max_lag` 与 `act_truncated`，因此即使合并的 `act_truncated` 为真，也能定位到具体链。
+`assess` 是诊断工具。它不做模型选择（`compare` 负责边际似然），也不判断你的模型是否合适。
 
 ## 阈值与输出
 
-默认值——ESS 200、PSRF 1.01、ASDSF 0.05、算子接受率 0.01-0.95——是惯例而非定律：ESS 与 PSRF 建议沿用 BEAST 书（Drummond & Bouckaert 2015），ASDSF 阈值沿用 MrBayes 惯例。每一个都可以在命令行上调整；一手文献汇总在 [references](references.md)。
+默认值——ESS 200、PSRF 1.01、ASDSF 0.05、算子接受率 0.01-0.95——是惯例而非定律：ESS 与 PSRF 的取值依据《BEAST 一书》（Drummond & Bouckaert 2015），ASDSF 区间沿用 MrBayes 惯例。每一个都可以在命令行上调整；一手文献汇总在 [references](references.md)。
 
 ```
 beastxpy assess runs/demo --burnin 0.1 --ess 200 --psrf 1.01 --html report.html
 ```
 
-`--burnin` 是从每条链开头丢弃的比例（0..1）；`--burnin auto` 使用与 `beastxpy trace --burnin auto` 相同的 Geweke 自动 burn-in，并按链记录有效比例。若没有可计算的 Geweke 分数（样本少于 100，或所有参数恒定），该链标记为 `burnin_status: not_computable`，产生 warning finding，并把 verdict 降级为 `warn`；此时 burn-in 0 只是因为无法丢弃样本，明确不是收敛估计。请改传显式比例。`--html` 在 JSON 旁生成一个自包含摘要页。JSON 信封（`beastxpy.assessment/v1`）携带 `verdict`、`counts`、`chains`、`multichain`、`reasons` 与 `limitations`。
+`--burnin` 是从每条链开头丢弃的比例（0..1）；`--burnin auto` 使用与 `beastxpy trace --burnin auto` 相同的 Geweke 自动 burn-in，并按链记录有效比例。若没有可计算的 Geweke 分数（样本少于 100，或所有参数恒定），该次运行标记为 `burnin_status: not_computable`，产生一条 warning 发现项，并把判定降级为 `warn`；此时 burn-in 0 只是因为无法丢弃样本，明确不是收敛估计。请改传显式比例。两者的默认值是刻意不同的：`trace` 只分析单个日志并默认使用自动探测，而 `assess` 默认固定 0.1，因此每个种子都以相同比例丢弃，且这一选择仅从 JSON 就能复现。想要跨种子使用自动探测时，请传 `--burnin auto`。`--html` 在 JSON 旁生成一个自包含摘要页，并打印实际使用的阈值，以免把 `pass` 误读成独立于设置的收敛证明。JSON 信封（`beastxpy.assessment/v1`）始终携带 [`CONTRACT.md` §7](../../CONTRACT.md) 列出的那些顶层键：`schema_version`、`generated_at`、`tool_version`、`workdir`、`verdict`、`strict`、`thresholds`、`counts`、`chains`、`multichain`、`reasons` 和 `limitations`；其中 `counts` 是 `reasons` 的发现项计数（`error`、`warning`、`info`）。
 
 ## 与参考实现的一致性
 
 `tests/golden/reference_diagnostics/` 中两组固定模拟数据把数值行为钉在社区工具上（由 `tests/test_reference_diagnostics.py` 验证）：
 
-* **ArviZ 0.23.4**（`rank` R-hat、`bulk`/`tail` ESS）：在四条固定 AR(1) 链上，rank-normalized split R-hat、bulk ESS 与 split-chain tail ESS 与 ArviZ 在打印精度内一致（相对差 < 1e-9）。ESS **不封顶于 `m*n`**：存储的反相关夹具只有 1,000 个抽样，但 BeastXPy 与 ArviZ 都给出 ESS 3,000，因为反相关抽样可以比独立抽样携带更多信息。这是参考实现的行为，不是上界声明。
-* **Tracer 1.7.2**（固定 BEAST 风格日志）：均值与 95% HPD 端点相对差 < 1e-9，ESS 与 ACT 相对差 < 0.1%，中位数差 < 0.002（Tracer 的中位数插值不同）。ACT 以抽样数计；Tracer 以记录状态数计，比较前需除以记录间隔。
+* **ArviZ 0.23.4**（`rank` R-hat、`bulk`/`tail` ESS）：在四条固定 AR(1) 链上，秩归一化分半链 R-hat、bulk ESS 与分半链 tail ESS 与 ArviZ 在打印精度内一致（相对差 < 1e-9）。ESS 刻意**不封顶于 `m*n`**：存储的反相关夹具只有 1,000 个抽样，但 BeastXPy 与 ArviZ 都给出 ESS 3,000，因为反相关抽样可以比独立抽样携带更多信息。这是参考实现的行为，不是上界声明。
+* **Tracer 1.7.2**（固定 BEAST 风格日志）：均值与 95% HPD 端点相对差 < 1e-9，ESS 与 ACT 相对差 < 0.1%，中位数绝对差 < 0.002（Tracer 的中位数插值不同）。ACT 以抽样数计；Tracer 以记录状态数计，比较前需先把 Tracer 的 ACT 除以记录间隔。
 
-95% HPD 是包含 `ceil((1-alpha) * n)` 个观测的最短窗口。小样本时 Tracer 可能选择相差一个顺序统计量的窗口；该差异被记录而不是隐藏。单链 ACT 保留无偏 `n/(n-lag)` 自协方差修正；在固定夹具上与 Tracer 相差 0.06%。多链 ESS 采用 Vehtari et al. (2021) 边际方差分解所需的有偏自协方差。
+95% HPD 是包含 `ceil((1-alpha) * n)` 个观测的最短窗口。小样本时 Tracer 可能选择相差一个顺序统计量的窗口；该差异被记录而不是隐藏。单链 ACT 保留无偏 `n/(n-lag)` 自协方差修正；在固定夹具上与 Tracer 的差在 0.06% 以内。多链 ESS 采用 Vehtari et al. (2021) 边际方差分解所需的有偏自协方差。

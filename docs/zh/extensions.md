@@ -18,7 +18,7 @@ custom_fragments:
       position: before
 ```
 
-一个条目就是一个片段。`xml` 接内联字符串；`file` 接片段文件路径（二者二选一）。锚点用 `anchor_id`（已有元素 id，如 `speciation`）或 `anchor_tag`（元素名）指定，`position` 取 `before`、`after` 或 `inside`（`inside` 只能用于 `<beast>`）。
+一个条目就是一个片段。`xml` 接内联字符串；`file` 接片段文件路径（二选一）。锚点用 `anchor_id`（已有元素 id，如 `speciation`）或 `anchor_tag`（元素名）指定，`position` 取 `before`、`after` 或 `inside`（`inside` 只能用于 `<beast>`）。
 
 可以在配置里设 `enabled: true`，也可以保持 false 并在命令行传 `--allow-custom-fragments`。两者都没有时，该块被忽略。
 
@@ -28,7 +28,7 @@ custom_fragments:
 beastxpy generate --config demo.yaml --output demo.xml --allow-custom-fragments
 ```
 
-拼接后的文档与其他文档一样过全部门。Gate 0 会拒绝坏片段，给出具体原因和 `next step:` 提示：
+拼接后的文档经过的 Gate 与其他文档完全相同。Gate 0 会拒绝坏片段，给出具体原因和 `next step:` 提示：
 
 ```
 error: refusing to generate: fragment 'root-height-stat': anchor ambiguous -- 3 elements match tag=<speciationLikelihood>
@@ -49,12 +49,12 @@ error: refusing to generate: fragment 'root-height-stat': anchor ambiguous -- 3 
 * `idref` 无法解析
 * `<!DOCTYPE>` 与实体声明（外部实体永远不会被展开）
 * 逃出配置目录的 `file:` 路径，以及绝对路径
-* 任何触及 `mcmc`、日志器、operator 或其他核心块的改动
+* 任何触及 `mcmc`、`loggers`、`operators` 或其他核心块的改动
 
 ## Gate 3 是强制的
 
 拼接后的文档在溯源记录中标记为 `custom`，并且**必须**通过官方 BEAST jar 的 Gate 3。校验失败则拒绝生成——`--allow-unvalidated` 不能覆盖这一点。
 
-## 一句提醒
+## 一句警告
 
-白名单让片段保持"惰性"：可以声明分类单元集合、参数、统计量与独立分布，但不能悄悄替换 BeastXPy 自己的机制。如果你需要的东西不在名单上，诚实的答案是另写一份 BEAST XML，而不是用片段。
+白名单让片段保持“惰性”：可以声明分类单元、参数、统计量与独立分布，但不能悄悄替换 BeastXPy 自己的机制。如果你需要的东西不在名单上，诚实的答案是另写一份 BEAST XML，而不是用片段。

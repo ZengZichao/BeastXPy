@@ -1,5 +1,7 @@
 # BeastXPy reference-data case study
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 This directory runs the complete BeastXPy workflow on the shipped
 `examples/primates.fasta` alignment (12 taxa, 898 bp). Those sequences are a
 short published/reference tutorial alignment already part of this repository;
@@ -25,6 +27,12 @@ thresholds were not crossed.
 | `results/assessment.json` | `assess` envelope (ESS, PSRF, ASDSF, verdict) |
 | `results/report.html`, `results/report.json` | self-contained report and its machine-readable envelope |
 | `results/case_study_summary.json` | commands, exit codes, timings and the assessment summary |
+
+**Path note.** `results/config.yaml` is the exact configuration used for the
+recorded run, so its `file: ../primates.fasta` path is relative to
+`examples/empirical/`. Run it from that directory (or copy it there); running
+it from `results/` directly will fail Gate 0 because `../primates.fasta` then
+points to a nonexistent file.
 
 `results/` is produced by:
 

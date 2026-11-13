@@ -416,7 +416,8 @@ class CalibrationDiagnostics:
                         continue
                     crown_interval = intervals[crown.name]
                     stem_interval = intervals[stem.name]
-                    assert crown_interval is not None and stem_interval is not None
+                    if crown_interval is None or stem_interval is None:
+                        continue
                     if crown_interval[0] > stem_interval[1]:
                         height = stem_interval[1] - stem_interval[0]
                         tol = 0.05 * height if height > 0 else 0.0
@@ -482,7 +483,8 @@ class CalibrationDiagnostics:
         intervals: Dict[str, Optional[Tuple[float, float]]] = {}
         for cal in calibrations:
             dist = cal.distribution
-            assert dist is not None  # filtered above
+            if dist is None:  # filtered above; keep -O builds safe
+                continue
             samples[cal.name] = sample_distribution(dist.type, dist.parameters, dist.offset)
             intervals[cal.name] = distribution_quantiles(dist.type, dist.parameters, dist.offset)
 
@@ -519,7 +521,6 @@ class CalibrationDiagnostics:
                 )
                 # Deterministic, symmetric pair naming.
                 name_a, name_b = sorted((a.name, b.name))
-                assert interval_a is not None and interval_b is not None
                 entry = {
                     "a": name_a,
                     "b": name_b,
@@ -836,7 +837,8 @@ class CalibrationDiagnostics:
         ]
         for cal in calibrations:
             dist = cal.distribution
-            assert dist is not None  # filtered above
+            if dist is None:  # filtered above; keep -O builds safe
+                continue
             samples = sample_distribution(dist.type, dist.parameters, dist.offset)
             if samples is None:
                 continue
@@ -1198,7 +1200,8 @@ def diagnose_config(
         if report_path:
             target_report = Path(report_path)
         else:
-            assert out_dir is not None
+            if out_dir is None:
+                raise DiagnosticsError("write_report requires an output_dir")
             target_report = out_dir / "report.html"
         target_report.parent.mkdir(parents=True, exist_ok=True)
         if target_report.suffix.lower() in (".html", ".htm"):

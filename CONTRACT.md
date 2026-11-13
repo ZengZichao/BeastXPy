@@ -1,6 +1,10 @@
 # BeastXPy behavioural contract
 
+[English](CONTRACT.md) | [中文](CONTRACT.zh-CN.md)
+
 This document is the public statement of the interfaces and honesty rules that the code and tests enforce. It is referenced from source comments as `CONTRACT.md §<section>`. Section numbers are stable; prose may be clarified without renumbering.
+
+Numbering note: the public references keep their historical numbers. §3, §4 and §6 are not present in this revision; §5 F1 and §5 F2 are parallel sub-clauses of §5.
 
 ## §1 Scope
 
@@ -72,9 +76,9 @@ Exit codes: 0 = no findings or info only, 1 = warnings, 2 = errors.
 
 ```
 beastxpy assess <workdir> [--trace PATH ...] [--trees PATH ...]
-                [--burnin FRACTION|auto] [--ess THRESHOLD]
-                [--psrf THRESHOLD] [--strict] [--json PATH]
-                [--html PATH] [--no-plots] [-q]
+                [--burnin FRACTION|auto] [--ess MIN]
+                [--psrf MAX] [--strict] [--json PATH]
+                [--html PATH] [-q]
 ```
 
 Exit codes:
@@ -90,8 +94,10 @@ The JSON document has schema `beastxpy.assessment/v1` and always contains these 
 
 ```
 schema_version, generated_at, tool_version, workdir, verdict, strict,
-thresholds, chains, multichain, reasons, limitations
+thresholds, counts, chains, multichain, reasons, limitations
 ```
+
+`counts` is the finding tally for `reasons`: it always contains `error`, `warning` and `info`, each the number of findings of that severity.
 
 Per-chain entries always include `seed`, `status`, `trace_log`, `tree_log`, `run_log`, `run_meta`, `samples`, `burnin_fraction`, `burnin_samples` and `parameters`. The `multichain` object always contains `available`, `n_chains`, `psrf` and `asdsf`; each statistic object carries `status`, and either `values`/`value` or a `reason`.
 
@@ -99,7 +105,7 @@ Per-chain entries always include `seed`, `status`, `trace_log`, `tree_log`, `run
 
 Every prior that BeastXPy adds because the configuration did not specify one is:
 
-1. marked in the generated XML with a comment beginning `BXP auto prior (BEAUti-1.10.4 convention)`;
+1. marked in the generated XML with a comment beginning `BXP auto prior (` followed by that prior's provenance label, for example `BEAUti-1.10.4 convention`;
 2. reported as a Gate-2 `info` finding with code `AUTO_PRIOR`, visible in `generate --beast-validate` output;
 3. listed in the `report` HTML section "Automatic priors";
 4. overridable under `parameter_priors` in the YAML.

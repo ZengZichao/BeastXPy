@@ -82,11 +82,11 @@ CI runs the full suite (with a JDK and BEAST) on 3 OSes x 2 Python versions x 2 
 
 ## Data availability
 
-The alignments under `examples/` are short published/reference sequences used only to exercise the workflow; no new empirical data were generated for this repository. They are not intended for biological inference. Validation logs recorded for the paper are in `docs/en/validation.md`. The end-to-end reference-data case study (config, generated XML, lock, assessment and report) is in `examples/empirical/`; it uses the same shipped tutorial alignment and is explicitly a workflow demonstration, not a biological result.
+The alignments under `examples/` are short published/reference sequences used only to exercise the workflow; no new empirical data were generated for this repository. They are not intended for biological inference. Recorded validation results for the paper are in `docs/en/validation.md`. The end-to-end reference-data case study (config, generated XML, lock, assessment and report) is in `examples/empirical/`; it uses the same shipped tutorial alignment and is explicitly a workflow demonstration, not a biological result.
 
 ## Author
 
-BeastXPy is developed and maintained by **ZengZichao (曾子超)** —zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X).
+BeastXPy is developed and maintained by **ZengZichao (曾子超)** — zengzichao@sjtu.edu.cn · ORCID [0000-0001-6553-970X](https://orcid.org/0000-0001-6553-970X).
 
 ## Licence
 

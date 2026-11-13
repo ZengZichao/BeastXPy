@@ -39,6 +39,7 @@ CONTRACT_TOP_LEVEL_KEYS = [
     "verdict",
     "strict",
     "thresholds",
+    "counts",
     "chains",
     "multichain",
     "reasons",

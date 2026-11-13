@@ -1,5 +1,7 @@
 # BEAUti-convention reference fixtures
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 These three XML subsets are the external reference for
 `tests/test_beauti_reference.py`. They are **hand-transcribed from BEAUti
 1.10.4 source defaults**, not produced by a live BEAUti run. A headless

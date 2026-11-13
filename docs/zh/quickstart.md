@@ -4,7 +4,7 @@
 
 本指南在自带的 primates 比对（898 bp、12 个分类单元）上完整跑通一个分析：JC69 + 严格钟 + Yule + 一个根标定。每一步都给出命令、应当看到的输出，以及进入下一步之前需要确认的事项。
 
-**开始之前**：先完成[安装](installation.md)。要求 `beastxpy --version` 可用，且 `beastxpy check-environment` 能找到 JDK 和两个 BEAST jar。第 4 步的运行还需要原生 BEAGLE 库（见 [native-beagle](native-beagle.md)）；在编写本指南的参考机器上，用下面几个环境变量指向它：
+**开始之前**：先完成[安装](installation.md)。要求 `beastxpy --version` 可用，且 `beastxpy check-environment` 能找到 JDK 和两个 BEAST jar。第 4 步的运行还需要原生 BEAGLE 库（见 [原生 BEAGLE](native-beagle.md)）；在本指南运行所用的参考机器上，用下面列出的环境变量指向它：
 
 ```
 export JAVA_HOME=/path/to/jdk-17
@@ -80,22 +80,22 @@ verdict: pass (0 error(s), 0 warning(s))
 no data or calibration problems found
 ```
 
-退出码 `0` 表示干净，`1` 表示仅有警告，`2` 表示有错误。如果犯了经典错误（对数尺度均值写成 `mean: -3.5`），Gate 0 会先拒绝整个配置：
+退出码 `0` 表示干净，`1` 表示仅有警告，`2` 表示有错误。如果犯了经典的 lognormal 错误（对数尺度均值写成 `mean: -3.5`），Gate 0 会在任何检查运行之前就拒绝整个配置：
 
 ```
 verdict: fail (1 error(s), 0 warning(s))
 [error] config-parse-error: Gate 0 rejected this config: calibrations[0].distribution.parameters.mean: must be > 0 for lognormal
 ```
 
-按提示修复，重跑直到 verdict 为 `pass`。
+按发现项点名的项修复，重跑直到判定为 `pass`。
 
-## 第 3 步 —— 生成 BEAST XML 并验证
+## 第 3 步 —— 生成 BEAST XML 并校验
 
 ```
 beastxpy generate --config demo.yaml --output demo.xml --beast-validate
 ```
 
-预期输出（进度在 stderr，"wrote" 行在 stdout）：
+预期输出（进度在 stderr，“wrote” 行在 stdout）：
 
 ```
 Gate 0 (parse-time, before the 3 generation gates): demo.yaml
@@ -116,9 +116,9 @@ wrote demo.xml
 * **Gate 0** —— YAML 通过严格解析且自洽。
 * **Gate 1** —— 生成的 XML 结构上是合法的 BEAST 1 文档。
 * **Gate 2** —— 标定可用且互不矛盾。`Gate 2 [info]` 是提示而不是错误：它如实说明对数尺度标定均值的实际含义，并逐一列出 BeastXPy 自动添加的先验（可在 `parameter_priors` 中覆盖）。
-* **Gate 3** —— **官方** BEAST 1.10.4 jar 解析了文档、构建了模型图、并评估出有限的初始后验。方括号里是本机支持的最强模式：有原生 BEAGLE 时为 `beagle`（且没有 WARNING 行），否则为 `java-core`（见 [validation](validation.md)）。
+* **Gate 3** —— *官方* BEAST 1.10.4 jar 解析了文档、构建了模型图、并评估出有限的初始后验。方括号里是本机支持的最强模式：有原生 BEAGLE 时为 `beagle`（且没有 WARNING 行），否则为 `java-core`（见 [validation](validation.md)）。
 
-退出码 0 表示**每个被请求的门都真实运行且通过**。该命令还会在 XML 旁边写两个伴生文件：`demo.fingerprint.json` 和 `demo_methods.tex`。
+退出码 0 表示**每个被请求的 Gate 都真实运行且通过**。该命令还会在 XML 旁边写两个伴生文件：`demo.fingerprint.json` 和 `demo_methods.tex`。
 
 ## 第 4 步 —— 运行 BEAST（两个种子）
 
@@ -138,7 +138,7 @@ beastxpy run --config demo.yaml --workdir runs/demo --seeds 1,2
 fingerprint: BXP-a836c87ba7de-0.1.0 (content: BXP-a836c87ba7de6055)
 ```
 
-两个种子是第 5 步链间统计量的最低要求；正式分析建议四个或更多。工作目录结构：
+两个种子是第 5 步链间统计量的最低要求；正式分析用四个或更多。工作目录结构：
 
 ```
 runs/demo/
@@ -155,9 +155,7 @@ runs/demo/
     └── ...                  same layout for seed 2
 ```
 
-即：`demo.xml` 为主 XML；`assessment.json`、`report.html` 分别由第 5、6 步生成；每个种子子目录里有改写过日志名的 `demo.xml` 副本、BEAST 的 `run.log`、机器可读的 `run_meta.json`、参数日志 `seed_N_trace.log` 与树日志 `seed_N_tree.log`。
-
-**如果运行几乎立刻停止**，且各种子的 `run.log` 里出现 `No acceptable BEAGLE library plugins found`：说明 JVM 没有拿到原生 BEAGLE。检查 `beastxpy check-environment`，设置 `BEASTX_BEAGLE_1_10_4_LIB` 后重跑。BeastXPy 拒绝产出"看起来像真的"链：BEAST 1 的 XML 计算似然必须有原生 BEAGLE。（对含 `<treeLikelihood>` 的文档，`--java-only` 会被直接拒绝——见 [cli](cli.md)。）
+**如果运行几乎立刻停止**，且各种子的 `run.log` 里出现 `No acceptable BEAGLE library plugins found`：说明 JVM 没有拿到原生 BEAGLE。检查 `beastxpy check-environment`，设置 `BEASTX_BEAGLE_1_10_4_LIB` 后重跑。BeastXPy 拒绝产出一条只是看起来真实的链：BEAST 1 的 XML 计算似然必须有原生 BEAGLE。（对含 `<treeLikelihood>` 的文档，`--java-only` 会被直接拒绝——见 [cli](cli.md)。）
 
 BeastXPy 会把探测到的原生 BEAGLE 自动暴露给 BEAST 进程（`-Djava.library.path` 加动态链接器路径），所以安装阶段设置的环境变量就足够了。
 
@@ -167,7 +165,7 @@ BeastXPy 会把探测到的原生 BEAGLE 自动暴露给 BEAST 进程（`-Djava.
 beastxpy assess runs/demo --json runs/demo/assessment.json
 ```
 
-在这条刻意调短的链上，结论是 `fail`，而这就是正确答案（10 万步的链 ESS 只有几十）：
+在这条刻意调短的链上，判定是 `fail`，而这就是正确答案（100000 步的链 ESS 只有几十）：
 
 ```
 assess: runs/demo -> verdict fail (2 chain(s), strict=False)
@@ -189,7 +187,7 @@ thresholds: burnin=0.1 ess=200.0 psrf=1.01 operator=[0.01, 0.95]
 * **ASDSF** —— 链间拓扑一致性；这里 `0.0000` 表示两条链对每个分裂都一致。
 * **算子** —— 接受率；低于 1% 或高于 95% 的移动会被标记。
 
-退出码：`0` 通过/警告，`1` 为 `--strict` 下的警告，`2` 输入不可读，`3` 失败。这里的 `fail` 描述的是样本状态，不是"模型错了"的判断（见 [assessment](assessment.md) 与 [limitations](limitations.md)）。
+退出码：`0` 通过/警告，`1` 为 `--strict` 下的警告，`2` 输入不可读，`3` 失败。这里的 `fail` 描述的是样本状态，不是“模型错了”的判断（见 [assessment](assessment.md) 与 [能力边界](limitations.md)）。
 
 ## 第 6 步 —— 生成离线 HTML 报告
 
@@ -210,7 +208,7 @@ assessment: present (verdict fail)
 
 单个自包含 HTML 文件：不依赖外部 CSS/JS/字体，图片内嵌，无网络也能从 `file://` 打开。`--lang en` 生成完整英文报告。如果颠倒顺序、在 `assess` 之前调用 `report`，报告会如实标注 **not assessed/未评估**，绝不补造数字。
 
-## 第 7 步 —— 固定环境并校验
+## 第 7 步 —— 固定环境并验证
 
 ```
 beastxpy lock --config demo.yaml --output beastxpy.lock --seeds 1,2
@@ -227,7 +225,7 @@ lock: beastxpy.lock
   the lock records basenames and digests only; no paths or credentials
 ```
 
-然后校验当前机器是否仍与锁定文件一致：
+然后验证当前机器是否仍与锁文件一致：
 
 ```
 beastxpy reproduce --lock beastxpy.lock --check --config demo.yaml
@@ -235,17 +233,17 @@ beastxpy reproduce --lock beastxpy.lock --check --config demo.yaml
 
 ```
 reproduce: mode=check verdict=match
-  24 field(s) match
+  25 field(s) match
 ```
 
-退出码 0 = 当前环境就是锁定文件描述的环境。任何漂移（jar 不同、Java 不同、锁定文件被改动）都以非零码退出；被编辑过的锁定文件直接以退出码 3 拒绝。见 [reproducibility](reproducibility.md)。
+退出码 0 = 当前环境就是锁文件描述的环境。任何漂移（jar 不同、Java 不同、锁文件被改动）都以非零码退出；被编辑过的锁文件直接以退出码 3 拒绝。见 [reproducibility](reproducibility.md)。
 
 ## 下一步
 
 * [configuration](configuration.md) —— 每个 YAML 键、模型名、先验。
 * [cli](cli.md) —— 全部 21 个命令的精确参数与退出码。
-* [validation](validation.md) —— 四道门各自证明与不证明什么。
+* [validation](validation.md) —— 四道 Gate 各自证明与不证明什么。
 * [assessment](assessment.md) —— 诚实解读 ESS/PSRF/ASDSF。
-* [compare](compare.md) —— 边缘似然与贝叶斯因子。
+* [compare](compare.md) —— 边际似然与贝叶斯因子。
 * [references](references.md) —— 本指南用到的每个统计量、阈值与模型的一手文献。
 * [troubleshooting](troubleshooting.md) —— 症状、原因、修法。

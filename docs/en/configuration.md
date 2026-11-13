@@ -162,7 +162,7 @@ The BEAUti-attributed rows were checked against the 1.10.4 code paths that write
 
 Automatic priors are visible at every stage:
 
-1. **XML.** Each automatic prior element is preceded by a comment starting `BXP auto prior (BEAUti-1.10.4 convention)` that names the parameter and the emitted distribution.
+1. **XML.** Each automatic prior element is preceded by a comment starting `BXP auto prior (` followed by that prior's provenance label, for example `BEAUti-1.10.4 convention`, that names the parameter and the emitted distribution.
 2. **Gate 2.** `generate --beast-validate` lists every automatic prior as an `info` finding with code `AUTO_PRIOR`.
 3. **Report.** `beastxpy report` has an **Automatic priors** section listing every annotation found in the generated XML.
 4. **Override.** Any of them can be replaced under `parameter_priors`.
@@ -174,7 +174,7 @@ No default is hidden.
 * `control.beast_version`: `"1.10.4"` (default), `"10.5.0"`, or `"both"`; `--beast-version` on the CLI overrides it.
 * `control.seed`: default RNG seed (0..2^31-1); `run --seeds` overrides.
 * `control.initial_tree`: `coalescent` (default), `upgma` or `newick`; the latter two cannot be combined with calibrations.
-* `tip_dates`: mapping taxon → age, e.g. `tip_dates: {Bovine: 1.0}` or per-taxon `{value: 1.0, direction: forward, units: years}`. Time must be identifiable: give at least one calibration, tip date, or an estimated clock rate.
+* `tip_dates`: mapping taxon → age, e.g. `tip_dates: {Bovine: 1.0}` or per-taxon `{value: 1.0, direction: forwards, units: years}`. Time must be identifiable: give at least one calibration, tip date, or an estimated clock rate.
 
 ## Coverage analyses and fragments
 
@@ -191,7 +191,7 @@ prints the authoritative list. `codon` and `recombination` are rejected at Gate 
 The error names the section, the key and the reason:
 
 ```
-Gate 0: FAILED -- partitions[0].site_model.gamma_shape: gamma_shape requires gamma_categories > 1
+Gate 0: FAILED -- partitions[0].gamma_shape: requires gamma_categories > 1 (it would otherwise be silently ignored)
 ```
 
 Fix exactly what is named. `beastxpy check-data --config demo.yaml` runs the data-side pre-checks (duplicate taxa, ambiguous sequences, calibration conflicts) without generating anything.

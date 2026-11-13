@@ -62,12 +62,12 @@ A path-sampling run needs native BEAGLE. Without it `compare` exits 2 with no nu
 
 ## Reading a Bayes factor
 
-The output is `2 ln BF`, following the usual convention (Kass & Raftery 1995); the marginal likelihoods come from BEAST's own path sampling and stepping-stone estimators (Xie et al. 2011; Baele et al. 2013 - see [references](references.md)). Larger positive values favour the first model, larger negative values favour the second, and the Kass-Raftery bands are a **reporting convention, not a decision rule**.
+Two quantities appear. `logBF` is signed, `a - b`: positive favours the first model, negative favours the second. `2 ln BF` is `2 * |logBF|`, so it is never negative and the favoured model is named in the same line. The bands follow the usual convention (Kass & Raftery 1995); the marginal likelihoods come from BEAST's own path sampling and stepping-stone estimators (Xie et al. 2011; Baele et al. 2013 - see [references](references.md)). The bands are a **reporting convention, not a decision rule**.
 
 Three warnings:
 
 * A Bayes factor compares the models you gave it. It says nothing about a model you did not try.
-* Short chains, few path steps or poor mixing make the estimate unstable. The standard error is reported so you can see this; the interpretation string states whether `|log BF|` exceeds `2 * SE`. A log BF of 2 with a standard error of 3 is printed as "not distinguishable from zero" and is not evidence at all.
+* Short chains, few path steps or poor mixing make the estimate unstable. The standard error is reported so you can see this; the interpretation string states whether `|log BF|` exceeds `2 * SE`. A log BF of 2 with a standard error of 3 is printed as `not distinguishable from zero` and is not evidence at all.
 * The reported SE is a delta-method lower bound: path steps are treated as independent and residual dependence between them is not modelled. The true Monte-Carlo error can be larger.
 
 ## Outputs

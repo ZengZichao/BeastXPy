@@ -1,5 +1,7 @@
 # BeastXPy containers
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 Two definitions, one image:
 
 | File | Builder |
