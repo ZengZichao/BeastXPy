@@ -96,22 +96,51 @@ def default_ref_dir() -> Path:
     return project / "BeastXPy-参考软件"
 
 
-def find_java_home() -> Path | None:
-    """Return a JDK home containing ``javac``, or ``None``.
+def javac_is_usable(javac: Path) -> bool:
+    """Return whether ``javac`` actually runs.
 
-    ``JAVA_HOME`` wins; otherwise the directory of ``javac`` found on
-    ``PATH`` is used.  No vendor- or OS-specific default is assumed.
+    A file named ``javac`` is not enough.  A JRE-only install ships a stub
+    that exits non-zero, and pointing ``JAVA_HOME`` at such a stub makes it
+    hang while it tries to fetch a runtime -- so a mere existence check can
+    wedge the build for good.  Execute it once, with a timeout.
     """
+    try:
+        proc = subprocess.run(
+            [str(javac), "-version"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    output = (proc.stdout or "").strip() or (proc.stderr or "").strip()
+    return proc.returncode == 0 and bool(output)
+
+
+def find_java_home() -> Path | None:
+    """Return a JDK home whose ``javac`` runs, or ``None``.
+
+    ``JAVA_HOME`` is preferred, then ``javac`` on ``PATH``.  A candidate is
+    accepted only if ``javac -version`` succeeds, so a JRE-only install (or a
+    ``JAVA_HOME`` that points at one) is rejected instead of hanging.  No
+    vendor- or OS-specific default is assumed.
+    """
+    candidates: list[Path] = []
     env_home = os.environ.get("JAVA_HOME")
     if env_home:
         base = Path(env_home)
         for name in ("javac.exe", "javac"):
             candidate = base / "bin" / name
             if candidate.is_file():
-                return base
+                candidates.append(candidate)
     javac = shutil.which("javac")
     if javac:
-        return Path(javac).resolve().parent.parent
+        candidates.append(Path(javac))
+    for candidate in candidates:
+        if javac_is_usable(candidate):
+            return candidate.resolve().parent.parent
     return None
 
 

@@ -1,0 +1,27 @@
+# The sdist is the source snapshot a contributor or a packager unpacks.
+# setuptools' default file list only picks up ``tests/test*.py``; without the
+# rules below an unpacked sdist is missing conftest.py, the fixtures and the
+# golden XML, so its own suite cannot even be collected, and it carries no
+# top-level tools, docs, examples or CI definitions.  Everything the repository
+# tracks ships; VCS and build cruft stay out (they are ignored by .gitignore).
+include LICENSE NOTICE
+include README.md README.zh-CN.md
+include CONTRIBUTING.md CONTRIBUTING.zh-CN.md
+include CONTRACT.md CONTRACT.zh-CN.md
+include CITATION.cff
+include requirements-test.txt
+include .flake8 .gitattributes .gitignore MANIFEST.in
+
+# The test harness ships as a package would.  conftest.py is not matched by a
+# ``test*.py`` rule, and the fixtures/goldens are read at collection or run
+# time; without them an unpacked sdist cannot run the suite it carries.
+recursive-include tests *.py
+recursive-include tests/fixtures *
+recursive-include tests/golden *.xml *.json *.log *.txt *.md
+
+# Repository-root tooling and the reader-facing documents.
+recursive-include tools *.py *.java
+recursive-include docs *.md
+recursive-include examples *.yaml *.fasta *.nexus *.txt *.xml *.json *.html *.tex *.md
+recursive-include deploy *
+include .github/workflows/*.yml

@@ -10,6 +10,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -230,6 +231,22 @@ def test_validation_docs_describe_gate3_modes():
 # ---------------------------------------------------------------------------
 
 
+def _git_tracked_paths() -> set[str] | None:
+    """Return the tracked paths, or ``None`` when git cannot be run here."""
+    try:
+        proc = subprocess.run(
+            ["git", "ls-files", "-z"],
+            cwd=str(ROOT),
+            capture_output=True,
+            timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if proc.returncode != 0:
+        return None
+    return {entry for entry in proc.stdout.decode("utf-8", "replace").split("\0") if entry}
+
+
 def test_root_generated_artifacts_are_absent():
     for name in (
         "basic.log",
@@ -239,11 +256,16 @@ def test_root_generated_artifacts_are_absent():
         "subst_jc69.log",
         "subst_jc69.trees",
         "testCalibration.log",
-        ".DS_Store",
         ".tmp_cli_test",
         "diagnostics",
     ):
         assert not (ROOT / name).exists(), f"generated artifact at repository root: {name}"
+    # .DS_Store is macOS Finder metadata, not a project artefact: it is
+    # gitignored and may legitimately exist on a Mac checkout.  What must never
+    # happen is that it is tracked by git.
+    tracked = _git_tracked_paths()
+    if tracked is not None:
+        assert ".DS_Store" not in tracked, ".DS_Store is tracked by git"
 
 
 def test_gitignore_covers_generated_files():
@@ -281,20 +303,40 @@ def test_build_jars_timestamp_and_jdk_detection(monkeypatch):
     fake_home = Path(sys.executable).parent
     monkeypatch.setenv("JAVA_HOME", str(fake_home))
     monkeypatch.setattr(build_jars.shutil, "which", lambda name: None)
-    # find_java_home() must only accept a directory that actually has javac.
-    expected = (fake_home / "bin" / "javac.exe").is_file() or (
-        fake_home / "bin" / "javac"
-    ).is_file()
+    # find_java_home() must only accept a directory whose javac actually runs.
+    candidates = [fake_home / "bin" / name for name in ("javac.exe", "javac")]
+    usable = [path for path in candidates if path.is_file() and build_jars.javac_is_usable(path)]
     detected = build_jars.find_java_home()
-    if expected:
+    if usable:
         assert detected == fake_home
     else:
         assert detected is None
 
 
+def test_find_java_home_rejects_a_javac_that_cannot_run(tmp_path, monkeypatch):
+    """A JRE stub named ``javac`` must be rejected, not hung on."""
+    sys.path.insert(0, str(ROOT / "beastxpy" / "tools"))
+    import build_jars
+
+    fake_home = tmp_path / "jre"
+    stub = fake_home / "bin" / ("javac.exe" if os.name == "nt" else "javac")
+    stub.parent.mkdir(parents=True)
+    stub.write_text("not a compiler", encoding="utf-8")
+    monkeypatch.setenv("JAVA_HOME", str(fake_home))
+    monkeypatch.setattr(build_jars.shutil, "which", lambda name: None)
+    assert build_jars.javac_is_usable(stub) is False
+    assert build_jars.find_java_home() is None
+
+
 def test_build_jars_compiles_both_versions_without_touching_package(tmp_path):
-    if shutil.which("javac") is None:
-        pytest.skip("no javac on PATH; set JAVA_HOME to a JDK to test build_jars.py")
+    sys.path.insert(0, str(ROOT / "beastxpy" / "tools"))
+    import build_jars
+
+    # Skip on a machine with no usable JDK.  Probing for a file named ``javac``
+    # is not enough: a JRE-only install ships a stub, and the build would fail
+    # (or hang) instead of skipping.
+    if build_jars.find_java_home() is None:
+        pytest.skip("no usable JDK found; set JAVA_HOME to a JDK to test build_jars.py")
 
     package_classes = ROOT / "beastxpy" / "tools" / "classes"
     before = {
